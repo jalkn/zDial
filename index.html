@@ -16,6 +16,13 @@
         .bg-zenergy-blue { background-color: #1389d4; }
         .symbol-img { width: 70px; height: 70px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(19, 137, 212, 0.5)); opacity: 0.9; }
         .z-box-glow { box-shadow: 0 0 30px rgba(148, 218, 251, 0.1); }
+        
+        /* Drop Wave Animation */
+        @keyframes drop-wave {
+            0% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(3.5); opacity: 0.5; }
+            100% { transform: scale(5); opacity: 0.0; }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -29,82 +36,127 @@
         <div class="hidden md:flex space-x-8 text-[9px] uppercase tracking-[0.2em] text-gray-500 items-center">
             <a href="#bioladrillo" class="hover:text-white transition">Bio-Brick</a>
             <a href="#zbox" class="hover:text-white transition">Z-Box</a>
-            <a href="#protocol" class="text-zenergy-blue font-bold animate-pulse">Protocolo FSWJ</a>
+            <a href="#protocol" class="hover:text-white transition">Protocolo FWJU</a>
+            <a href="#z-dial-sandwatch" class="text-zenergy-blue font-bold border-l border-white/10 pl-6 flex items-center gap-2">
+                <span class="w-2 h-2 bg-zenergy-blue rounded-full animate-ping"></span>
+                Z-DIAL: <span id="z-dial-menu">5FS70</span>
+            </a>
         </div>
     </nav>
 
-    <header id="bioladrillo" class="max-w-6xl mx-auto px-6 pt-20 pb-32 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<header id="bioladrillo" class="max-w-6xl mx-auto px-6 pt-20 pb-32 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zenergy-blue/20 text-[9px] tracking-[0.3em] uppercase text-zenergy-blue mb-6">
+                <span class="w-1.5 h-1.5 bg-zenergy-blue rounded-full animate-pulse"></span>
+                Disponibilidad: Nodo Santa Elena
+            </div>
+            
             <h1 class="text-5xl md:text-6xl mb-8 uppercase tracking-tighter leading-[0.9]">
-                Z-BRICK <br><span class="gradient-text">REGENERATIVO</span>
+                Z-BRICK <br><span class="gradient-text">ESTRUCTURAL</span>
             </h1>
-            <p class="text-lg text-gray-400 font-light max-w-lg mb-10 leading-relaxed">
-                Nuestros bio-ladrillos son nodos estructurales diseñados para anclar esculturas e instalaciones de Land Art. Combinan micelio y cáscaras de maíz. Al adquirirlos, integras una pieza de bioarte a tu hogar junto a un protocolo de entrenamiento físico codificado en ondas.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4">
-                <button onclick="window.open('https://wa.me/573025333130', '_blank')" class="bg-zenergy-blue text-black font-black px-10 py-5 rounded-full hover:scale-105 transition-all uppercase text-[10px] tracking-[0.2em]">
-                    Activar Nodo
-                </button>
-                <div class="flex items-center px-6 py-4 glass rounded-full">
-                    <span class="text-[10px] uppercase tracking-widest text-gray-500">Pigmento: Clorella Stencil</span>
+            
+            <div class="space-y-6 text-lg text-gray-400 font-light max-w-lg mb-10 leading-relaxed">
+                <p>
+                    Unidades de mampostería biológica diseñadas como <span class="text-white font-medium">nodos estructurales de manufactura distribuida</span>. Módulos regenerativos para la arquitectura del futuro, validados mediante encriptación biocinética.
+                </p>
+                <p class="text-sm border-l border-zenergy-blue/30 pl-4 italic">
+                    Al adquirir un Z-Brick, integras una pieza de bioarte a tu entorno vinculada a un protocolo de entrenamiento físico codificado en ondas de resonancia.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-10 text-[10px] uppercase tracking-widest text-gray-500">
+                <div class="glass p-3 rounded-xl border-white/5">
+                    <span class="text-zenergy-blue block mb-1">Composición</span>
+                    Micelio + Cáscaras de Maíz
+                </div>
+                <div class="glass p-3 rounded-xl border-white/5">
+                    <span class="text-zenergy-blue block mb-1">Certificación</span>
+                    Z-Dial 5FS70 Encrypted
                 </div>
             </div>
-        </div>
-        <div class="relative">
-            <div class="glass p-2 rounded-[3rem] border border-white/10 shadow-2xl overflow-hidden z-box-glow">
-                <img src="img/Untitled.png" alt="Z-Brick Mycelium" class="rounded-[2.8rem] w-full aspect-square object-cover opacity-80 hover:scale-105 transition-transform duration-700">
+
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button onclick="window.open('https://wa.me/573025333130', '_blank')" class="bg-zenergy-blue text-black font-black px-10 py-5 rounded-full hover:scale-105 transition-all uppercase text-[10px] tracking-[0.2em]">
+                    Activar Nodo de Construcción
+                </button>
             </div>
-            <div class="absolute -bottom-6 -left-6 glass p-6 rounded-2xl border border-zenergy-blue/20 max-w-[180px]">
-                <p class="text-[9px] uppercase tracking-widest text-zenergy-blue font-bold mb-2">Marcación Física</p>
-                <p class="text-[10px] text-gray-400 leading-tight">QR Izquierdo y Onda de Frecuencia realizados con pigmento biológico.</p>
+        </div>
+
+        <div class="relative group">
+            <div class="absolute -inset-4 border border-zenergy-blue/10 rounded-[3.5rem] pointer-events-none group-hover:border-zenergy-blue/30 transition-colors duration-500"></div>
+            <div class="absolute top-0 right-0 glass px-4 py-2 rounded-bl-3xl rounded-tr-[3rem] z-10 border-white/10 text-[9px] uppercase tracking-widest text-zenergy-blue">
+                Z-Brick v1.0 // AR Ready
+            </div>
+            
+            <div class="glass p-2 rounded-[3rem] border border-white/10 shadow-2xl overflow-hidden z-box-glow">
+                <img src="img/Untitled.png" alt="Z-Brick Mycelium Structure" class="rounded-[2.8rem] w-full aspect-square object-cover opacity-80 group-hover:scale-110 transition-transform duration-[2000ms] ease-out">
+            </div>
+
+            <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-4 w-full justify-center">
+                <div class="glass px-4 py-2 rounded-full text-[8px] uppercase tracking-tighter border-white/5 text-gray-400">
+                    <span class="text-white">Cara A:</span> Resonancia de Gota
+                </div>
+                <div class="glass px-4 py-2 rounded-full text-[8px] uppercase tracking-tighter border-white/5 text-gray-400">
+                    <span class="text-white">Cara B:</span> Protocolo Z-Dial
+                </div>
             </div>
         </div>
     </header>
 
-    <section id="zbox" class="max-w-6xl mx-auto px-6 py-24 border-t border-white/5">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-            <div class="glass p-12 rounded-[3rem] border border-zenergy-blue/10">
-                <h3 class="text-zenergy-blue brand-font text-xs tracking-[0.4em] mb-8 uppercase">Resonancia Simbiótica</h3>
-                <p class="text-sm text-gray-400 leading-relaxed mb-6">
-                    Tu movimiento genera una frecuencia mecánica. La Z-Box traduce tu esfuerzo en ondas sonoras (zenBeats) que estimulan el metabolismo del micelio.
-                </p>
-                <div class="space-y-4">
-                    <div class="flex items-center gap-4 p-4 glass rounded-xl border-l-2 border-zenergy-blue">
-                        <span class="text-[10px] text-gray-300">CUERPO: Genera la Onda FWJU</span>
+    <section id="z-dial-sandwatch" class="max-w-4xl mx-auto px-6 py-24 text-center">
+        <div class="glass rounded-[3rem] border border-zenergy-blue/30 p-12 relative overflow-hidden">
+            
+            <div class="mb-12">
+                <p class="text-[10px] tracking-[0.4em] text-zenergy-blue uppercase mb-6">Upper Face: Drop Wave Resonance</p>
+                <div class="flex justify-center items-center h-32 relative">
+                    <div class="w-8 h-8 rounded-full border border-zenergy-blue bg-zenergy-blue/10 flex items-center justify-center opacity-70">
+                        <span class="w-1.5 h-1.5 bg-white rounded-full"></span>
                     </div>
-                    <div class="flex items-center gap-4 p-4 glass rounded-xl border-l-2 border-white/20">
-                        <span class="text-[10px] text-gray-300">Z-BOX: Transduce a Resonancia Auditiva</span>
-                    </div>
-                    <div class="flex items-center gap-4 p-4 glass rounded-xl border-l-2 border-zenergy-blue">
-                        <span class="text-[10px] text-gray-300">MICELIO: Vibración que fortalece la estructura</span>
-                    </div>
+                    <div class="absolute w-20 h-20 rounded-full border-2 border-zenergy-blue animate-[drop-wave_2s_ease-out_infinite]"></div>
                 </div>
             </div>
-            <div>
-                <h2 class="text-4xl mb-6 uppercase tracking-tight">Hardware <br><span class="text-zenergy-blue">Invisible</span></h2>
-                <p class="text-gray-400 font-light leading-relaxed mb-8">
-                    Sin pantallas. La Z-Box utiliza pulsos lumínicos y resonancia sónica para guiar tu entrenamiento. Un puente vibracional donde tu sudor alimenta la estructura de tu futuro hogar.
-                </p>
+
+            <div class="relative z-10">
+                <h2 id="main-z-dial" class="brand-font text-7xl md:text-9xl gradient-text tracking-tighter">5FS70</h2>
+                <p class="text-gray-500 tracking-[0.5em] uppercase text-[10px] mt-4">Daily Biokinetic Seed</p>
+            </div>
+
+            <div class="mt-16 pt-12 border-t border-white/5 flex flex-col items-center">
+                <div class="w-32 h-32 bg-white p-2 rounded-xl mb-6 relative overflow-hidden">
+                    <img src="img/Untit.png" alt="Z-Dial QR" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/60 flex items-center justify-center text-[8px] text-center px-2">
+                        SCAN: ACTIVATE Z-DIAL
+                    </div>
+                </div>
+                <pre id="bitstream-compact" class="font-mono text-[9px] text-zenergy-blue/60 text-left"></pre>
             </div>
         </div>
+
+        <div class="mt-16 p-10 glass rounded-3xl border border-zenergy-blue/20">
+            <pre id="bitstream-code" class="font-mono text-[10px] text-zenergy-blue/80 leading-relaxed overflow-x-auto"></pre>
+        </div>
+
     </section>
 
-    <section id="protocol" class="max-w-6xl mx-auto px-6 py-24 border-t border-white/5">
+<section id="protocol" class="max-w-6xl mx-auto px-6 py-24 border-t border-white/5">
         <div class="text-center mb-16">
-            <h2 class="text-3xl mb-4 tracking-tighter uppercase">Encriptación Biocinética FSWJ</h2>
-            <p class="text-sm text-gray-500 font-light tracking-widest uppercase">fortaleciendo el vínculo entre el cuerpo humano y el planeta</p>
+            <h2 class="text-3xl mb-2 tracking-tighter uppercase">Encriptación Biocinética FSWS</h2>
+            <p class="text-zenergy-blue text-[10px] tracking-[0.5em] uppercase font-bold mb-4">Linking Body and Planet</p>
+            <p class="text-sm text-gray-500 font-light tracking-widest uppercase">Fortaleciendo el vínculo entre el cuerpo humano y el planeta</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition">
+            <div onclick="playBeat('Fbeat.wav')" class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition cursor-pointer group">
                 <div>
-                    <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase">F — Fall</h3>
+                    <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase flex justify-between">
+                        F — Fall 
+                        <span class="opacity-0 group-hover:opacity-100 transition-opacity text-[8px]">Play z-Beat</span>
+                    </h3>
                     <p class="text-xl font-bold mb-2 uppercase">Caer</p>
-                    <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">Absorber / Inhala</p>
+                    <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">Inhala</p>
                     
-                    <img src="img/fall.gif" alt="Fall Movement GIF" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-90">
+                    <img src="img/fall.gif" alt="Fall Movement" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-80 group-hover:opacity-100 transition">
 
-                    <p class="text-[11px] text-gray-400 leading-relaxed mb-6">Absorber el impacto y reconocer el terreno. Conectar el centro de gravedad con la tierra.</p>
                     <div class="text-[9px] text-gray-500 border-t border-white/5 pt-4">
                         <p class="font-bold mb-2 uppercase text-gray-400">Alternativas:</p>
                         <ul class="space-y-1">
@@ -115,42 +167,46 @@
                     </div>
                 </div>
                 <div class="mt-8 flex justify-center">
-                    <img src="img/fall.png" alt="Fall Symbol" class="symbol-img">
+                    <img src="img/fall.png" alt="Fall Symbol" class="w-12 opacity-50 group-hover:opacity-100 transition">
                 </div>
             </div>
-            
-            <div class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition">
-                <div>
-                    <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase">S - Stand</h3>
-                    <p class="text-xl font-bold mb-2 uppercase">Levantarse</p>
-                    <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">Eje Vertical / Imagina</p>
-                    
-                    <img src="img/stand.gif" alt="Stand Movement GIF" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-90">
 
-                    <p class="text-[11px] text-gray-400 leading-relaxed mb-6">Estabilidad del núcleo y la fuerza aplicada contra el suelo. El quiebre de la inercia.</p>
+            <div onclick="playBeat('Sbeat.wav')" class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition cursor-pointer group">
+                <div>
+                    <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase flex justify-between">
+                        S — Stand 
+                        <span class="opacity-0 group-hover:opacity-100 transition-opacity text-[8px]">Play z-Beat</span>
+                    </h3>
+                    <p class="text-xl font-bold mb-2 uppercase">Estar</p>
+                    <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">Imagina</p>
+                    
+                    <img src="img/stand.gif" alt="Stand Movement" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-80 group-hover:opacity-100 transition">
+
                     <div class="text-[9px] text-gray-500 border-t border-white/5 pt-4">
                         <p class="font-bold mb-2 uppercase text-gray-400">Alternativas:</p>
                         <ul class="space-y-1">
-                            <li>&bull; Air Squat/Sit ups</li>
+                            <li>&bull; Sit ups</li>
                             <li>&bull; Burpee</li>
-                            <li>&bull; Burpee broad jump</li>
+                            <li>&bull; Plank Hold</li>
                         </ul>
                     </div>
                 </div>
                 <div class="mt-8 flex justify-center">
-                    <img src="img/stand.png" alt="Up Symbol" class="symbol-img">
+                    <img src="img/stand.png" alt="Stand Symbol" class="w-12 opacity-50 group-hover:opacity-100 transition">
                 </div>
             </div>
             
-            <div class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition">
+            <div onclick="playBeat('Wbeat.wav')" class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition cursor-pointer group">
                 <div>
-                    <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase">W — Walk</h3>
+                    <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase flex justify-between">
+                        W — Walk 
+                        <span class="opacity-0 group-hover:opacity-100 transition-opacity text-[8px]">Play z-Beat</span>
+                    </h3>
                     <p class="text-xl font-bold mb-2 uppercase">Caminar</p>
-                    <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">Flujo / Exhala</p>
+                    <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">Exhala</p>
                     
-                    <img src="img/walk.gif" alt="Walk Movement GIF" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-90">
+                    <img src="img/walk.gif" alt="Walk Movement" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-80 group-hover:opacity-100 transition">
 
-                    <p class="text-[11px] text-gray-400 leading-relaxed mb-6">El flujo de la energía y el ritmo constante del movimiento biológico en el entorno.</p>
                     <div class="text-[9px] text-gray-500 border-t border-white/5 pt-4">
                         <p class="font-bold mb-2 uppercase text-gray-400">Alternativas:</p>
                         <ul class="space-y-1">
@@ -161,19 +217,21 @@
                     </div>
                 </div>
                 <div class="mt-8 flex justify-center">
-                    <img src="img/walk.png" alt="Walk Symbol" class="symbol-img">
+                    <img src="img/walk.png" alt="Walk Symbol" class="w-12 opacity-50 group-hover:opacity-100 transition">
                 </div>
             </div>
             
-            <div class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition">
+            <div onclick="playBeat('Jbeat.wav')" class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition cursor-pointer group">
                 <div>
-                    <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase">J — Jump</h3>
+                    <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase flex justify-between">
+                        J — Jump 
+                        <span class="opacity-0 group-hover:opacity-100 transition-opacity text-[8px]">Play z-Beat</span>
+                    </h3>
                     <p class="text-xl font-bold mb-2 uppercase">Saltar</p>
-                    <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">Trascender / Crea</p>
+                    <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">Crea</p>
                     
-                    <img src="img/jump.gif" alt="Jump Movement GIF" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-90">
+                    <img src="img/jump.gif" alt="Jump Movement" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-80 group-hover:opacity-100 transition">
 
-                    <p class="text-[11px] text-gray-400 leading-relaxed mb-6">Máxima frecuencia de activación. La expansión y el quiebre definitivo de la gravedad.</p>
                     <div class="text-[9px] text-gray-500 border-t border-white/5 pt-4">
                         <p class="font-bold mb-2 uppercase text-gray-400">Alternativas:</p>
                         <ul class="space-y-1">
@@ -184,48 +242,89 @@
                     </div>
                 </div>
                 <div class="mt-8 flex justify-center">
-                    <img src="img/jump.png" alt="Jump Symbol" class="symbol-img">
+                    <img src="img/jump.png" alt="Jump Symbol" class="w-12 opacity-50 group-hover:opacity-100 transition">
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="mt-16 p-10 glass rounded-3xl border border-zenergy-blue/20 flex flex-col md:flex-row items-center justify-between gap-10">
-            <div class="text-center md:text-left">
-                <p class="text-[10px] text-zenergy-blue font-bold tracking-[0.4em] uppercase mb-3">Biokinetic Bitstream</p>
-                <h3 class="brand-font text-3xl uppercase">26U13 <span class="text-gray-700 font-light ml-4">#338</span></h3>
-                <p class="text-[10px] text-gray-500 mt-4 uppercase tracking-widest">Sincronizado con Z-Box y Mycelium Tech-Lab</p>
+    <script>
+        let activeAudio = null;
+
+        function playBeat(fileName) {
+            if (activeAudio) {
+                activeAudio.pause();
+                activeAudio.currentTime = 0;
+            }
+            activeAudio = new Audio('img/' + fileName);
+            activeAudio.volume = 0.6;
+            activeAudio.play().catch(e => console.log("Interacción requerida"));
+        }
+    </script>
+
+<section id="zbox" class="max-w-6xl mx-auto px-6 py-24 border-t border-white/5">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+            <div class="order-2 md:order-1 glass p-12 rounded-[3rem] border border-zenergy-blue/10 relative overflow-hidden">
+                <div class="absolute inset-0 bg-zenergy-blue/5 animate-pulse"></div>
+                <h3 class="text-zenergy-blue brand-font text-xs tracking-[0.4em] mb-8 uppercase">Z-Box: Protocolos de Interfaz</h3>
+                <div class="space-y-6 relative z-10">
+                    <div class="flex gap-4">
+                        <div class="w-1 h-12 bg-zenergy-blue"></div>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-zenergy-blue block mb-1 font-bold">Feedback Atmosférico</span>
+                            <p class="text-sm text-gray-300">Modulación de luminancia Blue/White sincronizada con los ciclos circadianos del micelio.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-1 h-12 bg-white/20"></div>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-white/50 block mb-1 font-bold">Traducción de Resonancia</span>
+                            <p class="text-sm text-gray-300 italic">Sinfonía generativa zenBeats: conversión de telemetría fúngica en frecuencias audibles para la sincronización metabólica humano-hongo.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-1 h-12 bg-white/20"></div>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-widest text-white/50 block mb-1 font-bold">Validación Capacitiva</span>
+                            <p class="text-sm text-gray-300">Interfaz táctil sin estado para la confirmación de fases de manufactura y sellado biocinético.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="w-full md:w-auto">
-                <pre class="bg-black/60 border border-white/5 p-8 rounded-2xl font-mono text-[10px] text-zenergy-blue/80 leading-relaxed overflow-x-auto">
-[SYSTEM_STATUS: ACTIVE]
-CURRENT_CELL: MAY-JUN
-FREQUENCY_ID: 60
-ACTIVE_PROTOCOL: FSWJ_CODED
-SET FREQUENCY = 26;
-TRIGGER_TYPE = "STAND";
-REPS_PER_SET = 13;
-                </pre>
+
+            <div class="order-1 md:order-2">
+                <h2 class="text-4xl mb-6 uppercase tracking-tight">Hardware <br><span class="text-zenergy-blue">Asíncrono</span></h2>
+                <p class="text-gray-400 font-light leading-relaxed mb-8">
+                    La Z-Box renuncia a la saturación visual para operar mediante el lenguaje de la frecuencia. Es un bioreactor de manufactura distribuida diseñado para orquestar la unión entre el pulso del planeta y el movimiento del cuerpo.
+                </p>
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-zenergy-blue/30 text-[10px] tracking-[0.2em] uppercase text-zenergy-blue">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-zenergy-blue opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-zenergy-blue"></span>
+                    </span>
+                    Core Sync: Online
+                </div>
             </div>
         </div>
     </section>
 
     <footer class="max-w-6xl mx-auto px-6 py-24 text-center border-t border-white/5">
         <img src="img/logo.png" alt="Zenergia" class="w-8 h-8 mx-auto mb-8 opacity-20">
-        <p class="brand-font text-[9px] text-gray-600 tracking-[0.5em] uppercase mb-6">Zenergia.world &bull; Bio-Land Art &bull; 2026</p>
+        <p class="brand-font text-[9px] text-gray-600 tracking-[0.5em] uppercase mb-6">Zenergia.world &bull; Bio-Hardware Ecosystem &bull; 2026</p>
         <div class="flex justify-center space-x-12">
             <a href="https://github.com/jalkon" target="_blank" class="text-[10px] text-gray-500 hover:text-zenergy-blue transition tracking-widest uppercase">GitHub</a>
             <a href="#" class="text-[10px] text-gray-500 hover:text-zenergy-blue transition tracking-widest uppercase">Streamlit Lab</a>
         </div>
     </footer>
-    <script>
-    function updateZenergiaDial() {
+
+<script>
+    function updateZenergiaSystem() {
         const now = new Date();
         const d = now.getDate();
-        const m = now.getMonth() + 1; // Enero es 0
+        const m = now.getMonth() + 1; // Mayo = 5
 
-        // Lógica: Sets = Mes, Reps = Día * 10
-        // Fase: Mayo (5) es FS
-        let protocol = "FS";
+        // Lógica Hexagonal Unificada
+        let protocol = "FS"; // Mayo
         if (m === 6) protocol = "FSW";
         if (m >= 7) protocol = "FSWJ";
 
@@ -233,27 +332,37 @@ REPS_PER_SET = 13;
         const reps = d * 10;
         const dial = `${sets}${protocol}${reps}`;
 
-        // Actualizar el Ticker en el UI
-        const dialElement = document.getElementById('daily-dial-trigger');
-        if (dialElement) {
-            dialElement.innerText = dial;
+        // 1. Inyectar en el Menú
+        const menuDial = document.getElementById('z-dial-menu');
+        if (menuDial) menuDial.innerText = dial;
+
+        // 2. Inyectar en la Obra Sandwatch (Centro)
+        const mainDial = document.getElementById('main-z-dial');
+        if (mainDial) mainDial.innerText = dial;
+
+        // 3. Inyectar en el Bitstream de la Base
+        const compactLog = document.getElementById('bitstream-compact');
+        if (compactLog) {
+            compactLog.innerText = `[CELL: ${now.toLocaleString('default', { month: 'short' }).toUpperCase()}] [FREQ: ${dial}] [STATUS: SYNCED]`;
         }
 
-        // También podemos actualizar el bloque de código del final
+        // 4. Inyectar en el bloque de código final
         const codeBlock = document.getElementById('bitstream-code');
         if (codeBlock) {
             codeBlock.innerHTML = `
-    [SYSTEM_STATUS: ACTIVE]
-    CURRENT_CELL: ${now.toLocaleString('default', { month: 'short' }).toUpperCase()}
-    DIAL_ID: ${dial}
-    ACTIVE_PROTOCOL: ${protocol}_CODED
-    SET_FREQUENCY = ${sets};
-    REPS_PER_SET = ${reps};`;
-            }
+[SYSTEM_STATUS: ACTIVE]
+CURRENT_CELL: ${now.toLocaleString('es-ES', { month: 'short' }).toUpperCase()}
+DIAL_ID: ${dial}
+ACTIVE_PROTOCOL: ${protocol}_CODED
+SET_FREQUENCY = ${sets};
+REPS_PER_SET = ${reps};
+RESONANCE_TARGET: 1000Hz;
+CHRONO_GOLDEN_HOUR: 16:00;`;
         }
+    }
 
-        // Ejecutar al cargar la página
-        document.addEventListener('DOMContentLoaded', updateZenergiaDial);
-    </script>
+    // Ejecutar al cargar la página
+    document.addEventListener('DOMContentLoaded', updateZenergiaSystem);
+</script>
 </body>
 </html>
