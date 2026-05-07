@@ -3,90 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zenergia | Z-Box: Intelligent Bio-Hardware</title>
+    <title>Zenergia | Bio-Hardware & Land Art</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;500&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Space Grotesk', sans-serif; background-color: #0a0a0a; color: #f4f4f4; }
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #0a0a0a; color: #f4f4f4; scroll-behavior: smooth; }
         h1, h2, h3, .brand-font { font-family: 'Orbitron', sans-serif; font-weight: 900; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); }
         .gradient-text { background: linear-gradient(90deg, #94dafb 0%, #1389d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-glow { position: absolute; top: -10%; left: 50%; transform: translateX(-50%); width: 600px; height: 400px; background: radial-gradient(circle, rgba(19, 137, 212, 0.1) 0%, rgba(10, 10, 10, 0) 70%); z-index: -1; }
+        .hero-glow { position: absolute; top: -10%; left: 50%; transform: translateX(-50%); width: 800px; height: 500px; background: radial-gradient(circle, rgba(19, 137, 212, 0.08) 0%, rgba(10, 10, 10, 0) 70%); z-index: -1; }
         .text-zenergy-blue { color: #1389d4; }
         .bg-zenergy-blue { background-color: #1389d4; }
-        .custom-shadow { box-shadow: 0 10px 15px -3px rgba(19, 137, 212, 0.3); }
-        .symbol-img { width: 80px; height: 80px; object-fit: contain; filter: drop-shadow(0 0 8px rgba(19, 137, 212, 0.4)); opacity: 0.9; }
+        .symbol-img { width: 70px; height: 70px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(19, 137, 212, 0.5)); opacity: 0.9; }
+        .z-box-glow { box-shadow: 0 0 30px rgba(148, 218, 251, 0.1); }
     </style>
 </head>
 <body class="antialiased">
     <div class="hero-glow"></div>
 
-    <nav class="py-8 px-6 flex justify-between items-center max-w-6xl mx-auto">
+    <nav class="py-8 px-6 flex justify-between items-center max-w-6xl mx-auto sticky top-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-md">
         <div class="flex items-center space-x-4">
-            <img src="img/logo.png" alt="Zenergia Logo" class="w-10 h-10 object-contain">
-            <span class="brand-font text-xl tracking-tighter uppercase">ZENERGIA</span>
+            <img src="img/logo.png" alt="Zenergia Logo" class="w-8 h-8 object-contain">
+            <span class="brand-font text-lg tracking-tighter uppercase">ZENERGIA</span>
         </div>
-        <div class="hidden md:flex space-x-8 text-[10px] uppercase tracking-widest text-gray-400 items-center">
-            <span class="cursor-default border-l border-white/10 pl-4">Bioladrillo</span>
-            <a href="#protocol" class="text-zenergy-blue font-bold border-l border-white/10 pl-4 hover:text-white transition animate-pulse">Protocolo</a>
-            <a href="https://zenergy.streamlit.app" target="_blank" class="text-zenergy-blue font-bold border-l border-white/10 pl-4 text-[10px]">Mycelium tech-lab</a>
+        <div class="hidden md:flex space-x-8 text-[9px] uppercase tracking-[0.2em] text-gray-500 items-center">
+            <a href="#bioladrillo" class="hover:text-white transition">Bio-Brick</a>
+            <a href="#zbox" class="hover:text-white transition">Z-Box</a>
+            <a href="#protocol" class="text-zenergy-blue font-bold animate-pulse">Protocolo FWJU</a>
         </div>
     </nav>
 
-    <header class="max-w-6xl mx-auto px-6 pt-12 pb-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <header id="bioladrillo" class="max-w-6xl mx-auto px-6 pt-20 pb-32 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         <div>
-            <h1 class="text-4xl md:text-5xl mb-8 uppercase tracking-tight leading-none">
-                Z-BRICK <span class="gradient-text">+</span> PROTOCOLO
+            <h1 class="text-5xl md:text-6xl mb-8 uppercase tracking-tighter leading-[0.9]">
+                Z-BRICK <br><span class="gradient-text">REGENERATIVO</span>
             </h1>
             <p class="text-lg text-gray-400 font-light max-w-lg mb-10 leading-relaxed">
-                Nuestros bioladrillos son nodos estructurales diseñados para anclar nuestras instalaciones de Land-art. Combinando micelio y cáscara de choclo.
+                Nuestros bio-ladrillos son nodos estructurales diseñados para anclar instalaciones de Land Art. Combinan micelio y cáscaras de maíz. Al adquirirlos, integras una pieza de bioarte a tu hogar junto a un protocolo de entrenamiento físico codificado en ondas.
             </p>
-            <button onclick="window.open('https://wa.me/573025333130', '_blank')" class="bg-zenergy-blue text-black font-extrabold px-8 py-4 rounded-xl hover:scale-105 transition-all custom-shadow uppercase text-xs tracking-[0.2em]">
-                Activar Nodo
-            </button>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button onclick="window.open('https://wa.me/573025333130', '_blank')" class="bg-zenergy-blue text-black font-black px-10 py-5 rounded-full hover:scale-105 transition-all uppercase text-[10px] tracking-[0.2em]">
+                    Activar Nodo
+                </button>
+                <div class="flex items-center px-6 py-4 glass rounded-full">
+                    <span class="text-[10px] uppercase tracking-widest text-gray-500">Pigmento: Clorella Stencil</span>
+                </div>
+            </div>
         </div>
         <div class="relative">
-            <div class="glass p-4 rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden">
-                <img src="img/Untitled.png" alt="Z-Brick Mycelium" class="rounded-[2rem] w-full aspect-square object-cover opacity-90">
+            <div class="glass p-2 rounded-[3rem] border border-white/10 shadow-2xl overflow-hidden z-box-glow">
+                <img src="img/Untitled.png" alt="Z-Brick Mycelium" class="rounded-[2.8rem] w-full aspect-square object-cover opacity-80 hover:scale-105 transition-transform duration-700">
+            </div>
+            <div class="absolute -bottom-6 -left-6 glass p-6 rounded-2xl border border-zenergy-blue/20 max-w-[180px]">
+                <p class="text-[9px] uppercase tracking-widest text-zenergy-blue font-bold mb-2">Marcación Física</p>
+                <p class="text-[10px] text-gray-400 leading-tight">QR Izquierdo y Onda de Frecuencia realizados con pigmento biológico.</p>
             </div>
         </div>
     </header>
 
-    <section id="protocol" class="max-w-6xl mx-auto px-6 py-16 border-t border-white/5">
-        <h2 class="text-3xl mb-4 tracking-tight uppercase">Protocolo de Encriptación Biocinética</h2>
-        <p class="text-sm text-gray-400 font-light max-w-3xl mb-12 leading-relaxed">
-            Frecuencia Hexagonal 60FUWJ60. Operadores de Movimiento (Funciones) utilizados en las proyecciones de Realidad Aumentada.
-        </p>
+    <section id="zbox" class="max-w-6xl mx-auto px-6 py-24 border-t border-white/5">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+            <div class="order-2 md:order-1 glass p-12 rounded-[3rem] border border-zenergy-blue/10 relative overflow-hidden">
+                <div class="absolute inset-0 bg-zenergy-blue/5 animate-pulse"></div>
+                <h3 class="text-zenergy-blue brand-font text-xs tracking-[0.4em] mb-8 uppercase">Z-Box: Invisible Hardware</h3>
+                <div class="space-y-6 relative z-10">
+                    <div class="flex gap-4">
+                        <div class="w-1 h-12 bg-zenergy-blue"></div>
+                        <p class="text-sm text-gray-300">Feedback atmosférico mediante pulsos de luz Blue/White.</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-1 h-12 bg-white/20"></div>
+                        <p class="text-sm text-gray-300">Sinfonía generativa zenBeats basada en datos del entorno.</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-1 h-12 bg-white/20"></div>
+                        <p class="text-sm text-gray-300">Interacción capacitiva táctil sin botones físicos ni pantallas.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="order-1 md:order-2">
+                <h2 class="text-4xl mb-6 uppercase tracking-tight">Vivir sin <br><span class="text-zenergy-blue">Pantallas</span></h2>
+                <p class="text-gray-400 font-light leading-relaxed mb-8">
+                    La Z-Box es un bioreactor que renuncia a los píxeles para hablar el lenguaje de la luz y la frecuencia. Un organismo tecnológico diseñado para orquestar el crecimiento del micelio y guiar tus protocolos sensoriales.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="protocol" class="max-w-6xl mx-auto px-6 py-24 border-t border-white/5">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl mb-4 tracking-tighter uppercase">Encriptación Biocinética FWJU</h2>
+            <p class="text-sm text-gray-500 font-light tracking-widest uppercase">Un lenguaje corporal que codifica tu plan de entrenamiento.</p>
+        </div>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div class="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between h-auto min-h-[380px]">
+            <div class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[450px] hover:border-zenergy-blue/30 transition">
                 <div>
-                    <h3 class="text-xs uppercase tracking-widest mb-2 font-bold text-zenergy-blue">F</h3>
-                    <p class="text-lg font-bold mb-2 uppercase">Caer</p>
-                    <p class="text-[10px] text-gray-500 uppercase mb-4 italic">Absorber impacto / Inhala</p>
-                    <div class="text-[10px] text-gray-400 space-y-2 border-t border-white/5 pt-4">
-                        <p class="font-bold text-gray-300">Alternativas:</p>
+                    <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase">F — Fall</h3>
+                    <p class="text-xl font-bold mb-2 uppercase">Caer</p>
+                    <p class="text-[9px] text-gray-500 uppercase mb-6 italic tracking-widest">Absorber / Inhala</p>
+                    <p class="text-[11px] text-gray-400 leading-relaxed mb-6">Absorber el impacto y reconocer el terreno. Conectar el centro de gravedad con la tierra.</p>
+                    <div class="text-[9px] text-gray-500 border-t border-white/5 pt-4">
+                        <p class="font-bold mb-2 uppercase text-gray-400">Alternativas:</p>
                         <ul class="space-y-1">
                             <li>&bull; Shoulder tap</li>
-                            <li>&bull; Push up</li>
-                            <li>&bull; Handstand push up</li>
-                            <li>&bull; Handstand walk</li>
+                            <li>&bull; Push up / Handstand</li>
                             <li>&bull; Bear crawl</li>
                         </ul>
                     </div>
                 </div>
-                <div class="mt-6 flex justify-start">
-                    <img src="img/fall.png" alt="Fall Symbol" class="symbol-img">
+                <div class="mt-8 flex justify-center">
+                    <img src="img/fall.jpg" alt="Fall Symbol" class="symbol-img">
                 </div>
             </div>
             
-            <div class="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between h-auto min-h-[380px]">
+            <div class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[450px] hover:border-zenergy-blue/30 transition">
                 <div>
-                    <h3 class="text-xs uppercase tracking-widest mb-2 font-bold text-zenergy-blue">S</h3>
-                    <p class="text-lg font-bold mb-2 uppercase">Levantarse</p>
-                    <p class="text-[10px] text-gray-500 uppercase mb-4 italic">Eje vertical / Imagina</p>
-                    <div class="text-[10px] text-gray-400 space-y-2 border-t border-white/5 pt-4">
-                        <p class="font-bold text-gray-300">Alternativas:</p>
+                    <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase">U — Up</h3>
+                    <p class="text-xl font-bold mb-2 uppercase">Levantarse</p>
+                    <p class="text-[9px] text-gray-500 uppercase mb-6 italic tracking-widest">Eje Vertical / Imagina</p>
+                    <p class="text-[11px] text-gray-400 leading-relaxed mb-6">Estabilidad del núcleo y la fuerza aplicada contra el suelo. El quiebre de la inercia.</p>
+                    <div class="text-[9px] text-gray-500 border-t border-white/5 pt-4">
+                        <p class="font-bold mb-2 uppercase text-gray-400">Alternativas:</p>
                         <ul class="space-y-1">
                             <li>&bull; Sit ups</li>
                             <li>&bull; Burpee</li>
@@ -94,70 +132,76 @@
                         </ul>
                     </div>
                 </div>
-                <div class="mt-6 flex justify-start">
-                    <img src="img/stand.png" alt="Up Symbol" class="symbol-img">
+                <div class="mt-8 flex justify-center">
+                    <img src="img/up.jpg" alt="Up Symbol" class="symbol-img">
                 </div>
             </div>
             
-            <div class="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between h-auto min-h-[380px]">
+            <div class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[450px] hover:border-zenergy-blue/30 transition">
                 <div>
-                    <h3 class="text-xs uppercase tracking-widest mb-2 font-bold text-zenergy-blue">W</h3>
-                    <p class="text-lg font-bold mb-2 uppercase">Caminar</p>
-                    <p class="text-[10px] text-gray-500 uppercase mb-4 italic">Flujo / Exhala</p>
-                    <div class="text-[10px] text-gray-400 space-y-2 border-t border-white/5 pt-4">
-                        <p class="font-bold text-gray-300">Alternativas:</p>
+                    <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase">W — Walk</h3>
+                    <p class="text-xl font-bold mb-2 uppercase">Caminar</p>
+                    <p class="text-[9px] text-gray-500 uppercase mb-6 italic tracking-widest">Flujo / Exhala</p>
+                    <p class="text-[11px] text-gray-400 leading-relaxed mb-6">El flujo de la energía y el ritmo constante del movimiento biológico en el entorno.</p>
+                    <div class="text-[9px] text-gray-500 border-t border-white/5 pt-4">
+                        <p class="font-bold mb-2 uppercase text-gray-400">Alternativas:</p>
                         <ul class="space-y-1">
                             <li>&bull; Run / Sprint</li>
                             <li>&bull; Lunges</li>
                             <li>&bull; Jumping Lunges</li>
-                            <li>&bull; Jumping Lunges broad</li>
                         </ul>
                     </div>
                 </div>
-                <div class="mt-6 flex justify-start">
-                    <img src="img/walk.png" alt="Walk Symbol" class="symbol-img">
+                <div class="mt-8 flex justify-center">
+                    <img src="img/walk.jpg" alt="Walk Symbol" class="symbol-img">
                 </div>
             </div>
             
-            <div class="glass p-8 rounded-2xl border border-white/5 flex flex-col justify-between h-auto min-h-[380px]">
+            <div class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[450px] hover:border-zenergy-blue/30 transition">
                 <div>
-                    <h3 class="text-xs uppercase tracking-widest mb-2 font-bold text-zenergy-blue">J</h3>
-                    <p class="text-lg font-bold mb-2 uppercase">Saltar</p>
-                    <p class="text-[10px] text-gray-500 uppercase mb-4 italic">Trascender / Crea</p>
-                    <div class="text-[10px] text-gray-400 space-y-2 border-t border-white/5 pt-4">
-                        <p class="font-bold text-gray-300">Alternativas:</p>
+                    <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase">J — Jump</h3>
+                    <p class="text-xl font-bold mb-2 uppercase">Saltar</p>
+                    <p class="text-[9px] text-gray-500 uppercase mb-6 italic tracking-widest">Trascender / Crea</p>
+                    <p class="text-[11px] text-gray-400 leading-relaxed mb-6">Máxima frecuencia de activación. La expansión y el quiebre definitivo de la gravedad.</p>
+                    <div class="text-[9px] text-gray-500 border-t border-white/5 pt-4">
+                        <p class="font-bold mb-2 uppercase text-gray-400">Alternativas:</p>
                         <ul class="space-y-1">
-                            <li>&bull; Single jump / Double Under</li>
-                            <li>&bull; Air squat</li>
+                            <li>&bull; Single / Double Under</li>
                             <li>&bull; Jumping squat</li>
                             <li>&bull; Broad jump</li>
                         </ul>
                     </div>
                 </div>
-                <div class="mt-6 flex justify-start">
-                    <img src="img/jump.png" alt="Jump Symbol" class="symbol-img">
+                <div class="mt-8 flex justify-center">
+                    <img src="img/jump.jpg" alt="Jump Symbol" class="symbol-img">
                 </div>
             </div>
         </div>
 
-        <div class="mt-12 p-8 glass rounded-2xl border border-white/10 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div>
-                <p class="text-xs text-zenergy-blue font-bold tracking-[0.3em] uppercase mb-2">Protocolo del Día</p>
-                <h3 class="brand-font text-2xl uppercase">26U13 <span class="text-gray-600 font-light ml-4">338 TRIGGERS</span></h3>
+        <div class="mt-16 p-10 glass rounded-3xl border border-zenergy-blue/20 flex flex-col md:flex-row items-center justify-between gap-10">
+            <div class="text-center md:text-left">
+                <p class="text-[10px] text-zenergy-blue font-bold tracking-[0.4em] uppercase mb-3">Biokinetic Bitstream</p>
+                <h3 class="brand-font text-3xl uppercase">26U13 <span class="text-gray-700 font-light ml-4">#338</span></h3>
+                <p class="text-[10px] text-gray-500 mt-4 uppercase tracking-widest">Sincronizado con Z-Box y Mycelium Tech-Lab</p>
             </div>
-            <pre class="bg-black/40 border border-white/10 p-6 rounded-xl font-mono text-[10px] text-zenergy-blue leading-relaxed">
-SET FREQUENCY = 26;
-TRIGGER_TYPE = "STAND";
-REPS_PER_SET = 13;
-            </pre>
+            <div class="w-full md:w-auto">
+                <pre class="bg-black/60 border border-white/5 p-8 rounded-2xl font-mono text-[10px] text-zenergy-blue/80 leading-relaxed overflow-x-auto">
+[SYSTEM_STATUS: ACTIVE]
+CURRENT_CELL: MAY-JUN
+FREQUENCY_ID: 60
+ACTIVE_PROTOCOL: FWJU_CODED
+                </pre>
+            </div>
         </div>
     </section>
 
-    <footer class="max-w-6xl mx-auto px-6 py-20 text-center border-t border-white/5 flex flex-col items-center">
-        <p class="brand-font text-[10px] text-gray-600 tracking-[0.3em] uppercase mb-4">Zenergia.world | Santa Elena, Colombia</p>
-        <a href="https://github.com/jalkon/zenErgy" target="_blank" class="text-xs text-zenergy-blue hover:text-white transition tracking-widest uppercase">
-            &mdash; View Source Code on GitHub &mdash;
-        </a>
+    <footer class="max-w-6xl mx-auto px-6 py-24 text-center border-t border-white/5">
+        <img src="img/logo.png" alt="Zenergia" class="w-8 h-8 mx-auto mb-8 opacity-20">
+        <p class="brand-font text-[9px] text-gray-600 tracking-[0.5em] uppercase mb-6">Zenergia.world &bull; Bio-Land Art &bull; 2026</p>
+        <div class="flex justify-center space-x-12">
+            <a href="https://github.com/jalkon" target="_blank" class="text-[10px] text-gray-500 hover:text-zenergy-blue transition tracking-widest uppercase">GitHub</a>
+            <a href="#" class="text-[10px] text-gray-500 hover:text-zenergy-blue transition tracking-widest uppercase">Streamlit Lab</a>
+        </div>
     </footer>
 </body>
 </html>
