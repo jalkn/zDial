@@ -153,7 +153,7 @@
                     <p class="text-xl font-bold mb-2 uppercase">Caminar</p>
                     <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">exhala</p>
                     
-                    <img src="img/walk.gif" alt="Walk Movement" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-80 group-hover:opacity-100 transition">
+                    <img src="img/pace.gif" alt="Pace Movement" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-80 group-hover:opacity-100 transition">
 
                     <div class="text-[9px] text-gray-500 border-t border-white/5 pt-4">
                         <p class="font-bold mb-2 uppercase text-gray-400">Movimientos:</p>
@@ -165,11 +165,11 @@
                     </div>
                 </div>
                 <div class="mt-8 flex justify-center">
-                    <img src="img/walk.png" alt="Walk Symbol" class="w-12 opacity-50 group-hover:opacity-100 transition">
+                    <img src="img/pace.png" alt="Pace Symbol" class="w-12 opacity-50 group-hover:opacity-100 transition">
                 </div>
             </div>
 
-            <!-- A - ABSORB (Reemplaza Fall) -->
+            <!-- U - ABSORB -->
             <div onclick="playBeat('Abeat.wav')" class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition cursor-pointer group">
                 <div>
                     <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase flex justify-between">
@@ -179,7 +179,7 @@
                     <p class="text-xl font-bold mb-2 uppercase">Caer</p>
                     <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">Inhala</p>
                     
-                    <img src="img/fall.gif" alt="Absorb Movement" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-80 group-hover:opacity-100 transition">
+                    <img src="img/under.gif" alt="Absorb Movement" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-80 group-hover:opacity-100 transition">
 
                     <div class="text-[9px] text-gray-500 border-t border-white/5 pt-4">
                         <p class="font-bold mb-2 uppercase text-gray-400">Movimientos:</p>
@@ -191,11 +191,11 @@
                     </div>
                 </div>
                 <div class="mt-8 flex justify-center">
-                    <img src="img/fall.png" alt="Absorb Symbol" class="w-12 opacity-50 group-hover:opacity-100 transition">
+                    <img src="img/under.png" alt="Absorb Symbol" class="w-12 opacity-50 group-hover:opacity-100 transition">
                 </div>
             </div>
 
-            <!-- V - VERTICALITY (Reemplaza Stand) -->
+            <!-- L - VERTICALITY -->
             <div onclick="playBeat('Vbeat.wav')" class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition cursor-pointer group">
                 <div>
                     <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase flex justify-between">
@@ -205,7 +205,7 @@
                     <p class="text-xl font-bold mb-2 uppercase">Levantarse</p>
                     <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">Imagina</p>
                     
-                    <img src="img/stand.gif" alt="Verticality Movement" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-80 group-hover:opacity-100 transition">
+                    <img src="img/lift.gif" alt="Verticality Movement" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-80 group-hover:opacity-100 transition">
 
                     <div class="text-[9px] text-gray-500 border-t border-white/5 pt-4">
                         <p class="font-bold mb-2 uppercase text-gray-400">Movimientos:</p>
@@ -217,11 +217,11 @@
                     </div>
                 </div>
                 <div class="mt-8 flex justify-center">
-                    <img src="img/stand.png" alt="Verticality Symbol" class="w-12 opacity-50 group-hover:opacity-100 transition">
+                    <img src="img/lift.png" alt="Verticality Symbol" class="w-12 opacity-50 group-hover:opacity-100 transition">
                 </div>
             </div>
             
-            <!-- E - EXPLODE (Reemplaza Jump) -->
+            <!-- S - EXPLODE -->
             <div onclick="playBeat('Ebeat.wav')" class="glass p-8 rounded-[2rem] border border-white/5 flex flex-col justify-between min-h-[480px] hover:border-zenergy-blue/30 transition cursor-pointer group">
                 <div>
                     <h3 class="text-xs font-bold text-zenergy-blue mb-4 uppercase flex justify-between">
@@ -231,7 +231,7 @@
                     <p class="text-xl font-bold mb-2 uppercase">SALTAR</p>
                     <p class="text-[9px] text-gray-500 uppercase mb-4 italic tracking-widest">Crear</p>
                     
-                    <img src="img/jump.gif" alt="Explode Movement" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-80 group-hover:opacity-100 transition">
+                    <img src="img/surge.gif" alt="Explode Movement" class="max-h-40 rounded-xl mb-4 mx-auto object-cover opacity-80 group-hover:opacity-100 transition">
 
                     <div class="text-[9px] text-gray-500 border-t border-white/5 pt-4">
                         <p class="font-bold mb-2 uppercase text-gray-400">Movimientos:</p>
@@ -243,7 +243,7 @@
                     </div>
                 </div>
                 <div class="mt-8 flex justify-center">
-                    <img src="img/jump.png" alt="Explode Symbol" class="w-12 opacity-50 group-hover:opacity-100 transition">
+                    <img src="img/surge.png" alt="Explode Symbol" class="w-12 opacity-50 group-hover:opacity-100 transition">
                 </div>
             </div>
         </div>
@@ -316,7 +316,7 @@
 
         // Lógica de Encriptación PULS
         // Mayo (5): AV (Absorb + Verticality)
-        // Junio (6): WAV (Walk + Absorb + Verticality)
+        // Junio (6): WAV (Pace + Absorb + Verticality)
         // Julio+ (7): PULS (Protocolo Completo)
         let protocol = "AV"; 
         if (m === 6) protocol = "WAV";
