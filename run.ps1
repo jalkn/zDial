@@ -1,19 +1,16 @@
-# run.ps1 - Zenergia Unified Engine | WAVE Protocol Edition
-# Operator: Jalko | Node: Santa Elena
+# run.ps1 - Zenergia Unified Engine | PULS Protocol Edition
 
 $Manifesto = @"
-# 🍄 ZENERGIA.WORLD: Bio-Hardware & Bio-Construction Ecosystem
+# 🍄 ZENERGIA.WORLD: Bio-Construction Ecosystem
 ZENERGIA orquesta la transición hacia una arquitectura regenerativa mediante la producción de materiales vivos y validación biocinética.
 
 ## 🏗️ El Ecosistema de Resonancia
-1. Z-Box (Manufacturing Node): Bioreactor asíncrono IoT.
+1. Z-Strum (Manufacturing Node): Bioreactor asíncrono IoT.
 2. Z-Brick (Construction Unit): Módulos de micelio con doble cara funcional.
-3. Z-Dial (Biokinetic Interface): Protocolo de validación humana WAVE.
-
-Global Launch: Solsticio de Junio 2026 | Santa Elena, Antioquia
+3. Z-Dial (Biokinetic Interface): Protocolo de validación humana PULS.
 "@
 
-Write-Host "Iniciando Ecosistema Zenergia con Protocolo WAVE..." -ForegroundColor Cyan
+Write-Host "Iniciando Ecosistema Zenergia con Protocolo PULS..." -ForegroundColor Cyan
 
 # 1. SETUP DE DIRECTORIOS (Sintaxis simplificada sin arrays para evitar ParserError)
 if (!(Test-Path "data")) { New-Item -ItemType Directory -Path "data" | Out-Null }
@@ -26,8 +23,8 @@ $now = Get-Date
 $d = $now.Day
 $m = $now.Month
 
-# Lógica WAVE: Mayo(5)=AV, Junio(6)=WAV, Julio+(7)=WAVE
-$protocol = if ($m -eq 5) { "AV" } elseif ($m -eq 6) { "WAV" } else { "WAVE" }
+# Lógica PULS: Mayo(5)=UL, Junio(6)=PUL, Julio+(7)=PULS
+$protocol = if ($m -eq 5) { "UL" } elseif ($m -eq 6) { "PUL" } else { "PULS" }
 
 $sets = $m
 $reps = $d * 10
@@ -35,7 +32,7 @@ $dial = "$sets$protocol$reps"
 
 $logEntry = @"
 # BITSTREAM_LOG: $($now.ToString("yyyy-MM-dd HH:mm"))
-# DIAL_ACTIVE: $dial | PROTOCOL: WAVE_ENCRYPTION
+# DIAL_ACTIVE: $dial | PROTOCOL: PULS_ENCRYPTION
 [DATA] PHASE: $protocol | SETS: $sets | REPS: $reps | STATUS: SYNCED
 "@
 
