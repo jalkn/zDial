@@ -52,5 +52,23 @@
     "reps": 169,
     "cuadrante": "UNDER",
     "status": "TUNED"
+  },
+  {
+    "timestamp": "2026-05-12 09:08:51",
+    "dial": "5US33",
+    "protocol": "PULS",
+    "sets": 5,
+    "reps": 33,
+    "cuadrante": "SURGE",
+    "status": "TUNED"
+  },
+  {
+    "timestamp": "2026-05-12 09:29:45",
+    "dial": "5US33",
+    "protocol": "PULS",
+    "sets": 5,
+    "reps": 33,
+    "cuadrante": "SURGE",
+    "status": "TUNED"
   }
 ]
