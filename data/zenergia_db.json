@@ -1,0 +1,56 @@
+[
+  {
+    "cuadrante": "UNDER",
+    "sets": 5,
+    "reps": 169,
+    "timestamp": "2026-05-11 19:05:22",
+    "protocol": "PULS",
+    "dial": "5ULS169",
+    "status": "TUNED"
+  },
+  {
+    "timestamp": "2026-05-11 19:09:28",
+    "dial": "5ULS169",
+    "protocol": "PULS",
+    "sets": 5,
+    "reps": 169,
+    "cuadrante": "UNDER",
+    "status": "TUNED"
+  },
+  {
+    "timestamp": "2026-05-11 19:11:29",
+    "dial": "5ULS169",
+    "protocol": "PULS",
+    "sets": 5,
+    "reps": 169,
+    "cuadrante": "UNDER",
+    "status": "TUNED"
+  },
+  {
+    "timestamp": "2026-05-11 19:12:44",
+    "dial": "5ULS169",
+    "protocol": "PULS",
+    "sets": 5,
+    "reps": 169,
+    "cuadrante": "UNDER",
+    "status": "TUNED"
+  },
+  {
+    "timestamp": "2026-05-11 19:19:58",
+    "dial": "5ULS169",
+    "protocol": "PULS",
+    "sets": 5,
+    "reps": 169,
+    "cuadrante": "UNDER",
+    "status": "TUNED"
+  },
+  {
+    "timestamp": "2026-05-11 19:25:25",
+    "dial": "5ULS169",
+    "protocol": "PULS",
+    "sets": 5,
+    "reps": 169,
+    "cuadrante": "UNDER",
+    "status": "TUNED"
+  }
+]
