@@ -254,9 +254,8 @@
         const PHI = 1.618033;
 
         /**
-        * MOTOR DE TELEMETRÍA ZENERGIA
-        * Calcula: [Sets] [Protocolo] [Reps]
-        * Basado en Fusión Áurea y Posición Solar
+        * MOTOR DE TELEMETRÍA ZENERGIA v4.0
+        * Lógica: [Sets Condicionales] [Fase Protocolo] [Reps Refinadas]
         */
         const calculateZResonance = () => {
             const now = new Date();
@@ -264,24 +263,49 @@
             const m = now.getMinutes();
             const d = now.getDate();
 
-            // 1. ÁNGULO SOLAR (Posición del sol en grados)
+            // 1. ÁNGULO SOLAR
             const sunAngle = (h * 15) + (m * 0.25); 
 
-            // 2. FASES DEL PROTOCOLO (Dependiente del Sol)
+            // 2. DETERMINACIÓN DE FASE Y CONTEO DE ACCIONES
             let phase = 'ULS';
-            if (sunAngle >= 90 && sunAngle < 255) phase = 'PSL';
-            else if (sunAngle >= 255 || sunAngle < 90) phase = 'SU';
+            if (sunAngle >= 90 && sunAngle < 255) {
+                phase = 'PSL';
+            } else if (sunAngle >= 255 || sunAngle < 90) {
+                phase = 'SU';
+            }
 
-            // 3. SETS (Factor Lunar Áureo)
-            const sets = Math.floor((d * PHI) % 28);
+            // Contamos cuántas acciones (letras) tiene la fase actual
+            const numAcciones = phase.length;
 
-            // 4. REPETICIONES (Ángulo de Acción + Condición de 2 dígitos)
-            let actionAngle = Math.abs(180 - sunAngle).toFixed(0);
-            let reps = actionAngle.toString();
+            // 3. LÓGICA DE SETS (Primeros dígitos)
+            let sets = Math.floor((d * PHI) % 30); // Base áurea expandida
 
-            // REGLA CRÍTICA: Si tiene más de 2 dígitos, eliminamos el del centro
-            if (reps.length > 2) {
-                reps = reps[0] + reps[reps.length - 1];
+            // CONDICIONAL DE SETS:
+            // Si acciones > 2 -> Menor de 11 (máximo 10)
+            // Si acciones <= 2 -> Menor de 21 (máximo 20)
+            if (numAcciones > 2) {
+                if (sets >= 11) sets = Math.floor(sets % 11);
+            } else {
+                if (sets >= 21) sets = Math.floor(sets % 21);
+            }
+            
+            if (sets === 0) sets = 1; // Garantizar actividad mínima
+
+            // 4. LÓGICA DE REPETICIONES (Dígitos finales)
+            let actionValue = Math.abs(180 - sunAngle).toFixed(0);
+            let reps = parseInt(actionValue);
+
+            // REGLA 1: Eliminar el último dígito si es mayor de 99
+            if (reps > 99) {
+                let repsStr = reps.toString();
+                reps = parseInt(repsStr.substring(0, repsStr.length - 1));
+            }
+
+            // REGLA 2: Si acciones > 2, el valor debe ser menor de 31 (máximo 30)
+            if (numAcciones > 2) {
+                if (reps >= 31) {
+                    reps = 30; // Cap de intensidad para protocolos complejos
+                }
             }
 
             return `${sets}${phase}${reps}`;
@@ -299,11 +323,11 @@
             if (zDialElement) zDialElement.innerText = resonanceValue;
             if (bigDialElement) bigDialElement.innerText = resonanceValue;
             
-            console.log(`Z-SYNC: ${resonanceValue} | PHI_REF: ${PHI}`);
+            console.log(`Z-SYNC v4.0: ${resonanceValue}`);
         };
 
         /**
-        * SISTEMA DE AUDIO BIOCINÉTICO
+        * SISTEMA DE AUDIO Y HÁPTICOS
         */
         function playBeat(fileName) {
             if (currentZAudio) {
@@ -312,25 +336,21 @@
             }
             currentZAudio = new Audio(fileName); 
             currentZAudio.volume = 0.5;
-            currentZAudio.play().catch(e => console.log("Init audio..."));
+            currentZAudio.play().catch(e => console.log("Audio ready..."));
             vibrateDial();
         }
 
-        /**
-        * NAVEGACIÓN Y HÁPTICOS
-        */
         const scrollToDial = () => $('dial-monitor').scrollIntoView({ behavior: 'smooth' });
 
         const vibrateDial = () => {
             if (!("vibrate" in navigator)) return;
-            
-            // Patrón rítmico basado en el pulso del sistema
             navigator.vibrate([100, 30, 100]);
         };
 
-        // INICIALIZACIÓN DEL CICLO
+        // INICIALIZACIÓN
         updateData();
-        setInterval(updateData, 60000); // Sincronización cada minuto
+        setInterval(updateData, 60000);
     </script>
+
 </body>
 </html>
