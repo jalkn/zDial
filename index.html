@@ -68,9 +68,10 @@
                 </div>
             </div>
             <div class="flex items-center gap-10">
-                <a href="#z-brick" class="hover:text-zenergy-blue transition font-medium hidden md:block">Z_BRICK</a>
-                <a href="#protocol" class="hover:text-zenergy-blue transition font-medium hidden md:block">PROTO_PULSOR</a>
-                <div id="z-dial" class="text-zenergy-blue font-bold cursor-pointer hover:text-white transition border border-zenergy-blue/30 px-4 py-1 rounded-sm" onclick="scrollToDial()">...</div>
+                <a href="#seasonal-node" class="hover:text-zenergy-blue transition font-medium hidden md:block tracking-[0.3em]">MICRO_MACRO</a>
+                <a href="#z-brick" class="hover:text-zenergy-blue transition font-medium hidden md:block tracking-[0.3em]">Z_BRICK</a>
+                <a href="#protocol" class="hover:text-zenergy-blue transition font-medium hidden md:block tracking-[0.3em]">PROTO_PULSOR</a>
+                <div id="z-dial" class="text-zenergy-blue font-bold cursor-pointer hover:text-white transition border border-zenergy-blue/30 px-4 py-1 rounded-sm" onclick="document.getElementById('dial-monitor').scrollIntoView({behavior: 'smooth'})">...</div>
             </div>
         </div>
     </nav>
@@ -149,90 +150,90 @@
         </div>
     </section>
 
-        <section id="protocol" class="py-32 border-t border-white/5">
-            <div class="text-center mb-24">
-                <h2 class="text-5xl mb-6 tracking-widest uppercase font-black text-white">PROTO_PULSOR</h2>
-                <p class="text-zenergy-blue text-[10px] tracking-[1em] uppercase font-bold mb-4">Protocolo de Encriptación Biocinética _PULS</p>
-            </div>
+    <section id="protocol" class="py-32 border-t border-white/5">
+        <div class="text-center mb-24">
+            <h2 class="text-5xl mb-6 tracking-widest uppercase font-black text-white">PROTO_PULSOR</h2>
+            <p class="text-zenergy-blue text-[10px] tracking-[1em] uppercase font-bold mb-4">Protocolo de Encriptación Biocinética _PULS</p>
+        </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="glass p-8 flex flex-col justify-between min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
-                    <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">P_PACE</h3>
-                        <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Caminar</p>
-                        <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Exhala / Tensión</p>
-                        <div class="mt-8 border-t border-white/5 pt-6">
-                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition">
-                                <li>> RUN_SPRINT</li>
-                                <li>> LUNGES</li>
-                                <li>> JUMPING_LUNGES</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div onclick="playBeat('img/Pbeat.wav')" class="mt-10 flex flex-col items-center gap-4 cursor-pointer group/symbol">
-                        <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[8px] text-zenergy-blue tracking-[0.5em] font-black">SYNC_AUDIO</span>
-                        <img src="img/pace.png" class="w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="glass p-8 flex flex-col justify-between min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
+                <div>
+                    <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">P_CAMINAR</h3>
+                    <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Caminar</p>
+                    <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Exhala / Tránsito</p>
+                    <div class="mt-8 border-t border-white/5 pt-6">
+                        <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition uppercase">
+                            <li>> Impulso</li>
+                            <li>> Surco</li>
+                            <li>> Vibración</li>
+                        </ul>
                     </div>
                 </div>
-
-                <div class="glass p-8 flex flex-col justify-between min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
-                    <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">U_UNDER</h3>
-                        <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Caer</p>
-                        <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Inhala / Inmersión</p>
-                        <div class="mt-8 border-t border-white/5 pt-6">
-                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition">
-                                <li>> PUSH_UP</li>
-                                <li>> BEAR_CRAWL</li>
-                                <li>> SHOULDER_TAP</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div onclick="playBeat('img/Ubeat.wav')" class="mt-10 flex flex-col items-center gap-4 cursor-pointer group/symbol">
-                        <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[8px] text-zenergy-blue tracking-[0.5em] font-black">SYNC_AUDIO</span>
-                        <img src="img/under.png" class="w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
-                    </div>
-                </div>
-
-                <div class="glass p-8 flex flex-col justify-between min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
-                    <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">L_LIFT</h3>
-                        <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Levantarse</p>
-                        <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Resiliencia / Vertical</p>
-                        <div class="mt-8 border-t border-white/5 pt-6">
-                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition">
-                                <li>> BURPEES</li>
-                                <li>> SIT_UPS</li>
-                                <li>> PLANK_HOLD</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div onclick="playBeat('img/Lbeat.wav')" class="mt-10 flex flex-col items-center gap-4 cursor-pointer group/symbol">
-                        <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[8px] text-zenergy-blue tracking-[0.5em] font-black">SYNC_AUDIO</span>
-                        <img src="img/lift.png" class="w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
-                    </div>
-                </div>
-
-                <div class="glass p-8 flex flex-col justify-between min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
-                    <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">S_SURGE</h3>
-                        <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Saltar</p>
-                        <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Explosión / Creación</p>
-                        <div class="mt-8 border-t border-white/5 pt-6">
-                            <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition">
-                                <li>> JUMPING_SQUATS</li>
-                                <li>> BROAD_JUMP</li>
-                                <li>> DOUBLE_UNDERS</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div onclick="playBeat('img/Sbeat.wav')" class="mt-10 flex flex-col items-center gap-4 cursor-pointer group/symbol">
-                        <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[8px] text-zenergy-blue tracking-[0.5em] font-black">SYNC_AUDIO</span>
-                        <img src="img/surge.png" class="w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
-                    </div>
+                <div onclick="playBeat('img/Pbeat.wav')" class="mt-10 flex flex-col items-center gap-4 cursor-pointer group/symbol">
+                    <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[8px] text-zenergy-blue tracking-[0.5em] font-black">SYNC_AUDIO</span>
+                    <img src="img/pace.png" class="w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
                 </div>
             </div>
-        </section>
+
+            <div class="glass p-8 flex flex-col justify-between min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
+                <div>
+                    <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">U_CAER</h3>
+                    <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Caer</p>
+                    <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Inhala / Simiento</p>
+                    <div class="mt-8 border-t border-white/5 pt-6">
+                        <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition uppercase">
+                            <li>> Empuje</li>
+                            <li>> Raíz</li>
+                            <li>> Equilibrio</li>
+                        </ul>
+                    </div>
+                </div>
+                <div onclick="playBeat('img/Ubeat.wav')" class="mt-10 flex flex-col items-center gap-4 cursor-pointer group/symbol">
+                    <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[8px] text-zenergy-blue tracking-[0.5em] font-black">SYNC_AUDIO</span>
+                    <img src="img/under.png" class="w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
+                </div>
+            </div>
+
+            <div class="glass p-8 flex flex-col justify-between min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
+                <div>
+                    <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">L_LEVANTARSE</h3>
+                    <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Levantarse</p>
+                    <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Resiliencia / Rebote</p>
+                    <div class="mt-8 border-t border-white/5 pt-6">
+                        <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition uppercase">
+                            <li>> Ascenso</li>
+                            <li>> Núcleo</li>
+                            <li>> Tensión</li>
+                        </ul>
+                    </div>
+                </div>
+                <div onclick="playBeat('img/Lbeat.wav')" class="mt-10 flex flex-col items-center gap-4 cursor-pointer group/symbol">
+                    <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[8px] text-zenergy-blue tracking-[0.5em] font-black">SYNC_AUDIO</span>
+                    <img src="img/lift.png" class="w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
+                </div>
+            </div>
+
+            <div class="glass p-8 flex flex-col justify-between min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
+                <div>
+                    <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">S_SALTAR</h3>
+                    <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Saltar</p>
+                    <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Explosión / Estallido</p>
+                    <div class="mt-8 border-t border-white/5 pt-6">
+                        <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition uppercase">
+                            <li>> Carga</li>
+                            <li>> Proyección</li>
+                            <li>> Destello</li>
+                        </ul>
+                    </div>
+                </div>
+                <div onclick="playBeat('img/Sbeat.wav')" class="mt-10 flex flex-col items-center gap-4 cursor-pointer group/symbol">
+                    <span class="opacity-0 group-hover/symbol:opacity-100 transition duration-500 text-[8px] text-zenergy-blue tracking-[0.5em] font-black">SYNC_AUDIO</span>
+                    <img src="img/surge.png" class="w-8 opacity-20 group-hover/symbol:opacity-100 group-hover/symbol:scale-110 transition duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
 
     </main>
 
@@ -240,61 +241,76 @@
         ZENERGIA MYCELIUM TECH-LAB // ANTIOQUIA_COL // 2026
     </footer>
 
-<script>
-    const $ = (id) => document.getElementById(id);
-    const PHI = 1.618033;
+    <script>
+        const $ = (id) => document.getElementById(id);
+        const PHI = 1.618033;
 
-    const updateZ = () => {
-        const now = new Date();
-        
-        // 1. Numerological Root Calculation (Day/Month/Year vibration)
-        const dateStr = `${now.getDate()}${now.getMonth() + 1}${now.getFullYear()}`;
-        let dailyRoot = [...dateStr].reduce((acc, digit) => acc + parseInt(digit), 0);
-        while (dailyRoot > 9) {
-            dailyRoot = [...dailyRoot.toString()].reduce((acc, d) => acc + parseInt(d), 0);
+        /**
+        * Z-Dial Resonance Engine v5.3
+        * Synchronizes astronomical drift with human biokinetics.
+        */
+        const updateZ = () => {
+            const now = new Date();
+            
+            // 1. Numerological Root Calculation (The frequency of the day)
+            const dateStr = `${now.getDate()}${now.getMonth() + 1}${now.getFullYear()}`;
+            let dailyRoot = [...dateStr].reduce((acc, digit) => acc + parseInt(digit), 0);
+            while (dailyRoot > 9) {
+                dailyRoot = [...dailyRoot.toString()].reduce((acc, d) => acc + parseInt(d), 0);
+            }
+
+            // 2. Solar Angle (15 degrees per hour)
+            const deg = (now.getHours() * 15) + (now.getMinutes() * 0.25);
+            
+            // 3. Mapping Quadrants to Poetic Actions and Sacred Geometry
+            let f, n, geometry;
+            if (deg >= 0 && deg < 90) { 
+                f = 'ULS'; n = 'CAER - LEVANTARSE'; geometry = 'Dodecahedron'; 
+            } else if (deg >= 90 && deg < 180) { 
+                f = 'PSL'; n = 'CAMINAR - SALTAR'; geometry = 'Tetrahedron';
+            } else if (deg >= 180 && deg < 270) { 
+                f = 'SU'; n = 'SALTAR - CAER'; geometry = 'Icosahedron';
+            } else { 
+                f = 'ULS'; n = 'CAER - LEVANTARSE'; geometry = 'Dodecahedron';
+            }
+
+            // 4. Sets (Fibonacci Lunar) and Reps (Drift tuned by Daily Root)
+            const s = Math.floor((now.getDate() * PHI) % (f.length > 2 ? 11 : 21)) || 1;
+            let baseReps = Math.floor(Math.abs(180 - deg) % 100);
+            let r = Math.floor((baseReps + dailyRoot) % 40); 
+
+            // 5. Render Alphanumeric Art
+            const res = `${s}${f}${r}`;
+            $('big-dial').innerText = res;
+            if ($('z-dial')) $('z-dial').innerText = res;
+            
+            // Technical/Poetic status log
+            $('protocol-desc').innerText = `RAÍZ_${dailyRoot} // ${s} SERIES DE ${r} ${n} // ${geometry}_SYNC`;
+        };
+
+        // Global listeners and loop initialization
+        updateZ();
+        setInterval(updateZ, 60000);
+
+        /**
+        * Haptic and audio feedback for interaction
+        * @param {string} url - Audio asset path
+        */
+        function playBeat(url) {
+            const audio = new Audio(url);
+            audio.play().catch(() => {
+                console.log("Audio interaction requires user gesture");
+            });
+            if ("vibrate" in navigator) navigator.vibrate(50);
         }
 
-        // 2. Solar Angle calculation (15 degrees per hour)
-        const deg = (now.getHours() * 15) + (now.getMinutes() * 0.25);
-        
-        // 3. WAVE Protocol Vectorization & Geometry Mapping
-        // Every solar quadrant activates a specific archetype
-        let f, n, geometry;
-        if (deg >= 0 && deg < 90) { 
-            f = 'ULS'; n = 'UNDER - LIFT'; geometry = 'Dodecahedron'; 
-        } else if (deg >= 90 && deg < 180) { 
-            f = 'PSL'; n = 'PACE - SURGE'; geometry = 'Tetrahedron';
-        } else if (deg >= 180 && deg < 270) { 
-            f = 'SU'; n = 'SURGE - POWER'; geometry = 'Icosahedron';
-        } else { 
-            f = 'ULS'; n = 'UNDER - LIFT'; geometry = 'Dodecahedron';
+        /**
+        * Smooth scroll to resonance monitor
+        */
+        function scrollToDial() {
+            $('dial-monitor').scrollIntoView({ behavior: 'smooth' });
         }
-
-        // 4. Sets (Fibonacci Lunar) & Reps (Tuned by Daily Root)
-        const s = Math.floor((now.getDate() * PHI) % (f.length > 2 ? 11 : 21)) || 1;
-        
-        // Reps are harmonized with the Solar Drift and the Daily Root vibration
-        let baseReps = Math.floor(Math.abs(180 - deg) % 100);
-        let r = Math.floor((baseReps + dailyRoot) % 40); 
-
-        // 5. Interface Rendering
-        const res = `${s}${f}${r}`;
-        $('big-dial').innerText = res;
-        if ($('z-dial')) $('z-dial').innerText = res;
-        
-        // Technical Log update including Numerological and Geometric status
-        $('protocol-desc').innerText = `VIBRATION_${dailyRoot} // ${s} SETS OF ${r} ${n} // ${geometry}_STABILITY`;
-    };
-
-    // Initialize and set interval for constant resonance tracking
-    updateZ();
-    setInterval(updateZ, 60000);
-
-    function playBeat(url) {
-        new Audio(url).play().catch(() => {});
-        if ("vibrate" in navigator) navigator.vibrate(50);
-    }
-</script>
+    </script>
 
 </body>
 </html>
