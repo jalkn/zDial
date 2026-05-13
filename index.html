@@ -122,9 +122,6 @@
                         <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">P_PACE</h3>
                         <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Caminar</p>
                         <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Exhala / Tensión</p>
-                        <div class="relative overflow-hidden grayscale group-hover:grayscale-0 transition duration-700 h-48 border border-white/5">
-                            <img src="img/pace.gif" class="w-full h-full object-cover">
-                        </div>
                         <div class="mt-8 border-t border-white/5 pt-6">
                             <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition">
                                 <li>> RUN_SPRINT</li>
@@ -144,9 +141,6 @@
                         <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">U_UNDER</h3>
                         <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Caer</p>
                         <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Inhala / Inmersión</p>
-                        <div class="relative overflow-hidden grayscale group-hover:grayscale-0 transition duration-700 h-48 border border-white/5">
-                            <img src="img/under.gif" class="w-full h-full object-cover">
-                        </div>
                         <div class="mt-8 border-t border-white/5 pt-6">
                             <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition">
                                 <li>> PUSH_UP</li>
@@ -166,9 +160,6 @@
                         <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">L_LIFT</h3>
                         <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Levantarse</p>
                         <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Resiliencia / Vertical</p>
-                        <div class="relative overflow-hidden grayscale group-hover:grayscale-0 transition duration-700 h-48 border border-white/5">
-                            <img src="img/lift.gif" class="w-full h-full object-cover">
-                        </div>
                         <div class="mt-8 border-t border-white/5 pt-6">
                             <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition">
                                 <li>> BURPEES</li>
@@ -188,9 +179,6 @@
                         <h3 class="text-[9px] font-bold text-zenergy-blue mb-10 uppercase tracking-[0.5em]">S_SURGE</h3>
                         <p class="text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Saltar</p>
                         <p class="text-[8px] text-gray-500 uppercase mb-8 tracking-[0.3em]">Explosión / Creación</p>
-                        <div class="relative overflow-hidden grayscale group-hover:grayscale-0 transition duration-700 h-48 border border-white/5">
-                            <img src="img/surge.gif" class="w-full h-full object-cover">
-                        </div>
                         <div class="mt-8 border-t border-white/5 pt-6">
                             <ul class="space-y-3 text-[9px] tracking-[0.2em] text-gray-500 group-hover:text-gray-200 transition">
                                 <li>> JUMPING_SQUATS</li>
@@ -213,17 +201,20 @@
         
         <div class="relative z-10 flex flex-col items-center group">
             <h3 class="text-[11px] tracking-[2em] text-zenergy-blue/40 mb-20 group-hover:text-zenergy-blue transition-colors duration-1000 font-bold uppercase">
-                Telemetría_Vertical
+                PROTO_PULSOR
             </h3>
 
-            <div class="relative px-12 py-8">
+            <div class="relative px-12 py-8 flex items-center justify-center">
                 <div class="absolute top-0 left-0 w-6 h-6 border-t border-l border-white/20 group-hover:border-zenergy-blue/60 transition-all duration-700"></div>
                 <div class="absolute top-0 right-0 w-6 h-6 border-t border-r border-white/20 group-hover:border-zenergy-blue/60 transition-all duration-700"></div>
                 <div class="absolute bottom-0 left-0 w-6 h-6 border-b border-l border-white/20 group-hover:border-zenergy-blue/60 transition-all duration-700"></div>
                 <div class="absolute bottom-0 right-0 w-6 h-6 border-b border-r border-white/20 group-hover:border-zenergy-blue/60 transition-all duration-700"></div>
 
+                <div id="bio-wave-overlay" class="absolute inset-0 z-20 pointer-events-none opacity-0 group-hover:opacity-60 transition-opacity duration-1000 flex items-center justify-center">
+                    </div>
+
                 <div id="big-dial" 
-                    class="text-[5rem] md:text-[9rem] font-black text-white opacity-5 group-hover:opacity-100 transition-all duration-1000 cursor-none select-none tracking-[0.2em] leading-none text-center">
+                    class="relative z-10 text-[5rem] md:text-[9rem] font-black text-white opacity-5 group-hover:opacity-100 transition-all duration-1000 cursor-none select-none tracking-[0.2em] leading-none text-center">
                     0.0.0
                 </div>
 
@@ -231,7 +222,7 @@
             </div>
 
             <div class="mt-20 flex flex-col items-center gap-4">
-                <p class="text-[9px] text-gray-600 tracking-[1.5em] uppercase font-medium">Data_Stream_Active</p>
+                <p id="wave-status" class="text-[9px] text-gray-600 tracking-[1.5em] uppercase font-medium">Data_Stream_Active</p>
                 <div class="flex gap-3">
                     <div class="w-1 h-1 bg-zenergy-blue animate-ping"></div>
                     <div class="w-1 h-1 bg-zenergy-blue animate-ping delay-100"></div>
@@ -249,94 +240,92 @@
     <script>
         const $ = (id) => document.getElementById(id);
         let currentZAudio = null;
-
-        // CONSTANTES DE RESONANCIA
         const PHI = 1.618033;
 
-        /**
-        * MOTOR DE TELEMETRÍA ZENERGIA v4.0
-        * Lógica: [Sets Condicionales] [Fase Protocolo] [Reps Refinadas]
-        */
         const calculateZResonance = () => {
             const now = new Date();
             const h = now.getHours();
             const m = now.getMinutes();
             const d = now.getDate();
 
-            // 1. ÁNGULO SOLAR
             const sunAngle = (h * 15) + (m * 0.25); 
 
-            // 2. DETERMINACIÓN DE FASE Y CONTEO DE ACCIONES
             let phase = 'ULS';
-            if (sunAngle >= 90 && sunAngle < 255) {
-                phase = 'PSL';
-            } else if (sunAngle >= 255 || sunAngle < 90) {
-                phase = 'SU';
-            }
+            if (sunAngle >= 90 && sunAngle < 255) phase = 'PSL';
+            else if (sunAngle >= 255 || sunAngle < 90) phase = 'SU';
 
-            // Contamos cuántas acciones (letras) tiene la fase actual
             const numAcciones = phase.length;
 
-            // 3. LÓGICA DE SETS (Primeros dígitos)
-            let sets = Math.floor((d * PHI) % 30); // Base áurea expandida
-
-            // CONDICIONAL DE SETS:
-            // Si acciones > 2 -> Menor de 11 (máximo 10)
-            // Si acciones <= 2 -> Menor de 21 (máximo 20)
+            let sets = Math.floor((d * PHI) % 30);
             if (numAcciones > 2) {
                 if (sets >= 11) sets = Math.floor(sets % 11);
             } else {
                 if (sets >= 21) sets = Math.floor(sets % 21);
             }
-            
-            if (sets === 0) sets = 1; // Garantizar actividad mínima
+            if (sets === 0) sets = 1;
 
-            // 4. LÓGICA DE REPETICIONES (Dígitos finales)
             let actionValue = Math.abs(180 - sunAngle).toFixed(0);
             let reps = parseInt(actionValue);
 
-            // REGLA 1: Eliminar el último dígito si es mayor de 99
             if (reps > 99) {
                 let repsStr = reps.toString();
                 reps = parseInt(repsStr.substring(0, repsStr.length - 1));
             }
 
-            // REGLA 2: Si acciones > 2, el valor debe ser menor de 31 (máximo 30)
-            if (numAcciones > 2) {
-                if (reps >= 31) {
-                    reps = 30; // Cap de intensidad para protocolos complejos
-                }
-            }
+            if (numAcciones > 2 && reps >= 31) reps = 30;
 
-            return `${sets}${phase}${reps}`;
+            return { code: `${sets}${phase}${reps}`, sets, phase, reps };
         };
 
-        /**
-        * ACTUALIZACIÓN DE INTERFAZ
-        */
+        // --- GENERADOR DE ONDA ENCIMA DEL DIAL ---
+        const generateSymbolicWave = (data) => {
+            const container = $('bio-wave-overlay');
+            if(!container) return;
+            
+            const svgNS = "http://www.w3.org/2000/svg";
+            const svg = `<svg viewBox="0 0 100 100" class="w-full h-full">
+                <style>
+                    .wave-path { fill: none; stroke: #3b82f6; stroke-width: 0.5; stroke-linecap: round; transition: all 1s; }
+                </style>
+                ${getPhasePath(data.phase)}
+                ${getRepSymbol(data.reps)}
+            </svg>`;
+            
+            container.innerHTML = svg;
+        };
+
+        const getPhasePath = (phase) => {
+            if(phase === 'SU') return '<circle cx="50" cy="50" r="40" class="wave-path opacity-20" />'; // Saltar: Círculo
+            if(phase === 'PSL') return '<path d="M20,50 Q50,20 80,50 T20,50" class="wave-path opacity-20" />'; // Onda Progresiva
+            return '<path d="M20,60 Q50,80 80,60" class="wave-path opacity-20" />'; // Caer: Onda cóncava
+        };
+
+        const getRepSymbol = (reps) => {
+            let path = '';
+            if (reps > 10) {
+                path += '<circle cx="50" cy="50" r="10" class="wave-path" />'; // Base 10
+                const units = reps % 10;
+                if(units === 2) path += '<path d="M45,50 a5,5 0 0,0 10,0" class="wave-path" transform="rotate(90 50 50)"/>'; // Ejemplo rotación 2
+            } else {
+                path += '<path d="M40,50 a10,10 0 0,1 20,0" class="wave-path" />'; // Unidad simple
+            }
+            return path;
+        };
+
         const updateData = () => {
-            const resonanceValue = calculateZResonance();
+            const res = calculateZResonance();
+            if ($('z-dial')) $('z-dial').innerText = res.code;
+            if ($('big-dial')) $('big-dial').innerText = res.code;
             
-            const zDialElement = $('z-dial');
-            const bigDialElement = $('big-dial');
-
-            if (zDialElement) zDialElement.innerText = resonanceValue;
-            if (bigDialElement) bigDialElement.innerText = resonanceValue;
-            
-            console.log(`Z-SYNC v4.0: ${resonanceValue}`);
+            generateSymbolicWave(res); // Actualiza la onda overlay
+            console.log(`Z-SYNC v4.1 PROTO_PULSOR: ${res.code}`);
         };
 
-        /**
-        * SISTEMA DE AUDIO Y HÁPTICOS
-        */
         function playBeat(fileName) {
-            if (currentZAudio) {
-                currentZAudio.pause();
-                currentZAudio.currentTime = 0;
-            }
+            if (currentZAudio) { currentZAudio.pause(); currentZAudio.currentTime = 0; }
             currentZAudio = new Audio(fileName); 
             currentZAudio.volume = 0.5;
-            currentZAudio.play().catch(e => console.log("Audio ready..."));
+            currentZAudio.play().catch(e => console.log("Audio init..."));
             vibrateDial();
         }
 
@@ -347,7 +336,6 @@
             navigator.vibrate([100, 30, 100]);
         };
 
-        // INICIALIZACIÓN
         updateData();
         setInterval(updateData, 60000);
     </script>
