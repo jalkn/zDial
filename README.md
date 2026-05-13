@@ -2,10 +2,12 @@
 
 We orchestrate the transition toward regenerative architecture through the production of living materials and resonance-based biokinetic validation.
 
-## 🌐 Founder's Intent: Linguistic Duality
-To ensure the global scalability of the **Zenergia.world** ecosystem, all technical infrastructure, backend logic, and documentation are strictly maintained in **English**. This establishes a standardized protocol for international auditing and technical handovers. 
+---
 
-Conversely, the **Frontend** and **PULS Protocol** utilize the founder's native language and "deconstructive" terminology to preserve the poetic resonance and ancestral connection of the physical practice in Santa Elena.
+## 🌐 Founder's Intent: Scalability & Resonance
+The technical architecture (Backend/README) is strictly maintained in **English** to ensure global interoperability and senior-level auditing. 
+
+The **Frontend** preserves the founder's native Spanish for the **PULS Protocol** and **Organism Structure** (MICRO_MACRO), using "poetic deconstruction" to maintain ancestral resonance within the Santa Elena ecosystem.
 
 ---
 
@@ -49,4 +51,5 @@ Zenergia breathes through a continuous cycle between astronomical data, human mo
 * **Frontend (`index.html`):** Visual manifesto in `Z_UPPER_CASE` for maximum impact and clarity.
 
 ---
+
 **ZENERGIA MYCELIUM TECH-LAB // SANTA ELENA, ANTIOQUIA // 2026**
