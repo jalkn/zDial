@@ -79,53 +79,56 @@
     <main class="max-w-7xl mx-auto px-8 pt-40">
 
 
-    <section id="seasonal-node" class="py-32 border-t border-white/5 bg-[#0a0a0a]">
-        <div class="flex flex-col items-center">
-            <div class="mb-20 text-center">
-                <p class="text-zenergy-blue text-[9px] tracking-[0.8em] font-black uppercase mb-4 animate-pulse">
-                    Ciclo_Activo: Rumbo_al_Solsticio_de_Junio
-                </p>
-                <p class="text-gray-600 text-[8px] tracking-[0.4em] uppercase">
-                    Estado del Organismo: Ascenso_hacia_el_Cénit
-                </p>
-            </div>
+    <section id="seasonal-node" class="py-24 md:py-32 border-t border-white/5 bg-[#0a0a0a] overflow-hidden">
+            <div class="flex flex-col items-center px-4">
+                <div class="mb-16 md:mb-20 text-center">
+                    <p class="text-zenergy-blue text-[7px] md:text-[9px] tracking-[0.6em] md:tracking-[0.8em] font-black uppercase mb-4 animate-pulse">
+                        Ciclo_Activo: Rumbo_al_Solsticio_de_Junio
+                    </p>
+                    <p class="text-gray-600 text-[7px] md:text-[8px] tracking-[0.3em] md:tracking-[0.4em] uppercase">
+                        Estado del Organismo: Ascenso_hacia_el_Cénit
+                    </p>
+                </div>
 
-            <div class="relative w-96 h-[500px] group flex justify-center items-center">
-                <svg viewBox="0 0 100 150" class="w-full h-full stroke-zenergy-blue/20 fill-none stroke-[0.3]">
-                    <path d="M50 10 L90 45 L75 110 L25 110 L10 45 Z" class="stroke-zenergy-blue/5 transition-all duration-[3s] group-hover:stroke-zenergy-blue/20" />
+                <div class="relative w-full max-w-[320px] md:w-96 h-[450px] md:h-[500px] group flex justify-center items-center">
+                    <svg viewBox="0 0 100 150" class="w-full h-full stroke-zenergy-blue/20 fill-none stroke-[0.3]">
+                        <path d="M50 10 L90 45 L75 110 L25 110 L10 45 Z" class="stroke-zenergy-blue/5 transition-all duration-[3s] group-hover:stroke-zenergy-blue/20" />
+                        <line x1="50" y1="130" x2="50" y2="20" class="stroke-zenergy-blue/30 group-hover:stroke-zenergy-blue transition-all duration-[2s]" stroke-dasharray="2 2" />
+                        <path d="M20 110 Q50 115 80 110" class="stroke-white/10" /> 
+                        <path d="M15 65 Q50 70 85 65" class="stroke-zenergy-blue/40 group-hover:stroke-zenergy-blue transition-all duration-[2s]" /> 
+                        <circle cx="50" cy="130" r="2" class="fill-zenergy-blue animate-pulse" /> 
+                        <circle cx="50" cy="65" r="1.5" class="fill-zenergy-blue/40" /> 
+                        <circle cx="50" cy="20" r="2" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" /> 
+                    </svg>
                     
-                    <line x1="50" y1="130" x2="50" y2="20" class="stroke-zenergy-blue/30 group-hover:stroke-zenergy-blue transition-all duration-[2s]" stroke-dasharray="2 2" />
-                    
-                    <path d="M20 110 Q50 115 80 110" class="stroke-white/10" /> <path d="M15 65 Q50 70 85 65" class="stroke-zenergy-blue/40 group-hover:stroke-zenergy-blue transition-all duration-[2s]" /> <circle cx="50" cy="130" r="2" class="fill-zenergy-blue animate-pulse" /> <circle cx="50" cy="65" r="1.5" class="fill-zenergy-blue/40" /> <circle cx="50" cy="20" r="2" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" /> </svg>
-                
-                <div class="absolute top-4 left-1/2 -translate-x-1/2 flex flex-col items-center">
-                    <span class="text-[8px] text-white tracking-[0.8em] font-black uppercase">Cénit</span>
-                    <span class="text-[6px] text-zenergy-blue/50 tracking-[0.4em] mt-1 uppercase">Máxima_Expansión</span>
-                </div>
-
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                    <span class="text-[8px] text-zenergy-blue tracking-[0.8em] font-black uppercase">Cristalización</span>
-                    <span class="text-[6px] text-gray-600 tracking-[0.4em] mt-1 uppercase">Transformación_Materia</span>
-                </div>
-
-                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center">
-                    <span class="text-[8px] text-gray-500 tracking-[0.8em] font-black uppercase">Origen</span>
-                    <span class="text-[6px] text-zenergy-blue/30 tracking-[0.4em] mt-1 uppercase">Raíz_Santa_Elena</span>
-                </div>
-
-                <div class="absolute right-0 top-1/4 h-1/2 border-r border-white/5 pr-4 flex flex-col justify-center gap-8">
-                    <div class="text-right">
-                        <p class="text-[7px] text-gray-700 tracking-[0.3em] uppercase">Fase_Solar</p>
-                        <p class="text-[9px] text-zenergy-blue font-bold">Ascendente</p>
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 flex flex-col items-center w-full">
+                        <span class="text-[7px] md:text-[8px] text-white tracking-[0.6em] md:tracking-[0.8em] font-black uppercase">Cénit</span>
+                        <span class="text-[5px] md:text-[6px] text-zenergy-blue/50 tracking-[0.3em] mt-1 uppercase">Máxima_Expansión</span>
                     </div>
-                    <div class="text-right">
-                        <p class="text-[7px] text-gray-700 tracking-[0.3em] uppercase">Densidad_Bio</p>
-                        <p class="text-[9px] text-zenergy-blue font-bold">Concentrada</p>
+
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full">
+                        <span class="text-[7px] md:text-[8px] text-zenergy-blue tracking-[0.6em] md:tracking-[0.8em] font-black uppercase">Cristalización</span>
+                        <span class="text-[5px] md:text-[6px] text-gray-600 tracking-[0.3em] mt-1 uppercase">Transformación_Materia</span>
+                    </div>
+
+                    <div class="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center w-full">
+                        <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.6em] md:tracking-[0.8em] font-black uppercase">Origen</span>
+                        <span class="text-[5px] md:text-[6px] text-zenergy-blue/30 tracking-[0.3em] mt-1 uppercase">Raíz_Santa_Elena</span>
+                    </div>
+
+                    <div class="absolute -right-4 md:right-0 top-1/4 h-1/2 border-r border-white/5 pr-4 flex flex-col justify-center gap-6 md:gap-8 scale-75 md:scale-100">
+                        <div class="text-right">
+                            <p class="text-[6px] md:text-[7px] text-gray-700 tracking-[0.2em] uppercase">Fase_Solar</p>
+                            <p class="text-[8px] md:text-[9px] text-zenergy-blue font-bold uppercase">Ascendente</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[6px] md:text-[7px] text-gray-700 tracking-[0.2em] uppercase">Densidad_Bio</p>
+                            <p class="text-[8px] md:text-[9px] text-zenergy-blue font-bold uppercase">Concentrada</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
     <section id="dial-monitor" class="min-h-[50vh] md:min-h-[60vh] flex flex-col items-center justify-center relative border-t border-white/5 overflow-hidden">
             <div class="absolute inset-0 pointer-events-none opacity-5">
@@ -187,16 +190,20 @@
 
 
     <section id="protocol" class="py-24 border-t border-white/5">
-            <div class="text-center mb-16 px-4">
-                <h2 class="text-3xl md:text-5xl mb-4 tracking-[0.4em] uppercase font-black text-white">PROTO_PULSOR</h2>
-                <p class="text-zenergy-blue text-[8px] md:text-[10px] tracking-[0.8em] uppercase font-bold">Protocolo de Encriptación Biocinética _PULS</p>
+            <div class="text-center mb-16 px-6">
+                <h2 class="text-2xl sm:text-3xl md:text-5xl mb-4 tracking-[0.3em] sm:tracking-[0.5em] md:tracking-[0.4em] uppercase font-black text-white leading-tight">
+                    PROTO_PULSOR
+                </h2>
+                <p class="text-zenergy-blue text-[7px] sm:text-[8px] md:text-[10px] tracking-[0.5em] sm:tracking-[0.8em] md:tracking-[1em] uppercase font-bold max-w-xs sm:max-w-none mx-auto">
+                    Protocolo de Encriptación Biocinética _PULS
+                </p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 px-4">
                 
                 <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[400px] md:min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
                     <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">P_CAMINAR</h3>
+                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">P_PACE</h3>
                         <p class="text-2xl md:text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Caminar</p>
                         <p class="text-[8px] text-gray-500 uppercase mb-6 md:mb-8 tracking-[0.3em]">Exhala / Tránsito</p>
                         <div class="mt-4 md:mt-8 border-t border-white/5 pt-6">
@@ -215,7 +222,7 @@
 
                 <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[400px] md:min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
                     <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">U_CAER</h3>
+                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">U_UNDER</h3>
                         <p class="text-2xl md:text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Caer</p>
                         <p class="text-[8px] text-gray-500 uppercase mb-6 md:mb-8 tracking-[0.3em]">Inhala / Cimiento</p>
                         <div class="mt-4 md:mt-8 border-t border-white/5 pt-6">
@@ -234,7 +241,7 @@
 
                 <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[400px] md:min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
                     <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">L_LEVANTARSE</h3>
+                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">L_LIFT</h3>
                         <p class="text-2xl md:text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Levantarse</p>
                         <p class="text-[8px] text-gray-500 uppercase mb-6 md:mb-8 tracking-[0.3em]">Resiliencia / Rebote</p>
                         <div class="mt-4 md:mt-8 border-t border-white/5 pt-6">
@@ -253,7 +260,7 @@
 
                 <div class="glass p-6 md:p-8 flex flex-col justify-between min-h-[400px] md:min-h-[580px] transition-all duration-500 hover:border-zenergy-blue/50 group">
                     <div>
-                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">S_SALTAR</h3>
+                        <h3 class="text-[9px] font-bold text-zenergy-blue mb-6 md:mb-10 uppercase tracking-[0.5em]">S_SURGER</h3>
                         <p class="text-2xl md:text-3xl font-extrabold mb-2 uppercase tracking-tighter text-white">Saltar</p>
                         <p class="text-[8px] text-gray-500 uppercase mb-6 md:mb-8 tracking-[0.3em]">Explosión / Estallido</p>
                         <div class="mt-4 md:mt-8 border-t border-white/5 pt-6">
@@ -276,10 +283,10 @@
     </main>
 
     <footer class="py-20 border-t border-white/5 text-center text-gray-700 text-[9px] tracking-[0.8em] font-bold uppercase">
-        ZENERGIA MYCELIUM TECH-LAB BY 
+        ZENERGIA <br> MYCELIUM TECH-LAB BY 
         <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-zenergy-blue transition-colors duration-500">
-            JALKO
-        </a> // ANTIOQUIA_COL // 2026
+            JALKO <br>
+        </a> ANTIOQUIA_COL <br> 2026
     </footer>
 
     <script>
