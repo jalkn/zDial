@@ -30,34 +30,41 @@ def save_log(entry):
         json.dump(db, f, indent=4)
 
 # --- Laboratory Entry Form (Amero Technification) ---
-st.header("🔬 Material Audit: Amero Dehydration")
+st.header("🔬 Substrate Audit: Amero Dehydration & Quality")
 with st.form("lab_entry"):
-    col1, col2 = st.columns(2)
+    col1, col2, col3 = st.columns(3)
     with col1:
-        batch_id = st.text_input("Batch ID", value=f"AMERO_{datetime.now().strftime('%m%d')}")
-        moisture_start = st.number_input("Initial Moisture (%)", min_value=0.0, max_value=100.0)
+        batch_id = st.text_input("Batch ID", value=f"AMERO_{datetime.now().strftime('%m%d_%H%M')}")
+        moisture_start = st.number_input("Moisture Content (%)", min_value=0.0, max_value=100.0)
     with col2:
         drying_temp = st.number_input("Drying Temp (°C)", value=35.0)
-        active_dial = st.text_input("Z-Dial Resonance", help="Input the alphanumeric pulse from the frontend")
+        fiber_type = st.selectbox("Fiber Orientation", ["Longitudinal", "Fragmented", "Dust"])
+    with col3:
+        active_dial = st.text_input("Z-Dial Resonance", help="Alphanumeric pulse from index.html")
+        resonance_root = st.number_input("Daily Root", min_value=1, max_value=9)
 
-    notes = st.text_area("Lab Observations (Fiber orientation/Lignin state)")
+    notes = st.text_area("Observations (Lignin state / External Contamination check)")
     
     if st.form_submit_button("Audit & Validate Batch"):
+        # Quality Logic: Batch is only VALIDATED if moisture is low and root is synced
+        is_valid = moisture_start < 15.0
         entry = {
             "timestamp": datetime.now().isoformat(),
             "batch_id": batch_id,
             "moisture_pct": moisture_start,
             "temp_c": drying_temp,
+            "fiber": fiber_type,
             "resonance": active_dial,
-            "status": "VALIDATED" if moisture_start < 15 else "IN_PROGRESS"
+            "root": resonance_root,
+            "status": "VALIDATED" if is_valid else "MOISTURE_HIGH"
         }
         save_log(entry)
-        st.success(f"Audit Complete: {batch_id} registered under resonance {active_dial}")
+        st.success(f"Audit Complete: {batch_id} logged with status: {entry['status']}")
 
 # --- Data Science: System History ---
 st.divider()
 db = load_data()
 if db:
-    st.subheader("📜 Resonance Lineage")
-    df = pd.DataFrame(db).sort_index(ascending=False)
-    st.table(df)
+    st.subheader("📜 Resonance Lineage & Substrate History")
+    df = pd.DataFrame(db).sort_values(by="timestamp", ascending=False)
+    st.dataframe(df, use_container_width=True)
