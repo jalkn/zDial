@@ -1,74 +1,88 @@
 [
-  {
-    "cuadrante": "UNDER",
-    "sets": 5,
-    "reps": 169,
-    "timestamp": "2026-05-11 19:05:22",
-    "protocol": "PULS",
-    "dial": "5ULS169",
-    "status": "TUNED"
-  },
-  {
-    "timestamp": "2026-05-11 19:09:28",
-    "dial": "5ULS169",
-    "protocol": "PULS",
-    "sets": 5,
-    "reps": 169,
-    "cuadrante": "UNDER",
-    "status": "TUNED"
-  },
-  {
-    "timestamp": "2026-05-11 19:11:29",
-    "dial": "5ULS169",
-    "protocol": "PULS",
-    "sets": 5,
-    "reps": 169,
-    "cuadrante": "UNDER",
-    "status": "TUNED"
-  },
-  {
-    "timestamp": "2026-05-11 19:12:44",
-    "dial": "5ULS169",
-    "protocol": "PULS",
-    "sets": 5,
-    "reps": 169,
-    "cuadrante": "UNDER",
-    "status": "TUNED"
-  },
-  {
-    "timestamp": "2026-05-11 19:19:58",
-    "dial": "5ULS169",
-    "protocol": "PULS",
-    "sets": 5,
-    "reps": 169,
-    "cuadrante": "UNDER",
-    "status": "TUNED"
-  },
-  {
-    "timestamp": "2026-05-11 19:25:25",
-    "dial": "5ULS169",
-    "protocol": "PULS",
-    "sets": 5,
-    "reps": 169,
-    "cuadrante": "UNDER",
-    "status": "TUNED"
-  },
-  {
-    "timestamp": "2026-05-12 09:08:51",
-    "dial": "5US33",
-    "protocol": "PULS",
-    "sets": 5,
-    "reps": 33,
-    "cuadrante": "SURGE",
-    "status": "TUNED"
-  },
-  {
-    "timestamp": "2026-05-12 09:29:45",
-    "dial": "5US33",
-    "protocol": "PULS",
-    "sets": 5,
-    "reps": 33,
-    "cuadrante": "SURGE",
-    "status": "TUNED"
-  }
+    {
+        "cuadrante": "UNDER",
+        "sets": 5,
+        "reps": 169,
+        "timestamp": "2026-05-11 19:05:22",
+        "protocol": "PULS",
+        "dial": "5ULS169",
+        "status": "TUNED"
+    },
+    {
+        "timestamp": "2026-05-11 19:09:28",
+        "dial": "5ULS169",
+        "protocol": "PULS",
+        "sets": 5,
+        "reps": 169,
+        "cuadrante": "UNDER",
+        "status": "TUNED"
+    },
+    {
+        "timestamp": "2026-05-11 19:11:29",
+        "dial": "5ULS169",
+        "protocol": "PULS",
+        "sets": 5,
+        "reps": 169,
+        "cuadrante": "UNDER",
+        "status": "TUNED"
+    },
+    {
+        "timestamp": "2026-05-11 19:12:44",
+        "dial": "5ULS169",
+        "protocol": "PULS",
+        "sets": 5,
+        "reps": 169,
+        "cuadrante": "UNDER",
+        "status": "TUNED"
+    },
+    {
+        "timestamp": "2026-05-11 19:19:58",
+        "dial": "5ULS169",
+        "protocol": "PULS",
+        "sets": 5,
+        "reps": 169,
+        "cuadrante": "UNDER",
+        "status": "TUNED"
+    },
+    {
+        "timestamp": "2026-05-11 19:25:25",
+        "dial": "5ULS169",
+        "protocol": "PULS",
+        "sets": 5,
+        "reps": 169,
+        "cuadrante": "UNDER",
+        "status": "TUNED"
+    },
+    {
+        "timestamp": "2026-05-12 09:08:51",
+        "dial": "5US33",
+        "protocol": "PULS",
+        "sets": 5,
+        "reps": 33,
+        "cuadrante": "SURGE",
+        "status": "TUNED"
+    },
+    {
+        "timestamp": "2026-05-12 09:29:45",
+        "dial": "5US33",
+        "protocol": "PULS",
+        "sets": 5,
+        "reps": 33,
+        "cuadrante": "SURGE",
+        "status": "TUNED"
+    },
+    {
+        "timestamp": "2026-05-13T21:14:38.993665",
+        "batch_id": "AMERO_0513_2114",
+        "source": "Central Mayorista, Las Malvinas, Puerta 12",
+        "wet_weight_g": 14.0,
+        "dry_weight_g": 0.0,
+        "moisture_pct": 12.0,
+        "temp_c": 35.0,
+        "fiber": "Longitudinal",
+        "resonance": "10ULS39",
+        "root": 1,
+        "image_ref": "data/img/AMERO_0513_2114.jpg",
+        "status": "DEHYDRATING"
+    }
 ]
