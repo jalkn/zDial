@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZENERGIA | Mycelium Tech-Lab</title>
+    <title>Mycelium Tech-Lab</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
@@ -127,19 +127,27 @@
         </div>
     </section>
 
-    <section id="dial-monitor" class="min-h-[60vh] flex flex-col items-center justify-center relative border-t border-white/5">
-        <div class="relative z-10 flex flex-col items-center group w-full px-4">
-            <div id="big-dial" 
-                class="text-[4rem] md:text-[8rem] font-black text-white opacity-20 group-hover:opacity-100 transition-all duration-1000 cursor-crosshair select-none tracking-[0.3em] leading-none text-center">
-                0.0.0
+    <section id="dial-monitor" class="min-h-[50vh] md:min-h-[60vh] flex flex-col items-center justify-center relative border-t border-white/5 overflow-hidden">
+            <div class="absolute inset-0 pointer-events-none opacity-5">
+                <div class="h-full w-full bg-[linear-gradient(0deg,transparent_24%,rgba(59,130,246,0.05)_25%,rgba(59,130,246,0.05)_26%,transparent_27%,transparent_74%,rgba(59,130,246,0.05)_75%,rgba(59,130,246,0.05)_76%,transparent_77%,transparent_100%)] bg-[length:50px_50px]"></div>
             </div>
 
-            <div class="mt-12">
-                <p id="protocol-desc" class="text-[9px] md:text-[11px] text-zenergy-blue tracking-[0.6em] uppercase font-black text-center opacity-40 group-hover:opacity-100 transition-opacity duration-700">
-                    Awaiting_Sync...
-                </p>
+            <div class="relative z-10 flex flex-col items-center group w-full px-4">
+                <div id="big-dial" 
+                    class="text-[2.8rem] sm:text-[4rem] md:text-[8rem] font-black text-white opacity-20 group-hover:opacity-100 transition-all duration-1000 cursor-crosshair select-none tracking-[0.2em] md:tracking-[0.3em] leading-none text-center">
+                    0.0.0
+                </div>
+
+                <div class="mt-8 md:mt-12 max-w-[90%]">
+                    <p id="protocol-desc" class="text-[7px] md:text-[11px] text-zenergy-blue tracking-[0.4em] md:tracking-[0.6em] uppercase font-black text-center opacity-50 group-hover:opacity-100 transition-opacity duration-700">
+                        Awaiting_Sync...
+                    </p>
+                    
+                    <div class="w-24 h-[1px] bg-white/5 mx-auto mt-4 overflow-hidden">
+                        <div class="h-full bg-zenergy-blue/40 w-1/2 animate-[scan_2s_linear_infinite]"></div>
+                    </div>
+                </div>
             </div>
-        </div>
     </section>
         
     <section id="z-brick" class="group/hero grid md:grid-cols-2 gap-12 md:gap-16 items-center min-h-[70vh] md:min-h-[80vh] py-16 md:py-24 px-4 md:px-0">
