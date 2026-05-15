@@ -80,55 +80,53 @@
 
 
     <section id="seasonal-node" class="py-24 md:py-32 border-t border-white/5 bg-[#0a0a0a] overflow-hidden">
-            <div class="flex flex-col items-center px-4">
-                <div class="mb-16 md:mb-20 text-center">
-                    <p class="text-zenergy-blue text-[7px] md:text-[9px] tracking-[0.6em] md:tracking-[0.8em] font-black uppercase mb-4 animate-pulse">
-                        Ciclo_Activo: Rumbo_al_Solsticio_de_Junio
-                    </p>
-                    <p class="text-gray-600 text-[7px] md:text-[8px] tracking-[0.3em] md:tracking-[0.4em] uppercase">
-                        Estado del Organismo: Ascenso_hacia_el_Cénit
-                    </p>
+        <div class="flex flex-col items-center px-4">
+            
+            <div class="mb-12 md:mb-16 text-center">
+                <p class="text-zenergy-blue text-[8px] md:text-[10px] tracking-[1em] font-black uppercase mb-2">
+                    ORGANISMO_SYNC
+                </p>
+                <p class="text-gray-700 text-[6px] md:text-[7px] tracking-[0.5em] uppercase">
+                    ESTADO: ASCENSO_CÉNIT
+                </p>
+            </div>
+
+            <div class="relative w-full max-w-[320px] md:w-96 h-[450px] md:h-[500px] group flex justify-center items-center">
+                <svg viewBox="0 0 100 150" class="w-full h-full stroke-zenergy-blue/20 fill-none stroke-[0.3]">
+                    <path d="M50 10 L90 45 L75 110 L25 110 L10 45 Z" class="stroke-zenergy-blue/5 transition-all duration-[3s] group-hover:stroke-zenergy-blue/20" />
+                    <line x1="50" y1="130" x2="50" y2="20" class="stroke-zenergy-blue/30 group-hover:stroke-zenergy-blue transition-all duration-[2s]" stroke-dasharray="2 2" />
+                    <path d="M20 110 Q50 115 80 110" class="stroke-white/10" /> 
+                    <path d="M15 65 Q50 70 85 65" class="stroke-zenergy-blue/40 group-hover:stroke-zenergy-blue transition-all duration-[2s]" /> 
+                    <circle cx="50" cy="130" r="2" class="fill-zenergy-blue animate-pulse" /> 
+                    <circle cx="50" cy="65" r="1.5" class="fill-zenergy-blue/40" /> 
+                    <circle cx="50" cy="20" r="2" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" /> 
+                </svg>
+                
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 flex flex-col items-center w-full">
+                    <span class="text-[7px] md:text-[8px] text-white tracking-[0.8em] font-black uppercase">CÉNIT</span>
                 </div>
 
-                <div class="relative w-full max-w-[320px] md:w-96 h-[450px] md:h-[500px] group flex justify-center items-center">
-                    <svg viewBox="0 0 100 150" class="w-full h-full stroke-zenergy-blue/20 fill-none stroke-[0.3]">
-                        <path d="M50 10 L90 45 L75 110 L25 110 L10 45 Z" class="stroke-zenergy-blue/5 transition-all duration-[3s] group-hover:stroke-zenergy-blue/20" />
-                        <line x1="50" y1="130" x2="50" y2="20" class="stroke-zenergy-blue/30 group-hover:stroke-zenergy-blue transition-all duration-[2s]" stroke-dasharray="2 2" />
-                        <path d="M20 110 Q50 115 80 110" class="stroke-white/10" /> 
-                        <path d="M15 65 Q50 70 85 65" class="stroke-zenergy-blue/40 group-hover:stroke-zenergy-blue transition-all duration-[2s]" /> 
-                        <circle cx="50" cy="130" r="2" class="fill-zenergy-blue animate-pulse" /> 
-                        <circle cx="50" cy="65" r="1.5" class="fill-zenergy-blue/40" /> 
-                        <circle cx="50" cy="20" r="2" class="fill-white/20 group-hover:fill-zenergy-blue transition-colors duration-1000" /> 
-                    </svg>
-                    
-                    <div class="absolute top-0 left-1/2 -translate-x-1/2 flex flex-col items-center w-full">
-                        <span class="text-[7px] md:text-[8px] text-white tracking-[0.6em] md:tracking-[0.8em] font-black uppercase">Cénit</span>
-                        <span class="text-[5px] md:text-[6px] text-zenergy-blue/50 tracking-[0.3em] mt-1 uppercase">Máxima_Expansión</span>
-                    </div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full">
+                    <span class="text-[7px] md:text-[8px] text-zenergy-blue/60 tracking-[0.8em] font-black uppercase">CRISTAL_BIO</span>
+                </div>
 
-                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full">
-                        <span class="text-[7px] md:text-[8px] text-zenergy-blue tracking-[0.6em] md:tracking-[0.8em] font-black uppercase">Cristalización</span>
-                        <span class="text-[5px] md:text-[6px] text-gray-600 tracking-[0.3em] mt-1 uppercase">Transformación_Materia</span>
-                    </div>
+                <div class="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center w-full">
+                    <span class="text-[7px] md:text-[8px] text-gray-600 tracking-[0.8em] font-black uppercase">ORIGEN</span>
+                </div>
 
-                    <div class="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center w-full">
-                        <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.6em] md:tracking-[0.8em] font-black uppercase">Origen</span>
-                        <span class="text-[5px] md:text-[6px] text-zenergy-blue/30 tracking-[0.3em] mt-1 uppercase">Raíz_Santa_Elena</span>
+                <div class="absolute -right-2 md:right-0 top-1/4 h-1/2 border-r border-white/5 pr-4 flex flex-col justify-center gap-6 scale-75 md:scale-90 opacity-60 group-hover:opacity-100 transition-opacity">
+                    <div class="text-right">
+                        <p class="text-[6px] text-gray-700 tracking-[0.2em] uppercase">SOLAR</p>
+                        <p class="text-[8px] text-zenergy-blue font-bold uppercase">ASC</p>
                     </div>
-
-                    <div class="absolute -right-4 md:right-0 top-1/4 h-1/2 border-r border-white/5 pr-4 flex flex-col justify-center gap-6 md:gap-8 scale-75 md:scale-100">
-                        <div class="text-right">
-                            <p class="text-[6px] md:text-[7px] text-gray-700 tracking-[0.2em] uppercase">Fase_Solar</p>
-                            <p class="text-[8px] md:text-[9px] text-zenergy-blue font-bold uppercase">Ascendente</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-[6px] md:text-[7px] text-gray-700 tracking-[0.2em] uppercase">Densidad_Bio</p>
-                            <p class="text-[8px] md:text-[9px] text-zenergy-blue font-bold uppercase">Concentrada</p>
-                        </div>
+                    <div class="text-right">
+                        <p class="text-[6px] text-gray-700 tracking-[0.2em] uppercase">BIO</p>
+                        <p class="text-[8px] text-zenergy-blue font-bold uppercase">CONC</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
     <section id="dial-monitor" class="min-h-[50vh] md:min-h-[60vh] flex flex-col items-center justify-center relative border-t border-white/5 overflow-hidden">
             <div class="absolute inset-0 pointer-events-none opacity-5">
@@ -154,39 +152,40 @@
     </section>
         
     <section id="z-brick" class="group/hero grid md:grid-cols-2 gap-12 md:gap-16 items-center min-h-[70vh] md:min-h-[80vh] py-16 md:py-24 px-4 md:px-0">
-            <div class="z-10 text-center md:text-left order-2 md:order-1">
-                <div class="inline-block bg-zenergy-blue/10 border border-zenergy-blue/20 px-4 py-1 rounded-full mb-6">
-                    <span class="text-zenergy-blue text-[8px] md:text-[9px] font-bold tracking-[0.4em]">SISTEMA DE BIOCONSTRUCCIÓN</span>
-                </div>
-                
-                <h1 class="text-5xl md:text-8xl leading-none mb-6 md:mb-8 font-black tracking-[0.1em] text-white uppercase">Z_BRICK</h1>
-                
-                <p class="text-gray-500 max-w-md mx-auto md:mx-0 mb-10 md:mb-12 text-[10px] md:text-[11px] tracking-widest font-light leading-loose uppercase">
-                    Módulos de manufactura distribuida bajo la resonancia del tiempo vertical. Micelio sintetizado con residuos de amero.
-                </p>
-                
-                <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 md:gap-6">
-                    <button class="bg-zenergy-blue text-white font-black px-10 md:px-12 py-4 md:py-5 rounded-sm text-[9px] md:text-[10px] tracking-[0.5em] hover:bg-white hover:text-black transition-all duration-500 uppercase">
-                        ACTIVAR NODO
-                    </button>
-                    </div>
+        <div class="z-10 text-center md:text-left order-2 md:order-1">
+            <div class="inline-block bg-zenergy-blue/10 border border-zenergy-blue/20 px-4 py-1 rounded-full mb-6">
+                <span class="text-zenergy-blue text-[8px] md:text-[9px] font-bold tracking-[0.4em]">SISTEMA DE BIOCONSTRUCCIÓN</span>
             </div>
+            
+            <h1 class="text-5xl md:text-8xl leading-none mb-6 md:mb-8 font-black tracking-[0.1em] text-white uppercase">Z_BRICK</h1>
+            
+            <p class="text-gray-500 max-w-md mx-auto md:mx-0 mb-10 md:mb-12 text-[10px] md:text-[11px] tracking-widest font-light leading-loose uppercase">
+                Bioladrillos de micelio sintetizado con residuo de amero y estimulados mediante el 
+                <span class="text-gray-300 font-bold italic">PROTO_PULSOR</span> bajo la RESONANCIA DE LOS 
+                <button onclick="scrollToDial()" class="text-zenergy-blue font-bold underline decoration-zenergy-blue/30 underline-offset-4 hover:text-white transition-colors">
+                    Z-DIALS
+                </button>.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 md:gap-6">
+                <button class="bg-zenergy-blue text-white font-black px-10 md:px-12 py-4 md:py-5 rounded-sm text-[9px] md:text-[10px] tracking-[0.5em] hover:bg-white hover:text-black transition-all duration-500 uppercase">
+                    ACTIVAR NODO
+                </button>
+            </div>
+        </div>
 
-            <div class="relative flex justify-center items-center order-1 md:order-2">
-                <div class="absolute inset-0 bg-zenergy-blue/10 blur-[80px] md:blur-[120px] rounded-full opacity-20 md:opacity-0 group-hover/hero:opacity-100 transition-opacity duration-1000"></div>
-                
-                <div class="relative w-full max-w-[60%] md:max-w-[80%] overflow-visible">
-                    <img src="img/z-brick.png" 
-                        alt="Z-Brick Mycelium"
-                        class="w-full h-auto grayscale opacity-40 md:opacity-30 scale-90 md:scale-75 
-                                transition-all duration-[1000ms] ease-out
-                                group-hover/hero:grayscale-0 group-hover/hero:opacity-100 group-hover/hero:scale-105">
-                    
-                    <div class="absolute -bottom-4 -right-4 border-r border-b border-zenergy-blue/0 group-hover/hero:border-zenergy-blue/40 w-16 h-16 transition-all duration-700"></div>
-                    <div class="absolute -top-4 -left-4 border-l border-t border-zenergy-blue/0 group-hover/hero:border-zenergy-blue/40 w-16 h-16 transition-all duration-700"></div>
-                </div>
+        <div class="relative flex justify-center items-center order-1 md:order-2">
+            <div class="absolute inset-0 bg-zenergy-blue/10 blur-[80px] md:blur-[120px] rounded-full opacity-20 md:opacity-0 group-hover/hero:opacity-100 transition-opacity duration-1000"></div>
+            
+            <div class="relative w-full max-w-[60%] md:max-w-[80%] overflow-visible">
+                <img src="img/z-brick.png" 
+                    alt="Z-Brick Mycelium"
+                    class="w-full h-auto grayscale opacity-40 md:opacity-30 scale-90 md:scale-75 
+                            transition-all duration-[1000ms] ease-out
+                            group-hover/hero:grayscale-0 group-hover/hero:opacity-100 group-hover/hero:scale-105">
             </div>
-        </section>
+        </div>
+    </section>
 
 
     <section id="protocol" class="py-24 border-t border-white/5">
@@ -289,74 +288,82 @@
         </a> ANTIOQUIA_COL <br> 2026
     </footer>
 
-    <script>
+<script>
+        /**
+        * Z-Dial Resonance Engine v6.0
+        * Fractal Minimalist Reconstruction | PULS Protocol
+        */
         const $ = (id) => document.getElementById(id);
         const PHI = 1.618033;
 
-        /**
-        * Z-Dial Resonance Engine v5.3
-        * Synchronizes astronomical drift with human biokinetics.
-        */
         const updateZ = () => {
             const now = new Date();
             
-            // 1. Numerological Root Calculation (The frequency of the day)
+            // 1. Reducción Fractal de la Raíz (Frecuencia del día)
             const dateStr = `${now.getDate()}${now.getMonth() + 1}${now.getFullYear()}`;
-            let dailyRoot = [...dateStr].reduce((acc, digit) => acc + parseInt(digit), 0);
-            while (dailyRoot > 9) {
-                dailyRoot = [...dailyRoot.toString()].reduce((acc, d) => acc + parseInt(d), 0);
+            let rRoot = [...dateStr].reduce((acc, digit) => acc + parseInt(digit), 0);
+            while (rRoot > 9) {
+                rRoot = [...rRoot.toString()].reduce((acc, d) => acc + parseInt(d), 0);
             }
 
-            // 2. Solar Angle (15 degrees per hour)
+            // 2. Deriva Solar (15° por hora + 0.25° por minuto)
             const deg = (now.getHours() * 15) + (now.getMinutes() * 0.25);
             
-            // 3. Mapping Quadrants to Poetic Actions and Sacred Geometry
-            let f, n, geometry;
+            // 3. Mapeo de Cuadrantes y Geometría Deconstruida
+            let f, n, g;
             if (deg >= 0 && deg < 90) { 
-                f = 'ULS'; n = 'CAER - LEVANTARSE'; geometry = 'Dodecahedron'; 
+                f = 'ULS'; n = 'CAER_LIFT'; g = 'DODEC'; 
             } else if (deg >= 90 && deg < 180) { 
-                f = 'PSL'; n = 'CAMINAR - SALTAR'; geometry = 'Tetrahedron';
+                f = 'PSL'; n = 'PACE_SURGE'; g = 'TETRA';
             } else if (deg >= 180 && deg < 270) { 
-                f = 'SU'; n = 'SALTAR - CAER'; geometry = 'Icosahedron';
+                f = 'SU'; n = 'SURGE_UNDER'; g = 'ICOS';
             } else { 
-                f = 'ULS'; n = 'CAER - LEVANTARSE'; geometry = 'Dodecahedron';
+                f = 'ULS'; n = 'CAER_LIFT'; g = 'DODEC';
             }
 
-            // 4. Sets (Fibonacci Lunar) and Reps (Drift tuned by Daily Root)
+            // 4. Sets (Fibonacci Lunar) y Reps (Afinación por Raíz)
             const s = Math.floor((now.getDate() * PHI) % (f.length > 2 ? 11 : 21)) || 1;
             let baseReps = Math.floor(Math.abs(180 - deg) % 100);
-            let r = Math.floor((baseReps + dailyRoot) % 40); 
+            let reps = Math.floor((baseReps + rRoot) % 40); 
 
-            // 5. Render Alphanumeric Art
-            const res = `${s}${f}${r}`;
-            $('big-dial').innerText = res;
+            // 5. Renderizado de Arte Alfanumérico
+            const res = `${s}${f}${reps}`;
+            
+            if ($('big-dial')) $('big-dial').innerText = res;
             if ($('z-dial')) $('z-dial').innerText = res;
             
-            // Technical/Poetic status log
-            $('protocol-desc').innerText = `RAÍZ_${dailyRoot} // ${s} SERIES DE ${r} ${n} // ${geometry}_SYNC`;
+            // Reporte Técnico Minificado para el Auditor
+            if ($('protocol-desc')) {
+                $('protocol-desc').innerText = `R_${rRoot} // ${s}S_${reps}R // ${n} // ${g}_SYNC`;
+            }
         };
 
-        // Global listeners and loop initialization
+        // Inicialización del Ciclo
         updateZ();
         setInterval(updateZ, 60000);
 
         /**
-        * Haptic and audio feedback for interaction
-        * @param {string} url - Audio asset path
+        * Feedback Háptico y Sonoro
         */
         function playBeat(url) {
             const audio = new Audio(url);
             audio.play().catch(() => {
-                console.log("Audio interaction requires user gesture");
+                console.warn("Z-Sync: Interacción requerida para audio.");
             });
             if ("vibrate" in navigator) navigator.vibrate(50);
         }
 
-        /**
-        * Smooth scroll to resonance monitor
+/**
+        * Navegación por Resonancia: Ancla el texto al monitor activo
         */
         function scrollToDial() {
-            $('dial-monitor').scrollIntoView({ behavior: 'smooth' });
+            const target = $('dial-monitor');
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+                // Opcional: Feedback visual al llegar
+                $('big-dial').classList.add('animate-pulse');
+                setTimeout(() => $('big-dial').classList.remove('animate-pulse'), 2000);
+            }
         }
     </script>
 
