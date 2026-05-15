@@ -13,3 +13,4 @@ static_root/
 # IDEs
 .vscode/
 .idea/
+data/

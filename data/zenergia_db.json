@@ -84,5 +84,23 @@
         "root": 1,
         "image_ref": "data/img/AMERO_0513_2114.jpg",
         "status": "DEHYDRATING"
+    },
+    {
+        "timestamp": "2026-05-15T18:29:22.230187",
+        "type": "MEDIA",
+        "batch_id": "AGAR_0515_1829",
+        "water_source": "Pure Distilled",
+        "water_vol_ml": 600.0,
+        "agar_g": 12.0,
+        "honey_g": 12.0,
+        "chlorella_g": 2.4,
+        "boil_duration_min": 1.5,
+        "mix_temp_c": 60.0,
+        "psi": 15.0,
+        "duration_min": 20,
+        "strain": "Reishi",
+        "thermal_status": "SAFE",
+        "polymer_status": "PASSED",
+        "status": "STERILIZED_READY"
     }
 ]
