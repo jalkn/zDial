@@ -75,13 +75,18 @@
 
     <main class="max-w-7xl mx-auto px-8 pt-40">
 
-        <section id="installation-node" class="py-16 md:py-24 border-t border-white/5 bg-[#0a0a0a] overflow-hidden">
+        <section id="installation-node" class="py-16 md:py-24 bg-[#0a0a0a] overflow-hidden">
             <div class="flex flex-col items-center px-4">
                 
                 <div class="mb-12 md:mb-16 text-center select-none">
-                    <p class="text-zenergy-blue text-[8px] md:text-[10px] tracking-[1em] font-black uppercase mb-2"><a href="#z-brick" class="hover:text-zenergy-blue transition font-medium hidden md:block tracking-[0.3em]">Z_BRICK</a>
+                    <p class="text-zenergy-blue text-[9px] md:text-[11px] tracking-[0.5em] font-black uppercase mb-2">
+                        <span onclick="scrollToSection('z-brick')" class="cursor-pointer hover:text-white transition duration-500">
+                            Z_BRICK
+                        </span>
                     </p>
-                    <span class="text-[7px] md:text-[8px] text-white tracking-[0.6em] font-black uppercase">CRISTAL</span>
+                    <span class="text-[7px] md:text-[8px] text-gray-600 tracking-[0.6em] font-black uppercase">
+                        ESFERA // CRISTAL
+                    </span>
                 </div>
 
                 <div class="relative w-full max-w-[340px] md:w-[450px] h-[450px] md:h-[500px] group flex justify-center items-center">
@@ -104,31 +109,29 @@
                         <circle cx="50" cy="130" r="2" class="fill-white/10 group-hover:fill-white/40 transition-colors" /> 
                     </svg>
                     
-                    <div class="absolute top-[22%] left-2 md:left-4 flex flex-col items-start scale-90 md:scale-100 cursor-pointer group/node" onclick="scrollToSection('z-brick')">
-                        <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.4em] font-black uppercase group-hover/node:text-zenergy-blue transition-colors">pace</span>
-                        <span class="text-[5px] text-zenergy-blue/0 group-hover/node:opacity-100 group-hover/node:text-white transition-all duration-500 tracking-[0.1em] lowercase mt-0.5">> link_materia</span>
+                    <div class="absolute top-[22%] left-2 md:left-4 flex flex-col items-start scale-90 md:scale-100 cursor-pointer group/node" onclick="scrollToSection('protocol')">
+                        <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.4em] font-black uppercase group-hover/node:text-zenergy-blue transition-colors">PACE</span>
                     </div>
 
                     <div class="absolute top-[46%] left-1/2 -translate-x-1/2 flex flex-col items-center w-full cursor-pointer group/core" onclick="scrollToSection('protocol')">
-                        <span class="text-[7px] md:text-[8px] text-white tracking-[0.6em] font-black uppercase group-hover/core:text-zenergy-blue transition-colors">pulsor</span>
+                        <span class="text-[7px] md:text-[8px] text-white tracking-[0.6em] font-black uppercase group-hover/core:text-zenergy-blue transition-colors">PULSOR</span>
                         <span id="hologram-dial" class="text-zenergy-blue text-[8px] md:text-[9px] tracking-[0.3em] font-bold mt-1">000000</span>
                     </div>
 
-                    <div class="absolute top-[22%] right-2 md:right-4 flex flex-col items-end scale-90 md:scale-100 text-right select-none opacity-40 group-hover:opacity-75 transition-opacity">
-                        <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.4em] font-black uppercase">surge</span>
-                        <span class="text-[4px] text-gray-700 tracking-[0.1em] uppercase mt-0.5">node_lock</span>
+                    <div class="absolute top-[22%] right-2 md:right-4 flex flex-col items-end scale-90 md:scale-100 text-right cursor-pointer group/node" onclick="scrollToSection('protocol')">
+                        <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.4em] font-black uppercase group-hover/node:text-zenergy-blue transition-colors">SURGE</span>
                     </div>
 
-                    <div class="absolute bottom-[26%] left-[16%] md:left-[22%] flex flex-col items-start scale-90 md:scale-100 select-none opacity-40 group-hover:opacity-75 transition-opacity">
-                        <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.4em] font-black uppercase">under</span>
+                    <div class="absolute bottom-[26%] left-[16%] md:left-[22%] flex flex-col items-start scale-90 md:scale-100 cursor-pointer group/node" onclick="scrollToSection('protocol')">
+                        <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.4em] font-black uppercase group-hover/node:text-zenergy-blue transition-colors">UNDER</span>
                     </div>
 
-                    <div class="absolute bottom-[26%] right-[16%] md:right-[22%] flex flex-col items-end scale-90 md:scale-100 text-right select-none opacity-40 group-hover:opacity-75 transition-opacity">
-                        <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.4em] font-black uppercase">lift</span>
+                    <div class="absolute bottom-[26%] right-[16%] md:right-[22%] flex flex-col items-end scale-90 md:scale-100 text-right cursor-pointer group/node" onclick="scrollToSection('protocol')">
+                        <span class="text-[7px] md:text-[8px] text-gray-500 tracking-[0.4em] font-black uppercase group-hover/node:text-zenergy-blue transition-colors">LIFT</span>
                     </div>
 
                     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center w-full cursor-pointer group/base" onclick="scrollToSection('dial-monitor')">
-                        <span class="text-[7px] md:text-[8px] text-gray-600 tracking-[0.6em] font-black uppercase group-hover/base:text-white transition-colors">resonancia</span>
+                        <span class="text-[7px] md:text-[8px] text-gray-600 tracking-[0.6em] font-black uppercase group-hover/base:text-white transition-colors">RESONANCIA</span>
                     </div>
 
                 </div>
@@ -191,7 +194,7 @@
         <section id="protocol" class="py-24 border-t border-white/5">
             <div class="text-center mb-16 px-6">
                 <h2 class="text-2xl sm:text-3xl md:text-5xl mb-4 tracking-[0.3em] sm:tracking-[0.5em] md:tracking-[0.4em] uppercase font-black text-white leading-tight">
-                    PROTO_PULSOR
+                    PULSOR
                 </h2>
                 <p class="text-zenergy-blue text-[7px] sm:text-[8px] md:text-[10px] tracking-[0.5em] sm:tracking-[0.8em] md:tracking-[1em] uppercase font-bold max-w-xs sm:max-w-none mx-auto">
                     protocolo de encriptación biocinética _puls
