@@ -102,5 +102,23 @@
         "thermal_status": "SAFE",
         "polymer_status": "PASSED",
         "status": "STERILIZED_READY"
+    },
+    {
+        "timestamp": "2026-05-19T12:32:46.927062",
+        "type": "SUBSTRATE",
+        "batch_id": "AMERO_0519_1232",
+        "method": "Controlled Thermal (35\u00b0C)",
+        "topology": "1x1cm Fragmented Grid",
+        "raw_input_g": 200.0,
+        "accepted_clean_g": 200.0,
+        "rejected_dirty_g": 0.0,
+        "rejection_rate_pct": 0.0,
+        "process_efficiency_pct": 100.0,
+        "hazard_rating": "None",
+        "moisture_pct": 12.0,
+        "resonance": "2ULS13",
+        "root": 1,
+        "image_ref": "data/img/AMERO_0519_1232.jpg",
+        "status": "QC_PASSED"
     }
 ]

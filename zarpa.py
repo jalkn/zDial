@@ -38,13 +38,14 @@ if module_select == "Substrate Audit (Amero)":
         col1, col2, col3 = st.columns(3)
         with col1:
             batch_id = st.text_input("Batch ID", value=f"AMERO_{datetime.now().strftime('%m%d_%H%M')}")
+            amero_provider = st.text_input("Amero Provider / Source", value="Plaza Rionegro", help="Origin of the raw corn husks")
             dry_method = st.selectbox("Dehydration Method", ["Direct Solar", "Controlled Thermal (35°C)", "Hybrid"])
-            total_raw_weight = st.number_input("Total Sack Input Weight (g)", min_value=0.0)
         with col2:
+            total_raw_weight = st.number_input("Total Sack Input Weight (g)", min_value=0.0)
             matrix_topology = st.selectbox("Matrix Topology", ["1x1cm Fragmented Grid", "Continuous Longitudinal Strips"])
             useful_dry_weight = st.number_input("Accepted Clean Fiber Weight (g)", min_value=0.0)
-            rejected_weight = st.number_input("Rejected Material Weight (g)", min_value=0.0)
         with col3:
+            rejected_weight = st.number_input("Rejected Material Weight (g)", min_value=0.0)
             active_dial = st.text_input("Z-Dial Resonance")
             resonance_root = st.number_input("Daily Root", min_value=1, max_value=9)
             est_moisture = st.number_input("Estimated Final Moisture (%)", value=12.0)
@@ -67,6 +68,7 @@ if module_select == "Substrate Audit (Amero)":
                 "timestamp": datetime.now().isoformat(),
                 "type": "SUBSTRATE",
                 "batch_id": batch_id,
+                "provider": amero_provider,
                 "method": dry_method,
                 "topology": matrix_topology,
                 "raw_input_g": total_raw_weight,
@@ -82,7 +84,7 @@ if module_select == "Substrate Audit (Amero)":
                 "status": "QC_PASSED" if est_moisture <= 15.0 and rejection_rate < 30.0 else "QC_WARNING"
             }
             save_log(entry)
-            st.success(f"Substrate Audit Logged: {batch_id} ({efficiency}% Clean Yield)")
+            st.success(f"Substrate Audit Logged: {batch_id} from {amero_provider}")
 
 elif module_select == "Media Formulation (Agar)":
     st.header("🧬 Media Formulation & Batch Rectification")
@@ -137,7 +139,7 @@ elif module_select == "Media Formulation (Agar)":
                 "status": "RECTIFIED_AND_STERILIZED" if is_rectification else "STERILIZED_READY"
             }
             save_log(entry)
-            st.success(f"Logged Batch {media_id}. Status: {entry['status']} | Safeguard: {temp_safeguard}")
+            st.success(f"Logged Batch {media_id}. Status: {entry['status']}")
 
 # --- Unified Data Engine View ---
 db = load_data()
