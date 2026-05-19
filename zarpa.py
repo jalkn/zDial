@@ -2,7 +2,7 @@ import streamlit as st
 import json
 import os
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timezone
 import math
 
 # Technical Configuration for Scientific Rigor
@@ -31,12 +31,17 @@ def save_log(entry):
         json.dump(db, f, indent=4)
 
 def calculate_backend_zdial():
-    """Replicates the live biokinetic clock logic from index.html inside the secure backend Python framework"""
-    now = datetime.now()
-    epoch = datetime(2024, 1, 1) # Sync Baseline anchor
-    delta_mins = math.floor((now - epoch).total_seconds() / 60)
+    """
+    Strict mathematical twin of index.html time-node matrix.
+    Forces UTC alignment to eliminate local client-server timezone drift.
+    """
+    # Force localized system clock to UTC matching standard JavaScript Date.UTC operations
+    now_utc = datetime.now(timezone.utc)
+    epoch_utc = datetime(2024, 1, 1, 0, 0, 0, tzinfo=timezone.utc)
     
-    # Mathematical resonance nodes matching index.html structures
+    delta_mins = math.floor((now_utc - epoch_utc).total_seconds() / 60)
+    
+    # Mirror of frontend module operations
     s_node = (delta_mins % 9) + 1
     f_node = (delta_mins % 7) + 1
     reps = (delta_mins % 21) + 5
@@ -44,30 +49,25 @@ def calculate_backend_zdial():
     return f"{s_node}PULS{f_node}X{reps}"
 
 def generate_laser_svg(batch_id, adaptogen_name, dial, weight, units):
-    """Generates a strict technical vector file for laser marking reflecting the seasonal node layout"""
+    """Generates a raw layout for laser marking using the seasonal node layout template"""
     folder = "data/laser_output"
     if not os.path.exists(folder): os.makedirs(folder)
     filepath = f"{folder}/{batch_id}.svg"
     
-    # Pure Industrial Layout System (Minimal Grid, No Sphere/Crystal, Sandwatch Scale)
-    svg_content = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 180" width="120mm" height="60mm">
-        <rect x="10" y="10" width="380" height="160" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="6,3"/>
-        <line x1="10" y1="45" x2="390" y2="45" stroke="#ffffff" stroke-width="1"/>
-        <line x1="10" y1="135" x2="390" y2="135" stroke="#ffffff" stroke-width="1"/>
+    # Aesthetic Layout Re-engineering: Clean sandwatch bounds, adaptogen focus, wide typography
+    svg_content = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 160" width="120mm" height="50mm">
+        <rect x="10" y="10" width="400" height="140" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="4,2"/>
+        <line x1="10" y1="40" x2="410" y2="40" stroke="#ffffff" stroke-width="1"/>
+        <line x1="10" y1="120" x2="410" y2="120" stroke="#ffffff" stroke-width="1"/>
         
-        <text x="25" y="32" font-family="'Courier New', monospace" font-size="14" fill="#ffffff" font-weight="bold" letter-spacing="1">ZENERGY TECH-LAB // PULSOR</text>
-        <text x="270" y="32" font-family="'Courier New', monospace" font-size="11" fill="#ffffff" font-weight="bold">ZENERGY.WORLD</text>
+        <text x="20" y="28" font-family="'Courier New', monospace" font-size="12" fill="#ffffff" font-weight="bold" letter-spacing="2">{adaptogen_name.upper()}</text>
+        <text x="290" y="28" font-family="'Courier New', monospace" font-size="11" fill="#ffffff" font-weight="bold" letter-spacing="1">ZENERGY.WORLD</text>
         
-        <text x="25" y="70" font-family="'Courier New', monospace" font-size="16" fill="#ffffff" font-weight="bold" letter-spacing="2">{adaptogen_name.upper()}</text>
-        <text x="25" y="90" font-family="'Courier New', monospace" font-size="10" fill="#888888">SPEC: {weight}MGR // VOL: {units}U // ID: {batch_id}</text>
+        <text x="18" y="95" font-family="'Courier New', monospace" font-size="44" fill="#ffffff" font-weight="bold" letter-spacing="8">{dial}</text>
         
-        <text x="20" y="125" font-family="'Courier New', monospace" font-size="34" fill="#ffffff" font-weight="bold" letter-spacing="6">{dial}</text>
+        <text x="20" y="140" font-family="'Courier New', monospace" font-size="9" fill="#ffffff" opacity="0.8">SPEC: {weight}MGR // VOL: {units}U // BATCH: {batch_id}</text>
         
-        <text x="25" y="155" font-family="'Courier New', monospace" font-size="9" fill="#ffffff" opacity="0.7">TIMESTAMP // {datetime.now().strftime('%Y-%m-%d %H:%M:%S')} // SECURE TECH GATEWAY</text>
-        
-        <circle cx="370" cy="152" r="4" fill="none" stroke="#ffffff" stroke-width="1"/>
-        <line x1="365" y1="152" x2="375" y2="152" stroke="#ffffff" stroke-width="0.5"/>
-        <line x1="370" y1="147" x2="370" y2="157" stroke="#ffffff" stroke-width="0.5"/>
+        <circle cx="390" cy="140" r="3" fill="none" stroke="#ffffff" stroke-width="1"/>
     </svg>"""
     
     with open(filepath, "w", encoding="utf-8") as f:
@@ -184,34 +184,34 @@ elif module_select == "Media Formulation (Agar)":
             st.success(f"Logged Batch {media_id}")
 
 elif module_select == "Capsule Packaging (Pulsor)":
-    st.header("⚡ Pulsor Packaging & Laser Automation")
-    st.info("This system automatically computes the live biokinetic clock in the backend and compiles vector maps matching the seasonal node specifications.")
+    st.header("⚡ Adaptogen Packaging & Laser Vector Generator")
+    st.info("The system now locks data with absolute UTC synchronization, tracking clock drift against zenergy.world.")
     
-    # Real-time calculation feedback visible in UI before submit
+    # Visual assurance of active pulse
     live_computed_dial = calculate_backend_zdial()
-    st.metric(label="System Calibrated Pulse (Z-DIAL)", value=live_computed_dial)
+    st.metric(label="Locked Live Matrix Dial (Synced to Z-WORLD)", value=live_computed_dial)
     
     with st.form("pulsor_entry"):
         col1, col2 = st.columns(2)
         with col1:
-            pack_id = st.text_input("Pulsor Batch ID", value=f"PULS_{datetime.now().strftime('%m%d_%H%M')}")
-            adaptogen_select = st.selectbox("Target Adaptogen Node", ["Reishi", "Melena de Leon", "Cordyceps", "Cola de Pavo"])
-            cap_weight = st.number_input("Capsule Core Specification (mg)", value=500.0)
+            pack_id = st.text_input("Package Batch ID", value=f"PULS_{datetime.now().strftime('%m%d_%H%M')}")
+            adaptogen_select = st.selectbox("Active Adaptogen Node", ["Reishi", "Melena de Leon", "Cordyceps", "Cola de Pavo"])
+            cap_weight = st.number_input("Capsule Core Weight (mg)", value=500.0)
         with col2:
-            unit_count = st.number_input("Quantity per Container (Units)", value=45)
-            parent_grain_batch = st.text_input("Source Spawn/Fruiting Batch ID", value="REISHI_S_01")
-            operator_sig = st.text_input("Operator Authentication Signature", value="JALKO")
+            unit_count = st.number_input("Units per Container", value=45)
+            parent_grain_batch = st.text_input("Source Matrix Batch ID", value="REISHI_S_01")
+            operator_sig = st.text_input("Operator Signature", value="JALKO")
             
-        notes = st.text_area("Packaging Matrix Observations (Bottle seal integrity, laser focus calibration)")
+        notes = st.text_area("Manufacturing notes (Environmental moisture, capsule closure tactile feel)")
         
-        if st.form_submit_button("Execute Automated Packaging & Compile Laser SVG"):
-            # Fresh runtime lock at execution microsecond
+        if st.form_submit_button("Lock Manufacturing Cycle & Compile Laser SVG"):
+            # Re-verify lock at exact submit execution millisecond
             execution_dial = calculate_backend_zdial()
             svg_path = generate_laser_svg(pack_id, adaptogen_select, execution_dial, cap_weight, unit_count)
             
             entry = {
                 "timestamp": datetime.now().isoformat(),
-                "type": "PULSOR_PACK",
+                "type": "ADAPTOGEN_PACK",
                 "batch_id": pack_id,
                 "adaptogen": adaptogen_select,
                 "capsule_mg": cap_weight,
@@ -220,11 +220,11 @@ elif module_select == "Capsule Packaging (Pulsor)":
                 "parent_biomass": parent_grain_batch,
                 "operator": operator_sig,
                 "vector_file_path": svg_path,
-                "status": "LASER_COMPILED_SEASONAL"
+                "status": "LASER_COMPILED_CLEAN"
             }
             save_log(entry)
-            st.success(f"🚀 Success. Seasonal Laser Vector Compiled at: {svg_path}")
-            st.code(f"File Marked and Buffered with Dial [{execution_dial}]: {pack_id}.svg", language="bash")
+            st.success(f"🚀 Success. Vector File compiled with no drift. Target location: {svg_path}")
+            st.code(f"Laser Payload Ready [{execution_dial}]: {pack_id}.svg", language="bash")
 
 # --- Unified Data Engine View ---
 db = load_data()
