@@ -15,7 +15,7 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-st.title("🛡️ Z-ARPA: Laboratory Minimalist Label Engine")
+st.title("🛡️ Z-ARPA: Laboratory Ledger & Solar Resonance Auditor")
 
 def load_data():
     path = 'data/zenergia_db.json'
@@ -54,24 +54,6 @@ def calculate_z_dial_v8():
         
     repetitions = math.floor((abs(180.0 - solar_angle) % 18) + 6)
     return f"{rondas}{factor_action}{repetitions}"
-
-def generate_minimalist_front_svg(batch_id, adaptogen_name, dial_string):
-    """Generates an absolute minimalist front label based on the user's sleek reference mockup"""
-    folder = "data/laser_output"
-    if not os.path.exists(folder): os.makedirs(folder)
-    filepath = f"{folder}/{batch_id}_FRONT_MINIMAL.svg"
-    
-    # Absolute Clean Canvas Layout: No borders, no lines, no technical footnote metrics.
-    svg_content = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 180" width="120mm" height="50mm">
-        <text x="30" y="45" font-family="'Courier New', monospace" font-size="14" fill="#ffffff" font-weight="bold" letter-spacing="3">{adaptogen_name.upper()}</text>
-        <text x="430" y="45" font-family="'Courier New', monospace" font-size="14" fill="#ffffff" font-weight="bold" letter-spacing="1" text-anchor="end">ZENERGY.WORLD</text>
-        
-        <text x="50%" y="115" font-family="'Courier New', monospace" font-size="52" fill="#ffffff" font-weight="bold" letter-spacing="16" text-anchor="middle">{dial_string.upper()}</text>
-    </svg>"""
-    
-    with open(filepath, "w", encoding="utf-8") as f:
-        f.write(svg_content)
-    return filepath
 
 # --- Navigation Architecture ---
 module_select = st.sidebar.radio("Select Active Module", [
@@ -159,28 +141,46 @@ elif module_select == "Media Formulation (Agar)":
             st.success(f"Logged Batch {media_id}")
 
 elif module_select == "Capsule Packaging (Pulsor)":
-    st.header("⚡ Adaptogen Packaging & Minimalist Label Generator")
+    st.header("⚡ Adaptogen Packaging Ledger")
     
     computed_solar_dial = calculate_z_dial_v8()
     st.metric(label="Calculated Solar Engine v8.0 Pulse", value=computed_solar_dial)
     
+    # Form initialization - Note that we manage layout with internal variables before the form locks
+    adaptogen_select = st.selectbox("Active Adaptogen Node", [
+        "Reishi", 
+        "Melena de Leon", 
+        "Cordyceps", 
+        "Cola de Pavo"
+    ])
+    
+    # Matrix Dictionary containing current available biomass stock codes per species
+    matrix_lotes = {
+        "Reishi": ["REI_GRAIN_B01", "REI_GRAIN_B02", "REI_AMERO_EXT04"],
+        "Melena de Leon": ["MDL_GRAIN_B01", "MDL_GRAIN_B02"],
+        "Cordyceps": ["COR_BIOMASS_C01", "COR_BIOMASS_C02"],
+        "Cola de Pavo": ["CDP_MATRIX_A01", "CDP_MATRIX_A02"]
+    }
+    
+    # Dynamic selection of options based on active key
+    lotes_disponibles = matrix_lotes.get(adaptogen_select, ["GENERIC_B_01"])
+
     with st.form("pulsor_entry"):
         col1, col2 = st.columns(2)
         with col1:
             pack_id = st.text_input("Package Batch ID", value=f"PULS_{datetime.now().strftime('%m%d_%H%M')}")
-            adaptogen_select = st.selectbox("Active Adaptogen Node", ["Reishi", "Melena de Leon", "Cordyceps", "Cola de Pavo"])
             cap_weight = st.number_input("Capsule Core Weight (mg)", value=500.0)
+            # The dropdown replaces the raw text field seamlessly
+            parent_grain_batch = st.selectbox("Source Matrix Batch ID (Lote)", options=lotes_disponibles)
         with col2:
-            final_dial = st.text_input("Active Z-Dial Code Validation", value=computed_solar_dial)
+            final_dial = st.text_input("Active Z-Dial Code Validation (For Illustrator sync)", value=computed_solar_dial)
             unit_count = st.number_input("Units per Container", value=45)
-            parent_grain_batch = st.text_input("Source Matrix Batch ID", value="REISHI_S_01")
+            operator_sig = st.text_input("Operator Signature", value="JALKO")
             
-        operator_sig = st.text_input("Operator Signature", value="JALKO")
-        notes = st.text_area("Manufacturing notes")
+        notes = st.text_area("Manufacturing notes (Traceability parameters)")
         
-        if st.form_submit_button("Lock Manufacturing Cycle & Export Minimal Front Label"):
+        if st.form_submit_button("Lock Manufacturing Cycle"):
             dial_target = final_dial if final_dial else computed_solar_dial
-            svg_path = generate_minimalist_front_svg(pack_id, adaptogen_select, dial_target)
             
             entry = {
                 "timestamp": datetime.now().isoformat(),
@@ -192,12 +192,10 @@ elif module_select == "Capsule Packaging (Pulsor)":
                 "resonance_dial": dial_target.upper(),
                 "parent_biomass": parent_grain_batch,
                 "operator": operator_sig,
-                "front_vector": svg_path,
-                "status": "MINIMAL_LABEL_COMPILED"
+                "status": "BATCH_LOCKED_AUDITED"
             }
             save_log(entry)
-            st.success("🚀 ¡Etiqueta Frontal Minimalista generada con éxito!")
-            st.code(f"CLEAN DESIGN -> {svg_path}", language="bash")
+            st.success(f"🚀 Lote {pack_id} guardado con trazabilidad amarrada a {parent_grain_batch}. Código Z-Dial para Illustrator: {dial_target.upper()}")
 
 # --- Unified Data Engine View ---
 db = load_data()
