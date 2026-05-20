@@ -80,17 +80,29 @@
 </head>
 <body class="antialiased selection:bg-blue-900">
 
-    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-white/5">
-        <div class="p-6 flex justify-between items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px]">
-            <div class="flex items-center gap-6">
-                <img src="img/logo.png" class="w-7 brightness-125" alt="Logo"> 
+<nav class="fixed top-0 w-full z-50 bg-black/5 backdrop-blur-md border-b border-white/10 select-none transition-all duration-500">
+        <div class="p-6 flex justify-between items-center max-w-7xl mx-auto uppercase tracking-[0.3em] text-[10px]">
+            
+            <div class="flex items-center gap-6 cursor-pointer group" onclick="scrollToSection('hero')">
+                <div class="relative flex items-center justify-center">
+                    <div class="absolute inset-0 bg-white/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <img src="img/logo.png" class="w-7 opacity-90 invert brightness-200 mix-blend-screen transition-transform duration-1000 group-hover:rotate-180 relative z-10" alt="Zenergia Core"> 
+                </div>
                 <div class="flex flex-col">
-                    <span class="logo-text text-xl text-white">ZENERGIA</span>
+                    <span class="logo-text text-xl text-white font-black tracking-[0.3em] transition-all duration-500 group-hover:text-zenergy-blue group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]">
+                        ZENERGIA
+                    </span>
                 </div>
             </div>
-            <div class="flex items-center gap-10">
-                <div id="z-dial" class="text-zenergy-blue font-bold cursor-pointer hover:text-white transition border border-zenergy-blue/30 px-4 py-1 rounded-sm" onclick="scrollToSection('dial-monitor')">...</div>
+            
+            <div class="flex items-center gap-10 font-bold">
+                <span onclick="scrollToSection('installation-node')" class="text-white/80 hover:text-white transition-colors cursor-pointer tracking-[0.2em]">PRISMA</span>
+                
+                <div id="z-dial" class="text-white font-black cursor-pointer bg-white/10 hover:bg-white/20 hover:scale-105 transition-all duration-300 border border-white/20 backdrop-blur-sm px-4 py-1 rounded-sm tracking-[0.2em]" onclick="scrollToSection('dial-monitor')">
+                    000000
+                </div>
             </div>
+
         </div>
     </nav>
 
