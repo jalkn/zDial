@@ -186,39 +186,41 @@
         </div>
     </section>
 
-<section id="dial-monitor" class="min-h-[65vh] md:min-h-[80vh] flex flex-col items-center justify-center relative bg-transparent overflow-hidden py-12">
+<section id="dial-monitor" class="min-h-[70vh] md:min-h-[85vh] flex flex-col items-center justify-center relative bg-transparent overflow-hidden py-16">
             
             <div class="relative z-10 flex flex-col items-center w-full px-4 text-center">
                 
-                <div class="relative bg-white/20 p-[1.5px] w-full max-w-[320px] sm:max-w-[420px] md:max-w-[480px] aspect-square group transition-all duration-500 hover:bg-white/40 drop-shadow-[0_20px_35px_rgba(0,0,0,0.85)] select-none cursor-crosshair"
-                     style="clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
+                <div class="relative w-full max-w-[310px] sm:max-w-[400px] md:max-w-[440px] aspect-square group transition-all duration-700 ease-out select-none cursor-crosshair transform hover:-translate-y-3 drop-shadow-[0_15px_15px_rgba(0,0,0,0.6)] hover:drop-shadow-[0_45px_35px_rgba(0,0,0,0.85)]">
                     
-                    <div class="w-full h-full flex flex-col items-center justify-center relative bg-cover bg-center transition-transform duration-700 group-hover:scale-[1.02]"
-                         style="background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('img/brick.jpg'); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
+                    <div class="w-full h-full bg-white/30 group-hover:bg-white/60 p-[1.5px] transition-all duration-500 relative"
+                         style="clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
                         
-                        <div class="absolute top-[25%] left-0 w-full h-[1px] bg-white/20 group-hover:bg-white/40 transition-colors duration-500"></div>
-                        <div class="absolute bottom-[25%] left-0 w-full h-[1px] bg-white/20 group-hover:bg-white/40 transition-colors duration-500"></div>
-                        
-                        <div id="big-dial" 
-                            class="w-full text-[1.4rem] sm:text-[2.2rem] md:text-[2.8rem] font-black text-white/50 group-hover:text-white group-hover:drop-shadow-[0_0_25px_rgba(255,255,255,1)] transition-all duration-500 tracking-[0.15em] leading-none uppercase pl-[0.15em] text-center drop-shadow-[0_4px_12px_rgba(0,0,0,1)] z-10">
-                            000000
+                        <div class="absolute inset-0 bg-cover bg-center opacity-45 brightness-100 group-hover:opacity-45 group-hover:brightness-60 transition-all duration-700 ease-out dynamic-texture"
+                             style="background-image: url('img/miscelio.png'); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
+                        </div>
+
+                        <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
+                            
+                            <div class="absolute top-[25%] left-0 w-full h-[1px] bg-white/10 group-hover:bg-white/30 transition-colors duration-500"></div>
+                            <div class="absolute bottom-[25%] left-0 w-full h-[1px] bg-white/10 group-hover:bg-white/30 transition-colors duration-500"></div>
+                            
+                            <div id="big-dial" 
+                                class="w-full text-[1.4rem] sm:text-[2.2rem] md:text-[2.8rem] font-black text-white/60 group-hover:text-white transition-all duration-500 tracking-[0.15em] leading-none uppercase pl-[0.15em] text-center drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_0_35px_rgba(255,255,255,1)]">
+                                000000
+                            </div>
+
                         </div>
 
                     </div>
                 </div>
 
-                <div class="mt-10 w-full max-w-[280px] sm:max-w-xs md:max-w-sm flex flex-col items-center gap-3 relative z-20 animate-fade-in">
-                    
-                    <div class="bg-black/75 border border-white/10 px-4 py-2 rounded-sm backdrop-blur-md w-full shadow-[0_4px_15px_rgba(0,0,0,0.6)]">
-                        <p id="protocol-desc" class="text-[9px] sm:text-[10px] md:text-[11px] text-white tracking-[0.15em] font-bold text-center normal-case leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,1)]">
-                            sincronizando_frecuencias...
-                        </p>
-                    </div>
-                    
-                    <div class="w-20 h-[1px] bg-white/10 overflow-hidden relative">
+                <div class="mt-14 w-full max-w-xl flex flex-col items-center gap-4 relative z-20 select-none">
+                    <p id="protocol-desc" class="text-[10px] sm:text-[11px] md:text-[12px] text-white/80 tracking-[0.25em] font-light text-center uppercase leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] underline decoration-white/10 underline-offset-8">
+                        sincronizando_frecuencias...
+                    </p>
+                    <div class="w-16 h-[1px] bg-white/10 overflow-hidden relative mt-2">
                         <div class="h-full bg-white/60 w-1/2 animate-[scan_2s_linear_infinite]"></div>
                     </div>
-                    
                 </div>
 
             </div>
@@ -258,7 +260,7 @@
                         alt="Z-Brick Mycelium"
                         class="w-full h-auto grayscale opacity-50 md:opacity-40 scale-95 md:scale-85 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)]
                                 transition-all duration-[1000ms] ease-out
-                                group-hover/hero:grayscale-0 group-hover/hero:opacity-100 group-hover/hero:scale-100 group-hover/hero:drop-shadow-[0_15px_30px_rgba(255,255,255,0.15)]">
+                                group-hover/hero:grayscale-0 group-hover/hero:opacity-70 group-hover/hero:scale-100 group-hover/hero:drop-shadow-[0_15px_30px_rgba(255,255,255,0.15)]">
                 </div>
             </div>
             
