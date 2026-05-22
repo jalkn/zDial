@@ -190,45 +190,74 @@
         </div>
     </section>
 
+<!-- SECCIÓN: DIAL-MONITOR (GEOMETRÍA Y PROPORCIONES UNIFICADAS CON EL LOGOTIPO DE LA MARCA) -->
 <section id="dial-monitor" class="min-h-[70vh] md:min-h-[85vh] flex flex-col items-center justify-center relative bg-transparent overflow-hidden py-16">
             
-            <div class="relative z-10 flex flex-col items-center w-full px-4 text-center">
+    <div class="relative z-10 flex flex-col items-center w-full px-4 text-center group">
+        
+        <!-- Contenedor del Dial Interactivo Calibrado -->
+        <div class="relative w-full max-w-[320px] sm:max-w-[380px] md:max-w-[420px] aspect-square transition-all duration-700 ease-out select-none cursor-pointer hover:-translate-y-2 hover:scale-[1.01] drop-shadow-[0_25px_35px_rgba(0,0,0,0.6)]">
+            
+            <!-- Estructura de la Tapa Anodizada -->
+            <div class="w-full h-full rounded-full bg-[#141414] border border-white/20 p-1 relative overflow-hidden shadow-[inset_0_4px_12px_rgba(255,255,255,0.05),_inset_0_-8px_25px_rgba(0,0,0,0.95)] transition-shadow duration-500 group-hover:shadow-[inset_0_4px_20px_rgba(255,255,255,0.15),_0_0_30px_rgba(255,255,255,0.05)]">
                 
-                <div class="relative w-full max-w-[310px] sm:max-w-[400px] md:max-w-[440px] aspect-square group transition-all duration-700 ease-out select-none cursor-crosshair transform hover:-translate-y-3 drop-shadow-[0_15px_15px_rgba(0,0,0,0.6)] hover:drop-shadow-[0_45px_35px_rgba(0,0,0,0.85)]">
-                    
-                    <div class="w-full h-full bg-white/30 group-hover:bg-white/60 p-[1.5px] transition-all duration-500 relative"
-                         style="clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
-                        
-                        <div class="absolute inset-0 bg-cover bg-center opacity-45 brightness-100 group-hover:opacity-45 group-hover:brightness-60 transition-all duration-700 ease-out dynamic-texture"
-                             style="background-image: url('img/miscelio.png'); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);">
-                        </div>
-
-                        <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
-                            
-                            <div class="absolute top-[25%] left-0 w-full h-[1px] bg-white/10 group-hover:bg-white/30 transition-colors duration-500"></div>
-                            <div class="absolute bottom-[25%] left-0 w-full h-[1px] bg-white/10 group-hover:bg-white/30 transition-colors duration-500"></div>
-                            
-                            <div id="big-dial" 
-                                class="w-full text-[1.4rem] sm:text-[2.2rem] md:text-[2.8rem] font-black text-white/60 group-hover:text-white transition-all duration-500 tracking-[0.15em] leading-none uppercase pl-[0.15em] text-center drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)] group-hover:drop-shadow-[0_0_35px_rgba(255,255,255,1)]">
-                                000000
-                            </div>
-
-                        </div>
-
-                    </div>
+                <!-- Textura de micelio de fondo -->
+                <div class="absolute inset-0 bg-cover bg-center opacity-15 brightness-150 dynamic-texture rounded-full"
+                     style="background-image: url('img/miscelio.png');">
                 </div>
 
-                <div class="mt-14 w-full max-w-xl flex flex-col items-center gap-4 relative z-20 select-none">
-                    <p id="protocol-desc" class="text-[10px] sm:text-[11px] md:text-[12px] text-white/80 tracking-[0.25em] font-light text-center uppercase leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] underline decoration-white/10 underline-offset-8">
-                        sincronizando_frecuencias...
-                    </p>
-                    <div class="w-16 h-[1px] bg-white/10 overflow-hidden relative mt-2">
-                        <div class="h-full bg-white/60 w-1/2 animate-[scan_2s_linear_infinite]"></div>
-                    </div>
+                <!-- CANVAS VECTORIAL DE GRABADO (Sticker 4cms optimizado para visualización móvil) -->
+                <div class="absolute inset-0 flex items-center justify-center p-[4%] z-10">
+                    <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/60 stroke-[1.5]">
+                        
+                        <!-- 1. TEXTO CURVO SUPERIOR -->
+                        <path id="textPath-top" d="M 25,200 A 175,175 0 0,1 375,200" class="hidden" />
+                        <text class="fill-white font-black text-[18px] tracking-[0.42em] uppercase">
+                            <textPath href="#textPath-top" startOffset="50%" text-anchor="middle">
+                                PULSOR FOCUS
+                            </textPath>
+                        </text>
+
+                        <!-- 2. GEOMETRÍA SAGRADA RE-PROPORCIONADA (Estilizada y fiel a favicon.png) -->
+                        <!-- Reducimos el ancho horizontal del vector estrechando los márgenes a X:110 y X:290 -->
+                        <g class="opacity-55 stroke-[1.3]">
+                            <!-- Líneas de Fuerza Cruzadas del Reloj de Arena -->
+                            <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" />
+                            <!-- Arcos de Resonancia Magnética Acoplados -->
+                            <path d="M 110,120 Q 200,150 290,120" />
+                            <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
+                        </g>
+
+                        <!-- 3. CÓDIGO CRIPTOGRÁFICO DINÁMICO (Centrado perfecto) -->
+                        <text id="big-dial" x="200" y="216" font-family="'Orbitron', sans-serif" font-weight="900" text-anchor="middle" class="fill-white font-black text-[54px] tracking-[0.03em] transition-all duration-500 drop-shadow-[0_0_12px_rgba(255,255,255,0.35)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.7)]">
+                            ------
+                        </text>
+
+                        <!-- 4. TEXTO CURVO INFERIOR -->
+                        <path id="textPath-bottom" d="M 25,200 A 175,175 0 0,0 375,200" class="hidden" />
+                        <text class="fill-white/90 font-black text-[18px] tracking-[0.38em] uppercase">
+                            <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">
+                                ZENERGIA.WORLD &bull; 3025333130
+                            </textPath>
+                        </text>
+                    </svg>
                 </div>
 
             </div>
-    </section>
+        </div>
+
+        <!-- Consola de Estado / Label de Texto del pasto -->
+        <div class="mt-14 w-full max-w-3xl flex flex-col items-center gap-4 relative z-20 select-none">
+            <p id="protocol-desc" class="text-[12px] sm:text-[14px] md:text-[15px] text-gray-900 tracking-[0.28em] font-extrabold text-center uppercase leading-relaxed drop-shadow-[0_1.5px_2px_rgba(255,255,255,0.7)]">
+                sincronizando_frecuencias...
+            </p>
+            <div class="w-24 h-[1.5px] bg-gray-900/10 overflow-hidden relative mt-1">
+                <div class="h-full bg-gray-900/60 w-1/2 animate-[scan_2.5s_linear_infinite]"></div>
+            </div>
+        </div>
+
+    </div>
+</section>
 
 <section id="z-brick" class="group/hero grid md:grid-cols-2 gap-12 md:gap-16 items-center min-h-[70vh] md:min-h-[80vh] py-16 md:py-24 px-4 md:px-0 bg-transparent">
             
@@ -395,80 +424,88 @@
 </body>
 </html>
 
-    <script>
-        /**
-        * Z-Dial Resonance Engine v8.0 - Solar Drift Matrix
-        * Purified Time Realignment & Biokinetic Partiture Map
-        */
-        const $ = (id) => document.getElementById(id);
-        const PHI = 1.618033;
+<script>
+    /**
+    * Z-Dial Resonance Engine v8.5 - Solar Drift Matrix & UX Production Sync
+    * Purified Time Realignment & Biokinetic Partiture Map
+    */
+    const $ = (id) => document.getElementById(id);
+    const PHI = 1.618033;
 
-        const updateZ = () => {
-            const now = new Date();
-            
-            // 1. Deriva Solar Absoluta (Ángulo de rotación de la Tierra en 24h: 0° a 359.9°)
-            const deg = (now.getHours() * 15) + (now.getMinutes() * 0.25);
-            
-            // 2. Mapeo de Transiciones Kinéticas por Cuadrante de Luz Solar
-            let f, g, translation;
-            
-            if (deg >= 0 && deg < 180) { 
-                // MADRUGADA / MAÑANA: Activación y avance corporal
-                f = 'PL'; 
-                g = 'tetra';
-                translation = 'caminar // levantar';
-            } else if (deg >= 180 && deg < 270) { 
-                // TARDE: Cenit, máxima carga biocinética y potencia vertical
-                f = 'ULS'; 
-                g = 'dodec';
-                translation = 'caer // levantarse // saltar';
-            } else { 
-                // NOCHE: Repliegue, gravedad y absorción hacia la tierra
-                f = 'UP'; 
-                g = 'icos';
-                translation = 'caer // caminar';
-            }
-
-            // 3. Parámetros Biokinéticos Puros (Saliendo del Tiempo Horizontal)
-            const s = Math.floor(((now.getMinutes() + 1) * PHI) % (f.length > 2 ? 6 : 9)) || 2;
-            let reps = Math.floor((Math.abs(180 - deg) % 18) + 6); 
-
-            // 4. Compilación del Sello Alfanumérico Industrial (UPPERCASE)
-            const res = `${s}${f}${reps}`;
-            
-            if ($('big-dial')) $('big-dial').innerText = res;
-            if ($('z-dial')) $('z-dial').innerText = res;
-            if ($('hologram-dial')) $('hologram-dial').innerText = res;
-            
-            // 5. Inyección del Data Dump en Minúsculas Fluidas (Bitácora Humana Simplificada)
-            if ($('protocol-desc')) {
-                $('protocol-desc').innerText = `${s} rondas de ${reps} pulsores biocinéticos [ ${translation} ]`;
-            }
-        };
-
-        updateZ();
-        setInterval(updateZ, 60000);
-
-        function playBeat(url) {
-            const audio = new Audio(url);
-            audio.play().catch(() => {
-                console.warn("z-sync: interacción de usuario requerida para activar pulso.");
-            });
-            if ("vibrate" in navigator) navigator.vibrate(50);
+    const updateZ = () => {
+        const now = new Date();
+        
+        // 1. Deriva Solar Absoluta (Ángulo de rotación de la Tierra en 24h: 0° a 359.9°)
+        const deg = (now.getHours() * 15) + (now.getMinutes() * 0.25);
+        
+        // 2. Mapeo de Transiciones Kinéticas por Cuadrante de Luz Solar
+        let f, translation;
+        
+        if (deg >= 0 && deg < 180) { 
+            // MADRUGADA / MAÑANA: Activación y avance corporal
+            f = 'PL'; 
+            translation = 'caminar // levantar';
+        } else if (deg >= 180 && deg < 270) { 
+            // TARDE: Cenit, máxima carga biocinética y potencia vertical
+            f = 'ULS'; 
+            translation = 'caer // levantarse // saltar';
+        } else { 
+            // NOCHE: Repliegue, gravedad y absorción hacia la tierra
+            f = 'UP'; 
+            translation = 'caer // caminar';
         }
 
-        function scrollToSection(sectionId) {
-            const target = $(sectionId);
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-                if(sectionId === 'dial-monitor') {
-                    $('big-dial').classList.add('animate-pulse');
-                    setTimeout(() => $('big-dial').classList.remove('animate-pulse'), 2000);
-                }
-            } else {
-                console.warn(`z-router: el nodo objetivo [${sectionId}] no se encuentra en el dom.`);
-            }
+        // 3. Parámetros Biokinéticos Puros (Saliendo del Tiempo Horizontal mediante PHI)
+        const s = Math.floor(((now.getMinutes() + 1) * PHI) % (f.length > 2 ? 6 : 9)) || 2;
+        let reps = Math.floor((Math.abs(180 - deg) % 18) + 6); 
+
+        // 4. Compilación del Sello Alfanumérico Industrial (UPPERCASE)
+        const res = `${s}${f}${reps}`;
+        
+        // 5. ENRUTAMIENTO SEGURO DE INYECCIÓN (Evita colapso del árbol SVG)
+        // El nodo de texto dentro del SVG exige .textContent para su correcto renderizado dinámico
+        if ($('big-dial')) $('big-dial').textContent = res;
+        
+        // Los contenedores estándar del flujo HTML procesan apropiadamente el .innerText tradicional
+        if ($('z-dial')) $('z-dial').innerText = res;
+        if ($('hologram-dial')) $('hologram-dial').innerText = res;
+        
+        // 6. Inyección del Data Dump en Minúsculas Fluidas (Consola de Estado)
+        if ($('protocol-desc')) {
+            $('protocol-desc').innerText = `${s} rondas de ${reps} pulsores biocinéticos [ ${translation} ]`;
         }
-    </script>
+    };
+
+    // Inicialización inmediata y bucle de refresco cada 60 segundos
+    updateZ();
+    setInterval(updateZ, 60000);
+
+    /**
+    * Haptic Sound Trigger para Interacciones Orgánicas de la Marca
+    */
+    function playBeat(url) {
+        const audio = new Audio(url);
+        audio.play().catch(() => {
+            console.warn("z-sync: interacción de usuario requerida para activar pulso de audio.");
+        });
+        if ("vibrate" in navigator) navigator.vibrate(50);
+    }
+
+    /**
+    * Smooth Scroll Router con Feedback Animado en el Dial Central
+    */
+    function scrollToSection(sectionId) {
+        const target = $(sectionId);
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+            if(sectionId === 'dial-monitor') {
+                $('big-dial').classList.add('animate-pulse');
+                setTimeout(() => $('big-dial').classList.remove('animate-pulse'), 2000);
+            }
+        } else {
+            console.warn(`z-router: el nodo objetivo [${sectionId}] no se encuentra en el DOM.`);
+        }
+    }
+</script>
 </body>
 </html>
