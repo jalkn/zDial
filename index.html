@@ -457,7 +457,7 @@
 
 <script>
     /**
-    * Z-Dial Resonance Engine v8.8 - Solar Drift Matrix & WAVE Protocol Sync
+    * Z-Dial Resonance Engine v8.8 - Solar Drift Matrix & PULS Protocol Sync
     */
     const $ = (id) => document.getElementById(id);
     const PHI = 1.618033;
@@ -471,18 +471,18 @@
         // 1. Deriva Solar Absoluta (Ángulo de rotación de la Tierra en 24h: 0° a 359.9°)
         const deg = (now.getHours() * 15) + (now.getMinutes() * 0.25);
         
-        // 2. Mapeo de Transiciones Kinéticas por Cuadrante (WAVE Protocol)
+        // 2. Mapeo de Transiciones Kinéticas por Cuadrante (PULS Protocol)
         let f, translation;
         
         if (deg >= 0 && deg < 180) { 
             f = 'PL'; 
-            translation = 'caminar // verticalidad';
+            translation = 'pace // lift';
         } else if (deg >= 180 && deg < 270) { 
             f = 'ULS'; 
-            translation = 'verticalidad // explotar // expandir';
+            translation = 'under // lift // surge';
         } else { 
             f = 'UP'; 
-            translation = 'absorber // enraizar';
+            translation = 'under // pace';
         }
 
         // 3. Parámetros Biokinéticos Puros mediante PHI
