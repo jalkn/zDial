@@ -117,104 +117,90 @@
 
     <main class="max-w-7xl mx-auto px-8 pt-40">
 
-<section id="installation-node" class="pt-4 pb-16 bg-transparent overflow-hidden">
-        <div class="flex flex-col items-center px-4">
+<!-- ==========================================
+     SECCIÓN 1: INSTALLATION-NODE (CARTOGRAFÍA)
+     ========================================== -->
+<section id="installation-node" class="pt-4 pb-24 md:pb-32 bg-transparent overflow-hidden">
+    <div class="flex flex-col items-center px-4">
+        
+        <div class="relative w-full max-w-[320px] md:max-w-[400px] aspect-[2/3] group select-none">
             
-            <div class="relative w-full max-w-[320px] md:max-w-[400px] aspect-[2/3] group select-none">
+            <div class="absolute inset-0 pointer-events-none z-0">
+                <svg viewBox="0 0 100 150" class="w-full h-full stroke-white/20 fill-none stroke-[0.3]" style="filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7));">
+                    <path d="M 10 36 L 90 36 L 10 114 L 90 114 Z" class="stroke-white/40 transition-all duration-[4s] group-hover:stroke-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.9)]" />
+                    <path d="M10 36 Q50 65 90 36" class="stroke-white/30 group-hover:stroke-white/70 group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.8)] transition-all duration-[3s]" />
+                    <path d="M10 114 Q50 85 90 114" class="stroke-white/40 group-hover:stroke-white/80 group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.8)]" stroke-dasharray="1 1" />
+                    <line x1="50" y1="140" x2="50" y2="10" class="stroke-white/30 group-hover:stroke-white transition-all duration-[2.5s] group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.8)]" stroke-dasharray="2 2" />
+                    
+                    <circle cx="50" cy="75" r="12" class="stroke-white/20 animate-ping" style="animation-duration: 3s;" />
+                    <circle cx="50" cy="75" r="25" class="stroke-white/10 animate-ping" style="animation-duration: 6s;" />
+                    <circle cx="50" cy="75" r="2.5" class="fill-white shadow-lg animate-pulse" /> 
+                    
+                    <circle cx="10" cy="36" r="1.5" class="fill-white/50 group-hover:fill-white transition-colors duration-1000" /> 
+                    <circle cx="90" cy="36" r="1.5" class="fill-white/50 group-hover:fill-white transition-colors duration-1000" /> 
+                    <circle cx="10" cy="114" r="1.5" class="fill-white/50 group-hover:fill-white transition-colors duration-1000" />
+                    <circle cx="90" cy="114" r="1.5" class="fill-white/50 group-hover:fill-white transition-colors duration-1000" />
+                    
+                    <circle cx="50" cy="15" r="2" class="fill-white/40 group-hover:fill-white transition-colors" />
+                    <circle cx="50" cy="135" r="2" class="fill-white/40 group-hover:fill-white transition-colors" /> 
+                </svg>
+            </div>
+            
+            <div class="absolute inset-0 z-10">
                 
-                <div class="absolute inset-0 pointer-events-none z-0">
-                    <svg viewBox="0 0 100 150" class="w-full h-full stroke-white/20 fill-none stroke-[0.3]" style="filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7));">
-                        <path d="M 10 36 L 90 36 L 10 114 L 90 114 Z" class="stroke-white/40 transition-all duration-[4s] group-hover:stroke-white group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.9)]" />
-                        <path d="M10 36 Q50 65 90 36" class="stroke-white/30 group-hover:stroke-white/70 group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.8)] transition-all duration-[3s]" />
-                        <path d="M10 114 Q50 85 90 114" class="stroke-white/40 group-hover:stroke-white/80 group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.8)]" stroke-dasharray="1 1" />
-                        <line x1="50" y1="140" x2="50" y2="10" class="stroke-white/30 group-hover:stroke-white transition-all duration-[2.5s] group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.8)]" stroke-dasharray="2 2" />
-                        
-                        <circle cx="50" cy="75" r="12" class="stroke-white/20 animate-ping" style="animation-duration: 3s;" />
-                        <circle cx="50" cy="75" r="25" class="stroke-white/10 animate-ping" style="animation-duration: 6s;" />
-                        <circle cx="50" cy="75" r="2.5" class="fill-white shadow-lg animate-pulse" /> 
-                        
-                        <circle cx="10" cy="36" r="1.5" class="fill-white/50 group-hover:fill-white transition-colors duration-1000" /> 
-                        <circle cx="90" cy="36" r="1.5" class="fill-white/50 group-hover:fill-white transition-colors duration-1000" /> 
-                        <circle cx="10" cy="114" r="1.5" class="fill-white/50 group-hover:fill-white transition-colors duration-1000" />
-                        <circle cx="90" cy="114" r="1.5" class="fill-white/50 group-hover:fill-white transition-colors duration-1000" />
-                        
-                        <circle cx="50" cy="15" r="2" class="fill-white/40 group-hover:fill-white transition-colors" />
-                        <circle cx="50" cy="135" r="2" class="fill-white/40 group-hover:fill-white transition-colors" /> 
-                    </svg>
+                <div class="absolute top-[4%] left-1/2 -translate-x-1/2 flex flex-col items-center w-full cursor-pointer group/brick" onclick="scrollToSection('z-brick')">
+                    <span class="text-[10px] md:text-[11px] text-white/70 tracking-[0.6em] font-black uppercase bg-black/30 px-3 py-0.5 rounded-sm backdrop-blur-sm drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover/brick:text-white group-hover/brick:drop-shadow-[0_0_10px_rgba(255,255,255,0.9)] transition-all duration-300">
+                        Z_BRICK
+                    </span>
+                    <div class="w-1.5 h-1.5 bg-white rounded-full animate-pulse shadow-[0_0_8px_#fff] mt-1"></div>
                 </div>
                 
-                <div class="absolute inset-0 z-10">
-                    
-                    <div class="absolute top-[4%] left-1/2 -translate-x-1/2 flex flex-col items-center w-full cursor-pointer group/brick" onclick="scrollToSection('z-brick')">
-                        <span class="text-[10px] md:text-[11px] text-white/70 tracking-[0.6em] font-black uppercase bg-black/30 px-3 py-0.5 rounded-sm backdrop-blur-sm drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover/brick:text-white group-hover/brick:drop-shadow-[0_0_10px_rgba(255,255,255,0.9)] transition-all duration-300">
-                            Z_BRICK
-                        </span>
-                        <div class="w-1.5 h-1.5 bg-white rounded-full animate-pulse shadow-[0_0_8px_#fff] mt-1"></div>
-                    </div>
-                    
-                    <div class="absolute top-[24%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full pointer-events-none">
-                        <span class="text-[9px] md:text-[10px] text-white/60 tracking-[0.5em] font-black uppercase bg-black/40 border border-white/5 px-2.5 py-0.5 rounded-sm backdrop-blur-sm">
-                            SYNERGY
-                        </span>
-                    </div>
+                <div class="absolute top-[24%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full pointer-events-none">
+                    <span class="text-[9px] md:text-[10px] text-white/60 tracking-[0.5em] font-black uppercase bg-black/40 border border-white/5 px-2.5 py-0.5 rounded-sm backdrop-blur-sm">
+                        SYNERGY
+                    </span>
+                </div>
 
+                <div class="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full cursor-pointer group/core" onclick="scrollToSection('protocol')">
+                    <span class="text-[10px] md:text-[11px] text-white/70 tracking-[0.6em] font-black uppercase bg-black/30 px-3 py-0.5 rounded-sm backdrop-blur-sm drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover/core:text-white group-hover/core:drop-shadow-[0_0_10px_rgba(255,255,255,0.9)] transition-all duration-300">
+                        PULSOR
+                    </span>
+                    <span id="hologram-dial" class="text-white text-base md:text-lg tracking-[0.4em] font-black mt-2 drop-shadow-[0_2px_8px_rgba(0,0,0,1)] transition-all duration-300 group-hover/core:drop-shadow-[0_0_15px_rgba(255,255,255,1)]">
+                        000000
+                    </span>
+                </div>
 
-                    <div class="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center w-full cursor-pointer group/core" onclick="scrollToSection('protocol')">
-                        <span class="text-[10px] md:text-[11px] text-white/70 tracking-[0.6em] font-black uppercase bg-black/30 px-3 py-0.5 rounded-sm backdrop-blur-sm drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover/core:text-white group-hover/core:drop-shadow-[0_0_10px_rgba(255,255,255,0.9)] transition-all duration-300">
-                            PULSOR
-                        </span>
-                        <span id="hologram-dial" class="text-white text-base md:text-lg tracking-[0.4em] font-black mt-2 drop-shadow-[0_2px_8px_rgba(0,0,0,1)] transition-all duration-300 group-hover/core:drop-shadow-[0_0_15px_rgba(255,255,255,1)]">
-                            000000
-                        </span>
-                    </div>
+                <div class="absolute bottom-[24%] left-[12%] -translate-x-1/2 translate-y-1/2 flex flex-col items-center pointer-events-none">
+                    <span class="text-[9px] md:text-[10px] text-white/60 tracking-[0.3em] font-black uppercase bg-black/40 border border-white/5 px-2 py-0.5 rounded-sm backdrop-blur-sm">
+                        BODY
+                    </span>
+                </div>
+                <div class="absolute bottom-[24%] right-[12%] translate-x-1/2 translate-y-1/2 flex flex-col items-center pointer-events-none">
+                    <span class="text-[9px] md:text-[10px] text-white/60 tracking-[0.3em] font-black uppercase bg-black/40 border border-white/5 px-2 py-0.5 rounded-sm backdrop-blur-sm">
+                        PLANET
+                    </span>
+                </div>
 
-                    <div class="absolute bottom-[24%] left-[12%] -translate-x-1/2 translate-y-1/2 flex flex-col items-center pointer-events-none">
-                        <span class="text-[9px] md:text-[10px] text-white/60 tracking-[0.3em] font-black uppercase bg-black/40 border border-white/5 px-2 py-0.5 rounded-sm backdrop-blur-sm">
-                            BODY
-                        </span>
-                    </div>
-                    <div class="absolute bottom-[24%] right-[12%] translate-x-1/2 translate-y-1/2 flex flex-col items-center pointer-events-none">
-                        <span class="text-[9px] md:text-[10px] text-white/60 tracking-[0.3em] font-black uppercase bg-black/40 border border-white/5 px-2 py-0.5 rounded-sm backdrop-blur-sm">
-                            PLANET
-                        </span>
-                    </div>
-
-                    <div class="absolute bottom-[2%] left-1/2 -translate-x-1/2 flex flex-col items-center w-full cursor-pointer group/base" onclick="scrollToSection('dial-monitor')">
-                        <div class="w-1.5 h-1.5 bg-white rounded-full animate-pulse shadow-[0_0_8px_#fff] mb-1"></div>
-                        <span class="text-[10px] md:text-[11px] text-white/70 tracking-[0.6em] font-black uppercase bg-black/30 px-3 py-0.5 rounded-sm backdrop-blur-sm drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover/base:text-white group-hover/base:drop-shadow-[0_0_10px_rgba(255,255,255,0.9)] transition-all duration-300">
-                            RESONANCE
-                        </span>
-                    </div>
+                <div class="absolute bottom-[2%] left-1/2 -translate-x-1/2 flex flex-col items-center w-full cursor-pointer group/base" onclick="scrollToSection('dial-monitor')">
+                    <div class="w-1.5 h-1.5 bg-white rounded-full animate-pulse shadow-[0_0_8px_#fff] mb-1"></div>
+                    <span class="text-[10px] md:text-[11px] text-white/70 tracking-[0.6em] font-black uppercase bg-black/30 px-3 py-0.5 rounded-sm backdrop-blur-sm drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover/base:text-white group-hover/base:drop-shadow-[0_0_10px_rgba(255,255,255,0.9)] transition-all duration-300">
+                        RESONANCE
+                    </span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-<!-- SECCIÓN: DIAL-MONITOR (ARQUETIPOS EVOLUCIONADOS + ESCALA RESTAURADA) -->
-<section id="dial-monitor" class="min-h-[75vh] md:min-h-[85vh] flex flex-col items-center justify-center relative bg-transparent overflow-hidden py-12">
+<!-- ==========================================
+     SECCIÓN 2: DIAL-MONITOR (ARQUETIPOS BAJADOS)
+     ========================================== -->
+<section id="dial-monitor" class="pt-24 md:pt-32 pb-16 min-h-[75vh] md:min-h-[85vh] flex flex-col items-center justify-center relative bg-transparent overflow-hidden">
             
     <div class="relative z-10 flex flex-col items-center w-full px-4 text-center group">
         
-        <!-- SELECTOR DE ARQUETIPOS (Estilo Unificado Lab-Box) -->
-        <div class="mb-12 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-[11px] tracking-[0.25em] font-black select-none z-30 px-4">
-            
-            <span id="opt-focus" onclick="seleccionarVariante('FOCUS')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/60 backdrop-blur-md rounded-md text-white border border-white/60 shadow-[0_0_15px_rgba(255,255,255,0.15)]">
-                FOCUS
-            </span>
-            
-            <span id="opt-zen" onclick="seleccionarVariante('ZEN')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-md text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80 shadow-[0_0_10px_rgba(255,255,255,0.02)]">
-                ZEN
-            </span>
-            
-            <span id="opt-stamina" onclick="seleccionarVariante('STAMINA')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-md text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80 shadow-[0_0_10px_rgba(255,255,255,0.02)]">
-                STAMINA
-            </span>
-            
-            <span id="opt-core" onclick="seleccionarVariante('CORE')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-md text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80 shadow-[0_0_10px_rgba(255,255,255,0.02)]">
-                CORE
-            </span>
-            
-        </div>
+        <!-- [ZONA 1: CARTOGRAFÍA SUPERIOR LIMPIA] -->
+        <!-- Espacio purificado mediante paddings de sección para alinearse con la captura original -->
 
         <!-- Contenedor del Dial (Escala masiva original recuperada) -->
         <div class="relative w-full max-w-[320px] sm:max-w-[380px] md:max-w-[420px] aspect-square transition-all duration-700 ease-out select-none cursor-pointer hover:-translate-y-1 hover:scale-[1.01] drop-shadow-[0_25px_35px_rgba(0,0,0,0.6)]">
@@ -227,36 +213,35 @@
                      style="background-image: url('img/miscelio.png');">
                 </div>
 
-                <!-- CANVAS VECTORIAL RE-PROPORCIONADO (Alineación con el render original) -->
+                <!-- CANVAS VECTORIAL RE-PROPORCIONADO -->
                 <div class="absolute inset-0 flex items-center justify-center p-[4%] z-10">
                     <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/50 stroke-[1.5] transition-all duration-500 group-hover:stroke-white/70">
                         
                         <defs>
-                            <!-- Ajuste de radio a 165 para empujar el texto al borde exacto de la tapa -->
                             <path id="textPath-top" d="M 35,200 A 165,165 0 0,1 365,200" />
                             <path id="textPath-bottom" d="M 35,200 A 165,165 0 0,0 365,200" />
                         </defs>
 
-                        <!-- 1. TEXTO CURVO SUPERIOR (Tamaño 18px y tracking expandido recuperados) -->
+                        <!-- 1. TEXTO CURVO SUPERIOR -->
                         <text class="fill-white font-black text-[18px] tracking-[0.42em] uppercase transition-all duration-500">
                             <textPath id="laser-variant-title" href="#textPath-top" startOffset="50%" text-anchor="middle">
                                 PULSOR FOCUS
                             </textPath>
                         </text>
 
-                        <!-- 2. GEOMETRÍA SAGRADA (Escala original) -->
+                        <!-- 2. GEOMETRÍA SAGRADA -->
                         <g class="opacity-40 stroke-[1.3]">
                             <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" />
                             <path d="M 110,120 Q 200,150 290,120" />
                             <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
                         </g>
 
-                        <!-- 3. CÓDIGO CRIPTOGRÁFICO DINÁMICO (Masivo a 54px como en Screenshot 2026-05-22 at 7.39.29 PM.jpg) -->
+                        <!-- 3. CÓDIGO CRIPTOGRÁFICO DINÁMICO -->
                         <text id="big-dial" x="200" y="216" font-family="'Orbitron', sans-serif" font-weight="900" text-anchor="middle" class="fill-white font-black text-[54px] tracking-[0.03em] transition-all duration-500 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] group-hover:drop-shadow-[0_0_22px_rgba(255,255,255,0.75)]">
                             ------
                         </text>
 
-                        <!-- 4. TEXTO CURVO INFERIOR (Corregido y con escala de impacto restaurada) -->
+                        <!-- 4. TEXTO CURVO INFERIOR -->
                         <text class="fill-white/70 font-black text-[14px] tracking-[0.38em] uppercase transition-all duration-500 group-hover:fill-white">
                             <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">
                                 ZENERGIA.WORLD &bull; 3025333130
@@ -268,8 +253,16 @@
             </div>
         </div>
 
-        <!-- Consola de Estado / Contraste optimizado para intemperie -->
-        <div class="mt-12 w-full max-w-2xl flex flex-col items-center gap-3 relative z-20 select-none px-4">
+        <!-- SELECTOR DE ARQUETIPOS (Estilo Unificado Lab-Box - Debajo del Dial) -->
+        <div class="mt-10 mb-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-[11px] tracking-[0.25em] font-black select-none z-30 px-4">
+            <span id="opt-focus" onclick="seleccionarVariante('FOCUS')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/60 backdrop-blur-md rounded-md text-white border border-white/60 shadow-[0_0_15px_rgba(255,255,255,0.15)]">FOCUS</span>
+            <span id="opt-zen" onclick="seleccionarVariante('ZEN')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-md text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80 shadow-[0_0_10px_rgba(255,255,255,0.02)]">ZEN</span>
+            <span id="opt-stamina" onclick="seleccionarVariante('STAMINA')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-md text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80 shadow-[0_0_10px_rgba(255,255,255,0.02)]">STAMINA</span>
+            <span id="opt-core" onclick="seleccionarVariante('CORE')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-md text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80 shadow-[0_0_10px_rgba(255,255,255,0.02)]">CORE</span>
+        </div>
+
+        <!-- Consola de Estado -->
+        <div class="mt-4 w-full max-w-2xl flex flex-col items-center gap-3 relative z-20 select-none px-4">
             <p id="protocol-desc" class="text-[11px] sm:text-[12px] text-white tracking-[0.25em] font-medium text-center uppercase leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
                 sincronizando_matriz_solar...
             </p>
@@ -278,19 +271,11 @@
             </div>
         </div>
 
-        <!-- CONTENEDOR DE ACCIONES CON EL ESTILO DEL MENÚ SUPERIOR -->
+        <!-- CONTENEDOR DE ACCIONES: BIOMASA EXCLUSIVO -->
         <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md relative z-30 px-6">
-            
-            <!-- Botón Principal: ORDENAR BIOMASA (Mismo estilo que 2UP19) -->
-            <button onclick="adquirirNodo('PULSOR_CAPSULAS')" class="w-full sm:w-auto px-6 py-2.5 bg-[#141414]/60 backdrop-blur-md text-white font-black text-[11px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/60 hover:bg-[#141414]/80 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+            <button onclick="adquirirNodo('PULSOR_CAPSULAS')" class="w-full sm:w-auto px-8 py-2.5 bg-[#141414]/60 backdrop-blur-md text-white font-black text-[11px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/60 hover:bg-[#141414]/80 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
                 ORDENAR BIOMASA
             </button>
-
-            <!-- Botón Secundario: ORDENAR Z-BRICK (Espejo simétrico para mantener consistencia) -->
-            <button onclick="adquirirNodo('Z_BRICK_DIRECTO')" class="w-full sm:w-auto px-6 py-2.5 bg-[#141414]/60 backdrop-blur-md text-white font-black text-[11px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/60 hover:bg-[#141414]/80 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-                ORDENAR Z-BRICK
-            </button>
-            
         </div>
         
         <!-- Registro Técnico de Temporada -->
@@ -301,45 +286,58 @@
     </div>
 </section>
 
-<section id="z-brick" class="group/hero grid md:grid-cols-2 gap-12 md:gap-16 items-center min-h-[70vh] md:min-h-[80vh] py-16 md:py-24 px-4 md:px-0 bg-transparent">
+<!-- ==========================================
+     SECCIÓN 3: Z-BRICK (CON EL BOTÓN EN SU LUGAR)
+     ========================================== -->
+<section id="z-brick" class="group/hero grid md:grid-cols-2 gap-12 md:gap-16 items-center min-h-[70vh] md:min-h-[80vh] py-16 md:py-24 px-4 md:px-8 bg-transparent">
             
-            <div class="z-10 text-center md:text-left order-2 md:order-1 select-none">
-                
-                <div class="inline-block bg-black/40 backdrop-blur-sm border border-white/10 px-4 py-1.5 rounded-sm mb-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                    <span class="text-white/80 text-[9px] md:text-[10px] font-black tracking-[0.4em] uppercase">
-                        bioconstruction
-                    </span>
-                </div>
-                
-                <h1 class="text-5xl md:text-8xl leading-none mb-6 md:mb-8 font-black tracking-[0.1em] text-white uppercase drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)]">
-                    Z_BRICK
-                </h1>
-                
-                <p class="text-white/75 max-w-md mx-auto md:mx-0 mb-10 md:mb-12 text-[11px] md:text-[12px] tracking-widest font-light leading-relaxed normal-case drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
-                    Bioladrillos de micelio sintetizado con residuo de amero y estimulados mediante el 
-                    <button onclick="scrollToSection('protocol')" class="text-white font-black underline decoration-white/30 underline-offset-4 hover:text-white hover:decoration-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] transition-all uppercase">
-                        PULSOR
-                    </button> 
-                    bajo la resonancia de los 
-                    <button onclick="scrollToSection('dial-monitor')" class="text-white font-black underline decoration-white/30 underline-offset-4 hover:text-white hover:decoration-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] transition-all uppercase">
-                        Z_DIALS
-                    </button>.
-                </p>
-            </div>
+    <div class="z-10 text-center md:text-left order-2 md:order-1 select-none">
+        
+        <!-- Etiqueta técnica superior -->
+        <div class="inline-block bg-black/40 backdrop-blur-sm border border-white/10 px-4 py-1.5 rounded-sm mb-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+            <span class="text-white/80 text-[9px] md:text-[10px] font-black tracking-[0.4em] uppercase">
+                bioconstruction
+            </span>
+        </div>
+        
+        <h1 class="text-5xl md:text-8xl leading-none mb-6 md:mb-8 font-black tracking-[0.1em] text-white uppercase drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)]">
+            Z_BRICK
+        </h1>
+        
+        <!-- Descripción Técnica Normalizada -->
+        <p class="text-white/75 max-w-md mx-auto md:mx-0 mb-10 md:mb-12 text-[11px] md:text-[12px] tracking-widest font-light leading-relaxed normal-case drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+            Bioladrillos de micelio sintetizado con residuo de amero y estimulados mediante el
+            <button onclick="scrollToSection('protocol')" class="text-white font-black underline decoration-white/30 underline-offset-4 hover:text-white hover:decoration-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] transition-all uppercase">
+                PULSOR
+            </button> 
+            bajo la resonancia de los
+            <button onclick="scrollToSection('dial-monitor')" class="text-white font-black underline decoration-white/30 underline-offset-4 hover:text-white hover:decoration-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] transition-all uppercase">
+                Z_DIALS
+            </button>.
+        </p>
 
-            <div class="relative flex justify-center items-center order-1 md:order-2">
-                <div class="absolute inset-0 bg-white/10 blur-[80px] md:blur-[120px] rounded-full opacity-0 group-hover/hero:opacity-100 transition-opacity duration-1000 pointer-events-none"></div>
-                
-                <div class="relative w-full max-w-[60%] md:max-w-[80%] overflow-visible">
-                    <img src="img/z-brick.png" 
-                        alt="Z-Brick Mycelium"
-                        class="w-full h-auto grayscale opacity-50 md:opacity-40 scale-95 md:scale-85 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)]
-                                transition-all duration-[1000ms] ease-out
-                                group-hover/hero:grayscale-0 group-hover/hero:opacity-70 group-hover/hero:scale-100 group-hover/hero:drop-shadow-[0_15px_30px_rgba(255,255,255,0.15)]">
-                </div>
-            </div>
-            
-        </section>
+        <!-- CONTENEDOR DE ACCIONES: Z-BRICK REUBICADO CON EL ESTILO UNIFICADO -->
+        <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 w-full relative z-30">
+            <button onclick="adquirirNodo('Z_BRICK_DIRECTO')" class="w-full sm:w-auto px-8 py-2.5 bg-[#141414]/60 backdrop-blur-md text-white font-black text-[11px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/60 hover:bg-[#141414]/80 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                ORDENAR Z-BRICK
+            </button>
+        </div>
+    </div>
+
+    <!-- Contenedor del Render Visual (Mantiene la consistencia intacta) -->
+    <div class="relative flex justify-center items-center order-1 md:order-2">
+        <div class="absolute inset-0 bg-white/10 blur-[80px] md:blur-[120px] rounded-full opacity-0 group-hover/hero:opacity-100 transition-opacity duration-1000 pointer-events-none"></div>
+        
+        <div class="relative w-full max-w-[60%] md:max-w-[80%] overflow-visible">
+            <img src="img/z-brick.png" 
+                alt="Z-Brick Mycelium"
+                class="w-full h-auto grayscale opacity-50 md:opacity-40 scale-95 md:scale-85 filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)]
+                        transition-all duration-[1000ms] ease-out
+                        group-hover/hero:grayscale-0 group-hover/hero:opacity-70 group-hover/hero:scale-100 group-hover/hero:drop-shadow-[0_15px_30px_rgba(255,255,255,0.15)]">
+        </div>
+    </div>
+    
+</section>
 
 <!-- SECCIÓN: PROTOCOLO PULSOR (DODECÁGONO PERFECTO CON NÚCLEO DE FRECUENCIAS) -->
 <section id="protocol" class="py-24 bg-transparent relative overflow-hidden flex flex-col items-center justify-center">
