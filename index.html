@@ -268,16 +268,17 @@
             </div>
         </div>
 
-        <!-- ACCIONES TÁCTICAS (Aumento de contraste y legibilidad para celular) -->
+        <!-- CONTENEDOR DE ACCIONES CON EL ESTILO DEL MENÚ SUPERIOR -->
         <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md relative z-30 px-6">
             
-            <button onclick="adquirirNodo('PULSOR_CAPSULAS')" class="w-full sm:w-auto px-6 py-2.5 bg-white text-black font-black text-[11px] tracking-[0.22em] uppercase rounded-none hover:bg-white/90 transition-all duration-300 shadow-[0_15px_30px_rgba(0,0,0,0.4)]">
-                INICIAR CARGA (PULSOR)
+            <!-- Botón Principal: ORDENAR BIOMASA (Mismo estilo que 2UP19) -->
+            <button onclick="adquirirNodo('PULSOR_CAPSULAS')" class="w-full sm:w-auto px-6 py-2.5 bg-[#141414]/60 backdrop-blur-md text-white font-black text-[11px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/60 hover:bg-[#141414]/80 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                ORDENAR BIOMASA
             </button>
 
-            <!-- Ajuste de opacidad a text-white/70 para que no se pierda en el pasto claro -->
-            <button onclick="adquirirNodo('Z_BRICK_DIRECTO')" class="w-full sm:w-auto px-6 py-2.5 bg-transparent text-white/80 font-bold text-[11px] tracking-[0.22em] uppercase rounded-none border border-white/20 hover:border-white/60 hover:text-white hover:bg-white/5 transition-all duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                VINCULAR NODO (Z-BRICK)
+            <!-- Botón Secundario: ORDENAR Z-BRICK (Espejo simétrico para mantener consistencia) -->
+            <button onclick="adquirirNodo('Z_BRICK_DIRECTO')" class="w-full sm:w-auto px-6 py-2.5 bg-[#141414]/60 backdrop-blur-md text-white font-black text-[11px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/60 hover:bg-[#141414]/80 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                ORDENAR Z-BRICK
             </button>
             
         </div>
