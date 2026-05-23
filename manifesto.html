@@ -39,7 +39,7 @@
             backdrop-filter: blur(12px); 
         }
         
-        /* Animación de Escaneo Láser */
+        /* Animación de Escaneo Láser Co-axial */
         @keyframes scan {
             0% { top: 0%; opacity: 0; }
             10% { opacity: 0.8; }
@@ -69,11 +69,12 @@
 </head>
 <body class="antialiased selection:bg-blue-900 min-h-screen flex flex-col justify-between">
 
-    <!-- NAV BAR SUPERIOR (Sincronizada con index_4.html) -->
+<!-- NAV BAR SUPERIOR (Sincronizada con index.html) -->
     <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/5 backdrop-blur-md border-b border-white/10 select-none">
         <div class="p-4 sm:p-6 flex justify-between items-center max-w-7xl mx-auto uppercase tracking-widest text-[9px] sm:text-[10px]">
             
-            <a href="index_4.html" class="flex items-center gap-2 sm:gap-3 cursor-pointer group">
+            <!-- Nodo de Identidad Core (Retorno a Home) -->
+            <a href="index.html" class="flex items-center gap-2 sm:gap-3 cursor-pointer group">
                 <div class="relative flex items-center justify-center flex-shrink-0">
                     <div class="absolute inset-0 bg-white/0 rounded-full blur-md group-hover:bg-white/20 transition-all duration-700"></div>
                     <img src="img/logo.png" class="w-6 sm:w-7 brightness-125 transition-all duration-1000 group-hover:rotate-180 style-laser-white relative z-10" alt="Zenergia Core"> 
@@ -85,10 +86,17 @@
                 </div>
             </a>
             
+            <!-- Grupo de Control Satelital (Monolito Único de Telemetría) -->
             <div class="flex items-center font-bold">
-                <div id="z-dial" class="text-white font-bold cursor-pointer hover:bg-white/20 transition-all duration-300 border border-white/30 bg-black/10 px-3 sm:px-4 py-1 rounded-sm backdrop-blur-sm tracking-widest hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]">
+                
+                <!-- Telemetría Alfanumérica Co-axial con Enlace a Sección Dial-Monitor -->
+                <a id="z-dial" 
+                   href="index.html#dial-monitor"
+                   class="text-white font-bold cursor-pointer hover:bg-white/20 transition-all duration-300 border border-white/30 bg-black/10 h-[28px] sm:h-[32px] w-[72px] sm:w-[84px] flex items-center justify-center rounded-sm backdrop-blur-sm tracking-widest hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]"
+                   title="Retornar a Dial Monitor">
                     ------
-                </div>
+                </a>
+
             </div>
 
         </div>
@@ -130,14 +138,73 @@
             </div>
         </div>
 
-        <!-- PANTALLA PROYECTORA DE FIJACIÓN ÓPTICA (MONOLITO) -->
-        <div id="z-read-monitor" class="w-full h-56 md:h-64 bg-[#141414]/90 backdrop-blur-md flex items-center justify-center px-6 border border-white/10 rounded-sm relative overflow-hidden group shadow-[inset_0_4px_12px_rgba(255,255,255,0.02),_inset_0_-8px_25px_rgba(0,0,0,0.95)]">
-            <!-- Línea de Escaneo Láser Interactiva vinculada a la animación de la landing -->
-            <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.008)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.008)_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
-            <div class="absolute inset-x-0 h-[2px] bg-white/20 shadow-[0_0_15px_rgba(255,255,255,0.5)] top-0 opacity-0 group-hover:animate-[scan_3s_linear_infinite] group-hover:opacity-100 pointer-events-none"></div>
-            
-            <div id="z-word-display" class="text-2xl md:text-5xl font-medium tracking-wide text-zinc-500 normal-case transition-all duration-75 text-center select-none">
-                esperando_señal...
+        <!-- CONTENEDOR MONOLÍTICO: LOS 4 CUADRANTES DE LA DERIVA SÓNICA (CLIP-PATH DODECÁGONO) -->
+        <div class="w-full flex flex-col items-center justify-center my-4">
+            <div id="z-read-monitor" class="relative w-full max-w-[340px] sm:max-w-[420px] aspect-square bg-[#141414]/95 backdrop-blur-md border border-white/10 select-none overflow-hidden transition-all duration-700 hover:border-white/20 hover:shadow-[0_0_50px_rgba(255,255,255,0.04)] group"
+                 style="clip-path: polygon(50% 0%, 75% 6.7%, 93.3% 25%, 100% 50%, 93.3% 75%, 75% 93.3%, 50% 100%, 25% 93.3%, 6.7% 75%, 0% 50%, 6.7% 25%, 25% 6.7%);">
+                
+                <!-- Capa de Escaneo Láser Co-axial -->
+                <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.005)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.005)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none"></div>
+                <div class="absolute inset-x-0 h-[2px] bg-white/10 shadow-[0_0_15px_rgba(255,255,255,0.3)] top-0 opacity-0 group-hover:animate-[scan_4s_linear_infinite] group-hover:opacity-100 pointer-events-none"></div>
+
+                <!-- ENTORNO VECTORIAL (Ejes de Rotación Orbital) -->
+                <div class="absolute inset-0 pointer-events-none z-20">
+                    <div class="absolute top-1/2 left-0 w-[calc(50%-25px)] h-[1px] bg-white/10"></div>
+                    <div class="absolute top-1/2 right-0 w-[calc(50%-25px)] h-[1px] bg-white/10"></div>
+                    <div class="absolute left-1/2 top-0 w-[1px] h-[calc(50%-25px)] bg-white/10"></div>
+                    <div class="absolute left-1/2 bottom-0 w-[1px] h-[calc(50%-25px)] bg-white/10"></div>
+                    
+                    <!-- Centro del Ángulo Absoluto -->
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 border border-white/30 rounded-full bg-[#141414]"></div>
+                </div>
+
+                <!-- MALLA INTERACTIVA: 4 ÁNGULOS DE ROTACIÓN (PULS PROTOCOL) -->
+                <div class="absolute inset-0 grid grid-cols-2 grid-rows-2 z-10 text-center">
+                    
+                    <!-- CUADRANTE NORTE: 0° // DESAPRENDIZAJE (CAMINAR) -->
+                    <div id="quad-0" class="relative flex flex-col items-center justify-center p-6 transition-all duration-500 border-r border-b border-white/5 hover:bg-white/[0.02]">
+                        <div class="mt-6 ml-6 flex flex-col items-center gap-1 opacity-40 group-[.reading-mode]:opacity-20 transition-opacity" id="icon-quad-0">
+                            <img src="img/pace.png" class="w-8 h-8 object-contain filter brightness-90" alt="Pace">
+                            <span class="text-[9px] font-black text-white tracking-widest uppercase">0.00°</span>
+                        </div>
+                    </div>
+
+                    <!-- CUADRANTE ESTE: 90° // PARENTESCO (CAER) -->
+                    <div id="quad-1" class="relative flex flex-col items-center justify-center p-6 transition-all duration-500 border-l border-b border-white/5 hover:bg-white/[0.02]">
+                        <div class="mt-6 mr-6 flex flex-col items-center gap-1 opacity-40 group-[.reading-mode]:opacity-20 transition-opacity" id="icon-quad-1">
+                            <img src="img/under.png" class="w-8 h-8 object-contain filter brightness-90" alt="Under">
+                            <span class="text-[9px] font-black text-white tracking-widest uppercase">90.00°</span>
+                        </div>
+                    </div>
+
+                    <!-- CUADRANTE SUR: 180° // CO-DESCOMPOSICIÓN (LEVANTAR) -->
+                    <div id="quad-2" class="relative flex flex-col items-center justify-center p-6 transition-all duration-500 border-r border-t border-white/5 hover:bg-white/[0.02]">
+                        <div class="mb-6 ml-6 flex flex-col items-center gap-1 opacity-40 group-[.reading-mode]:opacity-20 transition-opacity" id="icon-quad-2">
+                            <img src="img/lift.png" class="w-8 h-8 object-contain filter brightness-90" alt="Lift">
+                            <span class="text-[9px] font-black text-white tracking-widest uppercase">180.00°</span>
+                        </div>
+                    </div>
+
+                    <!-- CUADRANTE OESTE: 270° // PARTITURA BIÓNICA (SALTAR) -->
+                    <div id="quad-3" class="relative flex flex-col items-center justify-center p-6 transition-all duration-500 border-l border-t border-white/5 hover:bg-white/[0.02]">
+                        <div class="mb-6 mr-6 flex flex-col items-center gap-1 opacity-40 group-[.reading-mode]:opacity-20 transition-opacity" id="icon-quad-3">
+                            <img src="img/surge.png" class="w-8 h-8 object-contain filter brightness-90" alt="Surge">
+                            <span class="text-[9px] font-black text-white tracking-widest uppercase">270.00°</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- NÚCLEO CRÍTICO: PROYECTOR DE ENFOQUE RSVP (Z-READ) OVERLAY -->
+                <div class="absolute inset-0 flex flex-col items-center justify-center z-30 pointer-events-none select-none px-8">
+                    <div id="z-word-display" class="text-xl sm:text-3xl font-medium tracking-wide text-zinc-500 normal-case transition-all duration-75 text-center drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)]">
+                        esperando_señal...
+                    </div>
+                    <div id="quad-indicator" class="text-[8px] font-mono tracking-[0.3em] text-blue-500/0 font-bold mt-3 uppercase transition-all duration-300">
+                        ORBIT_IDLE
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -153,7 +220,7 @@
         </div>
     </main>
 
-    <!-- FOOTER MONOCROMÁTICO DE ALTA FIDELIDAD (Mismo padding y desenfoque que la Landing) -->
+    <!-- FOOTER MONOCROMÁTICO DE ALTA FIDELIDAD -->
     <footer class="py-12 border-t border-white/10 text-center text-white text-[10px] tracking-[0.6em] font-bold uppercase select-none leading-relaxed bg-black/50 backdrop-blur-md relative z-10 drop-shadow-[0_-5px_15px_rgba(0,0,0,0.5)]">
         ZENERGIA // MYCELIUM TECH-LAB <br>
         <span class="text-white/40 font-medium text-[8px]">SUB-NODE // ARCHIVE_MODE</span> <br>
@@ -162,7 +229,7 @@
 
     <!-- LOGICA SÍNCRONA COMPLETA -->
     <script>
-        const manifiestoText = "este audio-ensayo no es para ser consumido; es para ser inhalado. lo que vas a escuchar es el registro sónico de una desobediencia temporal. desplazamos la voz de la plataforma biológica principal para no contaminar el crecimiento de la hifa con la lógica de la prosa humana. iGNite es el archivo crudo. la deconstrucción de un cuerpo que aprendió a transmutar el pulso mecánico del dolor y el hospital en la frecuencia armónica del caer. el laboratorio no nació en el código; nació en el peso de los pies regresando a la tierra. aquí en santa elena, donde la niebla borra los límites del horizonte, fundamos un lenguaje sin pantallas. una encriptación biocinética que responde a cuatro pulsos universales que todo ser humano lleva grabados en los huesos: p_pace caminar, u_under caer, l_lift levantarse y s_surge saltar. el hongo escucha la fatiga del cuerpo. el micelio no entiende de minutos ni de horas; entiende de frecuencias de presión. cuando el sub-bajo a 2hz vibra a través del biocemento, la hifa responde, se tensa, se endurece. el z-brick se sintoniza con la rotación absoluta de la tierra. apaga el monitor. sal de la pantalla. camina, cae, levántate, estalla. la arquitectura del futuro no se va a construir con planos de concreto; se va a cultivar con los pulsos de los cuerpos que se atrevieron a detener el tiempo.";
+        const manifiestoText = "este audio-ensayo no es para ser consumido; es para ser inhalado. lo que vas a escuchar es el registro sónico de una desobediencia temporal. deconstruimos el cuerpo común y suspendemos la lógica de la prosa para dar paso al crecimiento de la hifa. iGNite es el archivo crudo. la transmutación del pulso mecánico del dolor en la frecuencia armónica del caer. el laboratorio no nació en el código; nació en el peso de los pies regresando a la tierra de santa elena. aquí, donde la niebla borra los límites del horizonte, fundamos un lenguaje sin pantallas. una encriptación biocinética que responde a cuatro pulsos universales que llevamos grabados en los huesos: p_pace caminar, u_under caer, l_lift levantarse y s_surge saltar. el hongo escucha la fatiga. el micelio no entiende de minutos; entiende de frecuencias de presión. cuando el sub-bajo a 2hz vibra a través del biocemento, la hifa responde, se tensa, se endurece. el z-brick se sintoniza con la rotación absoluta de la tierra. apaga el monitor. sal de la pantalla. camina, cae, levántate, estalla. la arquitectura del futuro no se va a construir con planos de concreto; se va a cultivar con los pulsos de los cuerpos que se atrevieron a detener el tiempo.";
 
         const wordsArray = manifiestoText.split(" ");
         let wordIndex = 0;
@@ -200,10 +267,12 @@
 
         document.getElementById('bionic-text-container').innerHTML = `<p class="text-zinc-700 font-medium">${generateBionicReading(manifiestoText)}</p>`;
 
-        // Motor de Presentación RSVP (Z-Read)
+        // Motor de Presentación RSVP (Z-Read) con Mapeo de Cuadrantes Activos
         function toggleZRead() {
             const display = document.getElementById('z-word-display');
+            const monitor = document.getElementById('z-read-monitor');
             const btn = document.getElementById('btn-trigger');
+            const ind = document.getElementById('quad-indicator');
             
             if (isReading) {
                 clearInterval(intervalId);
@@ -211,15 +280,24 @@
                 btn.innerText = "REANUDAR ABSORCIÓN";
                 display.classList.add('text-zinc-500');
                 display.classList.remove('z-active-word');
+                monitor.classList.remove('reading-mode');
+                clearAllQuadrants();
             } else {
                 isReading = true;
                 btn.innerText = "PAUSAR ENFOQUE";
                 display.classList.remove('text-zinc-500');
                 display.classList.add('z-active-word');
+                monitor.classList.add('reading-mode');
                 
                 intervalId = setInterval(() => {
                     if (wordIndex < wordsArray.length) {
-                        display.innerText = wordsArray[wordIndex];
+                        const currentWord = wordsArray[wordIndex];
+                        display.innerText = currentWord;
+                        
+                        // Sistema dinámico de asignación orbital según el índice de lectura
+                        const currentQuad = Math.floor((wordIndex / wordsArray.length) * 4);
+                        highlightQuadrant(currentQuad, ind);
+
                         wordIndex++;
                     } else {
                         clearInterval(intervalId);
@@ -229,8 +307,48 @@
                         display.innerText = "absorción_completada.";
                         display.classList.add('text-zinc-500');
                         display.classList.remove('z-active-word');
+                        monitor.classList.remove('reading-mode');
+                        clearAllQuadrants();
+                        ind.className = "text-[8px] font-mono tracking-[0.3em] text-zinc-500 font-bold mt-3 uppercase";
+                        ind.innerText = "ORBIT_COMPLETED";
                     }
                 }, readSpeed);
+            }
+        }
+
+        function highlightQuadrant(quadId, indicator) {
+            clearAllQuadrants();
+            const quad = document.getElementById(`quad-${quadId}`);
+            const icon = document.getElementById(`icon-quad-${quadId}`);
+            
+            if (quad && icon) {
+                quad.style.backgroundColor = "rgba(30, 64, 175, 0.15)"; // Glow azul zenergy interno
+                quad.style.backdropFilter = "blur(4px)";
+                icon.style.opacity = "1";
+                icon.style.filter = "drop-shadow(0 0 10px rgba(30, 64, 175, 0.8))";
+            }
+
+            // Actualización de Telemetría Textual según Cuadrante de la Deriva Sónica
+            const labels = [
+                "0.00°: DESAPRENDIZAJE CORPORAL // CAMINAR", 
+                "90.00°: PARENTESCO DE LA MATERIA // CAER", 
+                "180.00°: CO-DESCOMPOSICIÓN PERFORMÁTICA // LEVANTAR", 
+                "270.00°: EL CUERPO COMO PARTITURA // SALTAR"
+            ];
+            indicator.innerText = labels[quadId];
+            indicator.className = "text-[8px] font-mono tracking-[0.3em] text-blue-600 font-bold mt-3 uppercase drop-shadow-[0_0_10px_rgba(30,64,175,0.5)]";
+        }
+
+        function clearAllQuadrants() {
+            for (let i = 0; i < 4; i++) {
+                const quad = document.getElementById(`quad-${i}`);
+                const icon = document.getElementById(`icon-quad-${i}`);
+                if (quad && icon) {
+                    quad.style.backgroundColor = "transparent";
+                    quad.style.backdropFilter = "none";
+                    icon.style.opacity = "";
+                    icon.style.filter = "";
+                }
             }
         }
 
