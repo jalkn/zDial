@@ -439,7 +439,7 @@
     const $ = (id) => document.getElementById(id);
     const PHI = 1.618033;
 
-    const updateZ = () => {
+const updateZ = () => {
         const now = new Date();
         
         // 1. Deriva Solar Absoluta (Ángulo de rotación de la Tierra en 24h: 0° a 359.9°)
@@ -470,16 +470,19 @@
         const res = `${s}${f}${reps}`;
         
         // 5. ENRUTAMIENTO SEGURO DE INYECCIÓN (Evita colapso del árbol SVG)
-        // El nodo de texto dentro del SVG exige .textContent para su correcto renderizado dinámico
         if ($('big-dial')) $('big-dial').textContent = res;
         
         // Los contenedores estándar del flujo HTML procesan apropiadamente el .innerText tradicional
         if ($('z-dial')) $('z-dial').innerText = res;
         if ($('hologram-dial')) $('hologram-dial').innerText = res;
         
-        // 6. Inyección del Data Dump en Minúsculas Fluidas (Consola de Estado)
+        // 6. Inyección de Explicación Conceptual en la Consola de Estado
         if ($('protocol-desc')) {
-            $('protocol-desc').innerText = `${s} rondas de ${reps} pulsores biocinéticos [ ${translation} ]`;
+            $('protocol-desc').innerHTML = `
+                <span class="text-white/40 font-mono">[nodo: ${res}]</span> 
+                biomasa adaptógena funcional + calibración solar de resonancia 
+                <span class="text-white/40 font-mono">[enfoque: ${translation}]</span>
+            `;
         }
     };
 
