@@ -195,15 +195,25 @@
             
     <div class="relative z-10 flex flex-col items-center w-full px-4 text-center group">
         
-        <!-- SELECTOR DE ARQUETIPOS (Nuevas variables estables) -->
-        <div class="mb-10 flex items-center justify-center gap-4 sm:gap-6 text-[11px] tracking-[0.3em] font-black select-none z-30">
-            <span id="opt-focus" onclick="seleccionarVariante('FOCUS')" class="cursor-pointer transition-all duration-300 text-white border-b border-white pb-1">FOCUS</span>
-            <span class="text-white/20">&bull;</span>
-            <span id="opt-zen" onclick="seleccionarVariante('ZEN')" class="cursor-pointer transition-all duration-300 text-white/40 hover:text-white/80 pb-1">ZEN</span>
-            <span class="text-white/20">&bull;</span>
-            <span id="opt-stamina" onclick="seleccionarVariante('STAMINA')" class="cursor-pointer transition-all duration-300 text-white/40 hover:text-white/80 pb-1">STAMINA</span>
-            <span class="text-white/20">&bull;</span>
-            <span id="opt-core" onclick="seleccionarVariante('CORE')" class="cursor-pointer transition-all duration-300 text-white/40 hover:text-white/80 pb-1">CORE</span>
+        <!-- SELECTOR DE ARQUETIPOS (Estilo Unificado Lab-Box) -->
+        <div class="mb-12 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-[11px] tracking-[0.25em] font-black select-none z-30 px-4">
+            
+            <span id="opt-focus" onclick="seleccionarVariante('FOCUS')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/60 backdrop-blur-md rounded-md text-white border border-white/60 shadow-[0_0_15px_rgba(255,255,255,0.15)]">
+                FOCUS
+            </span>
+            
+            <span id="opt-zen" onclick="seleccionarVariante('ZEN')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-md text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80 shadow-[0_0_10px_rgba(255,255,255,0.02)]">
+                ZEN
+            </span>
+            
+            <span id="opt-stamina" onclick="seleccionarVariante('STAMINA')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-md text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80 shadow-[0_0_10px_rgba(255,255,255,0.02)]">
+                STAMINA
+            </span>
+            
+            <span id="opt-core" onclick="seleccionarVariante('CORE')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-md text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80 shadow-[0_0_10px_rgba(255,255,255,0.02)]">
+                CORE
+            </span>
+            
         </div>
 
         <!-- Contenedor del Dial (Escala masiva original recuperada) -->
@@ -500,20 +510,22 @@
     function seleccionarVariante(variante) {
         varianteActiva = variante.toUpperCase();
         
-        // Actualiza dinámicamente el grabado láser del arco superior con la escala recuperada
+        // 1. Actualiza el grabado láser del arco superior del dial central
         if ($('laser-variant-title')) {
             $('laser-variant-title').textContent = `PULSOR ${varianteActiva}`;
         }
         
-        // Sincronización del menú de selección horizontal superior
+        // 2. Swapping dinámico de clases manteniendo el contenedor y el efecto glow
         const opciones = ['FOCUS', 'ZEN', 'STAMINA', 'CORE'];
         opciones.forEach(opt => {
             const el = $(`opt-${opt.toLowerCase()}`);
             if (el) {
                 if (opt === varianteActiva) {
-                    el.className = "cursor-pointer transition-all duration-300 text-white border-b border-white pb-1";
+                    // Estado Encendido: Alto contraste + Borde definido + Glow masivo
+                    el.className = "cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/60 backdrop-blur-md rounded-md text-white border border-white/60 shadow-[0_0_15px_rgba(255,255,255,0.15)]";
                 } else {
-                    el.className = "cursor-pointer transition-all duration-300 text-white/40 hover:text-white/80 pb-1";
+                    // Estado Apagado: Opaco + Borde tenue + Pre-glow en hover
+                    el.className = "cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-md text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80 shadow-[0_0_10px_rgba(255,255,255,0.02)]";
                 }
             }
         });
