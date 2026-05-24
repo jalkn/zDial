@@ -29,28 +29,27 @@ def generate_biomesh(image_path, output_svg_path, grid_size=30):
     max_radius = grid_size / 2 * 0.9  
 
     for y in range(0, height, grid_size):
-        for x in range(0, width, grid_size):
-            pixel_value = img.getpixel((x, y))
-            
-            # Umbral de descarte para zonas completamente blancas / fuera de silueta
-            if pixel_value > 240:
-                continue
+            for x in range(0, width, grid_size):
+                pixel_value = img.getpixel((x, y))
                 
-            brightness_factor = (255 - pixel_value) / 255.0
-            radius = brightness_factor * max_radius
-            
-            # Filtro de ruido para evitar puntos imperceptibles en la instalación física
-            if radius < 1.5:
-                continue
+                # Umbral de descarte para zonas completamente blancas / fuera de silueta
+                if pixel_value > 240:
+                    continue
+                    
+                brightness_factor = (255 - pixel_value) / 255.0
+                radius = brightness_factor * max_radius
                 
-            node_count += 1
-            
-            target_url = f"#dial-monitor"
-            node_class = "node-available"
-            
-            svg_lines.append(f'    <a href="{target_url}" onclick="scrollToNodeID({node_count})">')
-            svg_lines.append(f'      <circle class="land-node {node_class}" cx="{x}" cy="{y}" r="{radius:.1f}" id="node-point-{node_count}" />')
-            svg_lines.append('    </a>')
+                # Filtro de ruido para evitar puntos imperceptibles en la instalación física
+                if radius < 1.5:
+                    continue
+                    
+                node_count += 1
+                node_class = "node-available"
+                
+                # SOLUCIÓN: Inyectamos el círculo de forma directa sin la etiqueta <a> que confunde al navegador
+                svg_lines.append(f'    <circle class="land-node {node_class}" cx="{x}" cy="{y}" r="{radius:.1f}" id="node-point-{node_count}" onclick="scrollToNodeID({node_count})" />')
+
+    
 
     svg_lines.append('  </g>')
     svg_lines.append('%TOTAL_NODES_MARKER%') # Marcador temporal para inyectar metadatos legibles en el SVG si es necesario
