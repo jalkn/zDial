@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="bg-[#0a0a0a] text-[#f4f4f4]">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="img/favicon.png">
@@ -21,23 +21,34 @@
     </script>
     <style>
         /* Capa Maestra de Geolocalización Satelital */
+/* Capa Maestra de Geolocalización Satelital - RECALIBRADA */
         body { 
             font-family: 'Orbitron', sans-serif; 
             scroll-behavior: smooth; 
             letter-spacing: 0.05em; 
-            background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('img/grass.png');
+            /* Volvemos a un filtro translúcido mínimo para que el verde brille real */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)), url('img/grass.png');
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
-            color: #111827;
+            color: #111827; /* Volvemos al gris oscuro original para tipografías limpias en el fondo claro */
         } 
         
-        /* Contenedores de Cristal Claro Óptico */
+        /* Contenedores de Cristal Claro Óptico - Recuperados */
         .glass { 
             background: rgba(255, 255, 255, 0.65); 
             border: 1px solid rgba(255, 255, 255, 0.4); 
             backdrop-filter: blur(12px); 
         }
+
+        /* SOMBRA DE CONTORNO MAESTRA: 
+           Esto crea una "cama de sombra" invisible bajo el ave para que los puntos blancos 
+           tengan contraste perfecto sin importar si el pasto de fondo es amarillo o verde claro */
+        #mesh-container svg {
+            filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.65)) 
+                    drop-shadow(0 4px 12px rgba(0, 0, 0, 0.50));
+        }
+        
         
         /* Animación de Escaneo Láser */
         @keyframes scan {
@@ -147,9 +158,9 @@
       - En móviles (ancho menor a sm), forzamos un ancho mínimo de 800px para que el vector NO se encoja.
       - Al usar overflow-x-auto en el padre, el usuario puede deslizar lateralmente de forma nativa para explorar el ave.
     -->
-    <div id="mesh-container" class="w-full min-w-[850px] sm:min-w-0 sm:max-w-[1100px] px-4 sm:px-6 relative z-10 flex justify-center items-center drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
-        <!-- El script inyectará el SVG aquí manteniendo su escala proporcional -->
+    <div id="mesh-container" class="w-full min-w-[850px] sm:min-w-0 sm:max-w-[1100px] px-4 sm:px-6 relative z-10 flex justify-center items-center">
     </div>
+    
 </section>
 
 <!-- ==========================================
