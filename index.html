@@ -87,6 +87,15 @@
             letter-spacing: 0.3em;
             transition: color 0.5s ease, drop-shadow 0.5s ease;
         }
+
+        /* Ocultar barra de scroll lateral en el contenedor del mapa para mantener la inmersión limpia */
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-none {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-blue-900">
@@ -132,10 +141,14 @@
 
     <main class="max-w-7xl mx-auto px-8 pt-10">
 
-<!-- SEASONAL NODE: DETECTOR ASÍNCRONO -->
-<section id="seasonal-node" class="relative w-full min-h-screen bg-transparent flex justify-center items-center overflow-hidden select-none py-16">
-    <div id="mesh-container" class="w-full max-w-[1100px] px-6 relative z-10 flex justify-center items-center drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
-        <!-- El script inyectará el SVG aquí de forma transparente -->
+<!-- SEASONAL NODE: DETECTOR ASÍNCRONO OPTIMIZADO PARA MÓVIL (CORTE EN VERTICAL) -->
+<section id="seasonal-node" class="relative w-full min-h-[70vh] sm:min-h-screen bg-transparent flex justify-center items-center overflow-x-auto overflow-y-hidden select-none py-12 md:py-16 scrollbar-none">
+    <!-- 
+      - En móviles (ancho menor a sm), forzamos un ancho mínimo de 800px para que el vector NO se encoja.
+      - Al usar overflow-x-auto en el padre, el usuario puede deslizar lateralmente de forma nativa para explorar el ave.
+    -->
+    <div id="mesh-container" class="w-full min-w-[850px] sm:min-w-0 sm:max-w-[1100px] px-4 sm:px-6 relative z-10 flex justify-center items-center drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
+        <!-- El script inyectará el SVG aquí manteniendo su escala proporcional -->
     </div>
 </section>
 
@@ -478,6 +491,23 @@
 </html>
 
 <script>
+
+        // Nueva función para capturar el nodo del land-art y setearlo en el sistema de compras
+    function scrollToNodeID(nodeNumber) {
+        // Convertimos a formato de tres dígitos (ej: Nodo 042)
+        const formattedNode = String(nodeNumber).padStart(3, '0');
+        
+        // Cambiamos temporalmente el título del Dial para mostrar qué nodo está bloqueado
+        if ($('laser-variant-title')) {
+            $('laser-variant-title').textContent = `NODO SELECCIONADO: #${formattedNode}`;
+        }
+        
+        // Guardamos la referencia para el mensaje final de WhatsApp si el usuario decide comprar
+        window.selectedNodeFromMesh = formattedNode;
+
+        // Hacemos el scroll fluido hacia la sección del monitor
+        scrollToSection('dial-monitor');
+    }
     /**
     * Z-Dial Resonance Engine v8.8 - Solar Drift Matrix & PULS Protocol Sync
     */
@@ -575,11 +605,10 @@
         }
     }
 
-    /**
-    * Procesador de Órdenes Hacia WhatsApp de ARPA (Lenguaje Unificado con el Frontend)
-    */
     function adquirirNodo(tipoInyeccion) {
         const currentHash = $('big-dial') ? $('big-dial').textContent.trim() : "0000";
+        // Mantenemos la captura limpia del nodo interactivo
+        const nodeParam = window.selectedNodeFromMesh ? `\n• Nodo Land-Art: #${window.selectedNodeFromMesh}` : "";
         const whatsappBaseUrl = "https://wa.me/573025333130";
         let message = "";
 
@@ -587,7 +616,8 @@
             message = encodeURIComponent(
                 `[ZENERGIA] Orden de Compra\n` +
                 `-----------------------------------\n` +
-                `• Acción: Adquirir PULSOR ${varianteActiva}\n` +
+                // Corrección: Añadido nodeParam al final de la línea variante para que se envíe el dato
+                `• Acción: Adquirir PULSOR ${varianteActiva}${nodeParam}\n` +
                 `• Pulso de Resonancia Solar: #${currentHash}\n` +
                 `• Valor T1: $70.000 COP\n` +
                 `• Beneficio: Asignación de 1/30 de Z-Brick`
