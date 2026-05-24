@@ -20,18 +20,16 @@
         }
     </script>
     <style>
-        /* Capa Maestra de Geolocalización Satelital */
-/* Capa Maestra de Geolocalización Satelital - RECALIBRADA */
+        /* Capa Maestra de Geolocalización Satelital - RECALIBRADA */
         body { 
             font-family: 'Orbitron', sans-serif; 
             scroll-behavior: smooth; 
             letter-spacing: 0.05em; 
-            /* Volvemos a un filtro translúcido mínimo para que el verde brille real */
             background-image: linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)), url('img/grass.png');
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
-            color: #111827; /* Volvemos al gris oscuro original para tipografías limpias en el fondo claro */
+            color: #111827; 
         } 
         
         /* Contenedores de Cristal Claro Óptico - Recuperados */
@@ -41,14 +39,11 @@
             backdrop-filter: blur(12px); 
         }
 
-        /* SOMBRA DE CONTORNO MAESTRA: 
-           Esto crea una "cama de sombra" invisible bajo el ave para que los puntos blancos 
-           tengan contraste perfecto sin importar si el pasto de fondo es amarillo o verde claro */
+        /* SOMBRA DE CONTORNO MAESTRA */
         #mesh-container svg {
             filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.65)) 
                     drop-shadow(0 4px 12px rgba(0, 0, 0, 0.50));
         }
-        
         
         /* Animación de Escaneo Láser */
         @keyframes scan {
@@ -104,8 +99,8 @@
             display: none;
         }
         .scrollbar-none {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+            -ms-overflow-style: none;  
+            scrollbar-width: none;  
         }
     </style>
 </head>
@@ -244,29 +239,21 @@
         </div>
     </div>
 </section>
-
 <!-- ==========================================
-     SECCIÓN 2: DIAL-MONITOR (ARQUETIPOS BAJADOS)
+     SECCIÓN 2: DIAL-MONITOR (CONEXIÓN BIÓNICA Y CO-CREACIÓN DE NODOS)
      ========================================== -->
-<section id="dial-monitor" class="pt-24 md:pt-32 pb-16 min-h-[75vh] md:min-h-[85vh] flex flex-col items-center justify-center relative bg-transparent overflow-hidden">
+<section id="dial-monitor" class="pt-24 md:pt-32 pb-20 min-h-[85vh] md:min-h-[95vh] flex flex-col items-center justify-center relative bg-transparent overflow-hidden">
             
     <div class="relative z-10 flex flex-col items-center w-full px-4 text-center group">
         
-        <!-- [ZONA 1: CARTOGRAFÍA SUPERIOR LIMPIA] -->
-        <!-- Espacio purificado mediante paddings de sección para alinearse con la captura original -->
-
-        <!-- Contenedor del Dial (Escala masiva original recuperada) -->
         <div class="relative w-full max-w-[320px] sm:max-w-[380px] md:max-w-[420px] aspect-square transition-all duration-700 ease-out select-none cursor-pointer hover:-translate-y-1 hover:scale-[1.01] drop-shadow-[0_25px_35px_rgba(0,0,0,0.6)]">
             
-            <!-- Estructura de la Tapa Anodizada -->
             <div class="w-full h-full rounded-full bg-[#141414] border border-white/10 p-1 relative overflow-hidden opacity-90 shadow-[inset_0_4px_12px_rgba(255,255,255,0.02),_inset_0_-8px_25px_rgba(0,0,0,0.95)] transition-all duration-500 group-hover:opacity-100 group-hover:border-white/30">
                 
-                <!-- Textura de micelio de fondo -->
                 <div class="absolute inset-0 bg-cover bg-center opacity-10 brightness-120 dynamic-texture rounded-full"
                      style="background-image: url('img/miscelio.png');">
                 </div>
 
-                <!-- CANVAS VECTORIAL RE-PROPORCIONADO -->
                 <div class="absolute inset-0 flex items-center justify-center p-[4%] z-10">
                     <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/50 stroke-[1.5] transition-all duration-500 group-hover:stroke-white/70">
                         
@@ -275,29 +262,25 @@
                             <path id="textPath-bottom" d="M 35,200 A 165,165 0 0,0 365,200" />
                         </defs>
 
-                        <!-- 1. TEXTO CURVO SUPERIOR -->
                         <text class="fill-white font-black text-[18px] tracking-[0.42em] uppercase transition-all duration-500">
                             <textPath id="laser-variant-title" href="#textPath-top" startOffset="50%" text-anchor="middle">
                                 PULSOR FOCUS
                             </textPath>
                         </text>
 
-                        <!-- 2. GEOMETRÍA SAGRADA -->
                         <g class="opacity-40 stroke-[1.3]">
                             <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" />
                             <path d="M 110,120 Q 200,150 290,120" />
                             <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
                         </g>
 
-                        <!-- 3. CÓDIGO CRIPTOGRÁFICO DINÁMICO -->
                         <text id="big-dial" x="200" y="216" font-family="'Orbitron', sans-serif" font-weight="900" text-anchor="middle" class="fill-white font-black text-[54px] tracking-[0.03em] transition-all duration-500 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] group-hover:drop-shadow-[0_0_22px_rgba(255,255,255,0.75)]">
                             ------
                         </text>
 
-                        <!-- 4. TEXTO CURVO INFERIOR -->
                         <text class="fill-white/70 font-black text-[14px] tracking-[0.38em] uppercase transition-all duration-500 group-hover:fill-white">
                             <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">
-                                ZENERGY.WORLD &bull; 3025333130
+                                ZENERGIA.WORLD &bull; 3025333130
                             </textPath>
                         </text>
                     </svg>
@@ -306,34 +289,48 @@
             </div>
         </div>
 
-        <!-- SELECTOR DE ARQUETIPOS (Estilo Unificado Lab-Box - Debajo del Dial) -->
-        <div class="mt-10 mb-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-[11px] tracking-[0.25em] font-black select-none z-30 px-4">
+        <div class="mt-10 mb-4 flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-[11px] tracking-[0.25em] font-black select-none z-30 px-4">
             <span id="opt-focus" onclick="seleccionarVariante('FOCUS')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/60 backdrop-blur-md rounded-md text-white border border-white/60 shadow-[0_0_15px_rgba(255,255,255,0.15)]">FOCUS</span>
             <span id="opt-zen" onclick="seleccionarVariante('ZEN')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-md text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80 shadow-[0_0_10px_rgba(255,255,255,0.02)]">ZEN</span>
             <span id="opt-stamina" onclick="seleccionarVariante('STAMINA')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-md text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80 shadow-[0_0_10px_rgba(255,255,255,0.02)]">STAMINA</span>
             <span id="opt-core" onclick="seleccionarVariante('CORE')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-md text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80 shadow-[0_0_10px_rgba(255,255,255,0.02)]">CORE</span>
         </div>
 
-        <!-- Consola de Estado -->
-        <div class="mt-4 w-full max-w-2xl flex flex-col items-center gap-3 relative z-20 select-none px-4">
+        <div class="mt-2 w-full max-w-2xl flex flex-col items-center gap-2 relative z-20 select-none px-4">
             <p id="protocol-desc" class="text-[11px] sm:text-[12px] text-white tracking-[0.25em] font-medium text-center uppercase leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
                 sincronizando_matriz_solar...
             </p>
-            <div class="w-12 h-[1px] bg-white/20 overflow-hidden relative rounded-full">
+            <div class="w-12 h-[1px] bg-white/20 overflow-hidden relative rounded-full mb-4">
                 <div class="h-full bg-white/80 w-1/2 animate-[scan_2.5s_linear_infinite]"></div>
             </div>
         </div>
 
-        <!-- CONTENEDOR DE ACCIONES: BIOMASA EXCLUSIVO -->
-        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md relative z-30 px-6">
-            <button onclick="adquirirNodo('PULSOR_CAPSULAS')" class="w-full sm:w-auto px-8 py-2.5 bg-[#141414]/60 backdrop-blur-md text-white font-black text-[11px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/60 hover:bg-[#141414]/80 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.05)] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-                ORDENAR BIOMASA
+        <div class="mb-8 w-full max-w-3xl grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 px-6 text-left select-none z-30">
+            <div class="p-4 bg-[#141414]/40 backdrop-blur-md border border-white/5 rounded-lg flex flex-col justify-between">
+                <span class="text-white/40 font-mono text-[9px] tracking-widest block mb-2">// ARQUITECTURA FÍSICA</span>
+                <h4 class="text-white text-[11px] font-black tracking-widest uppercase mb-1">1. Nodo de Instalación</h4>
+                <p class="text-white/70 text-[10px] tracking-wider leading-relaxed uppercase">Tu aporte financia y asegura un bloque vivo físico dentro de la obra de Bio-Arte en el bosque.</p>
+            </div>
+            <div class="p-4 bg-[#141414]/40 backdrop-blur-md border border-white/5 rounded-lg flex flex-col justify-between">
+                <span class="text-white/40 font-mono text-[9px] tracking-widest block mb-2">// IDENTIDAD CRIPTOGRÁFICA</span>
+                <h4 class="text-white text-[11px] font-black tracking-widest uppercase mb-1">2. Código Pulsor Único</h4>
+                <p class="text-white/70 text-[10px] tracking-wider leading-relaxed uppercase">Identificador digital único vinculado de forma indestructible a las coordenadas de la obra.</p>
+            </div>
+            <div class="p-4 bg-[#141414]/40 backdrop-blur-md border border-white/5 rounded-lg flex flex-col justify-between">
+                <span class="text-white/40 font-mono text-[9px] tracking-widest block mb-2">// SINTONÍA BIÓNICA DEL AVE</span>
+                <h4 id="ux-benefit-title" class="text-white text-[11px] font-black tracking-widest uppercase mb-1">3. Conexión Focus</h4>
+                <p id="ux-benefit-desc" class="text-white/70 text-[10px] tracking-wider leading-relaxed uppercase">Activación de biomasa funcional para expandir tu enfoque y claridad cognitiva.</p>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md relative z-30 px-6">
+            <button onclick="adquirirNodo('PULSOR_CAPSULAS')" class="w-full sm:w-auto px-10 py-3 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
+                INTEGRAR MI NODO AL BOSQUE
             </button>
         </div>
         
-        <!-- Registro Técnico de Temporada -->
-        <div class="mt-8 text-[9px] text-white/30 tracking-[0.35em] uppercase select-none">
-            T1_DATA // 1_BRICK = 30_DIALS // REGISTRO INTRANSFERIBLE
+        <div class="mt-12 px-5 py-2 bg-[#141414]/80 backdrop-blur-lg border border-white/10 rounded-full text-[10px] text-white tracking-[0.3em] font-bold uppercase select-none shadow-[0_4px_20px_rgba(0,0,0,0.5)] z-30">
+            T1_DATA // <span class="text-white/60">REFLEJO ACTIVO:</span> LADO POSITIVO DEL AVE // ENLACE INDESTRUCTIBLE
         </div>
 
     </div>
@@ -503,7 +500,7 @@
 
 <script>
 
-        // Nueva función para capturar el nodo del land-art y setearlo en el sistema de compras
+    // Nueva función para capturar el nodo del land-art y setearlo en el sistema de compras
     function scrollToNodeID(nodeNumber) {
         // Convertimos a formato de tres dígitos (ej: Nodo 042)
         const formattedNode = String(nodeNumber).padStart(3, '0');
@@ -519,6 +516,7 @@
         // Hacemos el scroll fluido hacia la sección del monitor
         scrollToSection('dial-monitor');
     }
+
     /**
     * Z-Dial Resonance Engine v8.8 - Solar Drift Matrix & PULS Protocol Sync
     */
@@ -563,15 +561,13 @@
         // 6. Inyección de Explicación Conceptual (Alto contraste regulado para el exterior)
         if ($('protocol-desc')) {
             $('protocol-desc').innerHTML = `
-                <span class="text-white/60 font-mono font-bold">[nodo: ${res}]</span> 
-                biomasa adaptógena funcional + calibración solar de resonancia 
-                <span class="text-white/60 font-mono font-bold">[enfoque: ${translation}]</span>
+                • Beneficio: Sincronización bio-adaptógena + Reflejo activo del Ave
             `;
         }
     };
 
     /**
-    * Controlador de Interfaz para Selección de Variante Dinámica (Nomenclatura Avanzada)
+    * Controlador de Interfaz para Selección de Variante Dinámica (Recalibrado de Coherencia Absoluta)
     */
     function seleccionarVariante(variante) {
         varianteActiva = variante.toUpperCase();
@@ -595,6 +591,32 @@
                 }
             }
         });
+
+        // 3. MATRIZ DE REDIRECCIÓN DE CONTENIDO UX: Resuelve el error de "Conexión Focus" permanente
+        const varianteData = {
+            'FOCUS': {
+                title: '3. Conexión Focus',
+                desc: 'Activación de biomasa funcional para expandir tu enfoque y claridad cognitiva.'
+            },
+            'ZEN': {
+                title: '3. Conexión Zen',
+                desc: 'Sintonía de frecuencias bajas para la reducción del ruido mental y restauración del sistema nervioso.'
+            },
+            'STAMINA': {
+                title: '3. Conexión Stamina',
+                desc: 'Optimización del rendimiento energético celular y resistencia física adaptativa en el entorno.'
+            },
+            'CORE': {
+                title: '3. Conexión Core',
+                desc: 'Sincronización inmunológica integral y balance estructural microbiano profundo.'
+            }
+        };
+
+        // Inyección biunívoca en los elementos de la Columna 3
+        if ($('ux-benefit-title') && $('ux-benefit-desc') && varianteData[varianteActiva]) {
+            $('ux-benefit-title').textContent = varianteData[varianteActiva].title;
+            $('ux-benefit-desc').textContent = varianteData[varianteActiva].desc;
+        }
 
         if (navigator.vibrate) navigator.vibrate(25);
     }
@@ -627,7 +649,6 @@
             message = encodeURIComponent(
                 `[ZENERGIA] Orden de Compra\n` +
                 `-----------------------------------\n` +
-                // Corrección: Añadido nodeParam al final de la línea variante para que se envíe el dato
                 `• Acción: Adquirir PULSOR ${varianteActiva}${nodeParam}\n` +
                 `• Pulso de Resonancia Solar: #${currentHash}\n` +
                 `• Valor T1: $70.000 COP\n` +
@@ -655,9 +676,6 @@
             .then(data => {
                 const container = document.getElementById('mesh-container');
                 container.innerHTML = data;
-                
-                // Opcional: Aquí podrías añadir lógica JS para pintar nodos 
-                // vendidos dinámicamente si en el futuro usas una API ligera.
             })
             .catch(err => console.error('[-] Error cargando la bio-matriz:', err));
     });
