@@ -93,8 +93,10 @@
         function ejecutarInversionEstacional() {
             const whatsappBaseUrl = "https://wa.me/573017774121"; 
             
-            // Acceso directo al pulso activo unificado en el core master
-            const activeHash = typeof currentGlobalHash !== 'undefined' ? currentGlobalHash : "0000";
+            // Validación de escape por si la telemetría asíncrona sigue cargando
+            const activeHash = (window.currentGlobalHash && window.currentGlobalHash !== "INIT") 
+                ? window.currentGlobalHash 
+                : Math.floor(Math.random() * 90000 + 10000); // Respaldo numérico rápido si es instantáneo
             
             const mensaje = encodeURIComponent(
                 `[ZENERGIA TECH-LAB // SOLICITUD DE ASIGNACIÓN VC]\n` +
@@ -107,7 +109,7 @@
             );
 
             if (navigator.vibrate) navigator.vibrate(60);
-            window.open(`${whatsappBaseUrl}?text=${message}`, '_blank');
+            window.open(`${whatsappBaseUrl}?text=${mensaje}`, '_blank');
         }
     </script>
 </body>
