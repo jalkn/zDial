@@ -1,10 +1,10 @@
 // Motor de Inyección Dinámica y Telemetría Unificada // ZENERGIA 2026
 document.addEventListener("DOMContentLoaded", () => {
     
-    // 1. Inyectar Barra de Navegación (Ajustada con ruta absoluta '/')
+    // 1. Inyectar Barra de Navegación (Ruta relativa local limpia)
     const navContainer = document.getElementById("global-nav");
     if (navContainer) {
-        fetch("/components/nav.html") // <-- AGREGADA LA BARRA '/' AL INICIO
+        fetch("components/nav.html") // <-- Se remueve la barra '/' para que busque en la carpeta local
             .then(response => response.text())
             .then(html => {
                 navContainer.innerHTML = html;
@@ -14,10 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(err => console.error("[-] Error cargando nav component:", err));
     }
 
-    // 2. Inyectar Pie de Página (Ajustada con ruta absoluta '/')
+    // 2. Inyectar Pie de Página (Ruta relativa local limpia)
     const footerContainer = document.getElementById("global-footer");
     if (footerContainer) {
-        fetch("/components/footer.html") // <-- AGREGADA LA BARRA '/' AL INICIO
+        fetch("components/footer.html") // <-- Se remueve la barra '/' para que busque en la carpeta local
             .then(response => response.text())
             .then(html => {
                 footerContainer.innerHTML = html;
