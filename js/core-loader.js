@@ -1,24 +1,23 @@
 // Motor de Inyección Dinámica y Telemetría Unificada // ZENERGIA 2026
 document.addEventListener("DOMContentLoaded", () => {
     
-    // 1. Inyectar Barra de Navegación con Estilo Original
+    // 1. Inyectar Barra de Navegación (Ajustada con ruta absoluta '/')
     const navContainer = document.getElementById("global-nav");
     if (navContainer) {
-        fetch("components/nav.html")
+        fetch("/components/nav.html") // <-- AGREGADA LA BARRA '/' AL INICIO
             .then(response => response.text())
             .then(html => {
                 navContainer.innerHTML = html;
-                // Inicialización inmediata de la matriz matemática sobre el contenedor inyectado
                 updateZ();
-                setInterval(updateZ, 60000); // Bucle de refresco de 1 minuto por deriva solar
+                setInterval(updateZ, 60000); 
             })
             .catch(err => console.error("[-] Error cargando nav component:", err));
     }
 
-    // 2. Inyectar Pie de Página Monocromático
+    // 2. Inyectar Pie de Página (Ajustada con ruta absoluta '/')
     const footerContainer = document.getElementById("global-footer");
     if (footerContainer) {
-        fetch("components/footer.html")
+        fetch("/components/footer.html") // <-- AGREGADA LA BARRA '/' AL INICIO
             .then(response => response.text())
             .then(html => {
                 footerContainer.innerHTML = html;
