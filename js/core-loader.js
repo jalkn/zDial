@@ -1,34 +1,17 @@
 // Motor de Inyección Dinámica y Telemetría Unificada // ZENERGIA 2026
 document.addEventListener("DOMContentLoaded", () => {
     
-    // Calcular ruta relativa dinámica según la profundidad de la URL actual
-    // Esto funciona perfectamente en localhost, zenergy.world/t2 o subcarpetas profundas
-    const pathDepth = window.location.pathname.split('/').filter(Boolean);
-    
-    // Si la URL termina en /t2 o similar, pathDepth tendrá elementos, por lo que retrocedemos adecuadamente
-    let prefix = "";
-    if (pathDepth.length > 0 && !window.location.pathname.endsWith('index.html')) {
-        // Si el último elemento es el archivo o subruta (como 't2'), dependemos del nivel relativo directo
-        prefix = "";
-    }
-    
-    // Ruta adaptativa unificada
-    const basePath = "components/";
+    // Resolución de ruta absoluta adaptativa para entornos locales y producción con dominio personalizado
+    const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+    const basePath = isLocal ? "components/" : "/components/";
 
     // 1. Inyectar Barra de Navegación
     const navContainer = document.getElementById("global-nav");
     if (navContainer) {
         fetch(`${basePath}nav.html`) 
             .then(response => {
-                if (!response.ok) {
-                    // Intento de respaldo si falla el primer mapeo por culpa del ruteo estático
-                    return fetch(`../${basePath}nav.html`);
-                }
-                return response;
-            })
-            .then(res => {
-                if (!res.ok) throw new Error("Componente no encontrado en ningún nivel");
-                return res.text();
+                if (!response.ok) throw new Error("Componente Nav no encontrado");
+                return response.text();
             })
             .then(html => {
                 navContainer.innerHTML = html;
@@ -43,15 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (footerContainer) {
         fetch(`${basePath}footer.html`) 
             .then(response => {
-                if (!response.ok) {
-                    // Intento de respaldo si falla el primer mapeo por culpa del ruteo estático
-                    return fetch(`../${basePath}footer.html`);
-                }
-                return response;
-            })
-            .then(res => {
-                if (!res.ok) throw new Error("Componente no encontrado en ningún nivel");
-                return res.text();
+                if (!response.ok) throw new Error("Componente Footer no encontrado");
+                return response.text();
             })
             .then(html => {
                 footerContainer.innerHTML = html;
