@@ -1,22 +1,27 @@
 // Motor de Inyección Dinámica y Telemetría Unificada // ZENERGIA 2026
 document.addEventListener("DOMContentLoaded", () => {
     
-    // Resolución de ruta absoluta adaptativa para entornos locales y producción con dominio personalizado
-    const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-    const basePath = isLocal ? "components/" : "/components/";
+    // Determinamos la ruta hacia los componentes de forma puramente relativa.
+    // Si la URL actual incluye 't2.html' (o estás dentro de un sub-endpoint), puedes ajustar el prefijo.
+    // Para index.html y t2.html estando ambos en la raíz, la ruta es simplemente "components/"
+    const basePath = "components/";
+
+    console.log("[+] ZENERGIA Core Loader - Buscando en ruta relativa:", basePath);
 
     // 1. Inyectar Barra de Navegación
     const navContainer = document.getElementById("global-nav");
     if (navContainer) {
         fetch(`${basePath}nav.html`) 
             .then(response => {
-                if (!response.ok) throw new Error("Componente Nav no encontrado");
+                if (!response.ok) throw new Error(`404: No se encontró nav.html en la ruta estática.`);
                 return response.text();
             })
             .then(html => {
                 navContainer.innerHTML = html;
-                updateZ();
-                setInterval(updateZ, 60000); 
+                if (typeof updateZ === "function") {
+                    updateZ();
+                    setInterval(updateZ, 60000);
+                }
             })
             .catch(err => console.error("[-] Error cargando nav component:", err));
     }
@@ -26,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (footerContainer) {
         fetch(`${basePath}footer.html`) 
             .then(response => {
-                if (!response.ok) throw new Error("Componente Footer no encontrado");
+                if (!response.ok) throw new Error(`404: No se encontró footer.html en la ruta estática.`);
                 return response.text();
             })
             .then(html => {
