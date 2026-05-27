@@ -126,11 +126,12 @@
             <div id="mesh-container" class="w-full min-w-[850px] sm:min-w-0 sm:max-w-[1100px] px-4 sm:px-6 relative z-10 flex justify-center items-center"></div>
         </section>
 
-        <!-- SECCIÓN INTERMEDIA: MAPEO DE NODOS DE RESONANCIA -->
+<!-- SECCIÓN INTERMEDIA: MAPEO DE NODOS DE RESONANCIA -->
         <section id="installation-node" class="pt-4 pb-24 md:pb-32 bg-transparent overflow-hidden">
             <div class="flex flex-col items-center px-4">
                 <div class="relative w-full max-w-[320px] md:max-w-[400px] aspect-[2/3] group select-none">
                     
+                    <!-- Geometric Vector Matrix (Hourglass Vector Base) -->
                     <div class="absolute inset-0 pointer-events-none z-0">
                         <svg viewBox="0 0 100 150" class="w-full h-full stroke-white/40 fill-none stroke-[0.7]" style="filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));">
                             <path d="M 10 36 L 90 36 L 10 114 L 90 114 Z" class="stroke-white/50 transition-all duration-700 group-hover:stroke-white" />
@@ -140,25 +141,38 @@
                         </svg>
                     </div>
                     
+                    <!-- Interactive Telemetry Coordinates Over Grass -->
                     <div class="absolute inset-0 z-10">
-                        <div class="absolute top-[4%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/brick" onclick="scrollToSection('z-brick')">
-                            <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/50 group-hover/brick:text-white transition-all duration-300">nodo</span>
-                            <div class="w-1 h-1 bg-white rounded-full mt-1.5 opacity-50 group-hover/brick:opacity-100 shadow-[0_0_8px_#fff]"></div>
+                        
+                        <!-- Vertex Alpha: Live Material Node -->
+                        <div class="absolute top-[4%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/brick" onclick="scrollToSection('node-section')">
+                            <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/60 group-hover/brick:text-white drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] transition-all duration-300">node</span>
+                            <div class="w-1 h-1 bg-white rounded-full mt-1.5 opacity-60 group-hover/brick:opacity-100 shadow-[0_0_8px_#fff]"></div>
                         </div>
                         
-                        <div class="absolute top-[24%] left-1/2 -translate-x-1/2 text-[8px] tracking-[0.4em] font-black uppercase text-white/30 pointer-events-none">synergy</div>
+                        <!-- Axis Label: Synergy (Ubicado justo sobre la línea horizontal superior) -->
+                        <div class="absolute top-[21%] left-1/2 -translate-x-1/2 text-[8px] tracking-[0.4em] font-black uppercase text-white/60 group-hover:text-white/90 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] transition-all duration-500 pointer-events-none">
+                            synergy
+                        </div>
 
-                        <div class="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer group/core" onclick="scrollToSection('protocol')">
-                            <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/50 group-hover/core:text-white transition-all duration-300">pulsor</span>
+                        <!-- Central Core: Real-Time Pulsor Alphanumeric Engine -->
+                        <div class="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer group/core" onclick="scrollToSection('dial-monitor')">
+                            <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/60 group-hover/core:text-white drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] transition-all duration-300">pulsor</span>
                             <span id="hologram-dial" class="text-white text-sm md:text-base tracking-[0.2em] font-black mt-2 drop-shadow-[0_2px_8px_rgba(0,0,0,1)] transition-all duration-300 group-hover/core:drop-shadow-[0_0_15px_rgba(255,255,255,1)]">...</span>
                         </div>
 
-                        <div class="absolute bottom-[24%] left-[15%] text-[8px] tracking-[0.3em] font-black uppercase text-white/30">body</div>
-                        <div class="absolute bottom-[24%] right-[15%] text-[8px] tracking-[0.3em] font-black uppercase text-white/30">planet</div>
+                        <!-- Geodesic Anchors: Body & Planet Symmetry (Alineados milimétricamente con la base interna) -->
+                        <div class="absolute bottom-[27%] left-[12%] text-[8px] tracking-[0.3em] font-black uppercase text-white/60 group-hover:text-white/90 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] transition-all duration-500">
+                            body
+                        </div>
+                        <div class="absolute bottom-[27%] right-[12%] text-[8px] tracking-[0.3em] font-black uppercase text-white/60 group-hover:text-white/90 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] transition-all duration-500">
+                            planet
+                        </div>
 
+                        <!-- Vertex Omega: Ground Resonance Grid -->
                         <div class="absolute bottom-[2%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/base" onclick="scrollToSection('dial-monitor')">
-                            <div class="w-1 h-1 bg-white rounded-full mb-1.5 opacity-50 group-hover/base:opacity-100 shadow-[0_0_8px_#fff]"></div>
-                            <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/50 group-hover/base:text-white transition-all duration-300">resonance</span>
+                            <div class="w-1 h-1 bg-white rounded-full mb-1.5 opacity-60 group-hover/base:opacity-100 shadow-[0_0_8px_#fff]"></div>
+                            <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/60 group-hover/base:text-white drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)] transition-all duration-300">resonance</span>
                         </div>
                     </div>
                 </div>
