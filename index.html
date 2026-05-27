@@ -343,87 +343,51 @@
     </div>
 </section>
 <!-- ==========================================
-     SECCIÓN 3: Z-BRICK (CENTRALIZADA + SIMETRÍA MONOLÍTICA)
+     SECCIÓN 3: Z-BRICK (ESTÉTICA DE VIDRIO / CAPA TÉCNICA)
      ========================================== -->
 <section id="z-brick" class="group/brick-section flex flex-col items-center justify-center min-h-[85vh] py-24 px-4 bg-transparent overflow-hidden relative">
     
-    <div class="relative z-10 flex flex-col items-center w-full max-w-3xl mx-auto text-center select-none">
+    <!-- Contenedor con gap-6 consistente -->
+    <div class="relative z-10 flex flex-col items-center w-full max-w-3xl mx-auto text-center select-none gap-6">
         
-        <!-- 1. EL RENDER: Centrado y escalado en el eje principal -->
-        <div class="relative w-full max-w-[260px] sm:max-w-[320px] aspect-square flex justify-center items-center mb-8 relative">
-            <!-- Aura / Glow de fondo al hacer hover a la sección -->
-            <div class="absolute inset-0 bg-white/5 blur-[60px] md:blur-[90px] rounded-full opacity-0 group-hover/brick-section:opacity-100 transition-opacity duration-[1000ms] pointer-events-none"></div>
-            
-            <img src="img/z-brick.png" 
-                 alt="Z-Brick Mycelium"
-                 class="w-full h-auto grayscale opacity-40 scale-95 filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.7)]
-                        transition-all duration-[1000ms] ease-out
-                        group-hover/brick-section:grayscale-0 group-hover/brick-section:opacity-75 group-hover/brick-section:scale-105 group-hover/brick-section:drop-shadow-[0_20px_40px_rgba(255,255,255,0.1)]">
+        <!-- 1. EL RENDER -->
+        <div class="relative w-full max-w-[260px] sm:max-w-[320px] aspect-square flex justify-center items-center">
+            <div class="absolute inset-0 bg-white/5 blur-[90px] rounded-full opacity-0 group-hover/brick-section:opacity-100 transition-opacity duration-[1000ms] pointer-events-none"></div>
+            <img src="img/z-brick.png" alt="Z-Brick Mycelium" class="w-full h-auto grayscale opacity-40 scale-95 transition-all duration-[1000ms] group-hover/brick-section:grayscale-0 group-hover/brick-section:opacity-75 group-hover/brick-section:scale-100">
         </div>
 
-        <!-- 2. ETIQUETA TÉCNICA SUPERIOR -->
-        <div class="mb-4 bg-black/40 backdrop-blur-sm border border-white/5 px-4 py-1 rounded-sm drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-            <span class="text-white/60 text-[9px] font-black tracking-[0.45em] uppercase">
-                biolandart node
-            </span>
-        </div>
-        
-    <!-- 3. TÍTULO CRÍTICO -->
-    <h2 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-[0.15em] text-white uppercase mb-6 drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)] transition-all duration-700 group-hover/brick-section:tracking-[0.18em]">
-        NODO
-    </h2>
-
-        <!-- 4. DESCRIPCIÓN TÉCNICA NORMALIZADA -->
-        <p class="text-[11px] sm:text-[12px] text-white/80 tracking-[0.15em] font-medium max-w-xl normal-case leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] mb-10">
-            Síntesis material mediante el acoplamiento de 
-            <button onclick="scrollToSection('dial-monitor')" class="text-white font-black underline decoration-white/40 underline-offset-4 hover:text-white hover:decoration-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">
-                dials
-            </button>,
-            modulando ondas consecutivas bajo el protocolo 
-            <button onclick="scrollToSection('protocol')" class="text-white font-black underline decoration-white/40 underline-offset-4 hover:text-white hover:decoration-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] transition-all">
-                pulsor
-            </button> 
+        <!-- 2. DESCRIPCIÓN TÉCNICA (Lowercase) -->
+        <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.15em] font-medium max-w-xl normal-case leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+            Modulo acoplado técnicamente con los 
+            <button onclick="scrollToSection('dial-monitor')" class="text-white font-bold underline decoration-white/40 underline-offset-4 hover:text-white transition-all">dials</button> 
+            mediante el 
+            <button onclick="scrollToSection('protocol')" class="text-white font-bold underline decoration-white/40 underline-offset-4 hover:text-white transition-all">pulsor</button> 
             hasta consolidar una estructura de alta densidad.
         </p>
 
-        <!-- 5. CONTENEDOR DE ACCIONES CON EL ESTILO DEL MENÚ SUPERIOR (Centrado Perfecto) -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-xs relative z-30 px-4">
-            <button onclick="adquirirNodo('Z_BRICK_DIRECTO')" class="w-full sm:w-auto px-10 py-3 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
-                INTEGRAR NODO
-            </button>
-        </div>
+        <!-- 3. ACCIÓN: ESTILO VIDRIO (BOTÓN) -->
+        <button onclick="adquirirNodo('Z_BRICK_DIRECTO')" 
+                class="px-8 py-3 border-[0.5px] border-white/30 bg-white/[0.02] backdrop-blur-[2px] text-white/90 font-black text-[10px] tracking-[0.3em] uppercase hover:bg-white/10 hover:border-white transition-all duration-300">
+            activar nodo
+        </button>
         
     </div>
 </section>
 
 <!-- SECCIÓN: PROTOCOLO PULSOR (DODECÁGONO PERFECTO CON NÚCLEO DE FRECUENCIAS) -->
 <section id="protocol" class="py-24 bg-transparent relative overflow-hidden flex flex-col items-center justify-center">
-            
-    <!-- Encabezado de la Sección Unificado -->
-    <div class="text-center mb-20 px-6 select-none group/title cursor-default">
-        <p class="text-2xl sm:text-3xl md:text-5xl mb-5 tracking-[0.45em] font-extrabold uppercase max-w-xs sm:max-w-none mx-auto transition-all duration-500 text-white/50 group-hover/title:text-white group-hover/title:drop-shadow-[0_0_25px_rgba(255,255,255,0.6)] bg-black/40 px-8 py-3 rounded-sm inline-block border border-white/5 backdrop-blur-md">
-            PULSOR
-        </p>
-        <p class="text-white/60 group-hover/title:text-white/90 transition-colors duration-500 max-w-md mx-auto text-[11px] md:text-[12px] tracking-widest font-medium uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-            protocolo de encriptación biocinética _puls
-        </p>
-    </div>
 
-    <!-- CONTENEDOR MONOLÍTICO: DODECÁGONO REGULAR PERFECTO (12 LADOS EQUILÁTEROS) -->
-    <div class="relative w-full max-w-[320px] sm:max-w-[400px] md:max-w-[440px] aspect-square bg-black/40 backdrop-blur-md border border-white/10 select-none overflow-hidden transition-all duration-700 hover:border-white/20 hover:shadow-[0_0_40px_rgba(255,255,255,0.03)]"
+    <!-- CONTENEDOR MONOLÍTICO: ESCALA REDUCIDA -->
+    <div class="relative w-full max-w-[240px] sm:max-w-[280px] md:max-w-[320px] aspect-square bg-black/40 backdrop-blur-md border border-white/10 select-none overflow-hidden transition-all duration-700 hover:border-white/20 hover:shadow-[0_0_40px_rgba(255,255,255,0.03)]"
          style="clip-path: polygon(50% 0%, 75% 6.7%, 93.3% 25%, 100% 50%, 93.3% 75%, 75% 93.3%, 50% 100%, 25% 93.3%, 6.7% 75%, 0% 50%, 6.7% 25%, 25% 6.7%);">
         
-        <!-- ENTORNO VECTORIAL CENTRAL (Ejes segmentados + Ondas de Vibración) -->
+        <!-- ENTORNO VECTORIAL CENTRAL RESTAURADO -->
         <div class="absolute inset-0 pointer-events-none z-20">
-            
-            <!-- Ejes Divisorios con Apertura Central (Margen de 36px libre en el centro) -->
             <div class="absolute top-1/2 left-0 w-[calc(50%-18px)] h-[1px] bg-white/15"></div>
             <div class="absolute top-1/2 right-0 w-[calc(50%-18px)] h-[1px] bg-white/15"></div>
             <div class="absolute left-1/2 top-0 w-[1px] h-[calc(50%-18px)] bg-white/15"></div>
             <div class="absolute left-1/2 bottom-0 w-[1px] h-[calc(50%-18px)] bg-white/15"></div>
             
-            <!-- NÚCLEO: ONDAS RECTAS DE PULSACIÓN / VIBRADOR -->
-            <!-- Sin bloques oscuros, color del bloque nativo y líneas blancas sutiles -->
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center gap-[3px] w-9 h-6 bg-transparent">
                 <div class="w-[2px] h-3 bg-white/40 rounded-full transition-all duration-300 group-hover/quad:h-4 id-wave-1"></div>
                 <div class="w-[2px] h-5 bg-white/60 rounded-full transition-all duration-300 group-hover/quad:h-3 id-wave-2"></div>
@@ -433,75 +397,79 @@
             </div>
         </div>
 
-        <!-- MALLA INTERNA DE REGIONES INTERACTIVAS (4 Cuadrantes) -->
+        <!-- MALLA INTERNA RESTAURADA (Ejemplo Cuadrante A) -->
         <div class="absolute inset-0 grid grid-cols-2 grid-rows-2 z-10">
-            
-            <!-- CUADRANTE A: ARRIBA-IZQUIERDA (CAMINAR) -->
-            <div class="relative group/quad flex flex-col items-center justify-center p-8 transition-all duration-500 hover:bg-white/[0.03] hover:backdrop-blur-sm">
-                <div class="flex flex-col items-center justify-center gap-2 mt-8 ml-8">
-                    <div onclick="playBeat('img/Pbeat.wav')" class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center cursor-pointer">
-                        <img src="img/pace.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 group-hover/quad:drop-shadow-[0_0_12px_rgba(255,255,255,0.7)] transition-all duration-500 object-contain" alt="Pace Vector">
+            <div class="relative group/quad flex flex-col items-center justify-center p-4 transition-all duration-500 hover:bg-white/[0.03]">
+                <div class="flex flex-col items-center justify-center gap-1 mt-4 ml-4">
+                    <div onclick="playBeat('img/Pbeat.wav')" class="w-10 h-10 flex items-center justify-center cursor-pointer">
+                        <img src="img/pace.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 group-hover/quad:drop-shadow-[0_0_8px_rgba(255,255,255,0.7)] transition-all duration-500 object-contain" alt="Pace Vector">
                     </div>
                     <div class="text-center flex flex-col gap-0.5 select-none">
-                        <span class="text-[11px] sm:text-[12px] font-black text-white/40 tracking-[0.2em] group-hover/quad:text-white group-hover/quad:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all duration-300 uppercase">Caminar</span>
-                        <span class="text-[8px] font-bold text-white/20 tracking-[0.15em] group-hover/quad:text-white/60 transition-colors duration-300 uppercase">p_pace</span>
+                        <span class="text-[10px] font-black text-white/40 tracking-[0.2em] group-hover/quad:text-white group-hover/quad:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] transition-all duration-300 uppercase">Caminar</span>
+                        <span class="text-[7px] font-bold text-white/20 tracking-[0.15em] group-hover/quad:text-white/60 transition-colors duration-300 uppercase">p_pace</span>
+                    </div>
+                </div>
+            </div>
+            <div class="relative group/quad flex flex-col items-center justify-center p-4 transition-all duration-500 hover:bg-white/[0.05]">
+                <div class="flex flex-col items-center justify-center gap-1 mt-4 mr-4">
+                    <div onclick="playBeat('img/Ubeat.wav')" class="w-10 h-10 flex items-center justify-center cursor-pointer">
+                        <img src="img/under.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 transition-all duration-500 object-contain" alt="Under Vector">
+                    </div>
+                    <div class="text-center select-none">
+                        <span class="text-[10px] font-black text-white/40 tracking-[0.2em] group-hover/quad:text-white group-hover/quad:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] transition-all duration-300 uppercase">Caer</span>
+                        <span class="block text-[7px] font-bold text-white/20 tracking-[0.15em] group-hover/quad:text-white/60 transition-colors duration-300 lowercase">u_under</span>
                     </div>
                 </div>
             </div>
 
-            <!-- CUADRANTE B: ARRIBA-DERECHA (CAER) -->
-            <div class="relative group/quad flex flex-col items-center justify-center p-8 transition-all duration-500 hover:bg-white/[0.03] hover:backdrop-blur-sm">
-                <div class="flex flex-col items-center justify-center gap-2 mt-8 mr-8">
-                    <div onclick="playBeat('img/Ubeat.wav')" class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center cursor-pointer">
-                        <img src="img/under.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 group-hover/quad:drop-shadow-[0_0_12px_rgba(255,255,255,0.7)] transition-all duration-500 object-contain" alt="Under Vector">
+            <div class="relative group/quad flex flex-col items-center justify-center p-4 transition-all duration-500 hover:bg-white/[0.05]">
+                <div class="flex flex-col items-center justify-center gap-1 mb-4 ml-4">
+                    <div onclick="playBeat('img/Lbeat.wav')" class="w-10 h-10 flex items-center justify-center cursor-pointer">
+                        <img src="img/lift.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 transition-all duration-500 object-contain" alt="Lift Vector">
                     </div>
-                    <div class="text-center flex flex-col gap-0.5 select-none">
-                        <span class="text-[11px] sm:text-[12px] font-black text-white/40 tracking-[0.2em] group-hover/quad:text-white group-hover/quad:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all duration-300 uppercase">Caer</span>
-                        <span class="text-[8px] font-bold text-white/20 tracking-[0.15em] group-hover/quad:text-white/60 transition-colors duration-300 uppercase">u_under</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CUADRANTE C: ABAJO-IZQUIERDA (LEVANTAR) -->
-            <div class="relative group/quad flex flex-col items-center justify-center p-8 transition-all duration-500 hover:bg-white/[0.03] hover:backdrop-blur-sm">
-                <div class="flex flex-col items-center justify-center gap-2 mb-8 ml-8">
-                    <div onclick="playBeat('img/Lbeat.wav')" class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center cursor-pointer">
-                        <img src="img/lift.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 group-hover/quad:drop-shadow-[0_0_12px_rgba(255,255,255,0.7)] transition-all duration-500 object-contain" alt="Lift Vector">
-                    </div>
-                    <div class="text-center flex flex-col gap-0.5 select-none">
-                        <span class="text-[11px] sm:text-[12px] font-black text-white/40 tracking-[0.2em] group-hover/quad:text-white group-hover/quad:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all duration-300 uppercase">Levantar</span>
-                        <span class="text-[8px] font-bold text-white/20 tracking-[0.15em] group-hover/quad:text-white/60 transition-colors duration-300 uppercase">l_lift</span>
+                    <div class="text-center select-none">
+                        <span class="text-[10px] font-black text-white/40 tracking-[0.2em] group-hover/quad:text-white group-hover/quad:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] transition-all duration-300 uppercase">Levantar</span>
+                        <span class="block text-[7px] font-bold text-white/20 tracking-[0.15em] group-hover/quad:text-white/60 transition-colors duration-300 lowercase">l_lift</span>
                     </div>
                 </div>
             </div>
 
-            <!-- CUADRANTE D: ABAJO-DERECHA (SALTAR) -->
-            <div class="relative group/quad flex flex-col items-center justify-center p-8 transition-all duration-500 hover:bg-white/[0.03] hover:backdrop-blur-sm">
-                <div class="flex flex-col items-center justify-center gap-2 mb-8 mr-8">
-                    <div onclick="playBeat('img/Sbeat.wav')" class="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center cursor-pointer">
-                        <img src="img/surge.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 group-hover/quad:drop-shadow-[0_0_12px_rgba(255,255,255,0.7)] transition-all duration-500 object-contain" alt="Surge Vector">
+            <div class="relative group/quad flex flex-col items-center justify-center p-4 transition-all duration-500 hover:bg-white/[0.05]">
+                <div class="flex flex-col items-center justify-center gap-1 mb-4 mr-4">
+                    <div onclick="playBeat('img/Sbeat.wav')" class="w-10 h-10 flex items-center justify-center cursor-pointer">
+                        <img src="img/surge.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 transition-all duration-500 object-contain" alt="Surge Vector">
                     </div>
-                    <div class="text-center flex flex-col gap-0.5 select-none">
-                        <span class="text-[11px] sm:text-[12px] font-black text-white/40 tracking-[0.2em] group-hover/quad:text-white group-hover/quad:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all duration-300 uppercase">Saltar</span>
-                        <span class="text-[8px] font-bold text-white/20 tracking-[0.15em] group-hover/quad:text-white/60 transition-colors duration-300 uppercase">s_surge</span>
+                    <div class="text-center select-none">
+                        <span class="text-[10px] font-black text-white/40 tracking-[0.2em] group-hover/quad:text-white group-hover/quad:drop-shadow-[0_0_6px_rgba(255,255,255,0.5)] transition-all duration-300 uppercase">Saltar</span>
+                        <span class="block text-[7px] font-bold text-white/20 tracking-[0.15em] group-hover/quad:text-white/60 transition-colors duration-300 lowercase">s_surge</span>
                     </div>
                 </div>
             </div>
-
-        </div>
-
+        </div>        
     </div>
+
+    <!-- Contenedor alineado con gap consistente -->
+    <div class="text-center flex flex-col items-center gap-6 select-none mt-8">
+        
+        <!-- Texto descriptivo (Título capitalizado) -->
+        <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.15em] font-medium max-w-xl normal-case leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+            Protocolo de encriptación biocinética _puls      
+        </p>
+
+        <!-- Botón -->
+        <button onclick="playFullProtocol()" 
+                class="px-8 py-3 border-[0.5px] border-white/30 bg-white/[0.02] backdrop-blur-[2px] text-white/90 font-black text-[10px] tracking-[0.3em] uppercase hover:bg-white/10 hover:border-white transition-all duration-300">
+            Escuchar pulsor
+        </button>
+    </div>
+    
 </section>
 
-<!-- ==========================================
-     SEASONAL NODE: T2 DROP RESONANCE
-     ========================================== -->
 <section id="drop-resonance-node" class="relative w-full min-h-screen bg-transparent flex flex-col items-center justify-center py-24 px-4 overflow-hidden select-none group/resonance-section">
     
-    <div class="relative z-10 flex flex-col items-center w-full max-w-3xl mx-auto text-center">
+    <div class="relative z-10 flex flex-col items-center w-full max-w-3xl mx-auto text-center gap-6">
         
-        <!-- 1. GEOMETRÍA COAXIAL -->
-        <div class="w-[320px] sm:w-[400px] aspect-square relative mb-8 flex justify-center items-center">
+        <div class="w-[320px] sm:w-[400px] aspect-square relative flex justify-center items-center">
             <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
                 <path d="M 100 30 A 70 70 0 0 1 170 100" class="stroke-white fill-none stroke-[4]" stroke-linecap="round" stroke-dasharray="0 6" />
                 <path d="M 100 50 A 50 50 0 1 1 100 150" class="stroke-white fill-none stroke-[4]" stroke-linecap="round" stroke-dasharray="0 6" />
@@ -509,29 +477,14 @@
             </svg>
         </div>
 
-        <!-- 2. ETIQUETA TÉCNICA -->
-        <div class="mb-4 bg-black/40 backdrop-blur-sm border border-white/5 px-4 py-1 rounded-sm drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-            <span class="text-white/60 text-[9px] font-black tracking-[0.45em] uppercase">
-                t2 resonance node
-            </span>
-        </div>
-        
-        <!-- 3. TÍTULO CRÍTICO -->
-        <h2 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-[0.15em] text-white uppercase mb-6 drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)] transition-all duration-700">
-            GOTA
-        </h2>
-
-        <!-- 4. DESCRIPCIÓN TÉCNICA NORMALIZADA -->
-        <p class="text-[11px] sm:text-[12px] text-white/80 tracking-[0.15em] font-medium max-w-xl normal-case leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] mb-10">
-            Código alfanumérico transmutado en <span class="text-white font-black">frecuencias de resonancia biocinética</span>. La decodificación sónica de pulsos continuos modula la matriz de micelio, consolidando cada <span class="text-white font-black">nodo</span> como una esfera geométrica de alta densidad.
+        <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.15em] font-medium max-w-xl normal-case leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+            Código alfanumérico transmutado en <span class="text-white font-black">frecuencias de resonancia biocinética</span>. la decodificación sónica de pulsos continuos modula la matriz de micelio, consolidando cada <span class="text-white font-black">nodo</span> como una esfera geométrica de alta densidad.
         </p>
 
-        <!-- 5. CONTENEDOR DE ACCIONES (Optimizado para una sola línea) -->
-        <div class="flex items-center justify-center w-full relative z-30 px-4">
-            <button onclick="adquirirNodo('T2_RESONANCE_DIRECTO')" class="whitespace-nowrap px-8 py-3 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
-                ejecutar producción
-            </button>
-        </div>
+        <button onclick="adquirirNodo('T2_RESONANCE_DIRECTO')" 
+                class="px-8 py-3 border-[0.5px] border-white/30 bg-white/[0.02] backdrop-blur-[2px] text-white/90 font-black text-[10px] tracking-[0.3em] uppercase hover:bg-white/10 hover:border-white transition-all duration-300">
+            ejecutar producción
+        </button>
         
     </div>
 </section>
@@ -690,6 +643,24 @@
         const audio = new Audio(url);
         audio.play().catch(() => {});
         if ("vibrate" in navigator) navigator.vibrate(50);
+    }
+
+    async function playFullProtocol() {
+        // Lista de archivos en el orden del protocolo
+        const sequence = ['img/Pbeat.wav', 'img/Ubeat.wav', 'img/Lbeat.wav', 'img/Sbeat.wav'];
+        
+        for (const audioFile of sequence) {
+            const audio = new Audio(audioFile);
+            
+            // Reproduce y espera a que termine el archivo actual antes de seguir al siguiente
+            await new Promise(resolve => {
+                audio.onended = resolve;
+                audio.play().catch(e => console.log("Error al reproducir:", e));
+            });
+            
+            // Pequeña pausa opcional entre beats si lo deseas
+            await new Promise(resolve => setTimeout(resolve, 200)); 
+        }
     }
 
     function scrollToSection(sectionId) {
