@@ -137,15 +137,19 @@
     </nav>
 
     <!-- DRAWER DE NAVEGACIÓN PURIFICADO (ESTILO TECH-LAB STUDIO) -->
+<!-- DRAWER DE NAVEGACIÓN PURIFICADO (ESTILO TECH-LAB STUDIO) -->
+<!-- DRAWER DE NAVEGACIÓN PURIFICADO (ESTILO TECH-LAB STUDIO) -->
     <div id="biokinetic-drawer" class="fixed right-0 top-0 h-full w-[260px] sm:w-[320px] z-50 transform translate-x-full transition-transform duration-500 ease-in-out glass flex flex-col justify-between select-none">
         <div>
             <!-- Cabecera del Drawer: Alineación exacta y simétrica con el NAV -->
             <div class="p-4 sm:p-6 flex justify-between items-center border-b border-white/5 w-full">
                 <div class="flex items-center font-bold">
-                    <div id="z-dial" 
-                         class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] border border-white/10 bg-black/40 h-[30px] w-[100px] flex items-center justify-center rounded-sm backdrop-blur-sm select-none transition-all duration-300">
+                    <!-- BOTÓN INTERACTIVO DEL DIAL CÓDIGO ALFANUMÉRICO -->
+                    <button id="z-dial" 
+                            onclick="scrollToSection('dial-monitor'); toggleDrawer();"
+                            class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] border border-white/10 bg-black/40 h-[30px] w-[100px] flex items-center justify-center rounded-sm backdrop-blur-sm select-none transition-all duration-300 hover:text-emerald-400 hover:border-emerald-500/30 focus:outline-none uppercase">
                         --
-                    </div>
+                    </button>
                 </div>
 
                 <button onclick="toggleDrawer()" class="group flex items-center justify-center p-2 focus:outline-none transition-all duration-300 transform active:scale-95" aria-label="Close Navigation">
@@ -153,41 +157,39 @@
                 </button>
             </div>
 
-            <!-- Menú Limpio y Minimalista -->
+            <!-- Menú Limpio, Minimalista y Alineado a la Derecha -->
             <div class="px-8 flex flex-col gap-6 mt-10">
                 
-                <button onclick="scrollToSection('seasonal-node'); toggleDrawer();" class="drawer-btn w-full text-left focus:outline-none group">
-                    <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:translate-x-1 block transition-all duration-300 uppercase">
-                        MATRIX MASTER
-                    </span>
-                </button>
-
-                <button onclick="scrollToSection('protocol'); toggleDrawer();" class="drawer-btn w-full text-left focus:outline-none group">
-                    <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:translate-x-1 block transition-all duration-300 uppercase">
-                        PULS PROTOCOL
-                    </span>
-                </button>
-
-                <button onclick="scrollToSection('manifesto'); toggleDrawer();" class="drawer-btn w-full text-left focus:outline-none group">
-                    <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:translate-x-1 block transition-all duration-300 uppercase">
+                <!-- 1. El Origen (Contexto) -->
+                <button onclick="scrollToSection('manifesto'); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
+                    <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
                         MANIFESTO
                     </span>
                 </button>
 
-                <button onclick="scrollToSection('installation-node'); toggleDrawer();" class="drawer-btn w-full text-left focus:outline-none group">
-                    <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:translate-x-1 block transition-all duration-300 uppercase">
-                        GEODESIC AXIS
+                <!-- 2. La Intervención Territorial (Sincronizado con el Nav) -->
+                <button onclick="scrollToSection('seasonal-node'); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
+                    <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
+                        BIOLANDART
                     </span>
                 </button>
 
-                <button onclick="scrollToSection('dial-monitor'); toggleDrawer();" class="drawer-btn w-full text-left focus:outline-none group">
-                    <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:translate-x-1 block transition-all duration-300 uppercase">
-                        DIAL MONITOR
+                <!-- 3. Biomecánica y Ecosistema -->
+                <button onclick="scrollToSection('protocol'); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
+                    <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
+                        PULSOR
                     </span>
                 </button>
 
-                <button onclick="scrollToSection('vault'); toggleDrawer();" class="drawer-btn w-full text-left focus:outline-none group">
-                    <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:translate-x-1 block transition-all duration-300 uppercase">
+                <button onclick="scrollToSection('installation-node'); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
+                    <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
+                        AXIS
+                    </span>
+                </button>
+
+                <!-- 4. Archivo -->
+                <button onclick="scrollToSection('vault'); toggleDrawer();" class="drawer-btn w-full text-left focus:outline-none group text-right">
+                    <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
                         MATERIAL VAULT
                     </span>
                 </button>
@@ -216,25 +218,30 @@
             </a>
         </div>
     </div>
-
     <!-- CONTENEDOR DE LA BIO-MATRIZ -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-8 pt-16 sm:pt-20 pb-8 flex flex-col items-center">
+    <main class="w-full h-[calc(100vh-148px)] sm:h-[calc(100vh-164px)] mt-[68px] mb-[80px] sm:mb-[96px] flex flex-col justify-center items-center overflow-hidden">
         
-        <section id="seasonal-node" class="relative w-full min-h-[40vh] sm:min-h-[55vh] bg-transparent flex justify-start sm:justify-center items-center overflow-x-auto overflow-y-hidden select-none py-2 scrollbar-none cursor-grab active:cursor-grabbing">
-            <div id="mesh-container" class="w-full min-w-[720px] sm:min-w-0 sm:max-w-[780px] px-2 sm:px-6 relative z-10 flex justify-center items-center mx-auto transition-all duration-500">
+        <section id="seasonal-node" class="w-full h-full bg-transparent flex justify-start sm:justify-center items-center overflow-x-auto overflow-y-hidden select-none scrollbar-none cursor-grab active:cursor-grabbing">
+            <!-- El contenedor del SVG ahora aprovecha el 100% del alto disponible para escalar simétricamente -->
+            <div id="mesh-container" class="w-full h-full max-h-full min-w-[760px] sm:min-w-0 sm:max-w-[840px] px-4 sm:px-8 relative z-10 flex justify-center items-center mx-auto transition-all duration-500">
                 <!-- img/barranquero-mesh.svg loads here dynamically -->
             </div>
         </section>
 
-        <!-- TEXTO CONCEPTUAL -->
-        <div class="w-full px-4 mt-2 sm:mt-4 select-none">
-            <p class="text-[9px] sm:text-[10px] text-white/80 tracking-[0.18em] font-medium max-w-lg normal-case leading-relaxed drop-shadow-[0_4px_8px_rgba(0,0,0,0.95)] text-center mx-auto">
-                A physical 1:1 territorial intervention in the forest. 
-                This bio-matrix traces a bird's geometric grid, transforming land-art modules into synchronized tracking anchors connected directly to our hardware ecosystem.
-            </p>
-        </div>
-
     </main>
+
+    <!-- UNIVERSAL TERMINAL PANEL (INFO-FOOTER SIMÉTRICO) -->
+    <footer class="fixed bottom-0 left-0 w-full z-30 bg-[#0a0a0a]/15 backdrop-blur-md select-none border-t border-white/[0.02]">
+        <!-- p-4 en mobile (h ~80px) y p-8 en sm (h ~96px) emula la simetría exacta del footer del drawer -->
+        <div class="p-4 sm:p-8 max-w-xl mx-auto text-center">
+            
+            <!-- TEXTO CONCEPTUAL EN ESTRICTAS MINÚSCULAS -->
+            <p id="universal-meta-text" class="text-white/70 text-[9px] sm:text-[10px] font-medium leading-relaxed tracking-[0.18em] lowercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                A physical 1:1 territorial intervention in the forest. this bio-matrix traces a bird's geometric grid, transforming land-art modules into synchronized tracking anchors.
+            </p>
+
+        </div>
+    </footer>
 
 <script>
     const $ = (id) => document.getElementById(id);
@@ -320,18 +327,33 @@
         const drawer = $('biokinetic-drawer');
         const overlay = $('drawer-overlay');
         const body = document.body;
+        const infoFooter = document.querySelector('footer'); // Captura el panel inferior
         
         if (drawer.classList.contains('translate-x-full')) {
             drawer.classList.remove('translate-x-full');
             overlay.classList.remove('hidden');
             body.classList.add('drawer-active'); 
-            setTimeout(() => overlay.classList.add('opacity-100'), 10);
             
+            // Atenúa el footer al entrar al modo Indoor (Drawer abierto)
+            if (infoFooter) {
+                infoFooter.classList.add('opacity-0', 'pointer-events-none');
+                infoFooter.classList.remove('opacity-100');
+            }
+            
+            setTimeout(() => overlay.classList.add('opacity-100'), 10);
             updateTerminalTelemetry(window.selectedNodeFromMesh);
         } else {
             drawer.classList.add('translate-x-full');
+            overlay.classList.opacity-100;
             overlay.classList.remove('opacity-100');
             body.classList.remove('drawer-active'); 
+            
+            // Restablece el footer al regresar al modo Outdoor
+            if (infoFooter) {
+                infoFooter.classList.remove('opacity-0', 'pointer-events-none');
+                infoFooter.classList.add('opacity-100');
+            }
+            
             setTimeout(() => {
                 overlay.classList.add('hidden');
                 stopBiokineticLoop(); 
