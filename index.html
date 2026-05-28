@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link class="content-sourced" rel="icon" type="image/png" href="img/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MYCELIUM TECH-LAB</title>
+    <title>ZENERGY.WORLD // MYCELIUM TECH-LAB</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script>
@@ -31,28 +31,27 @@
             position: relative;
         } 
 
+        /* Optimización de Fondo Atmosférico Pura - Removiendo líneas de césped */
         #page-bg-overlay {
             position: fixed;
             inset: 0;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('img/grass.png');
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
+            /* Reemplazamos la textura lineal por un degradado de profundidad absoluto */
+            background: radial-gradient(circle at 50% 50%, rgba(15, 15, 15, 0.4) 0%, rgba(5, 5, 5, 0.95) 100%);
             z-index: -1;
             transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.6s ease;
         }
 
         .drawer-active #page-bg-overlay {
-            opacity: 0.08;
-            filter: grayscale(100%) brightness(30%);
+            opacity: 0.3;
+            filter: brightness(15%);
         }
         
         .glass { 
-            background: rgba(10, 10, 10, 0.85); 
-            border-left: 1px solid rgba(255, 255, 255, 0.05); 
-            backdrop-filter: blur(30px); 
-            -webkit-backdrop-filter: blur(30px);
-            box-shadow: -20px 0 60px rgba(0, 0, 0, 0.8);
+            background: rgba(8, 8, 8, 0.94); 
+            border-left: 1px solid rgba(255, 255, 255, 0.02); 
+            backdrop-filter: blur(40px); 
+            -webkit-backdrop-filter: blur(40px);
+            box-shadow: -20px 0 60px rgba(0, 0, 0, 0.95);
         }
 
         .drawer-btn {
@@ -70,51 +69,51 @@
             opacity: 1 !important;
             transform: scale(1.05);
             filter: brightness(1.4)
-                    drop-shadow(0 0 8px rgba(0, 60, 255, 0.95)) 
-                    drop-shadow(0 0 20px rgba(0, 110, 255, 0.75))
-                    drop-shadow(0 0 45px rgba(0, 70, 255, 0.45));
-        }
-
-        .group, button {
-            overflow: visible !important;
+                    drop-shadow(0 0 8px rgba(16, 185, 129, 0.8)) 
+                    drop-shadow(0 0 20px rgba(16, 185, 129, 0.4));
         }
 
         #mesh-container svg {
             transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.55)) 
-                    drop-shadow(0 4px 12px rgba(0, 0, 0, 0.40));
+            filter: drop-shadow(0 0 35px rgba(0, 0, 0, 0.9));
         }
 
         .scrollbar-none::-webkit-scrollbar { display: none; }
         .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
 
         @keyframes pulse-soft {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 1; fill: #ffffff; filter: drop-shadow(0 0 8px #fff); }
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.9; fill: #ffffff; filter: drop-shadow(0 0 4px #fff); }
         }
-        .pulse-animation { animation: pulse-soft 2s infinite ease-in-out; }
+        .pulse-animation { animation: pulse-soft 2.5s infinite ease-in-out; }
     </style>
 </head>
 <body class="antialiased selection:bg-white selection:text-black overflow-x-hidden bg-zenergia-black text-white">
 
-    <div id="page-bg-overlay" class="fixed inset-0 bg-cover bg-center z-0 opacity-15 pointer-events-none transition-opacity duration-1000" style="background-image: url('img/grass.png');"></div>
+    <!-- CAPA DE FONDO ATMOSFÉRICA SIN LÍNEAS -->
+    <div id="page-bg-overlay"></div>
     <div class="fixed inset-0 bg-gradient-to-b from-black via-transparent to-black z-0 pointer-events-none"></div>
 
-    <div id="drawer-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-md z-40 hidden opacity-0 transition-opacity duration-500" onclick="toggleDrawer()"></div>
+    <!-- OVERLAY DEL DRAWER -->
+    <div id="drawer-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-40 hidden opacity-0 transition-opacity duration-500" onclick="toggleDrawer()"></div>
 
-    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/15 backdrop-blur-md select-none">
+    <!-- NAVBAR UNIVERSAL UNIFICADO -->
+    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/40 backdrop-blur-md select-none border-b border-white/[0.01]">
         <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] relative">
             
+            <!-- EXTREMO IZQUIERDO: LOGO CORE -->
             <div class="flex items-center gap-3 cursor-pointer group justify-self-start p-2" onclick="window.location.reload()">
-                <img src="img/logo.png" class="w-5 h-5 img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="Zenergia Core"> 
+                <img src="img/logo.png" class="w-5 h-5 img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="Zenergy Core"> 
             </div>
 
+            <!-- CENTRO: CONCEPTO DINÁMICO -->
             <div class="justify-self-center text-center">
                 <span id="nav-center-text" class="text-white/70 text-[6.5px] sm:text-[8px] font-black tracking-[0.45em] whitespace-nowrap drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-opacity duration-500 ease-in-out">
-                    MATERIAL VAULT
+                    BIO-KINETIC INTERFACE
                 </span>
             </div>
                             
+            <!-- EXTREMO DERECHO: INTERFAZ DE ACTIVACIÓN -->
             <div class="justify-self-end">
                 <button id="z-dial-trigger" 
                      class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" 
@@ -127,106 +126,46 @@
         </div>
     </nav>
 
-    <!-- CAPA DE FONDO INTERMITENTE (OUTDOOR / INDOOR TRANSITION) -->
-    <div id="page-bg-overlay"></div>
-
-    <!-- OVERLAY INTEGRADO DEL DRAWER -->
-    <div id="drawer-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-md z-40 hidden opacity-0 transition-opacity duration-500" onclick="toggleDrawer()"></div>
-
-    <!-- UNIVERSAL NAVIGATION BAR -->
-    <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/15 backdrop-blur-md select-none">
-        <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] relative">
-            
-            <!-- EXTREMO IZQUIERDO: LOGO CORE -->
-            <div class="flex items-center gap-3 cursor-pointer group justify-self-start p-2" onclick="window.location.reload()">
-                <img src="img/logo.png" class="w-6 h-6 img-glow-transition opacity-70 group-hover:opacity-100 group-hover:rotate-180" alt="Zenergia Core"> 
-            </div>
-
-            <!-- CENTRO: CONCEPTO PURO -->
-            <div class="justify-self-center text-center">
-                <span class="text-white/80 text-[7px] sm:text-[9px] font-black tracking-[0.45em] whitespace-nowrap drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                    BIO-KINETIC INTERFACE
-                </span>
-            </div>
-                            
-            <!-- EXTREMO DERECHO: INTERFAZ DE ACTIVACIÓN -->
-            <div class="justify-self-end">
-                <button id="z-dial-trigger" 
-                     class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" 
-                     onclick="toggleDrawer()"
-                     aria-label="Open Navigation">
-                    <img src="img/back.png" class="w-6 h-6 object-contain opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Menu Trigger">
-                </button>
-            </div>
-
-        </div>
-    </nav>
-
-    <!-- DRAWER DE NAVEGACIÓN PURIFICADO -->
+    <!-- DRAWER DE NAVEGACIÓN -->
     <div id="biokinetic-drawer" class="fixed right-0 top-0 h-full w-[260px] sm:w-[320px] z-50 transform translate-x-full transition-transform duration-500 ease-in-out glass flex flex-col justify-between select-none">
         <div>
-            <!-- Cabecera del Drawer -->
+            <!-- Cabecera -->
             <div class="p-4 sm:p-6 flex justify-between items-center border-b border-white/5 w-full">
                 <div class="flex items-center font-bold">
                     <button id="z-dial" 
-                            onclick="scrollToSection('seasonal-node'); toggleDrawer();"
-                            class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] border border-white/10 bg-black/40 h-[30px] w-[100px] flex items-center justify-center rounded-sm backdrop-blur-sm select-none transition-all duration-300 hover:text-emerald-400 hover:border-emerald-500/30 focus:outline-none uppercase">
+                            onclick="scrollToSection('biokinetic-interface'); toggleDrawer();"
+                            class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] border border-white/10 bg-black/40 h-[30px] w-[110px] flex items-center justify-center rounded-sm backdrop-blur-sm transition-all duration-300 hover:text-emerald-400 hover:border-emerald-500/30 focus:outline-none uppercase">
                         --
                     </button>
                 </div>
 
-                <button onclick="toggleDrawer()" class="group flex items-center justify-center p-2 focus:outline-none transition-all duration-300 transform active:scale-95" aria-label="Close Menu">
+                <button onclick="toggleDrawer()" class="group flex items-center justify-center p-2 focus:outline-none transition-all duration-300" aria-label="Close Menu">
                     <img src="img/pace.png" class="w-5 h-5 object-contain img-glow-transition opacity-40 group-hover:opacity-100" alt="Close Menu">
                 </button>
             </div>
 
-<!-- Menú Minimalista con Lanzador de Terminal Interno -->
+            <!-- Menú Minimalista -->
             <div class="px-8 flex flex-col gap-6 mt-10">
-                
-                <!-- 1. Manifesto Traccionado -->
-                <button onclick="openPhilosophyModal(); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
+                <button onclick="openManifesto(); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
                     <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
                         MANIFESTO
                     </span>
                 </button>
 
-                <!-- 2. La Intervención Territorial -->
-                <button onclick="scrollToSection('seasonal-node'); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
+                <button onclick="scrollToSection('biokinetic-interface'); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
                     <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
                         BIO-KINETIC INTERFACE
                     </span>
                 </button>
 
-                <!-- 3. Biomecánica y Ecosistema (Z-Bricks) -->
-                <button onclick="scrollToSection('installation-node'); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
-                    <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
-                        NODE (Z-BRICK)
-                    </span>
-                </button>
-
-                <!-- Pulsor apuntando al Monitor de Dials Core -->
-                <button onclick="scrollToSection('dial-monitor'); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
-                    <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
-                        PULSOR
-                    </span>
-                </button>
-
-                <button onclick="scrollToSection('axis'); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
-                    <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
-                        AXIS
-                    </span>
-                </button>
-
-                <!-- 4. Archivo / Material Vault anclado a la sección oscura -->
-                <button onclick="scrollToSection('dial-monitor'); toggleDrawer();" class="drawer-btn w-full focus:outline-none group text-right">
+                <button onclick="scrollToSection('material-vault'); toggleDrawer();" class="drawer-btn w-full focus:outline-none group text-right">
                     <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
                         MATERIAL VAULT
                     </span>
                 </button>
-
             </div>
             
-            <!-- Terminal de Validación de Movimiento Integrado -->
+            <!-- Terminal de Validación -->
             <div class="px-8 mt-10 space-y-4">
                 <div class="border border-white/5 bg-black/40 p-4 rounded-sm backdrop-blur-sm">
                     <span class="text-[7px] font-mono tracking-[0.2em] text-white/40 block mb-2 uppercase">Z-DIAL INTERFACE KEY</span>
@@ -235,44 +174,45 @@
                 </div>
             </div>
 
-            <!-- Panel de Especificaciones -->
+            <!-- Panel de Especificaciones Dinámicas -->
             <div class="px-8 mt-6">
                 <div id="dynamic-node-spec" class="hidden border border-white/5 bg-white/[0.02] backdrop-blur-md rounded-sm p-4 space-y-2 transition-all duration-300">
                     <div class="flex justify-between items-center border-b border-white/5 pb-2">
-                        <span class="text-[7px] font-bold uppercase tracking-[0.2em] text-white/40">MESH</span>
+                        <span class="text-[7px] font-bold uppercase tracking-[0.2em] text-white/40">MESH NODE</span>
                         <span id="spec-id" class="text-[8px] font-mono font-bold text-white/80">NODE-T1-000</span>
                     </div>
                     <div class="flex justify-between items-center">
-                        <span class="text-[7px] font-bold uppercase tracking-[0.2em] text-white/40">TOKEN</span>
+                        <span class="text-[7px] font-bold uppercase tracking-[0.2em] text-white/40">TOKEN HASH</span>
                         <span id="spec-hash" class="text-[8px] font-mono font-bold text-white/60">0x0000</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Footer Minimalista -->
+        <!-- Footer Drawer -->
         <div class="p-8 border-t border-white/5 text-[8px] text-white/30 tracking-[0.25em] font-medium text-center">
             <a href="https://github.com/jalkn/zenergia" target="_blank" class="block uppercase hover:text-white/70 transition-colors">
                 by jalkn &copy; 2026
             </a>
         </div>
     </div>
-<main class="w-full h-[calc(100vh-148px)] sm:h-[calc(100vh-164px)] mt-[68px] mb-[80px] sm:mb-[96px] flex flex-col justify-center items-center overflow-hidden">
-        <section id="seasonal-node" class="w-full h-full bg-transparent flex justify-start sm:justify-center items-center overflow-x-auto overflow-y-hidden select-none scrollbar-none cursor-grab active:cursor-grabbing">
+
+    <!-- MAIN: CONTENEDOR DE LA BIO-MATRIZ -->
+    <main class="w-full h-[calc(100vh-148px)] sm:h-[calc(100vh-164px)] mt-[68px] mb-[80px] sm:mb-[96px] flex flex-col justify-center items-center overflow-hidden">
+        <section id="biokinetic-interface" class="w-full h-full bg-transparent flex justify-start sm:justify-center items-center overflow-x-auto overflow-y-hidden select-none scrollbar-none cursor-grab active:cursor-grabbing">
             <div id="mesh-container" class="w-full h-full max-h-full min-w-[760px] sm:min-w-0 sm:max-w-[840px] px-4 sm:px-8 relative z-10 flex justify-center items-center mx-auto transition-all duration-500">
-                </div>
+                <!-- Se inyecta dinámicamente img/barranquero-mesh.svg -->
+            </div>
         </section>
     </main>
 
-    <div id="philosophy-modal" class="fixed inset-0 z-50 bg-[#050505]/95 backdrop-blur-md hidden justify-center items-center p-6 select-none transition-all duration-500 opacity-0">
+    <!-- MODAL MANIFESTO -->
+    <div id="manifesto" class="fixed inset-0 z-50 bg-[#050505]/95 backdrop-blur-md hidden justify-center items-center p-6 select-none transition-all duration-500 opacity-0">
         <div class="max-w-2xl w-full flex flex-col items-center gap-10 text-center relative px-4">
             
-            <div class="flex items-center justify-center cursor-pointer group p-2 relative" onclick="closePhilosophyModal()">
-                <img src="img/logo.png" class="w-6 h-6 img-glow-transition opacity-30 group-hover:opacity-60 group-hover:rotate-180" alt="Zenergia Core Base"> 
-                
-                <span class="absolute inset-0 flex items-center justify-center text-[10px] font-mono font-light text-white/40 group-hover:text-white transition-colors duration-300 pointer-events-none tracking-normal">
-                    &times;
-                </span>
+            <div class="flex items-center justify-center cursor-pointer group p-2 relative" onclick="closeManifesto()">
+                <img src="img/logo.png" class="w-6 h-6 img-glow-transition opacity-30 group-hover:opacity-60 group-hover:rotate-180" alt="Zenergy Core Base"> 
+                <span class="absolute inset-0 flex items-center justify-center text-[10px] font-mono font-light text-white/40 group-hover:text-white transition-colors duration-300 pointer-events-none">&times;</span>
             </div>
             
             <div class="space-y-8 font-body max-w-xl">
@@ -281,55 +221,49 @@
                     I believe the body is the unconscious mind—a space of pure nature and raw creativity currently suppressed by digital noise. 
                     To keep this gap open, we code the functional movements of the body into a live language.
                 </p>
-
                 <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.15em] font-medium max-w-xl normal-case leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] text-center">
                     The unconscious mind operates through kinetic traction: <span class="text-white font-bold">attracting and pushing away thoughts</span>. 
                     By mapping these sequences into mechanical blocks, we ignite constant creativity. 
                     Inside the nodes, integrated z_dials beats act as passive piezo-electrical interfaces—converting the raw tension of the footsteps into micro-voltage stimuli that accelerate the bio-welding of the living mycelium.
                 </p>
             </div>
-
         </div>
     </div>
 
-<section id="dial-monitor" class="py-16 flex flex-col items-center justify-center relative bg-transparent overflow-hidden">
-                
+    <!-- SECCIÓN CENTRAL DE TELEMETRÍA: MATERIAL VAULT -->
+    <section id="material-vault" class="py-32 flex flex-col items-center justify-center relative bg-transparent overflow-hidden border-t border-white/[0.02]">
         <div class="relative z-10 flex flex-col items-center w-full px-4 text-center gap-6">
             
+            <!-- CONTENEDOR DEL EMPAQUE FÍSICO CIRCULAR -->
             <div class="relative w-full max-w-[240px] md:max-w-[260px] aspect-square select-none cursor-pointer group">
-                <div class="w-full h-full rounded-full bg-[#0a0a0a] border border-white/10 p-1 relative overflow-hidden transition-all duration-500 hover:border-white/30 shadow-[0_0_30px_rgba(0,0,0,0.7)]">
-                    
+                <div class="w-full h-full rounded-full bg-[#0a0a0a] border border-white/10 p-1 relative overflow-hidden transition-all duration-500 hover:border-white/30 shadow-[0_0_30px_rgba(0,0,0,0.8)]">
                     <div class="absolute inset-0 bg-cover bg-center opacity-5" style="background-image: url('img/miscelio.png');"></div>
-
                     <div class="absolute inset-0 flex items-center justify-center p-[8%] z-10">
                         <svg viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/40 stroke-[1.2] group-hover:stroke-white/70 transition-all duration-500">
                             <defs>
                                 <path id="textPath-top" d="M 45,200 A 155,155 0 0,1 355,200" />
                                 <path id="textPath-bottom" d="M 45,200 A 155,155 0 0,0 355,200" />
                             </defs>
-
                             <text class="fill-white/80 font-black text-[15px] tracking-[0.45em] uppercase">
                                 <textPath id="laser-variant-title" href="#textPath-top" startOffset="50%" text-anchor="middle">PULSOR FOCUS</textPath>
                             </text>
-
                             <g class="opacity-20 stroke-[1.2]">
                                 <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" />
                                 <path d="M 110,120 Q 200,150 290,120" />
                                 <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
                             </g>
-
                             <text id="big-dial" x="200" y="218" font-weight="900" text-anchor="middle" class="fill-white font-black text-[46px] tracking-[0.05em] drop-shadow-[0_0_12px_rgba(255,255,255,0.1)] uppercase">
                                 --
                             </text>
-
                             <text class="fill-white/40 font-black text-[11px] tracking-[0.4em] uppercase">
-                                <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">ZENERGIA.WORLD &bull; TECH-LAB</textPath>
+                                <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">ZENERGY.WORLD &bull; 3025333130</textPath>
                             </text>
                         </svg>
                     </div>
                 </div>
             </div>
 
+            <!-- SELECTOR DE VARIANTES -->
             <div class="flex items-center justify-center gap-2 text-[8px] sm:text-[9px] tracking-[0.25em] font-black uppercase z-30">
                 <span id="opt-focus" onclick="seleccionarVariante('FOCUS')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/60 backdrop-blur-md rounded-xs text-white border border-white/60 shadow-[0_0_15px_rgba(255,255,255,0.15)]">focus</span>
                 <span id="opt-zen" onclick="seleccionarVariante('ZEN')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-xs text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80">zen</span>
@@ -337,12 +271,14 @@
                 <span id="opt-core" onclick="seleccionarVariante('CORE')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-xs text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80">core</span>
             </div>
 
+            <!-- DESCRIPCIÓN DE BENEFICIO UX -->
             <div class="w-full max-w-md px-4 mt-2">
                 <p id="ux-benefit-desc" class="text-white/50 text-[9px] font-medium tracking-[0.18em] leading-relaxed lowercase">
                     pulsor funcional optimizado para el aislamiento de ruido cognitivo y aceleración de enfoque.
                 </p>
             </div>
 
+            <!-- DISPARADOR DE COMPRA -->
             <button onclick="adquirirNodo('PULSOR_CAPSULAS')" 
                     class="px-7 py-3 mt-2 border border-white/15 bg-[#0a0a0a]/40 text-white/70 font-black text-[9px] tracking-[0.35em] uppercase hover:bg-white hover:text-black hover:border-white transition-all duration-400 rounded-xs cursor-pointer">
                 ordenar pulsor
@@ -350,10 +286,11 @@
         </div>
     </section>
 
-    <footer id="dynamic-footer" class="fixed bottom-0 left-0 w-full z-30 bg-[#0a0a0a]/15 backdrop-blur-md select-none border-t border-white/[0.02] transition-opacity duration-500">
+    <!-- PANEL DE INFORMACIÓN (FOOTER FIJO) -->
+    <footer id="dynamic-footer" class="fixed bottom-0 left-0 w-full z-30 bg-[#0a0a0a]/15 backdrop-blur-md select-none border-t border-white/[0.01] transition-opacity duration-500">
         <div class="p-4 sm:p-8 max-w-xl mx-auto text-center">
             <p id="universal-meta-text" class="text-white/70 text-[9px] sm:text-[10px] font-medium leading-relaxed tracking-[0.18em] lowercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-                A physical 1:1 territorial intervention in the forest. this bio-matrix traces a bird's geometric grid, transforming land-art modules into synchronized tracking anchors.
+                A physical 1:1 territorial intervention in the forest tracing a bird's geometric grid, transforming mycellium nodes into synchronized tracking anchors.
             </p>
         </div>
     </footer>
@@ -362,15 +299,10 @@
     const $ = (id) => document.getElementById(id);
     const PHI = 1.618033;
 
-    // Estado de la interfaz y telemetría global
     window.selectedNodeFromMesh = null;
     let biokineticInterval = null;
     let varianteActiva = "FOCUS";
 
-    /**
-     * Sistema de Telemetría Biocinética (Ciclo de Tiempo Unificado)
-     * Alimenta simultáneamente el botón de navegación del drawer y el ojo central del empaque físico.
-     */
     function updateZ() {
         if (window.selectedNodeFromMesh) return;
 
@@ -381,34 +313,23 @@
         const deg = (now.getHours() * 15) + (now.getMinutes() * 0.25);
         let acciones = 'UL'; 
 
-        if (deg >= 90 && deg < 180) {
-            acciones = 'PL';  
-        } 
-        else if (deg >= 180 && deg < 270) {
-            acciones = 'LST'; 
-        } 
-        else if (deg >= 270) {
-            acciones = 'US';  
-        }
+        if (deg >= 90 && deg < 180) acciones = 'PL';  
+        else if (deg >= 180 && deg < 270) acciones = 'LST'; 
+        else if (deg >= 270) acciones = 'US';  
 
         const setsRaw = Math.floor(Math.abs(Math.sin((deg * Math.PI) / 180)) * 6) + 2;
         const sets = String(setsRaw).padStart(2, '0');
         const repsRaw = Math.floor(((now.getMinutes() + 1) * PHI) % 8) + 3;
         const reps = String(repsRaw).padStart(2, '0');
 
-        const setsFiltrado = parseInt(sets, 10).toString();
-        const repsFiltrado = parseInt(reps, 10).toString();
-
-        const coordenadaBiocinética = `${setsFiltrado}${acciones}${repsFiltrado}`;
+        const coordenadaBiocinética = `${parseInt(sets, 10)}${acciones}${parseInt(reps, 10)}`;
         
-        // 1. Sincronizar el componente del Drawer Lateral
         if (zDial) {
             zDial.innerText = coordenadaBiocinética;
             zDial.classList.remove('text-emerald-400', 'border-emerald-500/20');
             zDial.classList.add('text-white/80', 'border-white/10');
         }
 
-        // 2. Sincronizar el Dial Alfanumérico sobre el Empaque en Tiempo Real
         if (bigDial) {
             bigDial.textContent = coordenadaBiocinética;
         }
@@ -424,9 +345,6 @@
         if (biokineticInterval) clearInterval(biokineticInterval);
     }
 
-    /**
-     * Intérprete de Comandos de Movimiento de la Terminal
-     */
     if ($('z-terminal-input')) {
         $('z-terminal-input').addEventListener('input', (e) => {
             const val = e.target.value;
@@ -473,14 +391,11 @@
         }
     }
 
-    /**
-     * Control del Drawer Lateral de Navegación
-     */
     function toggleDrawer() {
         const drawer = $('biokinetic-drawer');
         const overlay = $('drawer-overlay');
         const body = document.body;
-        const infoFooter = document.querySelector('footer');
+        const infoFooter = $('dynamic-footer');
         
         if (!drawer || !overlay) return;
 
@@ -490,7 +405,6 @@
             body.classList.add('drawer-active'); 
             if (infoFooter) {
                 infoFooter.classList.add('opacity-0', 'pointer-events-none');
-                infoFooter.classList.remove('opacity-100');
             }
             setTimeout(() => overlay.classList.add('opacity-100'), 10);
             updateTerminalTelemetry(window.selectedNodeFromMesh);
@@ -500,7 +414,6 @@
             body.classList.remove('drawer-active'); 
             if (infoFooter) {
                 infoFooter.classList.remove('opacity-0', 'pointer-events-none');
-                infoFooter.classList.add('opacity-100');
             }
             setTimeout(() => {
                 overlay.classList.add('hidden');
@@ -510,25 +423,18 @@
         }
     }
 
-    /**
-     * Controlador de Interfaz para el Material Vault (Zenergia Core)
-     * Transiciona el grabado perimetral superior y textos informativos sin interrumpir el flujo temporal continuo.
-     */
     function seleccionarVariante(variante) {
         varianteActiva = variante.toUpperCase();
         
-        // 1. Cambia el grabado láser superior embebido en el SVG del empaque
-        if (document.getElementById('laser-variant-title')) {
-            document.getElementById('laser-variant-title').textContent = `PULSOR ${varianteActiva}`;
+        if ($('laser-variant-title')) {
+            $('laser-variant-title').textContent = `PULSOR ${varianteActiva}`;
         }
         
-        // 2. Forzar refresco inmediato de los componentes de telemetría para homogeneidad visual
         updateZ();
         
-        // 3. Renderizar estados visuales de la botonera de comandos (Micro-padding px-4 py-1.5)
         const opciones = ['FOCUS', 'ZEN', 'STAMINA', 'CORE'];
         opciones.forEach(opt => {
-            const el = document.getElementById(`opt-${opt.toLowerCase()}`);
+            const el = $(`opt-${opt.toLowerCase()}`);
             if (el) {
                 if (opt === varianteActiva) {
                     el.className = "cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/60 backdrop-blur-md rounded-xs text-white border border-white/60 shadow-[0_0_15px_rgba(255,255,255,0.15)]";
@@ -538,7 +444,6 @@
             }
         });
 
-        // 4. Actualización líquida de los copies de impacto funcional resumido
         const varianteData = {
             'FOCUS': 'pulsor funcional optimizado para el aislamiento de ruido cognitivo y aceleración de enfoque.',
             'ZEN': 'pulsor funcional optimizado para la modulación del estrés oxidativo y estabilización del ciclo nocturno.',
@@ -546,26 +451,23 @@
             'CORE': 'pulsor funcional optimizado para el blindaje homeostático y la respuesta inmunológica adaptativa.'
         };
 
-        if (document.getElementById('ux-benefit-desc') && varianteData[varianteActiva]) {
-            document.getElementById('ux-benefit-desc').textContent = varianteData[varianteActiva];
+        if ($('ux-benefit-desc') && varianteData[varianteActiva]) {
+            $('ux-benefit-desc').textContent = varianteData[varianteActiva];
         }
 
         if (navigator.vibrate) navigator.vibrate(15);
     }
 
-    /**
-     * Modales y Desplazamiento de Interfaz
-     */
-    function openPhilosophyModal() {
-        const modal = $('philosophy-modal');
+    function openManifesto() {
+        const modal = $('manifesto');
         if (!modal) return;
         modal.classList.remove('hidden');
         modal.classList.add('flex');
         setTimeout(() => modal.classList.remove('opacity-0'), 10);
     }
 
-    function closePhilosophyModal() {
-        const modal = $('philosophy-modal');
+    function closeManifesto() {
+        const modal = $('manifesto');
         if (!modal) return;
         modal.classList.add('opacity-0');
         setTimeout(() => {
@@ -579,36 +481,17 @@
         if (target) target.scrollIntoView({ behavior: 'smooth' });
     }
 
-    function scrollToNodeID(nodeNumber) {
-        const formattedNode = String(nodeNumber).padStart(3, '0');
-        window.selectedNodeFromMesh = formattedNode;
-        toggleDrawer();
-    }
-
-    /**
-     * Protocolo de Despacho y Automatización Hacia Terminal Externa (WhatsApp)
-     */
     function adquirirNodo(tipoInyeccion) {
-        // Extrae dinámicamente la coordenada de tiempo actual renderizada sobre el empaque
-        const currentHash = document.getElementById('big-dial') ? document.getElementById('big-dial').textContent.trim() : "--";
+        const currentHash = $('big-dial') ? $('big-dial').textContent.trim() : "--";
         const nodeParam = window.selectedNodeFromMesh ? `\n• Nodo Land-Art: #${window.selectedNodeFromMesh}` : "";
         const whatsappBaseUrl = "https://wa.me/573025333130";
         let message = "";
 
         if (tipoInyeccion === 'PULSOR_CAPSULAS') {
             message = encodeURIComponent(
-                `[ZENERGIA] Orden de Compra\n` +
+                `[ZENERGY.WORLD] Orden de Compra\n` +
                 `-----------------------------------\n` +
                 `• Acción: Adquirir MATERIAL VAULT // PULSOR ${varianteActiva}${nodeParam}\n` +
-                `• Código de Registro: #${currentHash}\n` +
-                `• Valor T1: $70.000 COP\n` +
-                `• Sistema: Zenergia Mycelium Tech-Lab`
-            );
-        } else if (tipoInyeccion === 'Z_BRICK_DIRECTO') {
-            message = encodeURIComponent(
-                `[ZENERGIA] Orden de Compra\n` +
-                `-----------------------------------\n` +
-                `• Acción: Adquirir Z-Brick Físico Directo (21x13cm)\n` +
                 `• Código de Registro: #${currentHash}\n` +
                 `• Valor T1: $70.000 COP\n` +
                 `• Sistema: Zenergia Mycelium Tech-Lab`
@@ -619,50 +502,39 @@
         window.open(`${whatsappBaseUrl}?text=${message}`, '_blank');
     }
 
-/**
-     * Inicialización del Ecosistema de UI e Intersection Observer Interno
-     */
     document.addEventListener("DOMContentLoaded", () => {
         startBiokineticLoop();
         
         fetch('img/barranquero-mesh.svg')
             .then(response => response.text())
             .then(data => {
-                const container = document.getElementById('mesh-container');
+                const container = $('mesh-container');
                 if (container) container.innerHTML = data;
             })
             .catch(err => console.error('[-] Error loading bio-matrix:', err));
 
-        // INTERSECTION OBSERVER COHESIVO: Mutación de identidad del Nav y ocultación del Footer
-        const dialMonitorSection = document.getElementById('dial-monitor');
-        const navCenterText = document.getElementById('nav-center-text');
-        const dynamicFooter = document.getElementById('dynamic-footer');
+        const materialVaultSection = $('material-vault');
+        const navCenterText = $('nav-center-text');
+        const dynamicFooter = $('dynamic-footer');
 
-        if (dialMonitorSection) {
-            const observerOptions = {
-                root: null,
-                threshold: 0.15 // Se activa al visualizar un 15% del Material Vault
-            };
+        if (materialVaultSection) {
+            const observerOptions = { root: null, threshold: 0.15 };
 
             const navObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // 1. Transición del Nav: Desvanecer, cambiar texto a 'material vault' y volver a mostrar
                         if (navCenterText) {
                             navCenterText.style.opacity = '0';
                             setTimeout(() => {
                                 navCenterText.textContent = 'material vault';
                                 navCenterText.style.opacity = '1';
-                            }, 250); // Sincronizado a la mitad de la transición CSS
+                            }, 250);
                         }
-                        
-                        // 2. Ocultar footer fijo por completo en esta sesión
                         if (dynamicFooter) {
                             dynamicFooter.style.opacity = '0';
                             dynamicFooter.style.pointerEvents = 'none';
                         }
                     } else {
-                        // 3. Retorno al Nav original: Desvanecer, restaurar 'bio-kinetic interface' y mostrar
                         if (navCenterText) {
                             navCenterText.style.opacity = '0';
                             setTimeout(() => {
@@ -670,8 +542,6 @@
                                 navCenterText.style.opacity = '1';
                             }, 250);
                         }
-                        
-                        // 4. Devolver visibilidad al footer al salir de la sección
                         if (dynamicFooter) {
                             dynamicFooter.style.opacity = '1';
                             dynamicFooter.style.pointerEvents = 'auto';
@@ -680,7 +550,7 @@
                 });
             }, observerOptions);
 
-            navObserver.observe(dialMonitorSection);
+            navObserver.observe(materialVaultSection);
         }
     });
 </script>
