@@ -76,7 +76,7 @@ def generate_biomesh(image_path, output_svg_path, grid_size=13):
 
 if __name__ == "__main__":
     generate_biomesh(
-        image_path="img/t1.png", 
+        image_path="img/1.png", 
         output_svg_path="img/barranquero-mesh.svg", 
         grid_size=13  # Mantenemos 32 para una densidad estelar impecable y limpia
     )
