@@ -1,4 +1,4 @@
-# 🍄 zenrgy.world tech-lab
+# 🍄 zenrgy.world TECH-LAB
 
 We orchestrate the transition toward regenerative architecture through the production of living materials and resonance-based biokinetic validation.
 
