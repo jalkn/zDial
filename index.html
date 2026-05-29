@@ -394,6 +394,53 @@
     let biokineticInterval = null;
     let varianteActiva = "FOCUS";
 
+    // --- SYSTEM AUDIO MULTI-CHANNEL CONTROLLER ---
+    let activeAudioChannels = {};
+
+    function playBeat(audioPath) {
+        // Si el canal ya existe y se está reproduciendo, lo reiniciamos para evitar latencia
+        if (activeAudioChannels[audioPath]) {
+            activeAudioChannels[audioPath].currentTime = 0;
+        } else {
+            activeAudioChannels[audioPath] = new Audio(audioPath);
+        }
+
+        activeAudioChannels[audioPath].play()
+            .then(() => triggerPulsorVisuals())
+            .catch(err => console.warn(`[!] Audio initiation deferred: ${err.message}`));
+
+        if (navigator.vibrate) navigator.vibrate(20);
+    }
+
+    function playFullProtocol() {
+        // Disparador maestro: Ejecuta secuencial o simultáneamente según la lógica del laboratorio
+        const tracks = ['img/Pbeat.wav', 'img/Ubeat.wav', 'img/Lbeat.wav', 'img/Sbeat.wav'];
+        tracks.forEach((track, index) => {
+            setTimeout(() => {
+                playBeat(track);
+            }, index * 150); // Pequeño delay de 150ms entre igniciones para crear polirritmia biocinética
+        });
+    }
+
+    function triggerPulsorVisuals() {
+        // Animación de picos en tiempo real para las barras del núcleo central (id-wave-1 a 5)
+        for (let i = 1; i <= 5; i++) {
+            const bar = document.querySelector(`.id-wave-${i}`);
+            if (bar) {
+                const randomHeight = Math.floor(Math.random() * 16) + 6; // Oscilación entre 6px y 22px
+                bar.style.height = `${randomHeight}px`;
+                bar.style.backgroundColor = 'rgba(52, 211, 153, 0.9)'; // Tinte esmeralda de ignición activa
+                
+                setTimeout(() => {
+                    // Retorno suave al estado base biomecánico
+                    bar.style.height = i % 2 === 0 ? '20px' : '12px';
+                    bar.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+                }, 300);
+            }
+        }
+    }
+
+    // --- CLOCK WORK & VECTOR ARCS KINETICS ---
     function updateZ() {
         if (window.selectedNodeFromMesh) return;
 
@@ -402,14 +449,12 @@
         const zDialFooter = $('z-dial-footer'); 
         const bigDial = $('big-dial'); 
 
-        // Referencias vectoriales de las 3 ondas puras
         const wOuter = $('wave-outer');
         const wMid = $('wave-mid');
         const wInner = $('wave-inner');
 
         const deg = (now.getHours() * 15) + (now.getMinutes() * 0.25);
         
-        // Mapeo real del protocolo por cuadrantes
         let acciones = 'UL'; 
         if (deg >= 90 && deg < 180) {
             acciones = 'PL';  
@@ -442,7 +487,6 @@
             bigDial.textContent = coordenadaBiocinética;
         }
 
-        // --- INTERACCIÓN BIOCINÉTICA DE LAS ONDAS VECTORIALES ---
         if (wOuter && wMid && wInner) {
             const timeFactor = now.getSeconds() + (now.getMilliseconds() / 1000);
             const pulse = Math.abs(Math.sin(timeFactor * 0.8));
@@ -519,26 +563,7 @@
         if (biokineticInterval) clearInterval(biokineticInterval);
     }
 
-    if ($('z-terminal-input')) {
-        $('z-terminal-input').addEventListener('input', (e) => {
-            const val = e.target.value;
-            const feedback = $('terminal-feedback');
-            if (!feedback) return;
-            
-            if (val === '001') {
-                feedback.innerHTML = "cmd: <span class='text-white font-bold uppercase'>pull (draw)</span> -> pulling thought sequence into mind canvas.";
-            } else if (val === '002') {
-                feedback.innerHTML = "cmd: <span class='text-white font-bold uppercase'>push (press)</span> -> vanishing external digital noise.";
-            } else if (val === '003') {
-                feedback.innerHTML = "cmd: <span class='text-white font-bold uppercase'>traction</span> -> constant ignition gap activated.";
-            } else if (val.length === 3) {
-                feedback.innerHTML = "err: movement token unrecognized. system idle.";
-            } else {
-                feedback.innerHTML = "awaiting movement cipher...";
-            }
-        });
-    }
-
+    // --- INTERFACE INTERACTION LAYERS ---
     function toggleDrawer() {
         const drawer = $('biokinetic-drawer');
         const overlay = $('drawer-overlay');
@@ -650,6 +675,7 @@
         window.open(`${whatsappBaseUrl}?text=${message}`, '_blank');
     }
 
+    // --- DOM INITIALIZATION & OBSERVERS ---
     document.addEventListener("DOMContentLoaded", () => {
         startBiokineticLoop();
         
@@ -661,9 +687,11 @@
             })
             .catch(err => console.error('[-] Error loading bio-matrix:', err));
 
-    // Buscas esta sección dentro de la inicialización de observadores en tu index.html
         const materialVaultSection = document.getElementById('material-vault');
+        const navCenterText = document.getElementById('nav-center-text');
+        
         if (materialVaultSection) {
+            const observerOptions = { threshold: 0.3 };
             const navObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -674,7 +702,6 @@
                                 navCenterText.style.opacity = '1';
                             }, 250);
                         }
-                        // ELIMINADO: dynamicFooter.style.opacity = '0' para prevenir que se oculte en vault
                     } else {
                         if (navCenterText) {
                             navCenterText.style.opacity = '0';
@@ -683,7 +710,6 @@
                                 navCenterText.style.opacity = '1';
                             }, 250);
                         }
-                        // ELIMINADO: dynamicFooter.style.opacity = '1'
                     }
                 });
             }, observerOptions);
