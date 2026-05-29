@@ -142,28 +142,49 @@
             </div>
         </div>
 
-        <!-- BOTTOM CONTROL INTERFACE: ALPHANUMERIC CLUSTER + LINKS + TELEMETRY -->
-        <div class="p-8 flex flex-col justify-end flex-grow gap-8">
+        <!-- BOTTOM CONTROL INTERFACE: ASYMMETRIC SOLID ARCS + INTEGRATED CLUSTER -->
+        <div class="p-6 sm:p-8 flex flex-col justify-end flex-grow gap-6 sm:gap-8">
             
-            <!-- Alphanumeric Ticker Dial (Positioned on top of navigation triggers) -->
-            <div class="w-full flex flex-col items-center justify-center">
-                <button id="z-dial" 
-                        onclick="scrollToSection('material-vault'); toggleDrawer();"
-                        class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] border border-white/10 bg-black/40 h-[34px] w-full flex items-center justify-center rounded-sm backdrop-blur-sm transition-all duration-300 hover:text-emerald-400 hover:border-emerald-500/30 focus:outline-none uppercase">
-                    --
-                </button>
+            <!-- RECONSTRUCTED VECTOR CLUSTER (SOLID ASYMMETRIC ARCS OVER Z-DIAL) -->
+            <div class="w-full flex flex-col items-center justify-center relative aspect-square group max-w-[240px] sm:max-w-[280px] mx-auto">
+                
+                <!-- Interactive Vector Arcs (Solid paths based on Screenshot 2026-05-28 at 11.52.52 PM.png style) -->
+                <div class="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none z-10 p-[6%]">
+                    <svg viewBox="0 0 200 200" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_25px_rgba(255,255,255,0.35)] group-hover:drop-shadow-[0_0_30px_rgba(52,211,153,0.4)]">
+                        <!-- Outer Wave Arc (Solid & Bold) -->
+                        <path id="wave-outer" d="M 100 25 A 75 75 0 0 1 175 100" class="stroke-white/70 fill-none stroke-[5] transition-all duration-500 group-hover:stroke-emerald-400" stroke-linecap="round" />
+                        <!-- Mid Wave Arc (Solid & Bold) -->
+                        <path id="wave-mid" d="M 100 45 A 55 55 0 1 1 100 155" class="stroke-white/50 fill-none stroke-[4.5] transition-all duration-500 group-hover:stroke-white/90" stroke-linecap="round" />
+                        <!-- Inner Wave Arc (Solid & Bold) -->
+                        <path id="wave-inner" d="M 100 65 A 35 35 0 0 0 65 100" class="stroke-white/30 fill-none stroke-[4] transition-all duration-500 group-hover:stroke-white" stroke-linecap="round" />
+                    </svg>
+                </div>
+
+                <!-- Alphanumeric Ticker Dial -->
+                <div class="w-full relative z-20 mt-auto">
+                    <button id="z-dial" 
+                            onclick="scrollToSection('material-vault'); toggleDrawer();"
+                            class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] border border-white/10 bg-black/60 h-[34px] w-full flex items-center justify-center rounded-sm backdrop-blur-sm transition-all duration-300 hover:text-emerald-400 hover:border-emerald-500/30 focus:outline-none uppercase">
+                        --
+                    </button>
+                </div>
             </div>
 
-            <!-- Minimalist Menu Links (Justified at the bottom baseline) -->
-            <div class="flex flex-col gap-5">
-                <button onclick="openManifesto(); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
-                    <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
+            <!-- Telemetry Live Display Badge (Integrated inside lower cluster layout) -->
+            <div class="w-full glass py-2.5 px-4 border-[0.5px] border-white/20 bg-black/20 backdrop-blur-[6px] rounded-sm text-white/90 font-mono text-[9px] tracking-[0.2em] uppercase text-center shadow-lg">
+                <span id="telemetry-display">...</span>
+            </div>
+
+            <!-- Single-Line Minimalist Menu Links -->
+            <div class="flex flex-row justify-between items-center w-full border-t border-b border-white/[0.04] py-3.5 px-1 mt-2">
+                <button onclick="openManifesto(); toggleDrawer();" class="drawer-btn focus:outline-none group">
+                    <span class="text-[9px] font-bold tracking-[0.25em] text-white/50 group-hover:text-white group-hover:translate-x-0.5 block transition-all duration-300 uppercase">
                         MANIFESTO
                     </span>
                 </button>
 
-                <button onclick="scrollToSection('biokinetic-interface'); toggleDrawer();" class="drawer-btn w-full text-right focus:outline-none group">
-                    <span class="text-[10px] font-bold tracking-[0.25em] text-white/60 group-hover:text-white group-hover:-translate-x-1 block transition-all duration-300 uppercase">
+                <button onclick="scrollToSection('biokinetic-interface'); toggleDrawer();" class="drawer-btn focus:outline-none group">
+                    <span class="text-[9px] font-bold tracking-[0.25em] text-white/50 group-hover:text-white group-hover:-translate-x-0.5 block transition-all duration-300 uppercase">
                         GALLERY
                     </span>
                 </button>
@@ -185,7 +206,7 @@
         </div>
 
         <!-- Drawer Footer -->
-        <div class="p-8 border-t border-white/5 text-[8px] text-white/30 tracking-[0.25em] font-medium text-center">
+        <div class="p-6 border-t border-white/5 text-[8px] text-white/30 tracking-[0.25em] font-medium text-center">
             <a href="https://github.com/jalkn/zenergy" target="_blank" class="block uppercase hover:text-white/70 transition-colors">
                 by jalkn &copy; 2026
             </a>
