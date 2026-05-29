@@ -4,13 +4,6 @@ We orchestrate the transition toward regenerative architecture through the produ
 
 ---
 
-## 🌐 Founder's Intent: Scalability & Resonance
-The technical architecture (Backend/Z-ARPA) is strictly maintained in **English** to ensure global interoperability and senior-level auditing. 
-
-The **Frontend** preserves the founder's native Spanish for the **PULS Framework** and **Organism Structure** (MICRO_MACRO), using "poetic deconstruction" to maintain ancestral resonance within the Santa Elena ecosystem.
-
----
-
 ## 🧬 PULSOR Protocol: Absolute Solar Drift
 The system completely eliminates dependence on conventional horizontal time, organizing biometric volume around a frequency column synchronized with astronomical and rotational coordinates:
 
