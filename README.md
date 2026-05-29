@@ -1,4 +1,4 @@
-# 🍄 ZENERGIA MYCELIUM TECH-LAB
+# 🍄 zenrgy.world tech-lab
 
 We orchestrate the transition toward regenerative architecture through the production of living materials and resonance-based biokinetic validation.
 
