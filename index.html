@@ -130,17 +130,26 @@
 <!-- NAVIGATION DRAWER (FULL SCREEN INTERACTIVE CANVAS) -->
     <div id="biokinetic-drawer" class="fixed right-0 top-0 h-full w-full z-50 transform translate-x-full transition-transform duration-500 ease-in-out glass flex flex-col justify-between select-none">
         
-        <!-- TOP SECTION: HEADER WITH INTEGRATED ALPHANUMERIC CODE -->
+<!-- TOP SECTION: HEADER WITH INTEGRATED LOGO & ALPHANUMERIC CODE -->
         <div>
             <div class="p-4 sm:p-6 flex justify-between items-center border-b border-white/5 w-full min-h-[63px] sm:min-h-[69px]">
-                <!-- Alphanumeric Code Left Header -->
-                <div class="flex items-center">
+                
+                <!-- Left Header: Core Logo & Alphanumeric Code -->
+                <div class="flex items-center gap-3">
+                    <!-- Integrated Zenergy Core Logo -->
+                    <div class="flex items-center cursor-pointer group p-1" onclick="window.location.reload()">
+                        <img src="img/logo.png" 
+                             class="w-5 h-5 img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" 
+                             alt="Zenergy Core Drawer"> 
+                    </div>
+                    <!-- Alphanumeric Code -->
                     <button id="z-dial" 
                             onclick="scrollToSection('material-vault'); toggleDrawer();"
-                            class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] bg-transparent border-0 focus:outline-none uppercase hover:text-emerald-400 transition-colors">
+                            class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] bg-transparent border-0 focus:outline-none uppercase hover:text-emerald-400 transition-colors ml-1">
                         --
                     </button>
                 </div>
+
                 <!-- Close Button -->
                 <button onclick="toggleDrawer()" class="group flex items-center justify-center p-2 focus:outline-none transition-all duration-300" aria-label="Close Menu">
                     <img src="img/pace.png" class="w-5 h-5 object-contain img-glow-transition opacity-40 group-hover:opacity-100" alt="Close Menu">
