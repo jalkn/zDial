@@ -130,30 +130,31 @@
 <!-- NAVIGATION DRAWER (FULL SCREEN INTERACTIVE CANVAS) -->
     <div id="biokinetic-drawer" class="fixed right-0 top-0 h-full w-full z-50 transform translate-x-full transition-transform duration-500 ease-in-out glass flex flex-col justify-between select-none">
         
-<!-- TOP SECTION: HEADER WITH INTEGRATED LOGO & ALPHANUMERIC CODE -->
-        <div>
-            <div class="p-4 sm:p-6 flex justify-between items-center border-b border-white/5 w-full min-h-[63px] sm:min-h-[69px]">
+        <!-- TOP SECTION: UNIFIED SIMMETRIC HEADER (3-COLUMN GRID) -->
+        <div class="border-b border-white/5 w-full bg-[#0a0a0a]/40 backdrop-blur-md">
+            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] relative">
                 
-                <!-- Left Header: Core Logo & Alphanumeric Code -->
-                <div class="flex items-center gap-3">
-                    <!-- Integrated Zenergy Core Logo -->
-                    <div class="flex items-center cursor-pointer group p-1" onclick="window.location.reload()">
-                        <img src="img/logo.png" 
-                             class="w-5 h-5 img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" 
-                             alt="Zenergy Core Drawer"> 
-                    </div>
-                    <!-- Alphanumeric Code -->
+                <!-- EXTREMO IZQUIERDO: LOGO CORE -->
+                <div class="flex items-center cursor-pointer group justify-self-start p-2" onclick="window.location.reload()">
+                    <img src="img/logo.png" class="w-5 h-5 img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="Zenergy Core Drawer"> 
+                </div>
+
+                <!-- CENTRO: TELEMETRÍA ALFANUMÉRICA CENTRALIZADA -->
+                <div class="justify-self-center text-center">
                     <button id="z-dial" 
                             onclick="scrollToSection('material-vault'); toggleDrawer();"
-                            class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] bg-transparent border-0 focus:outline-none uppercase hover:text-emerald-400 transition-colors ml-1">
+                            class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] bg-transparent border-0 focus:outline-none uppercase hover:text-emerald-400 transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                         --
                     </button>
                 </div>
+                                
+                <!-- EXTREMO DERECHO: INTERFAZ DE CIERRE -->
+                <div class="justify-self-end">
+                    <button onclick="toggleDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" aria-label="Close Menu">
+                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Menu">
+                    </button>
+                </div>
 
-                <!-- Close Button -->
-                <button onclick="toggleDrawer()" class="group flex items-center justify-center p-2 focus:outline-none transition-all duration-300" aria-label="Close Menu">
-                    <img src="img/pace.png" class="w-5 h-5 object-contain img-glow-transition opacity-40 group-hover:opacity-100" alt="Close Menu">
-                </button>
             </div>
         </div>
 
@@ -268,12 +269,12 @@
             </div>
         </div>
 
-        <!-- FIXED BRUTALIST FOOTER: UNIFIED NAVIGATION & REBRANDED SIGNATURE -->
-        <div id="drawer-fixed-footer" class="p-6 border-t border-white/5 bg-black/40 backdrop-blur-xs w-full">
-            <div class="max-w-xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-[8px] tracking-[0.25em] font-medium text-center">
+        <!-- FIXED BRUTALIST FOOTER: UNIFIED 3-COLUMN LAYOUT -->
+        <div id="drawer-fixed-footer" class="p-4 sm:p-6 border-t border-white/5 bg-black/40 backdrop-blur-xs w-full select-none">
+            <div class="grid grid-cols-3 items-center w-full text-[8px] tracking-[0.25em] font-medium uppercase relative">
                 
-                <!-- Minimalist Menu Links Left -->
-                <div class="flex gap-6">
+                <!-- EXTREMO IZQUIERDO: MINIMALIST LINKS -->
+                <div class="flex gap-6 justify-self-start">
                     <button onclick="openManifesto(); toggleDrawer();" class="focus:outline-none group">
                         <span class="text-white/40 group-hover:text-white transition-colors uppercase">MANIFESTO</span>
                     </button>
@@ -282,8 +283,13 @@
                     </button>
                 </div>
 
-                <!-- Signature & New Domain Right -->
-                <div class="text-white/30 uppercase">
+                <!-- CENTRO: SEPARADOR DE VACÍO / CONTROL DE FOCO -->
+                <div class="justify-self-center text-center opacity-20 hidden sm:block">
+                    <span>•</span>
+                </div>
+
+                <!-- EXTREMO DERECHO: SIGNATURE & REBRANDED DOMAIN -->
+                <div class="text-white/30 uppercase justify-self-end text-right whitespace-nowrap">
                     by 
                     <a href="https://jalkn.tech" target="_blank" class="hover:text-white/70 transition-colors font-bold text-white/40">
                         jalkn.tech
