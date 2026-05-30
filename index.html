@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <link class="content-sourced" rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="icon" type="image/png" href="img/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZENERGY.WORLD TECH-LAB</title>
+    <title>zenergy.world MYCELIUM TECH-LAB</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = { 
             theme: { 
                 extend: { 
-                    colors: { 'zenergia-black': '#0a0a0a' },
+                    colors: { 'zenergy-black': '#0a0a0a' },
                     fontFamily: { 
                         'sans': ['Orbitron', 'sans-serif'],
                         'mono': ['Orbitron', 'monospace'],
@@ -27,15 +27,11 @@
             scroll-behavior: smooth; 
             letter-spacing: 0.05em; 
             background-color: #0a0a0a;
-            color: #111827; 
-            position: relative;
         } 
 
-        /* Optimización de Fondo Atmosférico Pura - Removiendo líneas de césped */
         #page-bg-overlay {
             position: fixed;
             inset: 0;
-            /* Reemplazamos la textura lineal por un degradado de profundidad absoluto */
             background: radial-gradient(circle at 50% 50%, rgba(15, 15, 15, 0.4) 0%, rgba(5, 5, 5, 0.95) 100%);
             z-index: -1;
             transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.6s ease;
@@ -54,221 +50,99 @@
             box-shadow: -20px 0 60px rgba(0, 0, 0, 0.95);
         }
 
-        .drawer-btn {
-            background: transparent;
-            transition: all 0.4s ease;
-        }
-
         .img-glow-transition {
             transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             will-change: filter, transform;
-            transform: scale(1);
         }
 
         .drawer-active .img-glow-transition {
             opacity: 1 !important;
             transform: scale(1.05);
-            filter: brightness(1.4)
-                    drop-shadow(0 0 8px rgba(16, 185, 129, 0.8)) 
-                    drop-shadow(0 0 20px rgba(16, 185, 129, 0.4));
-        }
-
-        #mesh-container svg {
-            transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            filter: drop-shadow(0 0 35px rgba(0, 0, 0, 0.9));
+            filter: brightness(1.4) drop-shadow(0 0 8px rgba(16, 185, 129, 0.8));
         }
 
         .scrollbar-none::-webkit-scrollbar { display: none; }
         .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
 
-        @keyframes pulse-soft {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.9; fill: #ffffff; filter: drop-shadow(0 0 4px #fff); }
+        /* Animación optimizada por hardware para el núcleo del pulsor */
+        .pulsor-bar {
+            transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
         }
-        .pulse-animation { animation: pulse-soft 2.5s infinite ease-in-out; }
     </style>
 </head>
-<body class="antialiased selection:bg-white selection:text-black overflow-x-hidden bg-zenergia-black text-white">
+<body class="antialiased selection:bg-white selection:text-black overflow-x-hidden bg-zenergy-black text-white">
 
-    <!-- CAPA DE FONDO ATMOSFÉRICA SIN LÍNEAS -->
+    <!-- CAPA DE FONDO ATMOSFÉRICA -->
     <div id="page-bg-overlay"></div>
     <div class="fixed inset-0 bg-gradient-to-b from-black via-transparent to-black z-0 pointer-events-none"></div>
 
-    <!-- OVERLAY DEL DRAWER -->
-    <div id="drawer-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-40 hidden opacity-0 transition-opacity duration-500" onclick="toggleDrawer()"></div>
+    <!-- OVERLAY GENERAL DE CONTROL -->
+    <div id="drawer-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-40 hidden opacity-0 transition-opacity duration-500" onclick="closeAllDrawers()"></div>
 
-<!-- NAVBAR UNIVERSAL UNIFICADO (ABSOLUTE LAYOUT SYMMETRIC MATCH) -->
+    <!-- NAVBAR UNIVERSAL UNIFICADO -->
     <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5">
-        <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] relative">
+        <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px]">
             
-            <!-- EXTREMO IZQUIERDO: ACTIVACIÓN DIRECTA ENTRADA IZQUIERDA -->
+            <!-- EXTREMO IZQUIERDO: CORE DRAWER -->
             <div class="flex items-center cursor-pointer group justify-self-start p-2">
-                <button id="z-logo-trigger" 
-                        onclick="toggleLeftDrawer()"
-                        class="bg-transparent border-0 p-0 focus:outline-none flex items-center justify-center"
-                        aria-label="Open Core Drawer">
-                    <img src="img/logo.png" 
-                         class="w-5 h-5 img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" 
-                         alt="Zenergy Core Trigger"> 
+                <button id="z-logo-trigger" onclick="toggleLeftDrawer()" class="bg-transparent border-0 p-0 focus:outline-none flex items-center justify-center" aria-label="Abrir Core Drawer">
+                    <img src="img/logo.png" class="w-5 h-5 img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="zenergy Core Trigger"> 
                 </button>
             </div>
 
-            <!-- CENTRO: TELEMETRÍA ALFANUMÉRICA PRINCIPAL (REEMPLAZA INTERFACE TITLE) -->
+            <!-- CENTRO: TELEMETRÍA DINÁMICA -->
             <div class="justify-self-center text-center">
-                <button id="z-dial-nav" 
-                        onclick="scrollToSection('material-vault')"
-                        class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] bg-transparent border-0 focus:outline-none uppercase hover:text-emerald-400 transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                <button id="z-dial-nav" onclick="scrollToSection('material-vault')" class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] bg-transparent border-0 focus:outline-none uppercase hover:text-emerald-400 transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                     --
                 </button>
             </div>
                             
-            <!-- EXTREMO DERECHO: ACTIVACIÓN DIRECTA ENTRADA DERECHA -->
+            <!-- EXTREMO DERECHO: BIOKINETIC DRAWER -->
             <div class="justify-self-end">
-                <button id="z-dial-trigger" 
-                        onclick="toggleDrawer()"
-                        class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" 
-                        aria-label="Open Navigation">
-                    <img src="img/back.png" 
-                         class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" 
-                         alt="Menu Trigger">
+                <button id="z-dial-trigger" onclick="toggleDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" aria-label="Abrir Navegación">
+                    <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Menu Trigger">
                 </button>
             </div>
-
         </div>
     </nav>
 
-    
-<!-- NAVIGATION DRAWER (FULL SCREEN INTERACTIVE CANVAS) -->
-    <div id="biokinetic-drawer" class="fixed right-0 top-0 h-full w-full z-50 transform translate-x-full transition-transform duration-500 ease-in-out glass flex flex-col justify-between select-none">
+    <!-- RIGHT BIOKINETIC DRAWER -->
+    <div id="biokinetic-drawer" class="fixed inset-y-0 right-0 w-full max-w-full sm:max-w-[440px] z-50 transform translate-x-full transition-transform duration-500 ease-in-out glass flex flex-col justify-between select-none bg-[#070707]">
         
-<!-- TOP SECTION: UNIFIED SIMMETRIC HEADER (3-COLUMN GRID) -->
-        <div class="border-b border-white/5 w-full bg-[#0a0a0a]/40 backdrop-blur-md">
-            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] relative">
-                
-                <!-- EXTREMO IZQUIERDO: DISPARADOR CRUZADO AL DRAWER IZQUIERDO -->
+        <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 shrink-0">
+            <div class="p-4 sm:p-6 grid grid-cols-3 items-center uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px]">
                 <div class="flex items-center cursor-pointer group justify-self-start p-2">
-                    <button onclick="toggleDrawer(); setTimeout(toggleLeftDrawer, 200);" class="bg-transparent border-0 p-0 focus:outline-none flex items-center justify-center" aria-label="Switch to Core Menu">
-                        <img src="img/logo.png" class="w-5 h-5 img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="Zenergy Core Drawer"> 
+                    <button onclick="toggleDrawer(); setTimeout(toggleLeftDrawer, 200);" class="bg-transparent border-0 p-0 focus:outline-none flex items-center justify-center" aria-label="Cambiar a Core Menu">
+                        <img src="img/logo.png" class="w-5 h-5 img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="zenergy Core"> 
                     </button>
                 </div>
-
-                <!-- CENTRO: TELEMETRÍA ALFANUMÉRICA CENTRALIZADA -->
                 <div class="justify-self-center text-center">
-                    <button id="z-dial" 
-                            onclick="scrollToSection('material-vault'); toggleDrawer();"
-                            class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] bg-transparent border-0 focus:outline-none uppercase hover:text-emerald-400 transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                    <button id="z-dial" onclick="scrollToSection('material-vault'); toggleDrawer();" class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] bg-transparent border-0 focus:outline-none uppercase hover:text-emerald-400 transition-colors">
                         --
                     </button>
                 </div>
-                                
-                <!-- EXTREMO DERECHO: INTERFAZ DE CIERRE -->
                 <div class="justify-self-end">
-                    <button onclick="toggleDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" aria-label="Close Menu">
-                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Menu">
+                    <button onclick="toggleDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" aria-label="Cerrar Menú">
+                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300" alt="Close">
                     </button>
                 </div>
-
             </div>
-        </div>
+        </header>
 
-        <!-- CENTER SECTION: ACTIVE VECTOR ARCS (ABSOLUTE SYMMETRY) -->
-        <div class="flex-grow flex flex-col items-center justify-center p-4 my-auto">
-            <div class="w-full flex flex-col items-center justify-center relative aspect-square group max-w-[160px] sm:max-w-[190px] mx-auto">
-                
-                <!-- Interactive Vector Arcs (3 Connected Solid Paths) -->
-                <div class="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none z-10">
+        <div class="flex-1 overflow-y-auto px-6 py-4 flex flex-col justify-center items-center gap-6 min-h-0 scrollbar-none">
+            <!-- Arcos Vectoriales Dinámicos -->
+            <div class="w-full flex flex-col items-center justify-center relative aspect-square group max-w-[150px] sm:max-w-[180px] mx-auto shrink-0">
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
                     <svg viewBox="0 0 200 200" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_25px_rgba(255,255,255,0.15)] group-hover:scale-[1.03]">
                         <path id="wave-outer" d="M 100 25 A 75 75 0 0 1 175 100" class="stroke-white/40 fill-none stroke-[4] transition-all duration-500 will-change-transform" stroke-linecap="round" />
                         <path id="wave-mid" d="M 100 45 A 55 55 0 0 1 155 100" class="stroke-white/25 fill-none stroke-[3.5] transition-all duration-500 will-change-transform" stroke-linecap="round" />
                         <path id="wave-inner" d="M 100 65 A 35 35 0 0 1 135 100" class="stroke-white/15 fill-none stroke-[3] transition-all duration-500 will-change-transform" stroke-linecap="round" />
                     </svg>
                 </div>
-
-            </div>
-        </div>
-
-        <!-- LOWER SECTION: INTEGRATED PULSOR PROTOCOL CONSOLE -->
-        <div class="w-full flex flex-col items-center justify-center p-6 border-t border-white/[0.03] bg-black/20 gap-6">
-            
-            <!-- Geometric Hourglass Dodecagon Grid Layout -->
-            <div class="relative w-full max-w-[230px] sm:max-w-[260px] aspect-square bg-black/60 backdrop-blur-md border border-white/10 select-none overflow-hidden transition-all duration-700 hover:border-white/20 hover:shadow-[0_0_40px_rgba(255,255,255,0.03)]"
-                 style="clip-path: polygon(50% 0%, 75% 6.7%, 93.3% 25%, 100% 50%, 93.3% 75%, 75% 93.3%, 50% 100%, 25% 93.3%, 6.7% 75%, 0% 50%, 6.7% 25%, 25% 6.7%);">
-                
-                <!-- Central Real-Time Wave Audio Pulsor Core -->
-                <div class="absolute inset-0 pointer-events-none z-20">
-                    <div class="absolute top-1/2 left-0 w-[calc(50%-18px)] h-[1px] bg-white/15"></div>
-                    <div class="absolute top-1/2 right-0 w-[calc(50%-18px)] h-[1px] bg-white/15"></div>
-                    <div class="absolute left-1/2 top-0 w-[1px] h-[calc(50%-18px)] bg-white/15"></div>
-                    <div class="absolute left-1/2 bottom-0 w-[1px] h-[calc(50%-18px)] bg-white/15"></div>
-                    
-                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center gap-[3px] w-9 h-6 bg-transparent">
-                        <div class="w-[2px] h-3 bg-white/40 rounded-full transition-all duration-300 id-wave-1"></div>
-                        <div class="w-[2px] h-5 bg-white/60 rounded-full transition-all duration-300 id-wave-2"></div>
-                        <div class="w-[2px] h-2 bg-white/30 rounded-full transition-all duration-300 id-wave-3"></div>
-                        <div class="w-[2px] h-5 bg-white/60 rounded-full transition-all duration-300 id-wave-4"></div>
-                        <div class="w-[2px] h-3 bg-white/40 rounded-full transition-all duration-300 id-wave-5"></div>
-                    </div>
-                </div>
-
-                <!-- BIOMECHANICAL ENCRYPTION QUADRANTS -->
-                <div class="absolute inset-0 grid grid-cols-2 grid-rows-2 z-10">
-                    
-                    <!-- Quadrant Alpha: Pace (Base Rhythm) -->
-                    <div class="relative group/quad flex flex-col items-center justify-center p-2 transition-all duration-500 hover:bg-white/[0.03]">
-                        <div class="flex flex-col items-center justify-center gap-1 mt-2 ml-2">
-                            <div onclick="playBeat('img/Pbeat.wav')" class="w-8 h-8 flex items-center justify-center cursor-pointer">
-                                <img src="img/pace.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 transition-all duration-500 object-contain" alt="Pace Vector">
-                            </div>
-                            <div class="text-center flex flex-col gap-0.5 select-none drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)]">
-                                <span class="text-[8px] font-black text-white/60 tracking-[0.2em] group-hover/quad:text-white transition-all duration-300 uppercase">PACE</span>
-                                <span class="text-[5px] font-bold text-white/30 tracking-[0.12em] uppercase">base_rhythm</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Quadrant Beta: Under (Eccentric Gravity / Pushing Away Thoughts) -->
-                    <div class="relative group/quad flex flex-col items-center justify-center p-2 transition-all duration-500 hover:bg-white/[0.05]">
-                        <div class="flex flex-col items-center justify-center gap-1 mt-2 mr-2">
-                            <div onclick="playBeat('img/Ubeat.wav')" class="w-8 h-8 flex items-center justify-center cursor-pointer">
-                                <img src="img/under.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 transition-all duration-500 object-contain" alt="Under Vector">
-                            </div>
-                            <div class="text-center select-none drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)]">
-                                <span class="text-[8px] font-black text-white/60 tracking-[0.2em] group-hover/quad:text-white transition-all duration-300 uppercase">UNDER</span>
-                                <span class="block text-[5px] font-bold text-white/30 tracking-[0.12em] uppercase">gravity_push</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Quadrant Gamma: Lift (Concentric Torque / Attracting Thoughts) -->
-                    <div class="relative group/quad flex flex-col items-center justify-center p-2 transition-all duration-500 hover:bg-white/[0.05]">
-                        <div class="flex flex-col items-center justify-center gap-1 mb-2 ml-2">
-                            <div onclick="playBeat('img/Lbeat.wav')" class="w-8 h-8 flex items-center justify-center cursor-pointer">
-                                <img src="img/lift.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 transition-all duration-500 object-contain" alt="Lift Vector">
-                            </div>
-                            <div class="text-center select-none drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)]">
-                                <span class="text-[8px] font-black text-white/60 tracking-[0.2em] group-hover/quad:text-white transition-all duration-300 uppercase">LIFT</span>
-                                <span class="block text-[5px] font-bold text-white/30 tracking-[0.12em] uppercase">torque_pull</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Quadrant Delta: Surge & Trigger (Bioelectric Frequency Ignitions) -->
-                    <div class="relative group/quad flex flex-col items-center justify-center p-2 transition-all duration-500 hover:bg-white/[0.05]">
-                        <div class="flex flex-col items-center justify-center gap-1 mb-2 mr-2">
-                            <div onclick="playBeat('img/Sbeat.wav')" class="w-8 h-8 flex items-center justify-center cursor-pointer">
-                                <img src="img/surge.png" class="w-full h-full opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 transition-all duration-500 object-contain" alt="Surge Vector">
-                            </div>
-                            <div class="text-center select-none drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)]">
-                                <span class="text-[8px] font-black text-white/60 tracking-[0.2em] group-hover/quad:text-white transition-all duration-300 uppercase">SURGE // T</span>
-                                <span class="block text-[5px] font-bold text-white/30 tracking-[0.12em] uppercase">electric_trigger</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>        
             </div>
 
-            <!-- MESH TELEMETRY PANEL -->
-            <div class="w-full max-w-xs mx-auto">
+            <!-- Panel de Telemetría Mesh -->
+            <div class="w-full max-w-xs mx-auto shrink-0">
                 <div id="dynamic-node-spec" class="hidden border border-white/5 bg-white/[0.01] backdrop-blur-md rounded-xs p-3 space-y-2 transition-all duration-300">
                     <div class="flex justify-between items-center border-b border-white/5 pb-2">
                         <span class="text-[7px] font-bold uppercase tracking-[0.2em] text-white/40">MESH NODE</span>
@@ -282,156 +156,160 @@
             </div>
         </div>
 
-<!-- FIXED BRUTALIST FOOTER: UNIFIED 3-COLUMN LAYOUT -->
-        <div id="drawer-fixed-footer" class="p-4 sm:p-6 border-t border-white/5 bg-black/40 backdrop-blur-xs w-full select-none">
-            <div class="grid grid-cols-3 items-center w-full text-[8px] tracking-[0.25em] font-medium uppercase relative">
+        <!-- Consola de Frecuencias Reloj / Pulsor -->
+        <div class="w-full flex flex-col items-center justify-center p-6 border-t border-white/[0.03] bg-black/20 gap-6 shrink-0">
+            <div class="relative w-full max-w-[220px] sm:max-w-[250px] aspect-square bg-black/60 backdrop-blur-md border border-white/10 overflow-hidden transition-all duration-700 hover:border-white/20"
+                 style="clip-path: polygon(50% 0%, 75% 6.7%, 93.3% 25%, 100% 50%, 93.3% 75%, 75% 93.3%, 50% 100%, 25% 93.3%, 6.7% 75%, 0% 50%, 6.7% 25%, 25% 6.7%);">
                 
-                <!-- EXTREMO IZQUIERDO: MINIMALIST LINKS -->
-                <div class="flex gap-6 justify-self-start">
-                    <button onclick="openManifesto(); toggleDrawer();" class="focus:outline-none group">
-                        <span class="text-white/40 group-hover:text-white transition-colors uppercase">MANIFESTO</span>
-                    </button>
-                    <button onclick="scrollToSection('material-vault'); toggleDrawer();" class="focus:outline-none group">
-                        <span class="text-white/40 group-hover:text-white transition-colors uppercase">VAULT</span>
-                    </button>
+                <div class="absolute inset-0 pointer-events-none z-20">
+                    <div class="absolute top-1/2 left-0 w-[calc(50%-18px)] h-[1px] bg-white/15"></div>
+                    <div class="absolute top-1/2 right-0 w-[calc(50%-18px)] h-[1px] bg-white/15"></div>
+                    <div class="absolute left-1/2 top-0 w-[1px] h-[calc(50%-18px)] bg-white/15"></div>
+                    <div class="absolute left-1/2 bottom-0 w-[1px] h-[calc(50%-18px)] bg-white/15"></div>
+                    
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center gap-[3px] w-9 h-6 bg-transparent">
+                        <div class="w-[2px] h-3 bg-white/40 rounded-full pulsor-bar id-wave-1"></div>
+                        <div class="w-[2px] h-5 bg-white/60 rounded-full pulsor-bar id-wave-2"></div>
+                        <div class="w-[2px] h-2 bg-white/30 rounded-full pulsor-bar id-wave-3"></div>
+                        <div class="w-[2px] h-5 bg-white/60 rounded-full pulsor-bar id-wave-4"></div>
+                        <div class="w-[2px] h-3 bg-white/40 rounded-full pulsor-bar id-wave-5"></div>
+                    </div>
                 </div>
 
-                <!-- CENTRO: SEPARADOR DE VACÍO / CONTROL DE FOCO -->
-                <div class="justify-self-center text-center opacity-20 hidden sm:block">
-                    <span>•</span>
-                </div>
-
-                <!-- EXTREMO DERECHO: SIGNATURE & REBRANDED DOMAIN -->
-                <div class="text-white/30 uppercase justify-self-end text-right whitespace-nowrap">
-                    by 
-                    <a href="https://jalkn.tech" target="_blank" class="hover:text-white/70 transition-colors font-bold text-white/40">
-                        jalkn.tech
-                    </a> 
-                    &copy; 2020
-                </div>
-
+                <div class="absolute inset-0 grid grid-cols-2 grid-rows-2 z-10">
+                    <div onclick="playBeat('img/Pbeat.wav')" class="relative group/quad flex flex-col items-center justify-center p-2 cursor-pointer hover:bg-white/[0.03] transition-all duration-500">
+                        <div class="flex flex-col items-center justify-center gap-1 mt-2 ml-2">
+                            <img src="img/pace.png" class="w-8 h-8 opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 transition-all duration-500 object-contain" alt="Pace">
+                            <span class="text-[8px] font-black text-white/60 tracking-[0.2em] uppercase">PACE</span>
+                        </div>
+                    </div>
+                    <div onclick="playBeat('img/Ubeat.wav')" class="relative group/quad flex flex-col items-center justify-center p-2 cursor-pointer hover:bg-white/[0.05] transition-all duration-500">
+                        <div class="flex flex-col items-center justify-center gap-1 mt-2 mr-2">
+                            <img src="img/under.png" class="w-8 h-8 opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 transition-all duration-500 object-contain" alt="Under">
+                            <span class="text-[8px] font-black text-white/60 tracking-[0.2em] uppercase">UNDER</span>
+                        </div>
+                    </div>
+                    <div onclick="playBeat('img/Lbeat.wav')" class="relative group/quad flex flex-col items-center justify-center p-2 cursor-pointer hover:bg-white/[0.05] transition-all duration-500">
+                        <div class="flex flex-col items-center justify-center gap-1 mb-2 ml-2">
+                            <img src="img/lift.png" class="w-8 h-8 opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 transition-all duration-500 object-contain" alt="Lift">
+                            <span class="text-[8px] font-black text-white/60 tracking-[0.2em] uppercase">LIFT</span>
+                        </div>
+                    </div>
+                    <div onclick="playBeat('img/Sbeat.wav')" class="relative group/quad flex flex-col items-center justify-center p-2 cursor-pointer hover:bg-white/[0.05] transition-all duration-500">
+                        <div class="flex flex-col items-center justify-center gap-1 mb-2 mr-2">
+                            <img src="img/surge.png" class="w-8 h-8 opacity-40 group-hover/quad:opacity-100 group-hover/quad:scale-105 transition-all duration-500 object-contain" alt="Surge">
+                            <span class="text-[8px] font-black text-white/60 tracking-[0.2em] uppercase">SURGE</span>
+                        </div>
+                    </div>
+                </div>        
             </div>
         </div>
+
+        <footer class="p-4 sm:p-6 border-t border-white/5 bg-black/40 w-full shrink-0">
+            <div class="grid grid-cols-3 items-center w-full text-[8px] tracking-[0.25em] font-medium uppercase">
+                <button onclick="scrollToSection('material-vault'); toggleDrawer();" class="focus:outline-none group bg-transparent border-0 p-0 cursor-pointer text-left">
+                    <span class="text-white/40 group-hover:text-white transition-colors">VAULT</span>
+                </button>
+                <div class="justify-self-center text-center opacity-20 hidden sm:block">•</div>
+                <div class="text-white/30 text-right whitespace-nowrap justify-self-end">
+                    by <a href="https://jalkn.tech" target="_blank" class="hover:text-white/70 transition-colors font-bold text-white/40">jalkn.tech</a> &copy; 2020
+                </div>
+            </div>
+        </footer>
     </div>
 
-    <!-- LEFT CORE DRAWER (FULL SCREEN INTERACTIVE CONFIG / MANIFEST CANVAS) -->
-    <div id="left-core-drawer" class="fixed left-0 top-0 h-full w-full z-50 transform -translate-x-full transition-transform duration-500 ease-in-out glass flex flex-col justify-between select-none">
+    <!-- LEFT EXPANSION MATRIX DRAWER -->
+    <div id="left-core-drawer" class="fixed inset-y-0 left-0 w-full max-w-full sm:max-w-[440px] z-50 transform -translate-x-full transition-transform duration-500 ease-out flex flex-col justify-between bg-[#070707] border-r border-white/[0.04]">
         
-<!-- TOP SECTION: UNIFIED SYMMETRIC HEADER (3-COLUMN GRID) -->
-        <div class="border-b border-white/5 w-full bg-[#0a0a0a]/40 backdrop-blur-md">
-            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] relative">
-                
-                <!-- EXTREMO IZQUIERDO: INTERFAZ DE CIERRE / RETORNO -->
-                <div class="justify-self-start">
-                    <button onclick="toggleLeftDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" aria-label="Close Core Menu">
-                        <img src="img/logo.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Menu">
-                    </button>
-                </div>
+        <header class="w-full p-6 border-b border-white/[0.03] flex items-center justify-between shrink-0 bg-[#070707]">
+            <button onclick="toggleLeftDrawer()" class="text-white/40 hover:text-white transition-colors duration-300">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"/>
+                </svg>
+            </button>
+            <span id="z-dial-left" class="font-mono text-[11px] font-bold tracking-[0.25em] text-white/80 border border-white/10 px-3 py-1 bg-black/40">--</span>
+            <div class="w-4 h-4 opacity-0"></div>
+        </header>
 
-                <!-- CENTRO: TELEMETRÍA ALFANUMÉRICA SECUNDARIA (INTERACTIVA) -->
-                <div class="justify-self-center text-center">
-                    <button id="z-dial-left" 
-                            onclick="scrollToSection('material-vault'); toggleLeftDrawer();"
-                            class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] bg-transparent border-0 focus:outline-none uppercase hover:text-emerald-400 transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                        --
-                    </button>
-                </div>
-                                
-                <!-- EXTREMO DERECHO: DISPARADOR CRUZADO AL DRAWER BIOCINÉTICO -->
-                <div class="justify-self-end">
-                    <button onclick="toggleLeftDrawer(); setTimeout(toggleDrawer, 200);" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" aria-label="Switch to Biokinetic Menu">
-                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Open Biokinetic Drawer">
-                    </button>
-                </div>
+        <div class="flex-1 overflow-y-auto px-6 py-4 space-y-8 scrollbar-none">
+            <section class="py-4 bg-transparent overflow-hidden">
+                <div class="flex flex-col items-center">
+                    <div class="relative w-full max-w-[280px] sm:max-w-[320px] aspect-[2/3] group">
+                        <!-- Matriz de Vectores Concéntricos (Reloj de Arena Visual) -->
+                        <div class="absolute inset-0 pointer-events-none z-0">
+                            <svg viewBox="0 0 100 150" class="w-full h-full stroke-white/20 fill-none stroke-[0.7]">
+                                <path d="M 10 36 L 90 36 L 10 114 L 90 114 Z" class="stroke-white/30 transition-all duration-700 group-hover:stroke-white/60" />
+                                <path d="M10 36 Q50 65 90 36" class="stroke-white/20 group-hover:stroke-white/40" />
+                                <path d="M10 114 Q50 85 90 114" class="stroke-white/20" stroke-dasharray="1.2 1.2" />
+                                <line x1="50" y1="140" x2="50" y2="10" class="stroke-white/15" stroke-dasharray="2 2" />
+                            </svg>
+                        </div>
+                        
+                        <!-- Coordenadas Interactivas -->
+                        <div class="absolute inset-0 z-10">
+                            <div class="absolute top-[4%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/brick" onclick="scrollToSection('biokinetic-interface'); toggleLeftDrawer();">
+                                <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/brick:text-white transition-all duration-300">NODE</span>
+                                <div class="w-1 h-1 bg-white rounded-full mt-1.5 opacity-40 group-hover/brick:opacity-100 shadow-[0_0_8px_#fff]"></div>
+                            </div>
+                            
+                            <div class="absolute top-[21%] left-1/2 -translate-x-1/2 text-[8px] tracking-[0.4em] font-black uppercase text-white/40 pointer-events-none">SYNERGY</div>
 
-            </div>
+                            <div class="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer group/core" onclick="toggleLeftDrawer(); toggleDrawer();">
+                                <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/core:text-white transition-all duration-300">PULSOR</span>
+                                <span id="hologram-dial" class="text-white text-sm tracking-[0.2em] font-black mt-2 transition-all duration-300 group-hover/core:text-emerald-400">...</span>
+                            </div>
+
+                            <div class="absolute bottom-[27%] left-[12%] text-[8px] tracking-[0.3em] font-black uppercase text-white/40">BODY</div>
+                            <div class="absolute bottom-[27%] right-[12%] text-[8px] tracking-[0.3em] font-black uppercase text-white/40">PLANET</div>
+
+                            <div class="absolute bottom-[2%] left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer group/base" onclick="scrollToSection('material-vault'); toggleLeftDrawer();">
+                                <div class="w-1 h-1 bg-white rounded-full mb-1.5 opacity-40 group-hover/base:opacity-100 shadow-[0_0_8px_#fff]"></div>
+                                <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/base:text-white transition-all duration-300">RESONANCE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
 
-        <!-- CENTER SECTION: CLEAN DESIGN CANVAS (Sin ondas vectoriales - Listo para inyección de datos) -->
-        <div id="left-drawer-content" class="flex-grow flex flex-col items-center justify-center p-6 my-auto w-full max-w-2xl mx-auto overflow-y-auto scrollbar-none">
-            
-            <!-- CONTENEDOR TEMPORAL DE ESPACIO DE TRABAJO -->
-            <div class="text-center space-y-2 opacity-40 transition-opacity duration-300 hover:opacity-80">
-                <div class="font-mono text-[10px] tracking-[0.4em] uppercase text-emerald-400">awaiting setup module...</div>
-                <div class="font-body text-[9px] tracking-[0.15em] text-white/50 lowercase">ready for left matrix expansion configuration.</div>
-            </div>
-
-        </div>
-
-        <!-- LOWER SECTION: CLEAN CONSOLE LAYER (Sin cuadrantes de pulsor - Zona de comandos limpia) -->
-        <div id="left-drawer-console" class="w-full flex flex-col items-center justify-center p-6 border-t border-white/[0.03] bg-black/20">
-            <!-- Espacio reservado para inputs analógicos o lecturas de sensores bio-tech -->
-        </div>
-
-<!-- FIXED BRUTALIST FOOTER: UNIFIED 3-COLUMN LAYOUT -->
-        <div id="left-drawer-fixed-footer" class="p-4 sm:p-6 border-t border-white/5 bg-black/40 backdrop-blur-xs w-full select-none">
-            <div class="grid grid-cols-3 items-center w-full text-[8px] tracking-[0.25em] font-medium uppercase relative">
-                
-                <!-- EXTREMO IZQUIERDO: MINIMALIST LINKS -->
-                <div class="flex gap-6 justify-self-start">
-                    <button onclick="openManifesto(); toggleLeftDrawer();" class="focus:outline-none group">
-                        <span class="text-white/40 group-hover:text-white transition-colors uppercase">MANIFESTO</span>
-                    </button>
-                    <button onclick="scrollToSection('material-vault'); toggleLeftDrawer();" class="focus:outline-none group">
-                        <span class="text-white/40 group-hover:text-white transition-colors uppercase">VAULT</span>
-                    </button>
-                </div>
-
-                <!-- CENTRO: SEPARADOR DE VACÍO / CONTROL DE FOCO -->
-                <div class="justify-self-center text-center opacity-20 hidden sm:block">
-                    <span>•</span>
-                </div>
-
-                <!-- EXTREMO DERECHO: SYSTEM BRAND SIGNATURE (JUSTIFICADO A LA DERECHA) -->
-                <div class="text-white/30 uppercase justify-self-end text-right whitespace-nowrap">
-                    <a href="https://zenergy.world" target="_blank" class="hover:text-white/70 transition-colors font-bold text-white/40">
-                        zenergy.world TECH-LAB
-                    </a> 
-                    &copy; 2026
-                </div>
-
-            </div>
-        </div>
+        <footer class="w-full p-6 border-t border-white/[0.03] bg-[#070707] flex items-center justify-between text-[9px] font-mono tracking-[0.2em] text-white/30 shrink-0">
+            <button onclick="openManifesto()" class="hover:text-white transition-colors duration-300 uppercase">MANIFESTO</button>
+            <span class="uppercase">zenergy.world Tech-Lab &copy; 2026</span>
+        </footer>
     </div>
 
-    <!-- MAIN: CONTENEDOR DE LA BIO-MATRIZ -->
+    <!-- MAIN INTERFACE CANVAS -->
     <main class="w-full h-[calc(100vh-148px)] sm:h-[calc(100vh-164px)] mt-[68px] mb-[80px] sm:mb-[96px] flex flex-col justify-center items-center overflow-hidden">
         <section id="biokinetic-interface" class="w-full h-full bg-transparent flex justify-start sm:justify-center items-center overflow-x-auto overflow-y-hidden select-none scrollbar-none cursor-grab active:cursor-grabbing">
             <div id="mesh-container" class="w-full h-full max-h-full min-w-[760px] sm:min-w-0 sm:max-w-[840px] px-4 sm:px-8 relative z-10 flex justify-center items-center mx-auto transition-all duration-500">
-                <!-- Se inyecta dinámicamente img/barranquero-mesh.svg -->
+                <!-- Capa SVG Dinámica Inyectada -->
             </div>
         </section>
     </main>
 
     <!-- MODAL MANIFESTO -->
-    <div id="manifesto" class="fixed inset-0 z-50 bg-[#050505]/95 backdrop-blur-md hidden justify-center items-center p-6 select-none transition-all duration-500 opacity-0">
-        <div class="max-w-2xl w-full flex flex-col items-center gap-10 text-center relative px-4">
-            
+    <div id="manifesto" class="fixed inset-0 z-50 bg-[#050505]/95 backdrop-blur-md hidden justify-center items-center p-6 transition-all duration-500 opacity-0" onclick="closeManifesto()">
+        <div class="max-w-2xl w-full flex flex-col items-center gap-10 text-center px-4" onclick="event.stopPropagation()">
             <div class="flex items-center justify-center cursor-pointer group p-2 relative" onclick="closeManifesto()">
-                <img src="img/logo.png" class="w-6 h-6 img-glow-transition opacity-30 group-hover:opacity-60 group-hover:rotate-180" alt="Zenergy Core Base"> 
-                <span class="absolute inset-0 flex items-center justify-center text-[10px] font-mono font-light text-white/40 group-hover:text-white transition-colors duration-300 pointer-events-none">&times;</span>
+                <img src="img/logo.png" class="w-6 h-6 img-glow-transition opacity-30 group-hover:opacity-60 group-hover:rotate-180" alt="Core"> 
+                <span class="absolute inset-0 flex items-center justify-center text-[10px] font-mono text-white/40 group-hover:text-white transition-colors pointer-events-none">&times;</span>
             </div>
             
             <div class="space-y-8 font-body max-w-xl">
-                <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.15em] font-medium max-w-xl normal-case leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] text-center">
-                    My concept of art is what we bring from imagination into reality, drawing the patterns of a possible wellness body. 
-                    I believe the body is the unconscious mind—a space of pure nature and raw creativity currently suppressed by digital noise. 
-                    To keep this gap open, we code the functional movements of the body into a live language.
+                <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.15em] font-medium leading-relaxed normal-case">
+                    Mi concepto del arte es lo que traemos de la imaginación a la realidad, dibujando los patrones de un cuerpo en bienestar posible. Creo que el cuerpo es la mente inconsciente: un espacio de naturaleza pura y creatividad cruda actualmente suprimido por el ruido digital. Para mantener esta brecha abierta, codificamos los movimientos funcionales del cuerpo en un lenguaje vivo.
                 </p>
-                <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.15em] font-medium max-w-xl normal-case leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] text-center">
-                    The unconscious mind operates through kinetic traction: <span class="text-white font-bold">attracting and pushing away thoughts</span>. 
-                    By mapping these sequences into mechanical blocks, we ignite constant creativity. 
-                    Inside the nodes, integrated z_dials beats act as passive piezo-electrical interfaces—converting the raw tension of the footsteps into micro-voltage stimuli that accelerate the bio-welding of the living mycelium.
+                <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.15em] font-medium leading-relaxed normal-case">
+                    La mente inconsciente opera a través de tracción cinética: <span class="text-white font-bold">atrayendo y empujando pensamientos</span>. Al mapear estas secuencias en bloques mecánicos, encendemos una creatividad constante. Dentro de los nodos, los ritmos integrados de los z_dials actúan como interfaces piezoeléctricas pasivas, convirtiendo la tensión pura de las pisadas en estímulos de microvoltaje que aceleran la biosoldadura del micelio vivo.
                 </p>
             </div>
         </div>
     </div>
 
-<!-- CENTRAL TELEMETRY SECTION: MATERIAL VAULT -->
+    <!-- MATERIAL VAULT SECTION -->
     <section id="material-vault" class="py-32 flex flex-col items-center justify-center relative bg-transparent overflow-hidden border-t border-white/[0.02]">
         <div class="relative z-10 flex flex-col items-center w-full px-4 text-center gap-6">
             
-            <!-- CIRCULAR PHYSICAL PACKAGING CONTAINER -->
             <div class="relative w-full max-w-[240px] md:max-w-[260px] aspect-square select-none cursor-pointer group">
                 <div class="w-full h-full rounded-full bg-[#0a0a0a] border border-white/10 p-1 relative overflow-hidden transition-all duration-500 hover:border-white/30 shadow-[0_0_30px_rgba(0,0,0,0.8)]">
                     <div class="absolute inset-0 bg-cover bg-center opacity-5" style="background-image: url('img/miscelio.png');"></div>
@@ -449,18 +327,15 @@
                                 <path d="M 110,120 Q 200,150 290,120" />
                                 <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
                             </g>
-                            <text id="big-dial" x="200" y="218" font-weight="900" text-anchor="middle" class="fill-white font-black text-[46px] tracking-[0.05em] drop-shadow-[0_0_12px_rgba(255,255,255,0.1)] uppercase">
-                                --
-                            </text>
+                            <text id="big-dial" x="200" y="218" font-weight="900" text-anchor="middle" class="fill-white font-black text-[46px] tracking-[0.05em] drop-shadow-[0_0_12px_rgba(255,255,255,0.1)] uppercase">--</text>
                             <text class="fill-white/40 font-black text-[11px] tracking-[0.4em] uppercase">
-                                <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">ZENERGY.WORLD &bull; 3025333130</textPath>
+                                <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">zenergy.world &bull; 3025333130</textPath>
                             </text>
                         </svg>
                     </div>
                 </div>
             </div>
 
-            <!-- VARIANT SELECTOR -->
             <div class="flex items-center justify-center gap-2 text-[8px] sm:text-[9px] tracking-[0.25em] font-black uppercase z-30">
                 <span id="opt-focus" onclick="seleccionarVariante('FOCUS')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/60 backdrop-blur-md rounded-xs text-white border border-white/60 shadow-[0_0_15px_rgba(255,255,255,0.15)]">focus</span>
                 <span id="opt-zen" onclick="seleccionarVariante('ZEN')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-xs text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80">zen</span>
@@ -468,28 +343,23 @@
                 <span id="opt-core" onclick="seleccionarVariante('CORE')" class="cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-xs text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80">core</span>
             </div>
 
-            <!-- UX BENEFIT DESCRIPTION -->
             <div class="w-full max-w-md px-4 mt-2">
                 <p id="ux-benefit-desc" class="text-white/50 text-[9px] font-medium tracking-[0.18em] leading-relaxed lowercase">
-                    functional pulsor optimized for cognitive noise isolation and focus acceleration.
+                    pulsor funcional optimizado para el aislamiento del ruido cognitivo y la aceleración del enfoque.
                 </p>
             </div>
 
-            <!-- PURCHASE TRIGGER -->
-            <button onclick="adquirirNodo('PULSOR_CAPSULAS')" 
-                    class="px-7 py-3 mt-2 border border-white/15 bg-[#0a0a0a]/40 text-white/70 font-black text-[9px] tracking-[0.35em] uppercase hover:bg-white hover:text-black hover:border-white transition-all duration-400 rounded-xs cursor-pointer">
-                order pulsor
+            <button onclick="adquirirNodo('PULSOR_CAPSULAS')" class="px-7 py-3 mt-2 border border-white/15 bg-[#0a0a0a]/40 text-white/70 font-black text-[9px] tracking-[0.35em] uppercase hover:bg-white hover:text-black hover:border-white transition-all duration-400 rounded-xs">
+                ordenar pulsor
             </button>
         </div>
     </section>
 
-<!-- INFORMATION PANEL (FIXED FOOTER) -->
-    <footer id="dynamic-footer" class="fixed bottom-0 left-0 w-full z-30 bg-[#0a0a0a]/15 backdrop-blur-md select-none border-t border-white/[0.01] transition-opacity duration-500">
+    <!-- INFORMATION PANEL (FIXED FOOTER) -->
+    <footer id="dynamic-footer" class="fixed bottom-0 left-0 w-full z-30 bg-[#0a0a0a]/15 backdrop-blur-md border-t border-white/[0.01] transition-opacity duration-500">
         <div class="p-4 sm:p-6 max-w-xl mx-auto flex items-center justify-center font-bold">
-            <button id="z-dial-footer" 
-                    onclick="scrollToSection('biokinetic-interface')"
-                    class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] border border-white/10 bg-black/40 h-[30px] w-[110px] flex items-center justify-center rounded-sm backdrop-blur-sm transition-all duration-300 hover:text-emerald-400 hover:border-emerald-500/30 focus:outline-none uppercase">
-                --
+            <button id="z-dial-footer" onclick="scrollToSection('biokinetic-interface')" class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] border border-white/10 bg-black/40 h-[30px] w-[140px] flex items-center justify-center rounded-sm backdrop-blur-sm transition-all duration-300 hover:text-emerald-400 hover:border-emerald-500/30 focus:outline-none uppercase">
+                <span id="footer-text">FOCUS</span>
             </button>
         </div>
     </footer>
@@ -501,12 +371,9 @@
     window.selectedNodeFromMesh = null;
     let biokineticInterval = null;
     let varianteActiva = "FOCUS";
-
-    // --- SYSTEM AUDIO MULTI-CHANNEL CONTROLLER ---
     let activeAudioChannels = {};
 
     function playBeat(audioPath) {
-        // Si el canal ya existe y se está reproduciendo, lo reiniciamos para evitar latencia
         if (activeAudioChannels[audioPath]) {
             activeAudioChannels[audioPath].currentTime = 0;
         } else {
@@ -515,32 +382,20 @@
 
         activeAudioChannels[audioPath].play()
             .then(() => triggerPulsorVisuals())
-            .catch(err => console.warn(`[!] Audio initiation deferred: ${err.message}`));
+            .catch(err => console.warn(`[!] Audio diferido: ${err.message}`));
 
         if (navigator.vibrate) navigator.vibrate(20);
     }
 
-    function playFullProtocol() {
-        // Disparador maestro: Ejecuta secuencial o simultáneamente según la lógica del laboratorio
-        const tracks = ['img/Pbeat.wav', 'img/Ubeat.wav', 'img/Lbeat.wav', 'img/Sbeat.wav'];
-        tracks.forEach((track, index) => {
-            setTimeout(() => {
-                playBeat(track);
-            }, index * 150); // Pequeño delay de 150ms entre igniciones para crear polirritmia biocinética
-        });
-    }
-
     function triggerPulsorVisuals() {
-        // Animación de picos en tiempo real para las barras del núcleo central (id-wave-1 a 5)
         for (let i = 1; i <= 5; i++) {
             const bar = document.querySelector(`.id-wave-${i}`);
             if (bar) {
-                const randomHeight = Math.floor(Math.random() * 16) + 6; // Oscilación entre 6px y 22px
+                const randomHeight = Math.floor(Math.random() * 16) + 6;
                 bar.style.height = `${randomHeight}px`;
-                bar.style.backgroundColor = 'rgba(52, 211, 153, 0.9)'; // Tinte esmeralda de ignición activa
+                bar.style.backgroundColor = 'rgba(52, 211, 153, 0.9)';
                 
                 setTimeout(() => {
-                    // Retorno suave al estado base biomecánico
                     bar.style.height = i % 2 === 0 ? '20px' : '12px';
                     bar.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
                 }, 300);
@@ -548,68 +403,37 @@
         }
     }
 
-// --- CLOCK WORK & VECTOR ARCS KINETICS ---
     function updateZ() {
-        if (window.selectedNodeFromMesh) return;
-
         const now = new Date();
-        const zDial = $('z-dial');
-        const zDialNav = $('z-dial-nav');
-        const zDialLeft = $('z-dial-left'); // Captura el nuevo id del header izquierdo
-        const zDialFooter = $('z-dial-footer'); 
-        const bigDial = $('big-dial'); 
+        const deg = (now.getHours() * 15) + (now.getMinutes() * 0.25);
+        
+        let acciones = 'UL'; 
+        if (deg >= 90 && deg < 180) acciones = 'PL';  
+        else if (deg >= 180 && deg < 270) acciones = 'LST'; 
+        else if (deg >= 270) acciones = 'UST'; 
 
+        const sets = String(Math.floor(Math.abs(Math.sin((deg * Math.PI) / 180)) * 6) + 2).padStart(2, '0');
+        const reps = String(Math.floor(((now.getMinutes() + 1) * PHI) % 8) + 3).padStart(2, '0');
+        const coordenadaBiocinetica = `${parseInt(sets, 10)}${acciones}${parseInt(reps, 10)}`;
+        
+        if (!window.selectedNodeFromMesh) {
+            if ($('z-dial')) {
+                $('z-dial').innerText = coordenadaBiocinetica;
+                $('z-dial').className = "text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] bg-transparent border-0";
+            }
+            if ($('big-dial')) $('big-dial').textContent = coordenadaBiocinetica;
+        }
+
+        if ($('z-dial-nav')) $('z-dial-nav').innerText = coordenadaBiocinetica;
+        if ($('z-dial-left')) $('z-dial-left').innerText = coordenadaBiocinetica;
+        if ($('hologram-dial')) $('hologram-dial').textContent = coordenadaBiocinetica;
+
+        // Cinemática de Arcos Vectoriales
         const wOuter = $('wave-outer');
         const wMid = $('wave-mid');
         const wInner = $('wave-inner');
 
-        const deg = (now.getHours() * 15) + (now.getMinutes() * 0.25);
-        
-        let acciones = 'UL'; 
-        if (deg >= 90 && deg < 180) {
-            acciones = 'PL';  
-        } else if (deg >= 180 && deg < 270) {
-            acciones = 'LST'; 
-        } else if (deg >= 270) {
-            acciones = 'UST'; 
-        }
-
-        const setsRaw = Math.floor(Math.abs(Math.sin((deg * Math.PI) / 180)) * 6) + 2;
-        const sets = String(setsRaw).padStart(2, '0');
-        const repsRaw = Math.floor(((now.getMinutes() + 1) * PHI) % 8) + 3;
-        const reps = String(repsRaw).padStart(2, '0');
-
-        const coordenadaBiocinética = `${parseInt(sets, 10)}${acciones}${parseInt(reps, 10)}`;
-        
-        if (zDial) {
-            zDial.innerText = coordenadaBiocinética;
-            zDial.classList.remove('text-emerald-400', 'border-emerald-500/20');
-            zDial.classList.add('text-white/80', 'border-white/10');
-        }
-
-        if (zDialNav) {
-            zDialNav.innerText = coordenadaBiocinética;
-            zDialNav.classList.remove('text-emerald-400', 'border-emerald-500/20');
-            zDialNav.classList.add('text-white/80', 'border-white/10');
-        }
-
-        if (zDialLeft) {
-            zDialLeft.innerText = coordenadaBiocinética;
-            zDialLeft.classList.remove('text-emerald-400', 'border-emerald-500/20');
-            zDialLeft.classList.add('text-white/80', 'border-white/10');
-        }
-
-        if (zDialFooter) {
-            zDialFooter.innerText = coordenadaBiocinética;
-            zDialFooter.classList.remove('text-emerald-400', 'border-emerald-500/20');
-            zDialFooter.classList.add('text-white/80', 'border-white/10');
-        }
-
-        if (bigDial) {
-            bigDial.textContent = coordenadaBiocinética;
-        }
-
-        if (wOuter && wMid && wInner) {
+        if (wOuter && wMid && wInner && !window.selectedNodeFromMesh) {
             const timeFactor = now.getSeconds() + (now.getMilliseconds() / 1000);
             const pulse = Math.abs(Math.sin(timeFactor * 0.8));
             
@@ -618,7 +442,7 @@
             wInner.style.stroke = `rgba(255, 255, 255, ${0.30 + pulse * 0.30})`;
             
             let speedMultiplier = acciones.length === 3 ? 4 : 2; 
-            wOuter.style.transform = `rotate(${timeFactor * speedMultiplier}deg)`;
+            wOuter.style.transform = `rotate(${timeFactor * speedMultiplier}deg) translate(--tw-translate-x, --tw-translate-y)`;
             wOuter.style.transformOrigin = '100px 100px';
             wMid.style.transform = `rotate(${-timeFactor * (speedMultiplier * 0.7)}deg)`;
             wMid.style.transformOrigin = '100px 100px';
@@ -628,92 +452,44 @@
     }
 
     function updateTerminalTelemetry(nodeString = null) {
-        const zDial = $('z-dial');
-        const zDialFooter = $('z-dial-footer'); 
         const specPanel = $('dynamic-node-spec');
-        
-        const wOuter = $('wave-outer');
-        const wMid = $('wave-mid');
-        const wInner = $('wave-inner');
-
         if (nodeString) {
-            stopBiokineticLoop(); 
-            const nodeDisplayText = `N${nodeString}`;
-            
-            if (zDial) {
-                zDial.innerText = nodeDisplayText; 
-                zDial.classList.remove('text-white/80', 'border-white/10');
-                zDial.classList.add('text-emerald-400', 'border-emerald-500/30'); 
+            if ($('z-dial')) {
+                $('z-dial').innerText = `N${nodeString}`; 
+                $('z-dial').className = "text-emerald-400 font-mono font-bold text-[10px] tracking-[0.2em] bg-transparent border-0";
             }
-            if (zDialFooter) {
-                zDialFooter.innerText = nodeDisplayText; 
-                zDialFooter.classList.remove('text-white/80', 'border-white/10');
-                zDialFooter.classList.add('text-emerald-400', 'border-emerald-500/30'); 
-            }
-            
-            if (wOuter && wMid && wInner) {
-                wOuter.style.stroke = '#34d399';
-                wOuter.style.transform = 'scale(1.02) rotate(45deg)';
-                wMid.style.stroke = 'rgba(52, 211, 153, 0.6)';
-                wMid.style.transform = 'scale(1.0) rotate(-15deg)';
-                wInner.style.stroke = 'rgba(52, 211, 153, 0.3)';
-                wInner.style.transform = 'scale(0.98) rotate(5deg)';
-            }
-
             if (specPanel) {
                 specPanel.classList.remove('hidden');
-                const specId = $('spec-id');
-                const specHash = $('spec-hash');
-                if (specId) specId.innerText = `NODE-T1-${nodeString}`;
-                if (specHash) {
-                    specHash.innerText = `0x${Math.floor(Math.random() * 65535).toString(16).toUpperCase()}`;
-                }
+                if ($('spec-id')) $('spec-id').innerText = `NODE-T1-${nodeString}`;
+                if ($('spec-hash')) $('spec-hash').innerText = `0x${Math.floor(Math.random() * 65535).toString(16).toUpperCase()}`;
             }
         } else {
             if (specPanel) specPanel.classList.add('hidden');
-            startBiokineticLoop();
+            window.selectedNodeFromMesh = null;
+            updateZ();
         }
     }
 
-    function startBiokineticLoop() {
-        if (biokineticInterval) clearInterval(biokineticInterval);
-        updateZ(); 
-        biokineticInterval = setInterval(updateZ, 1000); 
-    }
-
-    function stopBiokineticLoop() {
-        if (biokineticInterval) clearInterval(biokineticInterval);
-    }
-
-    // --- INTERFACE INTERACTION LAYERS ---
     function toggleDrawer() {
         const drawer = $('biokinetic-drawer');
         const overlay = $('drawer-overlay');
-        const body = document.body;
-        const infoFooter = $('dynamic-footer');
-        
         if (!drawer || !overlay) return;
 
         if (drawer.classList.contains('translate-x-full')) {
+            closeAllDrawers();
             drawer.classList.remove('translate-x-full');
             overlay.classList.remove('hidden');
-            body.classList.add('drawer-active'); 
-            if (infoFooter) {
-                infoFooter.classList.add('opacity-0', 'pointer-events-none');
-            }
+            document.body.classList.add('drawer-active', 'overflow-hidden');
+            if ($('dynamic-footer')) $('dynamic-footer').classList.add('opacity-0', 'pointer-events-none');
             setTimeout(() => overlay.classList.add('opacity-100'), 10);
             updateTerminalTelemetry(window.selectedNodeFromMesh);
         } else {
             drawer.classList.add('translate-x-full');
-            overlay.classList.remove('opacity-100');
-            body.classList.remove('drawer-active'); 
-            if (infoFooter) {
-                infoFooter.classList.remove('opacity-0', 'pointer-events-none');
-            }
+            document.body.classList.remove('drawer-active', 'overflow-hidden');
+            if ($('dynamic-footer')) $('dynamic-footer').classList.remove('opacity-0', 'pointer-events-none');
             setTimeout(() => {
                 overlay.classList.add('hidden');
-                stopBiokineticLoop(); 
-                window.selectedNodeFromMesh = null; 
+                updateTerminalTelemetry(null);
             }, 500);
         }
     }
@@ -721,64 +497,60 @@
     function toggleLeftDrawer() {
         const leftDrawer = $('left-core-drawer');
         const overlay = $('drawer-overlay');
-        const body = document.body;
-        const infoFooter = $('dynamic-footer');
-        
         if (!leftDrawer || !overlay) return;
 
         if (leftDrawer.classList.contains('-translate-x-full')) {
+            closeAllDrawers();
             leftDrawer.classList.remove('-translate-x-full');
             overlay.classList.remove('hidden');
-            body.classList.add('drawer-active'); 
-            if (infoFooter) {
-                infoFooter.classList.add('opacity-0', 'pointer-events-none');
-            }
+            document.body.classList.add('drawer-active', 'overflow-hidden'); 
+            if ($('dynamic-footer')) $('dynamic-footer').classList.add('opacity-0', 'pointer-events-none');
             setTimeout(() => overlay.classList.add('opacity-100'), 10);
         } else {
             leftDrawer.classList.add('-translate-x-full');
-            overlay.classList.remove('opacity-100');
-            body.classList.remove('drawer-active'); 
-            if (infoFooter) {
-                infoFooter.classList.remove('opacity-0', 'pointer-events-none');
-            }
-            setTimeout(() => {
-                overlay.classList.add('hidden');
-            }, 500);
+            document.body.classList.remove('drawer-active', 'overflow-hidden'); 
+            if ($('dynamic-footer')) $('dynamic-footer').classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => overlay.classList.remove('opacity-100'), 10);
         }
+    }
+
+    function closeAllDrawers() {
+        ['biokinetic-drawer', 'left-core-drawer'].forEach(id => {
+            const el = $(id);
+            if (el) {
+                if (id === 'biokinetic-drawer') el.classList.add('translate-x-full');
+                if (id === 'left-core-drawer') el.classList.add('-translate-x-full');
+            }
+        });
+        $('drawer-overlay').classList.add('hidden');
+        document.body.classList.remove('drawer-active', 'overflow-hidden');
+        if ($('dynamic-footer')) $('dynamic-footer').classList.remove('opacity-0', 'pointer-events-none');
     }
 
     function seleccionarVariante(variante) {
         varianteActiva = variante.toUpperCase();
-        
-        if ($('laser-variant-title')) {
-            $('laser-variant-title').textContent = `PULSOR ${varianteActiva}`;
-        }
+        if ($('laser-variant-title')) $('laser-variant-title').textContent = `PULSOR ${varianteActiva}`;
+        if ($('footer-text')) $('footer-text').textContent = varianteActiva;
         
         updateZ();
         
-        const opciones = ['FOCUS', 'ZEN', 'STAMINA', 'CORE'];
-        opciones.forEach(opt => {
+        ['FOCUS', 'ZEN', 'STAMINA', 'CORE'].forEach(opt => {
             const el = $(`opt-${opt.toLowerCase()}`);
             if (el) {
-                if (opt === varianteActiva) {
-                    el.className = "cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/60 backdrop-blur-md rounded-xs text-white border border-white/60 shadow-[0_0_15px_rgba(255,255,255,0.15)]";
-                } else {
-                    el.className = "cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-xs text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80";
-                }
+                el.className = opt === varianteActiva 
+                    ? "cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/60 backdrop-blur-md rounded-xs text-white border border-white/60 shadow-[0_0_15px_rgba(255,255,255,0.15)]"
+                    : "cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-xs text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80";
             }
         });
 
         const varianteData = {
-            'FOCUS': 'functional pulsor optimized for cognitive noise isolation and focus acceleration.',
-            'ZEN': 'functional pulsor optimized for oxidative stress modulation and nocturnal cycle stabilization.',
-            'STAMINA': 'functional pulsor optimized for cellular oxygen uptake and continuous kinetic output.',
-            'CORE': 'functional pulsor optimized for homeostatic shielding and adaptive immune response.'
+            'FOCUS': 'pulsor funcional optimizado para el aislamiento del ruido cognitivo y la aceleración del enfoque.',
+            'ZEN': 'pulsor funcional optimizado para la modulación del estrés oxidativo y la estabilización del ciclo nocturno.',
+            'STAMINA': 'pulsor funcional optimizado para la absorción celular de oxígeno y el rendimiento cinético continuo.',
+            'CORE': 'pulsor funcional optimizado para la protección homeostática y la respuesta inmune adaptativa.'
         };
 
-        if ($('ux-benefit-desc') && varianteData[varianteActiva]) {
-            $('ux-benefit-desc').textContent = varianteData[varianteActiva];
-        }
-
+        if ($('ux-benefit-desc')) $('ux-benefit-desc').textContent = varianteData[varianteActiva];
         if (navigator.vibrate) navigator.vibrate(15);
     }
 
@@ -809,61 +581,48 @@
         const currentHash = $('big-dial') ? $('big-dial').textContent.trim() : "--";
         const nodeParam = window.selectedNodeFromMesh ? `\n• Nodo Land-Art: #${window.selectedNodeFromMesh}` : "";
         const whatsappBaseUrl = "https://wa.me/573025333130";
-        let message = "";
 
         if (tipoInyeccion === 'PULSOR_CAPSULAS') {
-            message = encodeURIComponent(
-                `[ZENERGY.WORLD] Orden de Compra\n` +
+            const message = encodeURIComponent(
+                `[zenergy.world] Orden de Compra\n` +
                 `-----------------------------------\n` +
                 `• Acción: Adquirir MATERIAL VAULT // PULSOR ${varianteActiva}${nodeParam}\n` +
                 `• Código de Registro: #${currentHash}\n` +
-                `• Valor T1: $70.000 COP\n` +
-                `• Sistema: zenergy.world Tech-Bal`
+                `• Sistema: zenergy.world Tech-Lab`
             );
+            if (navigator.vibrate) navigator.vibrate(40);
+            window.open(`${whatsappBaseUrl}?text=${message}`, '_blank');
         }
-
-        if (navigator.vibrate) navigator.vibrate(40);
-        window.open(`${whatsappBaseUrl}?text=${message}`, '_blank');
     }
 
-    // --- DOM INITIALIZATION & OBSERVERS ---
     document.addEventListener("DOMContentLoaded", () => {
-        startBiokineticLoop();
-        
+        if (biokineticInterval) clearInterval(biokineticInterval);
+        updateZ(); 
+        biokineticInterval = setInterval(updateZ, 1000); 
+
+        if ($('footer-text')) $('footer-text').textContent = varianteActiva;
+
         fetch('img/barranquero-mesh.svg')
             .then(response => response.text())
             .then(data => {
-                const container = $('mesh-container');
-                if (container) container.innerHTML = data;
+                if ($('mesh-container')) $('mesh-container').innerHTML = data;
             })
-            .catch(err => console.error('[-] Error loading bio-matrix:', err));
+            .catch(err => console.error('[-] Error al cargar bio-matrix:', err));
 
+        // Intersección Limpia para Telemetría de Navbar sin colisiones
         const materialVaultSection = document.getElementById('material-vault');
-        const navCenterText = document.getElementById('nav-center-text');
+        const zDialNav = document.getElementById('z-dial-nav');
         
-        if (materialVaultSection) {
-            const observerOptions = { threshold: 0.3 };
+        if (materialVaultSection && zDialNav) {
             const navObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        if (navCenterText) {
-                            navCenterText.style.opacity = '0';
-                            setTimeout(() => {
-                                navCenterText.textContent = 'material vault';
-                                navCenterText.style.opacity = '1';
-                            }, 250);
-                        }
-                    } else {
-                        if (navCenterText) {
-                            navCenterText.style.opacity = '0';
-                            setTimeout(() => {
-                                navCenterText.textContent = 'bio-kinetic interface';
-                                navCenterText.style.opacity = '1';
-                            }, 250);
-                        }
-                    }
+                    zDialNav.style.opacity = '0';
+                    setTimeout(() => {
+                        zDialNav.textContent = entry.isIntersecting ? 'material vault' : '--';
+                        zDialNav.style.opacity = '1';
+                    }, 200);
                 });
-            }, observerOptions);
+            }, { threshold: 0.3 });
 
             navObserver.observe(materialVaultSection);
         }
