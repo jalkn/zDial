@@ -63,50 +63,38 @@
 
         .scrollbar-none::-webkit-scrollbar { display: none; }
         .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
-
-        /* Animación optimizada por hardware para el núcleo del pulsor */
-        .pulsor-bar {
-            transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease;
-        }
     </style>
 </head>
 <body class="antialiased selection:bg-white selection:text-black overflow-x-hidden bg-zenergy-black text-white">
 
-    <!-- CAPA DE FONDO ATMOSFÉRICA -->
     <div id="page-bg-overlay"></div>
     <div class="fixed inset-0 bg-gradient-to-b from-black via-transparent to-black z-0 pointer-events-none"></div>
 
-    <!-- OVERLAY GENERAL DE CONTROL -->
     <div id="drawer-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-40 hidden opacity-0 transition-opacity duration-500" onclick="closeAllDrawers()"></div>
 
-    <!-- NAVBAR UNIVERSAL UNIFICADO -->
     <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5">
         <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px]">
             
-            <!-- EXTREMO IZQUIERDO: CORE DRAWER -->
             <div class="flex items-center cursor-pointer group justify-self-start p-2">
-                <button id="z-logo-trigger" onclick="toggleLeftDrawer()" class="bg-transparent border-0 p-0 focus:outline-none flex items-center justify-center" aria-label="Abrir Core Drawer">
-                    <img src="img/logo.png" class="w-5 h-5 img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="zenergy Core Trigger"> 
+                <button id="z-logo-trigger" onclick="toggleLeftDrawer()" class="bg-transparent border-0 p-0 focus:outline-none flex items-center justify-center cursor-pointer" aria-label="Abrir Core Drawer">
+                    <img src="img/logo.png" class="w-5 h-5 img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="Zenergy Core Trigger"> 
                 </button>
             </div>
 
-            <!-- CENTRO: TELEMETRÍA DINÁMICA -->
             <div class="justify-self-center text-center">
-                <button id="z-dial-nav" onclick="scrollToSection('material-vault')" class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] bg-transparent border-0 focus:outline-none uppercase hover:text-emerald-400 transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                <button id="z-dial-nav" onclick="scrollToSection('material-vault')" class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] bg-transparent border-0 focus:outline-none uppercase hover:text-emerald-400 transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] cursor-pointer">
                     --
                 </button>
             </div>
                             
-            <!-- EXTREMO DERECHO: BIOKINETIC DRAWER -->
             <div class="justify-self-end">
-                <button id="z-dial-trigger" onclick="toggleDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" aria-label="Abrir Navegación">
+                <button id="z-dial-trigger" onclick="toggleDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Abrir Navegación">
                     <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Menu Trigger">
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- RIGHT BIOKINETIC DRAWER -->
     <div id="biokinetic-drawer" class="fixed inset-0 w-screen h-screen z-50 transform translate-x-full transition-transform duration-500 ease-in-out glass flex flex-col justify-between select-none bg-[#070707]">
         
         <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 shrink-0 select-none">
@@ -127,19 +115,9 @@
             </div>
         </header>
 
-        <!-- CONTENIDO CENTRAL AJUSTADO CON MARGEN INFERIOR PARA MÓVILES -->
-        <div class="flex-1 overflow-y-auto px-6 py-4 flex flex-col justify-center items-center gap-6 min-h-0 scrollbar-none mb-[80px] sm:mb-0">
-            <div class="w-full flex flex-col items-center justify-center relative aspect-square group max-w-[160px] sm:max-w-[190px] mx-auto shrink-0">
-                <div class="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none z-10">
-                    <svg viewBox="0 0 200 200" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_25px_rgba(255,255,255,0.15)] group-hover:scale-[1.03]">
-                        <path id="wave-outer" d="M 100 25 A 75 75 0 0 1 175 100" class="stroke-white/40 fill-none stroke-[4] transition-all duration-500 will-change-transform" stroke-linecap="round" />
-                        <path id="wave-mid" d="M 100 45 A 55 55 0 0 1 155 100" class="stroke-white/25 fill-none stroke-[3.5] transition-all duration-500 will-change-transform" stroke-linecap="round" />
-                        <path id="wave-inner" d="M 100 65 A 35 35 0 0 1 135 100" class="stroke-white/15 fill-none stroke-[3] transition-all duration-500 will-change-transform" stroke-linecap="round" />
-                    </svg>
-                </div>
-            </div>
-
-            <div class="w-full max-w-xs mx-auto shrink-0">
+        <div class="flex-1 overflow-y-auto px-6 flex flex-col justify-center items-center gap-8 min-h-0 scrollbar-none pb-32 sm:pb-12">
+            
+            <div class="w-full max-w-xs mx-auto shrink-0 z-10">
                 <div id="dynamic-node-spec" class="hidden border border-white/5 bg-white/[0.01] backdrop-blur-md rounded-xs p-3 space-y-2 transition-all duration-300">
                     <div class="flex justify-between items-center border-b border-white/5 pb-2">
                         <span class="text-[7px] font-bold uppercase tracking-[0.2em] text-white/40">MESH NODE</span>
@@ -152,48 +130,48 @@
                 </div>
             </div>
 
-            <div class="w-full flex flex-col items-center justify-center p-4 border border-white/[0.03] bg-black/20 rounded-sm gap-6 shrink-0 max-w-xs mx-auto">
-                <div class="relative w-full max-w-[160px] aspect-square bg-black/60 backdrop-blur-md border border-white/10 overflow-hidden transition-all duration-700 hover:border-white/20"
+            <div class="w-full flex flex-col items-center justify-center shrink-0 max-w-xs mx-auto">
+                <div class="relative w-full max-w-[210px] sm:max-w-[230px] aspect-square bg-black/60 backdrop-blur-md border border-white/10 overflow-hidden transition-all duration-700 hover:border-white/20 shadow-[0_10px_40px_rgba(0,0,0,0.7)] group/pulsor"
                     style="clip-path: polygon(50% 0%, 75% 6.7%, 93.3% 25%, 100% 50%, 93.3% 75%, 75% 93.3%, 50% 100%, 25% 93.3%, 6.7% 75%, 0% 50%, 6.7% 25%, 25% 6.7%);">
                     
-                    <div class="absolute inset-0 pointer-events-none z-20">
-                        <div class="absolute top-1/2 left-0 w-[calc(50%-18px)] h-[1px] bg-white/15"></div>
-                        <div class="absolute top-1/2 right-0 w-[calc(50%-18px)] h-[1px] bg-white/15"></div>
-                        <div class="absolute left-1/2 top-0 w-[1px] h-[calc(50%-18px)] bg-white/15"></div>
-                        <div class="absolute left-1/2 bottom-0 w-[1px] h-[calc(50%-18px)] bg-white/15"></div>
-                        
-                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center gap-[3px] w-9 h-6 bg-transparent">
-                            <div class="w-[2px] h-3 bg-white/40 rounded-full pulsor-bar id-wave-1"></div>
-                            <div class="w-[2px] h-5 bg-white/60 rounded-full pulsor-bar id-wave-2"></div>
-                            <div class="w-[2px] h-2 bg-white/30 rounded-full pulsor-bar id-wave-3"></div>
-                            <div class="w-[2px] h-5 bg-white/60 rounded-full pulsor-bar id-wave-4"></div>
-                            <div class="w-[2px] h-3 bg-white/40 rounded-full pulsor-bar id-wave-5"></div>
-                        </div>
+                    <div class="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none z-20 p-8">
+                        <svg viewBox="0 0 200 200" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover/pulsor:scale-[1.05]">
+                            <path id="wave-outer" d="M 100 25 A 75 75 0 0 1 175 100" class="stroke-white/40 fill-none stroke-[3] transition-all duration-500 will-change-transform" stroke-linecap="round" />
+                            <path id="wave-mid" d="M 100 45 A 55 55 0 0 1 155 100" class="stroke-white/25 fill-none stroke-[2.5] transition-all duration-500 will-change-transform" stroke-linecap="round" />
+                            <path id="wave-inner" d="M 100 65 A 35 35 0 0 1 135 100" class="stroke-white/15 fill-none stroke-[2] transition-all duration-500 will-change-transform" stroke-linecap="round" />
+                        </svg>
                     </div>
 
-                    <div class="absolute inset-0 grid grid-cols-2 grid-rows-2 z-10">
-                        <div onclick="playBeat('img/Pbeat.wav')" class="relative group/quad flex flex-col items-center justify-center p-1 cursor-pointer hover:bg-white/[0.03] transition-all duration-500">
-                            <img src="img/pace.png" class="w-5 h-5 opacity-40 group-hover/quad:opacity-100 transition-all duration-500 object-contain" alt="Pace">
-                            <span class="text-[6px] font-black text-white/60 tracking-[0.2em] uppercase mt-0.5">PACE</span>
+                    <div class="absolute inset-0 pointer-events-none z-10">
+                        <div class="absolute top-1/2 left-0 w-[calc(50%-28px)] h-[1px] bg-white/5"></div>
+                        <div class="absolute top-1/2 right-0 w-[calc(50%-28px)] h-[1px] bg-white/5"></div>
+                        <div class="absolute left-1/2 top-0 w-[1px] h-[calc(50%-28px)] bg-white/5"></div>
+                        <div class="absolute left-1/2 bottom-0 w-[1px] h-[calc(50%-28px)] bg-white/5"></div>
+                    </div>
+
+                    <div class="absolute inset-0 grid grid-cols-2 grid-rows-2 z-30">
+                        <div onclick="playBeat('img/Pbeat.wav')" class="relative group/quad flex flex-col items-center justify-start pt-6 p-1 cursor-pointer hover:bg-white/[0.02] transition-all duration-500">
+                            <img src="img/pace.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:scale-110 transition-all duration-500 object-contain" alt="Pace">
+                            <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">PACE</span>
                         </div>
-                        <div onclick="playBeat('img/Ubeat.wav')" class="relative group/quad flex flex-col items-center justify-center p-1 cursor-pointer hover:bg-white/[0.05] transition-all duration-500">
-                            <img src="img/under.png" class="w-5 h-5 opacity-40 group-hover/quad:opacity-100 transition-all duration-500 object-contain" alt="Under">
-                            <span class="text-[6px] font-black text-white/60 tracking-[0.2em] uppercase mt-0.5">UNDER</span>
+                        <div onclick="playBeat('img/Ubeat.wav')" class="relative group/quad flex flex-col items-center justify-start pt-6 p-1 cursor-pointer hover:bg-white/[0.02] transition-all duration-500">
+                            <img src="img/under.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:scale-110 transition-all duration-500 object-contain" alt="Under">
+                            <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mt-1 group-hover/quad:text-white">UNDER</span>
                         </div>
-                        <div onclick="playBeat('img/Lbeat.wav')" class="relative group/quad flex flex-col items-center justify-center p-1 cursor-pointer hover:bg-white/[0.05] transition-all duration-500">
-                            <img src="img/lift.png" class="w-5 h-5 opacity-40 group-hover/quad:opacity-100 transition-all duration-500 object-contain" alt="Lift">
-                            <span class="text-[6px] font-black text-white/60 tracking-[0.2em] uppercase mt-0.5">LIFT</span>
+                        <div onclick="playBeat('img/Lbeat.wav')" class="relative group/quad flex flex-col items-center justify-end pb-6 p-1 cursor-pointer hover:bg-white/[0.02] transition-all duration-500">
+                            <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mb-1 group-hover/quad:text-white">LIFT</span>
+                            <img src="img/lift.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:scale-110 transition-all duration-500 object-contain" alt="Lift">
                         </div>
-                        <div onclick="playBeat('img/Sbeat.wav')" class="relative group/quad flex flex-col items-center justify-center p-1 cursor-pointer hover:bg-white/[0.05] transition-all duration-500">
-                            <img src="img/surge.png" class="w-5 h-5 opacity-40 group-hover/quad:opacity-100 transition-all duration-500 object-contain" alt="Surge">
-                            <span class="text-[6px] font-black text-white/60 tracking-[0.2em] uppercase mt-0.5">SURGE</span>
+                        <div onclick="playBeat('img/Sbeat.wav')" class="relative group/quad flex flex-col items-center justify-end pb-6 p-1 cursor-pointer hover:bg-white/[0.02] transition-all duration-500">
+                            <span class="text-[6px] font-black text-white/40 tracking-[0.2em] uppercase mb-1 group-hover/quad:text-white">SURGE</span>
+                            <img src="img/surge.png" class="w-4 h-4 opacity-30 group-hover/quad:opacity-100 group-hover/quad:scale-110 transition-all duration-500 object-contain" alt="Surge">
                         </div>
                     </div>        
                 </div>
             </div>
+
         </div>
 
-        <!-- FOOTER DERECHO: FIJO AL INFERIOR DE LA PANTALLA (DYNAMIC ACTING) -->
         <footer id="drawer-fixed-footer" class="fixed bottom-0 left-0 w-full z-30 p-4 sm:p-6 border-t border-white/5 bg-[#070707]/90 backdrop-blur-md shrink-0">
             <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase">
                 <button onclick="scrollToSection('material-vault'); toggleDrawer();" class="focus:outline-none group bg-transparent border-0 p-0 cursor-pointer text-left">
@@ -201,13 +179,12 @@
                 </button>
                 <div class="justify-self-center text-center opacity-20 hidden sm:block">•</div>
                 <div class="text-white/30 text-right whitespace-nowrap justify-self-end">
-                    by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 transition-colors font-bold text-white/40">jalkn</a> &copy; 2026
+                    by <a href="https://jalkn.tech" target="_blank" class="hover:text-white/70 transition-colors font-bold text-white/40">jalkn.tech</a> &copy; 2026
                 </div>
             </div>
         </footer>
     </div>
 
-    <!-- LEFT EXPANSION MATRIX DRAWER -->
     <div id="left-core-drawer" class="fixed inset-0 w-screen h-screen z-50 transform -translate-x-full transition-transform duration-500 ease-out flex flex-col justify-between bg-[#070707] select-none">
         
         <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 shrink-0 select-none">
@@ -228,10 +205,9 @@
             </div>
         </header>
 
-        <!-- CONTENIDO CENTRAL AJUSTADO CON MARGEN INFERIOR PARA MÓVILES -->
-        <div class="flex-1 overflow-y-auto px-6 py-4 flex flex-col justify-center items-center gap-6 min-h-0 scrollbar-none mb-[80px] sm:mb-0">
-            <section class="py-4 bg-transparent overflow-hidden w-full flex justify-center">
-                <div class="relative w-full max-w-[240px] sm:max-w-[280px] aspect-[2/3] group shrink-0">
+        <div class="flex-1 overflow-y-auto px-6 py-4 flex flex-col justify-start sm:justify-center items-center gap-6 min-h-0 scrollbar-none pb-32 sm:pb-6">
+            <section class="py-4 bg-transparent overflow-hidden w-full flex justify-center mt-4 sm:mt-0 shrink-0">
+                <div class="relative w-full max-w-[240px] sm:max-w-[280px] aspect-[2/3] group">
                     <div class="absolute inset-0 pointer-events-none z-0">
                         <svg viewBox="0 0 100 150" class="w-full h-full stroke-white/20 fill-none stroke-[0.7]">
                             <path d="M 10 36 L 90 36 L 10 114 L 90 114 Z" class="stroke-white/30 transition-all duration-700 group-hover:stroke-white/60" />
@@ -266,7 +242,6 @@
             </section>
         </div>
 
-        <!-- FOOTER IZQUIERDO: FIJO AL INFERIOR DE LA PANTALLA (DYNAMIC ACTING) -->
         <footer class="fixed bottom-0 left-0 w-full z-30 p-4 sm:p-6 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0">
             <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase text-white/30">
                 <button onclick="openManifesto(); closeAllDrawers();" class="hover:text-white transition-colors duration-300 uppercase bg-transparent border-0 p-0 text-left cursor-pointer">MANIFESTO</button>
@@ -278,16 +253,13 @@
         </footer>
     </div>
 
-    <!-- MAIN INTERFACE CANVAS -->
     <main class="w-full h-[calc(100vh-148px)] sm:h-[calc(100vh-164px)] mt-[68px] mb-[80px] sm:mb-[96px] flex flex-col justify-center items-center overflow-hidden">
         <section id="biokinetic-interface" class="w-full h-full bg-transparent flex justify-start sm:justify-center items-center overflow-x-auto overflow-y-hidden select-none scrollbar-none cursor-grab active:cursor-grabbing">
             <div id="mesh-container" class="w-full h-full max-h-full min-w-[760px] sm:min-w-0 sm:max-w-[840px] px-4 sm:px-8 relative z-10 flex justify-center items-center mx-auto transition-all duration-500">
-                <!-- Capa SVG Dinámica Inyectada -->
-            </div>
+                </div>
         </section>
     </main>
 
-    <!-- MODAL MANIFESTO -->
     <div id="manifesto" class="fixed inset-0 z-50 bg-[#050505]/95 backdrop-blur-md hidden justify-center items-center p-6 transition-all duration-500 opacity-0" onclick="closeManifesto()">
         <div class="max-w-2xl w-full flex flex-col items-center gap-10 text-center px-4" onclick="event.stopPropagation()">
             <div class="flex items-center justify-center cursor-pointer group p-2 relative" onclick="closeManifesto()">
@@ -300,13 +272,12 @@
                     Mi concepto del arte es lo que traemos de la imaginación a la realidad, dibujando los patrones de un cuerpo en bienestar posible. Creo que el cuerpo es la mente inconsciente: un espacio de naturaleza pura y creatividad cruda actualmente suprimido por el ruido digital. Para mantener esta brecha abierta, codificamos los movimientos funcionales del cuerpo en un lenguaje vivo.
                 </p>
                 <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.15em] font-medium leading-relaxed normal-case">
-                    La mente inconsciente opera a través de tracción cinética: <span class="text-white font-bold">atrayendo y empujando pensamientos</span>. Al mapear estas secuencias en bloques mecánicos, encendemos una creatividad constante. Dentro de los nodos, los ritmos integrados de los z_dials actúan como interfaces piezoeléctricas pasivas, convirtiendo la tensión pura de las pisadas en estímulos de microvoltaje que aceleran la biosoldadura del micelio vivo.
+                    La mente inconsciente opera a través de tracción cinética: <span class="text-white font-bold">atrayendo y empujando pensamientos</span>. Al mapear estas secuencias en bloques mecánicos, encendemos una creatividad constante. Dentro de los nodos, los ritmos integrados de los z_dials acúan como interfaces piezoeléctricas pasivas, convirtiendo la tensión pura de las pisadas en estímulos de microvoltaje que aceleran la biosoldadura del micelio vivo.
                 </p>
             </div>
         </div>
     </div>
 
-    <!-- MATERIAL VAULT SECTION -->
     <section id="material-vault" class="py-32 flex flex-col items-center justify-center relative bg-transparent overflow-hidden border-t border-white/[0.02]">
         <div class="relative z-10 flex flex-col items-center w-full px-4 text-center gap-6">
             
@@ -329,7 +300,7 @@
                             </g>
                             <text id="big-dial" x="200" y="218" font-weight="900" text-anchor="middle" class="fill-white font-black text-[46px] tracking-[0.05em] drop-shadow-[0_0_12px_rgba(255,255,255,0.1)] uppercase">--</text>
                             <text class="fill-white/40 font-black text-[11px] tracking-[0.4em] uppercase">
-                                <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">zenergy.world &bull; 3025333130</textPath>
+                                <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">zenergy.world &bull; TECH-LAB</textPath>
                             </text>
                         </svg>
                     </div>
@@ -355,7 +326,6 @@
         </div>
     </section>
 
-    <!-- INFORMATION PANEL (UNIVERSAL FIXED FOOTER) -->
     <footer id="dynamic-footer" class="fixed bottom-0 left-0 w-full z-30 bg-[#0a0a0a]/15 backdrop-blur-md border-t border-white/[0.01] transition-opacity duration-500">
         <div class="p-4 sm:p-6 max-w-xl mx-auto flex items-center justify-center font-bold">
             <button id="z-dial-footer" onclick="scrollToSection('biokinetic-interface')" class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] border border-white/10 bg-black/40 h-[30px] w-[140px] flex items-center justify-center rounded-sm backdrop-blur-sm transition-all duration-300 hover:text-emerald-400 hover:border-emerald-500/30 focus:outline-none uppercase">
@@ -388,18 +358,20 @@
     }
 
     function triggerPulsorVisuals() {
-        for (let i = 1; i <= 5; i++) {
-            const bar = document.querySelector(`.id-wave-${i}`);
-            if (bar) {
-                const randomHeight = Math.floor(Math.random() * 16) + 6;
-                bar.style.height = `${randomHeight}px`;
-                bar.style.backgroundColor = 'rgba(52, 211, 153, 0.9)';
-                
-                setTimeout(() => {
-                    bar.style.height = i % 2 === 0 ? '20px' : '12px';
-                    bar.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
-                }, 300);
-            }
+        const wOuter = $('wave-outer');
+        const wMid = $('wave-mid');
+        const wInner = $('wave-inner');
+        
+        if (wOuter && wMid && wInner) {
+            wOuter.style.stroke = '#10b981';
+            wMid.style.stroke = '#10b981';
+            wInner.style.stroke = '#34d399';
+            
+            setTimeout(() => {
+                wOuter.style.stroke = 'rgba(255, 255, 255, 0.4)';
+                wMid.style.stroke = 'rgba(255, 255, 255, 0.25)';
+                wInner.style.stroke = 'rgba(255, 255, 255, 0.15)';
+            }, 250);
         }
     }
 
@@ -428,21 +400,23 @@
         if ($('z-dial-left')) $('z-dial-left').innerText = coordenadaBiocinetica;
         if ($('hologram-dial')) $('hologram-dial').textContent = coordenadaBiocinetica;
 
-        // Cinemática de Arcos Vectoriales
+        // Cinemática de Arcos Vectoriales centrales del Pulsor
         const wOuter = $('wave-outer');
         const wMid = $('wave-mid');
         const wInner = $('wave-inner');
 
-        if (wOuter && wMid && wInner && !window.selectedNodeFromMesh) {
+        if (wOuter && wMid && wInner) {
             const timeFactor = now.getSeconds() + (now.getMilliseconds() / 1000);
             const pulse = Math.abs(Math.sin(timeFactor * 0.8));
             
-            wOuter.style.stroke = `rgba(255, 255, 255, ${0.15 + pulse * 0.25})`;
-            wMid.style.stroke = `rgba(255, 255, 255, ${0.20 + (1 - pulse) * 0.20})`;
-            wInner.style.stroke = `rgba(255, 255, 255, ${0.30 + pulse * 0.30})`;
+            if (!activeAudioChannels[Object.keys(activeAudioChannels)[0]]?.playing) {
+                wOuter.style.stroke = `rgba(255, 255, 255, ${0.15 + pulse * 0.25})`;
+                wMid.style.stroke = `rgba(255, 255, 255, ${0.20 + (1 - pulse) * 0.20})`;
+                wInner.style.stroke = `rgba(255, 255, 255, ${0.30 + pulse * 0.30})`;
+            }
             
             let speedMultiplier = acciones.length === 3 ? 4 : 2; 
-            wOuter.style.transform = `rotate(${timeFactor * speedMultiplier}deg) translate(--tw-translate-x, --tw-translate-y)`;
+            wOuter.style.transform = `rotate(${timeFactor * speedMultiplier}deg)`;
             wOuter.style.transformOrigin = '100px 100px';
             wMid.style.transform = `rotate(${-timeFactor * (speedMultiplier * 0.7)}deg)`;
             wMid.style.transformOrigin = '100px 100px';
@@ -588,7 +562,7 @@
                 `-----------------------------------\n` +
                 `• Acción: Adquirir MATERIAL VAULT // PULSOR ${varianteActiva}${nodeParam}\n` +
                 `• Código de Registro: #${currentHash}\n` +
-                `• Sistema: zenergy.world Tech-Lab`
+                `• Sistema: zenergy.world TECH-LAB`
             );
             if (navigator.vibrate) navigator.vibrate(40);
             window.open(`${whatsappBaseUrl}?text=${message}`, '_blank');
@@ -609,7 +583,6 @@
             })
             .catch(err => console.error('[-] Error al cargar bio-matrix:', err));
 
-        // Intersección Limpia para Telemetría de Navbar sin colisiones
         const materialVaultSection = document.getElementById('material-vault');
         const zDialNav = document.getElementById('z-dial-nav');
         
