@@ -95,16 +95,11 @@
         </div>
     </nav>
 
-<!-- ========================================== -->
-<!-- RIGHT DRAWER: BIOKINETIC / PULSOR PORTFOLIO-->
-<!-- ========================================== -->
-<div id="biokinetic-drawer" class="fixed inset-0 w-screen h-screen z-50 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-between select-none bg-[#070707]">
+<div id="nodes-drawer" class="fixed inset-0 w-screen h-screen z-50 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-between select-none bg-[#070707]">
     
-    <!-- HEADER INTERCAMBIADO -->
     <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 shrink-0 select-none">
         <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
             
-            <!-- ANTES EN LA DERECHA: BOTÓN DE CIERRE (AHORA EXTREMO IZQUIERDO) -->
             <div class="justify-self-start">
                 <button onclick="toggleDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Cerrar Menú">
                     <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
@@ -112,22 +107,19 @@
             </div>
             
             <div class="justify-self-center text-center">
-                <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">PULSOR</span>
+                <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">PROTO_PULSOR // LAB MATRIX</span>
             </div>
             
-            <!-- ANTES EN LA IZQUIERDA: BOTÓN NODES RESPONSIVO (AHORA EXTREMO DERECHO) -->
             <div class="justify-self-end">
-                <button onclick="openNodesDrawer()" class="group flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer text-white/40 hover:text-white" aria-label="Abrir Galería de Nodos">
-                    <span class="hidden sm:inline font-sans text-[9px] sm:text-[10px] tracking-widest uppercase">NODES</span>
-                    <img src="img/lift.png" class="inline sm:hidden w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:-translate-y-0.5 transition-all duration-300" alt="Nodes">
+                <button onclick="toggleDrawer(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Volver a Interfaz Core">
+                    <img src="img/lift.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:-translate-y-0.5 transition-all duration-300" alt="Home">
                 </button>
             </div>
 
         </div>
     </header>
 
-    <!-- CONTENIDO CENTRAL SCROLLABLE -->
-    <div class="flex-1 overflow-y-auto px-6 flex flex-col justify-center items-center gap-8 min-h-0 scrollbar-none pb-32 sm:pb-12">
+    <div class="flex-1 overflow-y-auto px-6 py-8 flex flex-col justify-start items-center gap-8 min-h-0 scrollbar-none pb-36">
         
         <div class="w-full max-w-xs mx-auto shrink-0 z-10">
             <div id="dynamic-node-spec" class="hidden border border-white/5 bg-white/[0.01] backdrop-blur-md rounded-xs p-3 space-y-2 transition-all duration-300">
@@ -192,16 +184,42 @@
             </div>
         </div>
 
+        <div class="w-full max-w-xs border border-white/5 bg-white/[0.01] p-4 rounded-xs space-y-4">
+            <h3 class="font-sans font-black text-[8px] uppercase tracking-[0.3em] text-white/80 text-center border-b border-white/5 pb-2">
+                SINTAXIS VECTORIAL PROTO_PULSOR
+            </h3>
+            
+            <div class="grid grid-cols-4 gap-1.5 text-center font-mono text-[8px]">
+                <div class="p-2 bg-white/[0.02] border border-white/5 rounded-xs">
+                    <div class="text-white/40 mb-1">UL</div>
+                    <div class="text-white text-sm leading-none">∪</div>
+                </div>
+                <div class="p-2 bg-white/[0.02] border border-white/5 rounded-xs">
+                    <div class="text-white/40 mb-1">PL</div>
+                    <div class="text-white text-sm leading-none">⊂</div>
+                </div>
+                <div class="p-2 bg-white/[0.02] border border-white/5 rounded-xs">
+                    <div class="text-white/40 mb-1">LST</div>
+                    <div class="text-white text-sm leading-none">∩</div>
+                </div>
+                <div class="p-2 bg-white/[0.02] border border-white/5 rounded-xs">
+                    <div class="text-white/40 mb-1">UST</div>
+                    <div class="text-white text-sm leading-none">⊃</div>
+                </div>
+            </div>
+
+            <p class="text-[10px] text-white/60 font-body tracking-[0.05em] leading-relaxed normal-case text-center">
+                Cada coordenada de la deriva solar genera un <span class="text-white font-bold">Launch Token de $10 USD</span>. Una espora de valor real acumulable e intercambiable por las dimensiones físicas del portafolio.
+            </p>
+        </div>
+
     </div>
 
-    <!-- FOOTER AJUSTADO (ELIMINADO FIXED) -->
-    <footer class="w-full p-4 sm:p-6 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0">
-        <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase">
-            <div></div>    
-            <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
-                by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 transition-colors font-bold text-white/40">jalkn</a> &copy; 2026
-            </div>
-            <div></div>
+    <footer class="w-full p-4 sm:p-6 border-t border-white/5 bg-[#0a0a0a]/80 backdrop-blur-md shrink-0">
+        <div class="max-w-xs mx-auto">
+            <button onclick="adquirirNodoActual()" class="w-full h-[42px] bg-white text-black font-mono font-bold text-[9px] tracking-[0.3em] flex items-center justify-center rounded-xs transition-all duration-300 hover:bg-white/90 hover:text-black focus:outline-none uppercase cursor-pointer">
+                Adquirir Nodo
+            </button>
         </div>
     </footer>
 </div>
@@ -212,7 +230,6 @@
 <!-- ========================================== -->
 <div id="left-core-drawer" class="fixed inset-0 w-screen h-screen z-50 transform -translate-x-full transition-transform duration-500 ease-out flex flex-col justify-between bg-[#070707] select-none">
     
-    <!-- HEADER INTERCAMBIADO -->
     <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-b-white/5 shrink-0 select-none">
         <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
             
@@ -236,7 +253,6 @@
         </div>
     </header>
 
-    <!-- CONTENIDO CENTRAL SCROLLABLE -->
     <div class="flex-1 overflow-y-auto px-6 py-4 flex flex-col justify-start sm:justify-center items-center gap-6 min-h-0 scrollbar-none pb-32 sm:pb-6">
         <section class="py-4 bg-transparent overflow-hidden w-full flex justify-center mt-4 sm:mt-0 shrink-0">
             <div class="relative w-full max-w-[240px] sm:max-w-[280px] aspect-[2/3] group">
@@ -259,7 +275,7 @@
 
                     <div class="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer group/core" onclick="toggleLeftDrawer(); toggleDrawer();">
                         <span class="text-[9px] tracking-[0.4em] font-black uppercase text-white/40 group-hover/core:text-white transition-all duration-300">PULSOR</span>
-                        <span id="hologram-dial" class="text-white text-sm tracking-[0.2em] font-black mt-2 transition-all duration-300 group-hover/core:text-emerald-400">...</span>
+                        <span id="hologram-dial" class="text-white text-sm tracking-[0.2em] font-black mt-2 transition-all duration-300">...</span>
                     </div>
 
                     <div class="absolute bottom-[27%] left-[12%] text-[8px] tracking-[0.3em] font-black uppercase text-white/40">BODY</div>
@@ -274,12 +290,11 @@
         </section>
     </div>
 
-    <!-- FOOTER AJUSTADO (ELIMINADO FIXED) -->
     <footer class="w-full p-4 sm:p-6 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0">
         <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase">
             <div></div>    
             <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
-                by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 transition-colors font-bold text-white/40">jalkn</a> &copy; 2026
+                by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 transition-colors font-bold text-white/40">jalkn</a> &copy; 2020
             </div>
             <div></div>
         </div>
@@ -291,7 +306,6 @@
     <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 shrink-0 select-none">
         <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
             
-            <!-- EXTREMO IZQUIERDO: RETORNO DIRECTO A BIO-KINETIC portfolio -->
             <div class="justify-self-start">
                 <button onclick="closeManifesto(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Volver a Interfaz Principal">
                     <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:-translate-x-0.5 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Home">
@@ -313,7 +327,7 @@
 
     <div class="flex-1 overflow-y-auto px-6 py-8 flex flex-col justify-start items-center gap-6 min-h-0 scrollbar-none pb-32">
         <div class="space-y-6 font-body text-left max-w-xl border border-white/5 bg-white/[0.01] p-6 rounded-sm select-text">
-            <h3 class="font-sans font-black text-[11px] uppercase tracking-[0.3em] text-emerald-400 mb-4 text-center">BIOMANIFESTO // THE COGNITIVE SYSTEM</h3>
+            <h3 class="font-sans font-black text-[11px] uppercase tracking-[0.3em] text-white/90 mb-4 text-center">BIOMANIFESTO // THE COGNITIVE SYSTEM</h3>
             
             <p class="text-[11px] sm:text-[12px] text-white/70 tracking-[0.12em] font-medium leading-relaxed normal-case">
                 My concept of art is what we bring from imagination into reality, drawing the patterns of a possible wellness body. 
@@ -333,7 +347,7 @@
             </p>
             <ul class="space-y-3 font-mono text-[9px] sm:text-[10px] text-white/60 list-none pl-0">
                 <li><strong class="text-white">1. SOLAR DRIFT:</strong> Reads global hours and minutes to calculate the exact rotation angle of the Earth (15° per hour + 0.25° per minute). At solar noon, the angle is strictly 180°.</li>
-                <li><strong class="text-white">2. WAVE QUADRANTS:</strong> Divides the 360° matrix into 4 biomechanical actions: <span class="text-emerald-400">0°-90° [UL]</span>, <span class="text-emerald-400">90°-180° [PL]</span>, <span class="text-emerald-400">180°-270° [LST]</span>, and <span class="text-emerald-400">270°-360° [US]</span>.</li>
+                <li><strong class="text-white">2. WAVE QUADRANTS:</strong> Divides the 360° matrix into 4 biomechanical actions: <span class="text-white font-bold">0°-90° [UL]</span>, <span class="text-white font-bold">90°-180° [PL]</span>, <span class="text-white font-bold">180°-270° [LST]</span>, and <span class="text-white font-bold">270°-360° [UST]</span>.</li>
                 <li><strong class="text-white">3. GOLDEN RATIO (PHI):</strong> Sets fluctuate through a sine function (from 2 to 8), while Repetitions are multiplied by <span class="text-white font-bold">PHI (1.618033)</span>, mimicking the fractal geometry of mycelium.</li>
             </ul>
             <div class="mt-4 pt-4 border-t border-white/5 text-center">
@@ -346,83 +360,13 @@
         <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase">
             <div></div>    
             <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
-                by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 transition-colors font-bold text-white/40">jalkn</a> &copy; 2026
+                by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 transition-colors font-bold text-white/40">jalkn</a> &copy; 2020
             </div>
             <div></div>
         </div>
     </footer>
 </div>
 
-
-<div id="nodes-drawer" class="fixed inset-0 w-screen h-screen z-[60] transform translate-y-full transition-transform duration-500 ease-out flex flex-col justify-between bg-[#070707] select-none">
-    
-<header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 shrink-0 select-none">
-    <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
-        
-        <div class="justify-self-start">
-            <button onclick="closeNodesDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Cerrar Nodos">
-                <img src="img/under.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:translate-y-0.5 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
-            </button>
-        </div>
-        
-        <div class="justify-self-center text-center">
-            <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">NODE NETWORK GALLERY</span>
-        </div>
-
-        <!-- EXTREMO DERECHO: RETORNO DIRECTO A BIO-KINETIC portfolio -->
-        <div class="justify-self-end">
-            <button onclick="closeNodesDrawer(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Volver a Interfaz Principal">
-                <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Home">
-            </button>
-        </div>
-        
-    </div>
-</header>
-
-    <div class="flex-1 overflow-y-auto px-6 py-4 flex flex-col justify-center items-center gap-6 min-h-0 scrollbar-none pb-32">
-        <section class="py-6 flex flex-col items-center justify-center relative bg-transparent w-full">
-            <div class="relative z-10 flex flex-col items-center w-full text-center gap-6">
-                
-                <div class="relative w-full max-w-[240px] md:max-w-[260px] aspect-square select-none cursor-pointer group">
-                    <div class="w-full h-full rounded-full bg-[#0a0a0a] border border-white/10 p-1 relative overflow-hidden transition-all duration-500 hover:border-white/30 shadow-[0_0_30px_rgba(0,0,0,0.8)]">
-                        <div class="absolute inset-0 bg-cover bg-center opacity-5" style="background-image: url('img/miscelio.png');"></div>
-                        <div class="absolute inset-0 flex items-center justify-center p-[8%] z-10">
-                            <svg viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/40 stroke-[1.2] group-hover:stroke-white/70 transition-all duration-500">
-                                <defs>
-                                    <path id="textPath-top" d="M 45,200 A 155,155 0 0,1 355,200" />
-                                    <path id="textPath-bottom" d="M 45,200 A 155,155 0 0,0 355,200" />
-                                </defs>
-                                <text class="fill-white/80 font-black text-[13px] tracking-[0.45em] uppercase">
-                                    <textPath id="laser-variant-title" href="#textPath-top" startOffset="50%" text-anchor="middle">PULSOR: MELENA</textPath>
-                                </text>
-                                <g class="opacity-20 stroke-[1.2]">
-                                    <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" />
-                                    <path d="M 110,120 Q 200,150 290,120" />
-                                    <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
-                                </g>
-                                <text id="big-dial" x="200" y="218" font-weight="900" text-anchor="middle" class="fill-white font-black text-[46px] tracking-[0.05em] drop-shadow-[0_0_12px_rgba(255,255,255,0.1)] uppercase">--</text>
-                                <text class="fill-white/40 font-black text-[10px] tracking-[0.4em] uppercase">
-                                    <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">z_storm launch token &bull; $10 usd</textPath>
-                                </text>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-    </div>
-
-    <footer class="w-full p-4 sm:p-6 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0">
-        <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase">
-            <div></div>    
-            <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
-                by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 transition-colors font-bold text-white/40">jalkn</a> &copy; 2026
-            </div>
-            <div></div>
-        </div>
-    </footer>
-</div>
 
     <main class="w-full h-[calc(100vh-148px)] sm:h-[calc(100vh-164px)] mt-[68px] mb-[80px] sm:mb-[96px] flex flex-col justify-center items-center overflow-hidden">
         <section id="biokinetic-portfolio" class="w-full h-full bg-transparent flex justify-start sm:justify-center items-center overflow-x-auto overflow-y-hidden select-none scrollbar-none cursor-grab active:cursor-grabbing">
@@ -441,7 +385,7 @@
             </div>
             
             <div class="justify-self-center text-center">
-                <button id="z-dial-footer-trigger" onclick="scrollToSection('biokinetic-portfolio')" class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] border border-white/10 bg-black/40 h-[30px] w-[140px] sm:w-[150px] flex items-center justify-center rounded-sm backdrop-blur-sm transition-all duration-300 hover:text-emerald-400 hover:border-emerald-500/30 focus:outline-none uppercase">
+                <button id="z-dial-footer-trigger" onclick="scrollToSection('biokinetic-portfolio')" class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] border border-white/10 bg-black/40 h-[30px] w-[140px] sm:w-[150px] flex items-center justify-center rounded-sm backdrop-blur-sm transition-all duration-300 hover:text-white hover:border-white/30 focus:outline-none uppercase">
                     <span id="z-dial-footer">--</span>
                 </button>
             </div>
@@ -484,9 +428,9 @@
         const wInner = $('wave-inner');
         
         if (wOuter && wMid && wInner) {
-            wOuter.style.stroke = '#10b981';
-            wMid.style.stroke = '#10b981';
-            wInner.style.stroke = '#34d399';
+            wOuter.style.stroke = '#ffffff';
+            wMid.style.stroke = '#ffffff';
+            wInner.style.stroke = '#ffffff';
             
             setTimeout(() => {
                 wOuter.style.stroke = 'rgba(255, 255, 255, 0.4)';
@@ -518,7 +462,6 @@
         if ($('z-dial-left')) $('z-dial-left').innerText = coordenadaBiocinetica;
         if ($('hologram-dial')) $('hologram-dial').textContent = coordenadaBiocinetica;
 
-        // Cinemática de Arcos Vectoriales centrales del Pulsor
         const wOuter = $('wave-outer');
         const wMid = $('wave-mid');
         const wInner = $('wave-inner');
@@ -551,7 +494,7 @@
         if (nodeString) {
             if ($('z-dial')) {
                 $('z-dial').innerText = `N${nodeString}`; 
-                $('z-dial').className = "text-emerald-400 font-mono font-bold tracking-[0.2em]";
+                $('z-dial').className = "text-white font-mono font-bold tracking-[0.2em]";
             }
             if ($('z-dial-footer')) {
                 $('z-dial-footer').innerText = `NODE // ${nodeString}`;
@@ -570,7 +513,7 @@
     }
 
     function toggleDrawer() {
-        const drawer = $('biokinetic-drawer');
+        const drawer = $('nodes-drawer');
         const overlay = $('drawer-overlay');
         if (!drawer || !overlay) return;
 
@@ -614,56 +557,21 @@
     }
 
     function closeAllDrawers() {
-        ['biokinetic-drawer', 'left-core-drawer'].forEach(id => {
+        ['nodes-drawer', 'left-core-drawer'].forEach(id => {
             const el = $(id);
             if (el) {
-                if (id === 'biokinetic-drawer') el.classList.add('translate-x-full');
+                if (id === 'nodes-drawer') el.classList.add('translate-x-full');
                 if (id === 'left-core-drawer') el.classList.add('-translate-x-full');
             }
         });
-        $('drawer-overlay').classList.add('hidden');
+        if ($('drawer-overlay')) $('drawer-overlay').classList.add('hidden');
         document.body.classList.remove('drawer-active', 'overflow-hidden');
         if ($('dynamic-footer')) $('dynamic-footer').classList.remove('opacity-0', 'pointer-events-none');
-    }
-
-    function seleccionarVariante(variante) {
-        varianteActiva = variante.toUpperCase();
-        
-        const labels = {
-            'MELENA': 'PULSOR: MELENA',
-            'REISHI': 'PULSOR: REISHI',
-            'CORDYCEPS': 'PULSOR: CORDYCEPS',
-            'COLA': 'PULSOR: COLA PAVO'
-        };
-
-        if ($('laser-variant-title')) $('laser-variant-title').textContent = labels[varianteActiva];
-        
-        updateZ();
-        
-        ['MELENA', 'REISHI', 'CORDYCEPS', 'COLA'].forEach(opt => {
-            const el = $(`opt-${opt.toLowerCase()}`);
-            if (el) {
-                el.className = opt === varianteActiva 
-                    ? "cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/60 backdrop-blur-md rounded-xs text-white border border-white/60 shadow-[0_0_15px_rgba(255,255,255,0.15)]"
-                    : "cursor-pointer transition-all duration-300 px-4 py-1.5 bg-[#141414]/30 backdrop-blur-md rounded-xs text-white/40 border border-white/10 hover:border-white/40 hover:text-white/80";
-            }
-        });
-
-        const varianteData = {
-            'MELENA': 'pulsor generado en z_storm. redimible por $10 usd en capsulas z_caps (melena: focus) para aislamiento de ruido cognitivo.',
-            'REISHI': 'pulsor generado en z_storm. redimible por $10 usd en capsulas z_caps (reishi: zen) para la modulación del estrés y ciclo nocturno.',
-            'CORDYCEPS': 'pulsor generado en z_storm. redimible por $10 usd en capsulas z_caps (cordyceps: stamina) para rendimiento cinético y oxígeno celular.',
-            'COLA': 'pulsor generado en z_storm. redimible por $10 usd en capsulas z_caps (cola de pavo: core) para protección adaptativa homeostática.'
-        };
-
-        if ($('ux-benefit-desc')) $('ux-benefit-desc').textContent = varianteData[varianteActiva];
-        if (navigator.vibrate) navigator.vibrate(15);
     }
 
     function openManifesto() {
         const modal = $('manifesto');
         if (!modal) return;
-        // Remueve el desplazamiento negativo superior para que baje fluidamente
         modal.classList.remove('-translate-y-full');
         if (navigator.vibrate) navigator.vibrate(15);
     }
@@ -671,7 +579,6 @@
     function closeManifesto() {
         const modal = $('manifesto');
         if (!modal) return;
-        // Aplica de nuevo el desplazamiento hacia arriba para ocultarlo
         modal.classList.add('-translate-y-full');
         if (navigator.vibrate) navigator.vibrate(10);
     }
@@ -679,41 +586,20 @@
     function openNodesDrawer() {
         const nodesPanel = document.getElementById('nodes-drawer');
         if (!nodesPanel) return;
-        // Remueve el desplazamiento inferior para deslizar de abajo a arriba
-        nodesPanel.classList.remove('translate-y-full');
+        nodesPanel.classList.remove('translate-x-full');
         if (navigator.vibrate) navigator.vibrate(15);
     }
 
     function closeNodesDrawer() {
         const nodesPanel = document.getElementById('nodes-drawer');
         if (!nodesPanel) return;
-        // Aplica el desplazamiento hacia abajo para ocultarlo bajo la pantalla
-        nodesPanel.classList.add('translate-y-full');
+        nodesPanel.classList.add('translate-x-full');
         if (navigator.vibrate) navigator.vibrate(10);
     }
 
-        function scrollToSection(id) {
-            const target = $(id);
-            if (target) target.scrollIntoView({ behavior: 'smooth' });
-        }
-
-    function adquirirNodo(tipoInyeccion) {
-        const currentHash = $('big-dial') ? $('big-dial').textContent.trim() : "--";
-        const nodeParam = window.selectedNodeFromMesh ? `\n• Nodo Land-Art Asociado: #${window.selectedNodeFromMesh}` : "";
-        const whatsappBaseUrl = "https://wa.me/573025333130";
-
-        if (tipoInyeccion === 'PULSOR_LAUNCH_TOKEN') {
-            const message = encodeURIComponent(
-                `[zenergy.world] Adquisición de Pulsor Adaptógeno\n` +
-                `-----------------------------------------\n` +
-                `• Tipo: LAUNCH TOKEN // PULSOR ${varianteActiva}${nodeParam}\n` +
-                `• Valor: $10 USD (Redimible en z_caps, z_bricks, z_panels)\n` +
-                `• Registro Lab: #${currentHash}\n` +
-                `• Sistema: zenergy.world TECH-LAB`
-            );
-            if (navigator.vibrate) navigator.vibrate(40);
-            window.open(`${whatsappBaseUrl}?text=${message}`, '_blank');
-        }
+    function scrollToSection(id) {
+        const target = $(id);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
     }
 
     document.addEventListener("DOMContentLoaded", () => {
