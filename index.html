@@ -288,7 +288,7 @@
             </section>
         </div>
 
-        <!-- FOOTER FIJO CON EXTREMOS INTERACTIVOS CONFIGURADOS (Rango 2020-2026 unificado) -->
+        <!-- FOOTER FIJO CON EXTREMOS INTERACTIVOS CONFIGURADOS (Rango 2022-2026 unificado) -->
         <footer class="w-full p-4 sm:p-5 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md select-none">
             <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono">
                 <!-- Bloque Izquierdo para futuro botón interactivo -->
@@ -298,7 +298,7 @@
                     </button>
                 </div>    
                 <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
-                    by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2020–2026
+                    by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2022–2026
                 </div>
                 <!-- Bloque Derecho para futuro botón interactivo -->
                 <div class="justify-self-end text-white/20 hover:text-white/60 cursor-pointer transition-colors">
@@ -382,7 +382,7 @@
                 
                 <!-- Centro: Rango de Copyright Unificado -->
                 <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
-                    by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2020–2026
+                    by <a href="https://github.com/jalkn/zenErgy" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2022–2026
                 </div>
                 
                 <!-- Extremo Derecho: Cierra todo el ecosistema y regresa al Main principal -->
@@ -431,45 +431,41 @@
     let biokineticInterval = null;
     let isReading = false;
 
-    // 1. THE BIO-VECTOR GLYPH MOTOR (12-STAGE POLARITY SPECTRUM)
+    // ========================================================
+    // FASE 1: ALGORITMO ALFANUMÉRICO DE TELEMETRÍA CORE
+    // ========================================================
     function updateZ() {
-        // Si el usuario seleccionó un nodo fijo en la malla, se detiene el cálculo solar temporal
+        let biokineticCoordinate = "";
+
         if (window.selectedNodeFromMesh) {
-            updateTerminalTelemetry(window.selectedNodeFromMesh);
-            return;
+            biokineticCoordinate = window.selectedNodeFromMesh.replace(/^0+/, '');
+        } else {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+
+            // Ciclo Solar base para los cuadrantes de acción
+            const solarDegrees = ((hours * 15) + (minutes * 0.25)) % 360;
+            
+            let currentAction = 'UST'; 
+            if (solarDegrees >= 0 && solarDegrees < 90) currentAction = 'UL';       
+            else if (solarDegrees >= 90 && solarDegrees < 180) currentAction = 'PL';  
+            else if (solarDegrees >= 180 && solarDegrees < 270) currentAction = 'LST'; 
+
+            // Mapeo lineal estricto sin residuos caóticos
+            const setsStage = (hours % 12 === 0) ? 12 : hours % 12;
+            const repsStage = Math.min(12, Math.max(1, Math.ceil(minutes / 5)));
+
+            biokineticCoordinate = `${setsStage}${currentAction}${repsStage}`;
         }
 
-        const now = new Date();
-        const hours = now.getHours();
-        const minutes = now.getMinutes();
-
-        // Solar Drift & Quadrant Calculation (15°/hour + 0.25°/minute)
-        const solarDegrees = ((hours * 15) + (minutes * 0.25)) % 360;
-        
-        let currentAction = 'UST'; 
-        if (solarDegrees >= 0 && solarDegrees < 90) currentAction = 'UL';       
-        else if (solarDegrees >= 90 && solarDegrees < 180) currentAction = 'PL';  
-        else if (solarDegrees >= 180 && solarDegrees < 270) currentAction = 'LST'; 
-
-        // Biokinetic Modulation using 12 Harmonic Density Stages
-        let rawSetsValue = Math.floor(Math.abs(Math.sin((solarDegrees * Math.PI) / 180)) * 8) + 3;
-        let rawRepsValue = Math.floor(((minutes + 1) * PHI) % 10) + 3;
-
-        const setsStage = Math.min(12, Math.max(1, rawSetsValue));
-        const repsStage = Math.min(12, Math.max(1, rawRepsValue));
-
-        // Strict Mathematical Zero Suppression (e.g., 4UL5 instead of 04UL05)
-        const biokineticCoordinate = `${setsStage}${currentAction}${repsStage}`;
-        
-        // Guardar la telemetría calculada en el buffer global
         window.currentTelemetryValue = biokineticCoordinate;
 
-        // Telemetry Synchronization across components
+        // Sincronización de pantallas alfanuméricas
         if ($('z-dial-left')) $('z-dial-left').innerText = biokineticCoordinate;
         if (!isReading && $('hologram-dial')) $('hologram-dial').textContent = biokineticCoordinate;
         if ($('z-dial-footer')) $('z-dial-footer').textContent = biokineticCoordinate; 
 
-        // Solo actualizar el dial del pulsor si NO hay una inspección activa por mouseover
         if (!waveInspectionActive) {
             const dialDisplay = $('z-dial-pulsor');
             if (dialDisplay) {
@@ -479,42 +475,54 @@
             }
         }
 
-        // Angular Wave Vector Rendering
+        // ========================================================
+        // FASE 2: TRADUCTOR GEOMÉTRICO (DIAL CENTRAL GIANT)
+        // ========================================================
+        const match = biokineticCoordinate.match(/^(\d+)([A-Z]+)(\d+)$/);
+        if (!match) return;
+
+        const setsRealValue = parseInt(match[1], 10);
+        const actionRealValue = match[2];
+        const repsRealValue = parseInt(match[3], 10);
+
         const wOuter = $('wave-outer'); 
         const wMid = $('wave-mid');     
         const wInner = $('wave-inner'); 
 
         if (wOuter && wMid && wInner) {
-            const perimetroOuter = 2 * Math.PI * 75; 
-            const perimetroMid = 2 * Math.PI * 53;   
-            const perimetroInner = 2 * Math.PI * 31; 
+            // Reset de transformaciones para limpiar herencias de Illustrator
+            wInner.style.transform = 'none';
+            wOuter.style.transform = 'none';
 
-            const polaridad = (solarDegrees >= 180) ? -1 : 1;
+            // 1. Arco Interior (Sets) - Medición dinámica de longitud real
+            const totalLengthInner = wInner.getTotalLength ? wInner.getTotalLength() : (2 * Math.PI * 31);
+            const innerArcLength = totalLengthInner * (setsRealValue / 12);
+            wInner.style.strokeDasharray = `${innerArcLength} ${totalLengthInner}`;
 
-            const innerArcLength = perimetroInner * (setsStage / 12);
-            wInner.style.strokeDasharray = `${innerArcLength} ${perimetroInner}`;
-            wInner.style.transform = `rotate(${-90 * polaridad}deg)`;
-            wInner.style.transformOrigin = '100px 100px';
+            // 2. Arco Medio (Acción) - REGLA SAGRADA DEL PROTOCOLO PULS
+            const totalLengthMid = wMid.getTotalLength ? wMid.getTotalLength() : (2 * Math.PI * 53);
+            let midArcLength = totalLengthMid * 0.5; // Semicírculo estándar (180°)
+            let midVectorRotation = 0;
 
-            let midArcLength = perimetroMid * 0.5; 
-            let midVectorRotation = -90;
-
-            if (currentAction === 'UL') midVectorRotation = 180;
-            else if (currentAction === 'PL') midVectorRotation = 0;   
-            else if (currentAction === 'LST') midVectorRotation = 90;  
-            else if (currentAction === 'UST') {
-                midArcLength = perimetroMid; 
-                midVectorRotation = -90;
+            if (actionRealValue === 'UL') {
+                midVectorRotation = 0;       // ABAJO (Base nativa del archivo)
+            } else if (actionRealValue === 'PL') {
+                midVectorRotation = 180;     // ARRIBA (Inversión total perfecta)
+            } else if (actionRealValue === 'LST') {
+                midVectorRotation = 90;      // IZQUIERDA (Giro de cuadrante horario)
+            } else if (actionRealValue === 'UST') {
+                midArcLength = totalLengthMid; // CÍRCULO COMPLETO
+                midVectorRotation = 0;
             }
 
-            wMid.style.strokeDasharray = `${midArcLength} ${perimetroMid}`;
-            wMid.style.transform = `rotate(${midVectorRotation * polaridad}deg)`;
+            wMid.style.strokeDasharray = `${midArcLength} ${totalLengthMid}`;
+            wMid.style.transform = `rotate(${midVectorRotation}deg)`;
             wMid.style.transformOrigin = '100px 100px';
 
-            const outerArcLength = perimetroOuter * (repsStage / 12);
-            wOuter.style.strokeDasharray = `${outerArcLength} ${perimetroOuter}`;
-            wOuter.style.transform = `rotate(${-90 * polaridad}deg)`;
-            wOuter.style.transformOrigin = '100px 100px';
+            // 3. Arco Exterior (Reps) - Medición dinámica de longitud real
+            const totalLengthOuter = wOuter.getTotalLength ? wOuter.getTotalLength() : (2 * Math.PI * 75);
+            const outerArcLength = totalLengthOuter * (repsRealValue / 12);
+            wOuter.style.strokeDasharray = `${outerArcLength} ${totalLengthOuter}`;
         }
     }
 
@@ -525,7 +533,6 @@
             const cleanNodeString = nodeString.replace(/^0+/, '');
             window.currentTelemetryValue = cleanNodeString;
             
-            // Si el usuario está inspeccionando con el mouse, congelar render en pantalla pero guardar datos
             if (waveInspectionActive) {
                 if (specPanel) {
                     specPanel.classList.remove('hidden');
@@ -557,6 +564,73 @@
         }
     }
 
+    // ========================================================
+    // MOTOR DE ARMONIZACIÓN PARA NODOS DE LA MALLA (PORTAFOLIO)
+    // ========================================================
+    function harmonizeMeshNodes() {
+        const meshContainer = document.getElementById('mesh-container');
+        if (!meshContainer) return;
+
+        const nodes = meshContainer.querySelectorAll('[id*="UL"], [id*="PL"], [id*="LST"], [id*="UST"]');
+        
+        nodes.forEach(node => {
+            const nodeId = node.id;
+            const match = nodeId.match(/(\d+)([A-Z]+)(\d+)/);
+            if (!match) return;
+
+            const action = match[2]; 
+            const sets = parseInt(match[1], 10);
+            const reps = parseInt(match[3], 10);
+
+            const innerArc = node.querySelector('.wave-inner, [id*="inner"], path:nth-of-type(1)');
+            const midArc = node.querySelector('.wave-mid, [id*="mid"], path:nth-of-type(2)');
+            const outerArc = node.querySelector('.wave-outer, [id*="outer"], path:nth-of-type(3)');
+
+            if (innerArc) {
+                const len = innerArc.getTotalLength ? innerArc.getTotalLength() : (2 * Math.PI * 31);
+                innerArc.style.strokeDasharray = `${len * (sets / 12)} ${len}`;
+                innerArc.style.transform = 'none';
+            }
+            if (outerArc) {
+                const len = outerArc.getTotalLength ? outerArc.getTotalLength() : (2 * Math.PI * 75);
+                outerArc.style.strokeDasharray = `${len * (reps / 12)} ${len}`;
+                outerArc.style.transform = 'none';
+            }
+
+            // APLICACIÓN COHERENTE DEL LENGUAJE VISUAL EN LA MALLA
+            if (midArc) {
+                const len = midArc.getTotalLength ? midArc.getTotalLength() : (2 * Math.PI * 53);
+                let arcLen = len * 0.5;
+                let rot = 0;
+
+                if (action === 'UL') {
+                    rot = 0;       // ABAJO
+                } else if (action === 'PL') {
+                    rot = 180;     // ARRIBA
+                } else if (action === 'LST') {
+                    rot = 90;      // IZQUIERDA
+                } else if (action === 'UST') {
+                    arcLen = len;  // CÍRCULO COMPLETO
+                    rot = 0;
+                }
+
+                midArc.style.strokeDasharray = `${arcLen} ${len}`;
+                midArc.style.transform = `rotate(${rot}deg)`;
+                midArc.style.transformOrigin = 'center'; 
+            }
+
+            // Volver interactivos los nodos pequeños al hacer Click
+            node.style.cursor = 'pointer';
+            node.addEventListener('click', () => {
+                window.selectedNodeFromMesh = nodeId;
+                updateZ();
+                nodes.forEach(n => n.style.opacity = '0.35');
+                node.style.opacity = '1';
+                if (navigator.vibrate) navigator.vibrate(25);
+            });
+        });
+    }
+
     // 2. DRAWER INTERACTION ENGINE
     function toggleDrawer() {
         const drawer = $('nodes-drawer');
@@ -582,7 +656,6 @@
         }
     }
 
-    // LEFT PANEL DRAW CONTEXT
     function toggleLeftDrawer() {
         const leftDrawer = $('left-core-drawer');
         const overlay = $('drawer-overlay');
@@ -623,7 +696,6 @@
         if (navigator.vibrate) navigator.vibrate(15);
     }
 
-    // MODAL WINDOW INTERACTION
     function closeManifesto() {
         const modal = $('manifesto');
         if (!modal) return;
@@ -637,7 +709,7 @@
         if (target) target.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // 3. INTERACTIVE RSVP MANIFESTO ENGINE (SEPARATED COMPACT LAYOUT)
+    // 3. INTERACTIVE RSVP MANIFESTO ENGINE
     const manifestoChapters = {
         1: "BIOMANIFESTO // THE COGNITIVE SYSTEM My concept of art is what we bring from imagination into reality, drawing the patterns of a possible wellness body. I believe the body is the unconscious mind—a space of pure nature and raw creativity currently suppressed by digital noise. To keep this gap open, we code the functional movements of the body into a live language. The unconscious mind operates through kinetic traction: attracting and pushing away thoughts. By mapping these sequences into mechanical blocks, we ignite constant creativity.",
         2: "THE ALGORITHMIC DIAL // TRANSLATION MANUAL The algorithm does not invent data; it is a translator. It takes the Earth's rotation relative to the Sun in a 24-hour cycle and converts it into a unique 'bio-kinetic coordinate.' Time becomes a matrix of movement. 1. SOLAR DRIFT: Reads global hours and minutes to calculate the exact rotation angle of the Earth (15° per hour + 0.25° per minute). At solar noon, the angle is strictly 180°.",
@@ -670,14 +742,11 @@
         rsvpIntervalId = setInterval(() => {
             if (wordIndex < activeWords.length) {
                 let word = activeWords[wordIndex];
-                
                 if (word === word.toUpperCase() && word.length > 3 && !/[0-9]/.test(word) && word !== "//") {
                     word = word.charAt(0) + word.slice(1).toLowerCase();
                 }
-                
                 if (displayWord) displayWord.textContent = word;
                 if (displayStatus) displayStatus.innerText = `${readSpeed}MS`;
-                
                 wordIndex++;
             } else {
                 stopRSVPStream();
@@ -691,33 +760,26 @@
     function stopRSVPStream() {
         isReading = false;
         clearInterval(rsvpIntervalId);
-        
         const displayWord = $('rsvp-word-display');
         const displayStatus = $('rsvp-status-indicator');
-
         if (displayStatus) displayStatus.innerText = `PAUSED`;
-        if (displayWord && wordIndex === 0) {
-            displayWord.textContent = "READY";
-        }
+        if (displayWord && wordIndex === 0) displayWord.textContent = "READY";
     }
 
-    // 4. MOTOR DE DETECCIÓN INVERSA Y AISLAMIENTO BIOMECÁNICO
+    // 4. MOTOR DE DETECCIÓN INVERSA (INSPECCIÓN TÁCTIL SOBRE ARCOS DEL DIAL CENTRAL)
     function inspectKineticWave(type, targetRing) {
         waveInspectionActive = true;
 
-        // Aislamiento Lumínico en los Arcos del SVG
         const rings = {
             'OUTER': $('wave-outer'),
             'MID': $('wave-mid'),
             'INNER': $('wave-inner')
         };
 
-        // Opacar trazos secundarios para centrar foco visual
         Object.values(rings).forEach(ring => { 
             if(ring) ring.style.stroke = "rgba(255,255,255,0.15)"; 
         });
         
-        // Encender arco objetivo en Azul Eléctrico
         if(rings[targetRing]) {
             rings[targetRing].style.stroke = "#00d2ff";
             rings[targetRing].style.filter = "drop-shadow(0 0 8px rgba(0,210,255,0.8))";
@@ -727,8 +789,6 @@
         if (!dialDisplay) return;
 
         const rawTelemetry = window.currentTelemetryValue || "--";
-        
-        // Desestructurar coordenada por Regex: [Sets][Accion][Reps] -> ej: "5LST12"
         const match = rawTelemetry.match(/^(\d+)([A-Z]+)(\d+)$/);
         let isolatedValue = "--";
 
@@ -738,20 +798,8 @@
             else if (type === 'REPS') isolatedValue = `${reps} <span class="text-[10px] text-white/30 ml-1">REPS</span>`;
             else if (type === 'ACTION') isolatedValue = `<span class="text-[11px] text-white/30 mr-1">ACT:</span>${action}`;
             else if (type === 'ONLY_ACTION') isolatedValue = `PULS // ${action}`;
-        } else {
-            // Fallback en reposo si la malla no está arrojando datos
-            if (type === 'SETS') isolatedValue = "00 // SETS";
-            else if (type === 'REPS') isolatedValue = "00 // REPS";
-            else if (type === 'ONLY_ACTION') isolatedValue = "PULS // CORE";
         }
 
-        // Casos de hover sobre las tarjetas de sintaxis inferiores
-        if (type === 'ACTION_UL') isolatedValue = "VECTOR: UL";
-        if (type === 'ACTION_PL') isolatedValue = "VECTOR: PL";
-        if (type === 'ACTION_LST') isolatedValue = "VECTOR: LST";
-        if (type === 'ACTION_UST') isolatedValue = "VECTOR: UST";
-
-        // Inyectar telemetría aislada en Cian de Laboratorio
         dialDisplay.innerHTML = isolatedValue;
         dialDisplay.classList.add('text-cyan-400', 'drop-shadow-[0_0_12px_rgba(0,210,255,0.5)]');
         dialDisplay.classList.remove('text-white');
@@ -762,7 +810,6 @@
     function clearKineticWave() {
         waveInspectionActive = false;
 
-        // Restaurar estilos de trazos nativos en arcos SVG
         ['wave-outer', 'wave-mid', 'wave-inner'].forEach(id => {
             const ring = $(id);
             if(ring) {
@@ -771,7 +818,6 @@
             }
         });
 
-        // Retornar pantalla alfanumérica al valor completo del búfer real
         const dialDisplay = $('z-dial-pulsor');
         if (dialDisplay) {
             dialDisplay.classList.remove('text-cyan-400', 'drop-shadow-[0_0_12px_rgba(0,210,255,0.5)]');
@@ -780,9 +826,10 @@
         }
     }
 
-    // 5. CRUCETA BINDING & ARCHITECTURE INITIALIZATION
+    // ========================================================
+    // 5. INITIALIZATION & ASYNC BINDING
+    // ========================================================
     document.addEventListener("DOMContentLoaded", () => {
-        // STREAM CONTROL (RIGHT)
         if ($('btn-stream-start')) {
             $('btn-stream-start').addEventListener('click', () => {
                 if (navigator.vibrate) navigator.vibrate(12);
@@ -790,7 +837,6 @@
             });
         }
 
-        // STOP CONTROL (LEFT)
         if ($('btn-stream-stop')) {
             $('btn-stream-stop').addEventListener('click', () => {
                 if (navigator.vibrate) navigator.vibrate(8);
@@ -798,7 +844,6 @@
             });
         }
 
-        // SPEED UP (++ ARRIBA)
         if ($('btn-speed-up')) {
             $('btn-speed-up').addEventListener('click', () => {
                 readSpeed = Math.max(60, readSpeed - 40); 
@@ -812,7 +857,6 @@
             });
         }
 
-        // SPEED DOWN (-- ABAJO)
         if ($('btn-speed-down')) {
             $('btn-speed-down').addEventListener('click', () => {
                 readSpeed = Math.min(800, readSpeed + 40);
@@ -826,30 +870,35 @@
             });
         }
 
-        // INITIALIZE BACKGROUND TIME CLOCK ENGINE
+        // CONTROL DE RELOJ DE TIEMPO REAL
         if (biokineticInterval) clearInterval(biokineticInterval);
         updateZ(); 
         biokineticInterval = setInterval(updateZ, 1000); 
 
-        // Load Background Mesh Architecture
+        // CARGA ASÍNCRONA DE LA MATRIZ DE DISEÑO + ARMONIZACIÓN INMEDIATA
         fetch('img/bigPicture.svg')
             .then(response => response.text())
             .then(data => {
-                if ($('mesh-container')) $('mesh-container').innerHTML = data;
+                if ($('mesh-container')) {
+                    $('mesh-container').innerHTML = data;
+                    harmonizeMeshNodes(); // Reorientar "fantasmas" y volver interactivo el portafolio
+                }
             })
             .catch(err => console.error('[-] Error loading bio-matrix:', err));
 
-        // Observer for Portfolio Header
+        // Observer del Encabezado del Portafolio
         const gallerySection = document.getElementById('node-gallery-section');
         const zDialNav = document.getElementById('z-dial-nav');
         if (gallerySection && zDialNav) {
             const navObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    zDialNav.style.opacity = '0';
-                    setTimeout(() => {
-                        zDialNav.textContent = 'BIO-KINETIC PORTFOLIO';
-                        zDialNav.style.opacity = '1';
-                    }, 200);
+                    if (entry.isIntersecting) {
+                        zDialNav.style.opacity = '0';
+                        setTimeout(() => {
+                            zDialNav.textContent = 'BIO-KINETIC PORTFOLIO';
+                            zDialNav.style.opacity = '1';
+                        }, 200);
+                    }
                 });
             }, { threshold: 0.3 });
             navObserver.observe(gallerySection);
