@@ -301,57 +301,56 @@
             </div>
         </header>
 
-        <div class="flex-1 overflow-y-auto px-6 py-4 flex flex-col justify-start items-center gap-6 max-w-xl mx-auto w-full pb-24 scrollbar-none">
+        <div class="flex-1 overflow-y-auto px-6 py-6 flex flex-col justify-start items-center gap-8 max-w-xl mx-auto w-full pb-24 scrollbar-none">
             
-            <div class="relative w-80 h-80 mx-auto rounded-full border border-white/10 bg-black flex items-center justify-center shrink-0">
+            <div class="relative w-44 h-44 mx-auto rounded-full border border-white/10 bg-black flex items-center justify-center shrink-0 mt-2">
                 
                 <div class="axis-x-overlay"></div>
                 
-                <!-- NÚCLEO CENTRAL DE LECTURA AISLADO -->
-                <div class="w-40 h-40 rounded-full bg-[#050505] border border-white/5 flex flex-col items-center justify-center text-center z-10 font-mono pointer-events-none select-none px-4">
-                    <!-- Removido 'uppercase' y suavizado a 'font-bold' para lectura orgánica -->
-                    <div class="text-xl font-bold text-white tracking-wide min-h-[28px] drop-shadow-[0_0_8px_rgba(255,255,255,0.4)] transition-all duration-70" id="rsvp-word-display">
+                <div class="flex flex-col items-center justify-center text-center z-10 font-mono pointer-events-none select-none">
+                    <div class="text-[8px] text-white/50 tracking-[0.2em] uppercase font-bold" id="rsvp-status-indicator">
                         READY
-                    </div>
-                    <!-- El estado del sistema sí puede quedar pequeño y en mayúsculas como metadata -->
-                    <div class="text-[7px] text-white/30 tracking-[0.2em] uppercase mt-1" id="rsvp-status-indicator">
-                        CH_1 STANDBY
                     </div>
                 </div>
 
-                <button class="absolute top-3 left-1/2 -translate-x-1/2 font-mono text-xs text-white bg-transparent hover:text-white/70 px-3 py-1 transition-colors z-20" id="btn-speed-up">
+                <button class="absolute top-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/60 hover:text-white p-2 transition-colors z-20" id="btn-speed-up">
                     ++
                 </button>
 
-                <button class="absolute bottom-3 left-1/2 -translate-x-1/2 font-mono text-xs text-white bg-transparent hover:text-white/70 px-3 py-1 transition-colors z-20" id="btn-speed-down">
+                <button class="absolute bottom-2 left-1/2 -translate-x-1/2 font-mono text-[10px] text-white/60 hover:text-white p-2 transition-colors z-20" id="btn-speed-down">
                     --
                 </button>
 
-                <button class="absolute left-4 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 bg-transparent hover:bg-white/5 border border-white/10 rounded-full transition-all z-20" id="btn-stream-stop" aria-label="Stop Stream">
-                    <img src="img/surge.png" class="w-4 h-4 object-contain opacity-50 group-hover:opacity-100 group-hover:rotate-90 transition-all duration-300" alt="Stop">
+                <button class="absolute left-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 bg-transparent hover:bg-white/5 border border-white/5 rounded-full transition-all z-20" id="btn-stream-stop" aria-label="Stop Stream">
+                    <img src="img/surge.png" class="w-3.5 h-3.5 object-contain opacity-40 group-hover:opacity-100 group-hover:rotate-90 transition-all duration-300" alt="Stop">
                 </button>
 
-                <button class="absolute right-4 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 bg-transparent hover:bg-white/5 border border-white/10 rounded-full transition-all z-20" id="btn-stream-start" aria-label="Start Stream">
-                    <img src="img/pace.png" class="w-4 h-4 object-contain opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" alt="Stream">
+                <button class="absolute right-2 top-1/2 -translate-y-1/2 group flex items-center justify-center p-2 bg-transparent hover:bg-white/5 border border-white/5 rounded-full transition-all z-20" id="btn-stream-start" aria-label="Start Stream">
+                    <img src="img/pace.png" class="w-3.5 h-3.5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" alt="Stream">
                 </button>
             </div>
 
-            <div class="w-full max-w-md mx-auto mt-6 border-t border-white/10 pt-6 space-y-3 font-mono">
-                <div class="text-[10px] text-white/30 uppercase tracking-widest mb-2 text-center">Select Core Chapter</div>
+            <div class="w-full max-w-sm flex items-center justify-center text-center py-8 my-2 font-mono select-none">
+                <div class="text-2xl font-bold text-white tracking-wide min-h-[36px] drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] transition-all duration-70" id="rsvp-word-display">
+                    READY
+                </div>
+            </div>
+
+            <div class="w-full max-w-md mx-auto border-t border-white/10 pt-6 space-y-2 font-mono">
                 
-                <div class="group flex items-center justify-between p-3 border border-white/5 bg-white/[0.02] hover:bg-white/[0.08] hover:border-white/20 cursor-pointer transition-all rounded" onclick="loadManifestoChapter(1)">
-                    <span class="text-xs text-white/80 group-hover:text-white">EP_1: THE COGNITIVE SYSTEM</span>
-                    <span class="text-[10px] text-white/40">2Hz FREQ</span>
+                <div class="group flex items-center justify-between p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.05] hover:border-white/10 cursor-pointer transition-all rounded" onclick="loadManifestoChapter(1)">
+                    <span class="text-xs text-white/60 group-hover:text-white">EP_1: THE COGNITIVE SYSTEM</span>
+                    <span class="text-[9px] text-white/30">2Hz FREQ</span>
                 </div>
 
-                <div class="group flex items-center justify-between p-3 border border-white/5 bg-white/[0.02] hover:bg-white/[0.08] hover:border-white/20 cursor-pointer transition-all rounded" onclick="loadManifestoChapter(2)">
-                    <span class="text-xs text-white/80 group-hover:text-white">EP_2: INVISIBLE ARCHITECTURE</span>
-                    <span class="text-[10px] text-white/40">PHI MATRX</span>
+                <div class="group flex items-center justify-between p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.05] hover:border-white/10 cursor-pointer transition-all rounded" onclick="loadManifestoChapter(2)">
+                    <span class="text-xs text-white/60 group-hover:text-white">EP_2: INVISIBLE ARCHITECTURE</span>
+                    <span class="text-[9px] text-white/30">PHI MATRX</span>
                 </div>
 
-                <div class="group flex items-center justify-between p-3 border border-white/5 bg-white/[0.02] hover:bg-white/[0.08] hover:border-white/20 cursor-pointer transition-all rounded" onclick="loadManifestoChapter(3)">
-                    <span class="text-xs text-white/80 group-hover:text-white">EP_3: BIOCINETIC SYNTAX</span>
-                    <span class="text-[10px] text-white/40">VCTR CLPS</span>
+                <div class="group flex items-center justify-between p-3 border border-white/5 bg-white/[0.01] hover:bg-white/[0.05] hover:border-white/10 cursor-pointer transition-all rounded" onclick="loadManifestoChapter(3)">
+                    <span class="text-xs text-white/60 group-hover:text-white">EP_3: BIOCINETIC SYNTAX</span>
+                    <span class="text-[9px] text-white/30">VCTR CLPS</span>
                 </div>
             </div>
         </div>
@@ -563,7 +562,7 @@
         if (target) target.scrollIntoView({ behavior: 'smooth' });
     }
 
-// 3. INTERACTIVE RSVP MANIFESTO ENGINE (TACTILE CENTRAL DISPLAY)
+// 3. INTERACTIVE RSVP MANIFESTO ENGINE (SEPARATED COMPACT LAYOUT)
     const manifestoChapters = {
         1: "BIOMANIFESTO // THE COGNITIVE SYSTEM My concept of art is what we bring from imagination into reality, drawing the patterns of a possible wellness body. I believe the body is the unconscious mind—a space of pure nature and raw creativity currently suppressed by digital noise. To keep this gap open, we code the functional movements of the body into a live language. The unconscious mind operates through kinetic traction: attracting and pushing away thoughts. By mapping these sequences into mechanical blocks, we ignite constant creativity.",
         2: "THE ALGORITHMIC DIAL // TRANSLATION MANUAL The algorithm does not invent data; it is a translator. It takes the Earth's rotation relative to the Sun in a 24-hour cycle and converts it into a unique 'bio-kinetic coordinate.' Time becomes a matrix of movement. 1. SOLAR DRIFT: Reads global hours and minutes to calculate the exact rotation angle of the Earth (15° per hour + 0.25° per minute). At solar noon, the angle is strictly 180°.",
@@ -581,8 +580,8 @@
             stopRSVPStream();
             activeWords = manifestoChapters[chapterNum].split(/\s+/);
             wordIndex = 0;
-            if ($('rsvp-word-display')) $('rsvp-word-display').innerText = `CH_${chapterNum}`;
-            if ($('rsvp-status-indicator')) $('rsvp-status-indicator').innerText = "LOADED // READY";
+            if ($('rsvp-word-display')) $('rsvp-word-display').innerText = `CHAPTER 0${chapterNum}`;
+            if ($('rsvp-status-indicator')) $('rsvp-status-indicator').innerText = "LOADED";
             if (navigator.vibrate) navigator.vibrate(20);
         }
     }
@@ -594,29 +593,24 @@
         const displayWord = $('rsvp-word-display');
         const displayStatus = $('rsvp-status-indicator');
 
-        if (displayWord) {
-            displayWord.className = "text-xl font-bold text-white tracking-wide min-h-[28px] drop-shadow-[0_0_12px_rgba(255,255,255,0.6)] transition-all duration-70";
-        }
-
         rsvpIntervalId = setInterval(() => {
             if (wordIndex < activeWords.length) {
                 let word = activeWords[wordIndex];
                 
-                // OPTIMIZACIÓN VISUAL: Si una palabra viene enteramente en mayúsculas y mide más de 3 caracteres
-                // (como los títulos "BIOMANIFESTO" o "SOLAR"), la suavizamos para evitar fatiga visual.
+                // Suavizado inteligente de mayúsculas sostenidas largas para legibilidad móvil
                 if (word === word.toUpperCase() && word.length > 3 && !/[0-9]/.test(word) && word !== "//") {
                     word = word.charAt(0) + word.slice(1).toLowerCase();
                 }
                 
                 if (displayWord) displayWord.textContent = word;
-                if (displayStatus) displayStatus.innerText = `STREAMING // ${readSpeed}ms`;
+                if (displayStatus) displayStatus.innerText = `${readSpeed}MS`;
                 
                 wordIndex++;
             } else {
                 stopRSVPStream();
                 wordIndex = 0;
                 if (displayWord) displayWord.textContent = "DONE";
-                if (displayStatus) displayStatus.innerText = "END OF CORES";
+                if (displayStatus) displayStatus.innerText = "END";
             }
         }, readSpeed);
     }
@@ -628,11 +622,10 @@
         const displayWord = $('rsvp-word-display');
         const displayStatus = $('rsvp-status-indicator');
 
-        if (displayWord) {
-            displayWord.className = "text-xl font-bold text-white tracking-wide min-h-[28px] drop-shadow-[0_0_8px_rgba(255,255,255,0.4)] transition-all duration-70";
-            if(wordIndex === 0) displayWord.textContent = "READY";
+        if (displayStatus) displayStatus.innerText = `PAUSED`;
+        if (displayWord && wordIndex === 0) {
+            displayWord.textContent = "READY";
         }
-        if (displayStatus) displayStatus.innerText = `PAUSED // ${readSpeed}ms`;
     }
 
     // CRUCETA BINDING (ATTACHING TRIGGERS TO TACTILE CROSS-PAD ELEMENTS)
