@@ -113,9 +113,9 @@
         </div>
     </nav>
 <!-- ========================================================================= -->
-<!-- NODES DRAWER RESTRUCTURADO CON DISTRIBUCIÓN VERTICAL COMPACTA (FLEX-BETWEEN) -->
+<!-- NODES DRAWER RESTRUCTURADO CON SOPORTE TÁCTIL (PULSOR) -->
 <!-- ========================================================================= -->
-<div id="nodes-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-between select-none bg-[#070707]">
+<div id="nodes-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-between select-none bg-[#070707]" ontouchstart="checkResetTouch(event)">
     
     <!-- HEADER (FIJO ARRIBA) -->
     <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 shrink-0 select-none">
@@ -126,7 +126,7 @@
                 </button>
             </div>
             <div class="justify-self-center text-center">
-                <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">PROTO_PULSOR // LAB MATRIX</span>
+                <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap">PULSOR // BIOKINETIC WAVE CODE</span>
             </div>
             <div class="justify-self-end">
                 <button onclick="toggleDrawer(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Return Core Interfaz">
@@ -136,91 +136,52 @@
         </div>
     </header>
 
-    <!-- CUERPO CENTRAL CON AUTO-ESPACIADO (EVITA COLAPSO CONTRA EL FOOTER) -->
-<div class="relative w-44 h-44 mx-auto flex items-center justify-center shrink-0 mt-2 overflow-hidden group/pulsor">
-            <div class="absolute inset-0 w-full h-full pointer-events-none z-10">
-                <div class="absolute inset-0 flex items-center justify-center p-1 z-20 pointer-events-auto">
-                    <svg viewBox="0 0 200 200" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
-                        <circle id="wave-outer" cx="100" cy="100" r="95" 
-                                onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
-                                class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)]" 
-                                stroke-linecap="round" transform="rotate(-90 100 100)" />
-                        
-                        <circle id="wave-mid" cx="100" cy="100" r="67" 
-                                onmouseenter="inspectKineticWave('ACTION', 'MID')" onmouseleave="clearKineticWave()"
-                                class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)]" 
-                                stroke-linecap="round" transform="rotate(-90 100 100)" />
-                        
-                        <circle id="wave-inner" cx="100" cy="100" r="39" 
-                                onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
-                                class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)]" 
-                                stroke-linecap="round" transform="rotate(-90 100 100)" />
-                    </svg>
-                </div>
-            </div>
+    <!-- CUERPO CENTRAL: Lente circular primitiva sin esquinas -->
+    <div class="relative w-48 h-48 mx-auto flex items-center justify-center shrink-0 mt-4 overflow-hidden rounded-full bg-black/20 border border-white/5 shadow-[inset_0_0_20px_rgba(0,0,0,0.6)] group/pulsor">
+        <div class="absolute inset-0 w-full h-full p-2 z-20">
+            <svg viewBox="0 0 200 200" id="interactive-pulsor-svg" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                <circle id="wave-outer" cx="100" cy="100" r="95" 
+                        onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
+                        ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
+                        class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 touch-none" 
+                        stroke-linecap="round" transform="rotate(-90 100 100)" />
+                
+                <circle id="wave-mid" cx="100" cy="100" r="67" 
+                        onmouseenter="inspectKineticWave('ACTION', 'MID')" onmouseleave="clearKineticWave()"
+                        ontouchstart="handleTouchInspect(event, 'ACTION', 'MID')"
+                        class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 touch-none" 
+                        stroke-linecap="round" transform="rotate(-90 100 100)" />
+                
+                <circle id="wave-inner" cx="100" cy="100" r="39" 
+                        onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
+                        ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
+                        class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 touch-none" 
+                        stroke-linecap="round" transform="rotate(-90 100 100)" />
+            </svg>
         </div>
+    </div>
 
-        <div class="w-full max-w-sm flex items-center justify-center text-center py-2 mx-auto font-mono select-none shrink-0">
-            <div id="z-dial-pulsor" class="text-2xl font-bold text-white tracking-wide min-h-[36px] flex items-center justify-center drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] transition-all duration-300 uppercase">
-                --
-            </div>
+    <!-- DISPLAY ALFANUMÉRICO CENTRAL -->
+    <div class="w-full max-w-sm flex items-center justify-center text-center py-2 mx-auto font-mono select-none shrink-0">
+        <div id="z-dial-pulsor" class="text-2xl font-bold text-white tracking-wide min-h-[36px] flex items-center justify-center drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] transition-all duration-300 uppercase">
+            --
         </div>
+    </div>
 
-        <div class="w-full max-w-md mx-auto border-t border-white/10 pt-4 space-y-4 shrink-0">
-            <h3 class="font-sans font-black text-[8px] uppercase tracking-[0.3em] text-white/80 text-center border-b border-white/5 pb-2">
-                GEOMETRIC PULS SYNTAX
-            </h3>
-            <div class="grid grid-cols-4 gap-1.5 text-center font-mono">
-                <div onmouseenter="inspectKineticWave('ACTION_UL', 'MID')" onmouseleave="clearKineticWave()" class="p-1.5 bg-white/[0.01] border border-white/5 rounded-xs flex flex-col justify-between min-h-[78px] cursor-pointer hover:border-cyan-500/40 hover:bg-cyan-500/[0.02] transition-all duration-200 group/zone">
-                    <div>
-                        <div class="text-white/40 text-[7px] mb-0.5 tracking-wider group-hover/zone:text-cyan-400">UL</div>
-                        <div class="text-white text-xs leading-none mb-1 group-hover/zone:text-cyan-400">∪</div>
-                    </div>
-                    <div class="text-[6px] text-white/50 uppercase tracking-tight leading-normal text-left border-t border-white/5 pt-1 font-body group-hover/zone:text-white/90">
-                        VECTOR UP_LIFT<br>KINETIC DISPL.
-                    </div>
-                </div>
-                <div onmouseenter="inspectKineticWave('ACTION_PL', 'MID')" onmouseleave="clearKineticWave()" class="p-1.5 bg-white/[0.01] border border-white/5 rounded-xs flex flex-col justify-between min-h-[78px] cursor-pointer hover:border-cyan-500/40 hover:bg-cyan-500/[0.02] transition-all duration-200 group/zone">
-                    <div>
-                        <div class="text-white/40 text-[7px] mb-0.5 tracking-wider group-hover/zone:text-cyan-400">PL</div>
-                        <div class="text-white text-xs leading-none mb-1 group-hover/zone:text-cyan-400">∩</div>
-                    </div>
-                    <div class="text-[6px] text-white/50 uppercase tracking-tight leading-normal text-left border-t border-white/5 pt-1 font-body group-hover/zone:text-white/90">
-                        PROPULSION LAB<br>BALLISTIC EXT.
-                    </div>
-                </div>
-                <div onmouseenter="inspectKineticWave('ACTION_LST', 'MID')" onmouseleave="clearKineticWave()" class="p-1.5 bg-white/[0.01] border border-white/5 rounded-xs flex flex-col justify-between min-h-[78px] cursor-pointer hover:border-cyan-500/40 hover:bg-cyan-500/[0.02] transition-all duration-200 group/zone">
-                    <div>
-                        <div class="text-white/40 text-[7px] mb-0.5 tracking-wider group-hover/zone:text-cyan-400">LST</div>
-                        <div class="text-white text-xs leading-none mb-1 group-hover/zone:text-cyan-400">⊂</div>
-                    </div>
-                    <div class="text-[6px] text-white/50 uppercase tracking-tight leading-normal text-left border-t border-white/5 pt-1 font-body group-hover/zone:text-white/90">
-                        LOAD STABIL.<br>ACCEL. COUPLING
-                    </div>
-                </div>
-                <div onmouseenter="inspectKineticWave('ACTION_UST', 'MID')" onmouseleave="clearKineticWave()" class="p-1.5 bg-white/[0.01] border border-white/5 rounded-xs flex flex-col justify-between min-h-[78px] cursor-pointer hover:border-cyan-500/40 hover:bg-cyan-500/[0.02] transition-all duration-200 group/zone">
-                    <div>
-                        <div class="text-white/40 text-[7px] mb-0.5 tracking-wider group-hover/zone:text-cyan-400">UST</div>
-                        <div class="text-white text-xs leading-none mb-1 group-hover/zone:text-cyan-400">∘</div>
-                    </div>
-                    <div class="text-[6px] text-white/50 uppercase tracking-tight leading-normal text-left border-t border-white/5 pt-1 font-body group-hover/zone:text-white/90">
-                        AXIAL TORQUE<br>ISOMETRIC TENS.
-                    </div>
-                </div>
-            </div>
-
-            <p class="text-[8px] text-white/30 font-mono tracking-[0.11em] leading-relaxed uppercase text-center pt-2 select-none">
-                <span onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()" class="cursor-pointer text-white/50 hover:text-cyan-400 hover:underline underline-offset-4 transition-colors font-bold px-1">INNER = SETS</span> // 
-                <span onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()" class="cursor-pointer text-white/50 hover:text-cyan-400 hover:underline underline-offset-4 transition-colors font-bold px-1">MID = ACTION</span> // 
-                <span onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()" class="cursor-pointer text-white/50 hover:text-cyan-400 hover:underline underline-offset-4 transition-colors font-bold px-1">OUTER = REPS</span>
-            </p>
-        </div>
+    <!-- LEYENDA INFERIOR INTERACTIVA TÁCTIL -->
+    <div class="w-full max-w-md mx-auto border-t border-white/5 pt-4 pb-6 space-y-4 shrink-0">
+        <p class="text-[9px] text-white/30 font-mono tracking-[0.15em] leading-relaxed uppercase text-center select-none">
+            <span onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()" ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')" class="interactive-tag cursor-pointer text-white/50 hover:text-cyan-400 transition-colors font-bold px-2 py-1">SETS</span> // 
+            <span onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()" ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')" class="interactive-tag cursor-pointer text-white/50 hover:text-cyan-400 transition-colors font-bold px-2 py-1">ACTIONS</span> // 
+            <span onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()" ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')" class="interactive-tag cursor-pointer text-white/50 hover:text-cyan-400 transition-colors font-bold px-2 py-1">REPS</span>
+        </p>
+    </div>
 
     <!-- FOOTER (FIJO ABAJO) -->
     <footer class="w-full p-4 sm:p-5 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0 select-none">
         <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono">
             <div class="justify-self-start text-white/20 hover:text-white/60 cursor-pointer transition-colors"></div>    
-            <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]"><a href="https://github.com/jalkn" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2022–2026
+            <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]"><a href="https://github.com/jalkn" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2017-2026
             </div>
             <div class="justify-self-end text-white/20 hover:text-white/60 cursor-pointer transition-colors"></div>
         </div>
@@ -297,7 +258,7 @@
                     </button>
                 </div>    
                 <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
-                    <a href="https://github.com/jalkn" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2022–2026
+                    <a href="https://github.com/jalkn" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2017-2026
                 </div>
                 <!-- Bloque Derecho para futuro botón interactivo -->
                 <div class="justify-self-end text-white/20 hover:text-white/60 cursor-pointer transition-colors">
@@ -372,7 +333,7 @@
                     <img src="img/back.png" class="w-4 h-4 object-contain opacity-35 group-hover:opacity-100 group-hover:-translate-x-0.5 transition-all duration-300" alt="Axis Tech-Lab">
                 </button>
             </div>    
-            <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]"><a href="https://github.com/jalkn" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2022–2026
+            <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]"><a href="https://github.com/jalkn" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2017-2026
             </div>
             <div class="justify-self-end">
                 <button onclick="closeManifesto(); closeAllDrawers();" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none" aria-label="Return to Main Framework">
@@ -902,6 +863,33 @@
             }, { threshold: 0.3 });
             navObserver.observe(gallerySection);
         }
+// ========================================================
+    // MOTOR DE DETECCIÓN INVERSA Y SOPORTE INTERACTIVO TÁCTIL
+    // ========================================================
+    function handleTouchInspect(event, type, targetRing) {
+        // Detener propagación para evitar que el ontouchstart del contenedor limpie el estado inmediatamente
+        if (event) {
+            event.stopPropagation();
+        }
+        
+        // Ejecutar la inspección geométrica principal
+        inspectKineticWave(type, targetRing);
+        
+        // Feedback háptico premium para interfaz táctil/reloj
+        if (navigator.vibrate) {
+            navigator.vibrate(15);
+        }
+    }
+
+    function checkResetTouch(event) {
+        // Si el usuario toca el fondo oscuro del drawer (fuera de los anillos o las etiquetas), restauramos el tiempo real
+        const isCircle = event.target.tagName === 'circle';
+        const isTag = event.target.classList.contains('interactive-tag');
+        
+        if (!isCircle && !isTag) {
+            clearKineticWave();
+        }
+    }
     });
 </script>
 </body>
