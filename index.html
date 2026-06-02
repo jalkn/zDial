@@ -79,6 +79,11 @@
         }
         .axis-x-overlay::before { top: 0; left: 50%; width: 1px; height: 100%; }
         .axis-x-overlay::after { top: 50%; left: 0; width: 100%; height: 1px; }
+
+        #interactive-pulsor-svg circle {
+            transform-origin: 120px 120px;
+            transition: stroke-dasharray 0.5s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), stroke 0.3s ease;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-white selection:text-black overflow-x-hidden bg-zenergy-black text-white">
@@ -88,7 +93,6 @@
 
     <div id="drawer-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-40 hidden opacity-0 transition-opacity duration-500" onclick="closeAllDrawers()"></div>
 
-    <!-- MAIN APPARATUS NAVIGATION -->
     <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5">
         <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px]">
             <div class="flex items-center cursor-pointer group justify-self-start p-2">
@@ -109,12 +113,9 @@
         </div>
     </nav>
 
-    <!-- ========================================================================= -->
-    <!-- NODES DRAWER: CORRECCIÓN AL FORMATO SÓLIDO PANTALLAZO 1 (PURE TEXT ENGINE) -->
-    <!-- ========================================================================= -->
     <div id="nodes-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-between select-none bg-[#070707]" ontouchstart="checkResetTouch(event)">
         
-        <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 shrink-0 select-none">
+        <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 shrink-0">
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
                 <div class="justify-self-start">
                     <button onclick="toggleDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Menu">
@@ -132,62 +133,81 @@
             </div>
         </header>
 
-        <!-- TRANSPORTER CENTRAL MATRIX -->
-        <div class="w-full max-w-md mx-auto flex flex-col justify-center items-center px-4 pt-6 pb-2 z-20 relative min-h-[50dvh]">
-            
-            <!-- ANILLOS VECTORIALES -->
-            <div class="w-full flex items-center justify-center min-h-[160px] max-h-[180px] my-auto relative z-10">
-                <div class="relative w-36 h-36 flex items-center justify-center overflow-hidden group/pulsor">
-                    <svg viewBox="0 0 240 240" id="interactive-pulsor-svg" class="w-full h-full transition-all duration-700 ease-out">
-                        <circle id="wave-outer" cx="120" cy="120" r="95" 
-                                onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
-                                ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
-                                class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 touch-none" 
-                                stroke-linecap="round" transform="rotate(-90 120 120)" />
-                        
-                        <circle id="wave-mid" cx="120" cy="120" r="67" 
-                                onmouseenter="inspectKineticWave('ACTION', 'MID')" onmouseleave="clearKineticWave()"
-                                ontouchstart="handleTouchInspect(event, 'ACTION', 'MID')"
-                                class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 touch-none" 
-                                stroke-linecap="round" transform="rotate(-90 120 120)" />
-                        
-                        <circle id="wave-inner" cx="120" cy="120" r="39" 
-                                onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
-                                ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
-                                class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 touch-none" 
-                                stroke-linecap="round" transform="rotate(-90 120 120)" />
-                    </svg>
-                </div>
+        <div class="w-full flex-1 flex items-center justify-center relative z-10 px-6">
+            <div class="relative w-40 h-40 flex items-center justify-center overflow-hidden group/pulsor">
+                <svg viewBox="0 0 240 240" id="interactive-pulsor-svg" class="w-full h-full transition-all duration-700 ease-out drop-shadow-[0_0_15px_rgba(255,255,255,0.01)]">
+                    <circle id="wave-outer" cx="120" cy="120" r="95" 
+                            onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
+                            ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
+                            class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)] touch-none" 
+                            stroke-linecap="round" transform="rotate(-90 120 120)" />
+                    
+                    <circle id="wave-mid" cx="120" cy="120" r="67" 
+                            onmouseenter="inspectKineticWave('ACTION', 'MID')" onmouseleave="clearKineticWave()"
+                            ontouchstart="handleTouchInspect(event, 'ACTION', 'MID')"
+                            class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)] touch-none" 
+                            stroke-linecap="round" transform="rotate(-90 120 120)" />
+                    
+                    <circle id="wave-inner" cx="120" cy="120" r="39" 
+                            onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
+                            ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
+                            class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)] touch-none" 
+                            stroke-linecap="round" transform="rotate(-90 120 120)" />
+
+                    <circle id="wave-center-trigger" cx="120" cy="120" r="28"
+                            onmouseenter="inspectKineticWave('CORE', 'CENTER')" onmouseleave="clearKineticWave()"
+                            ontouchstart="handleTouchInspect(event, 'CORE', 'CENTER')"
+                            class="fill-transparent stroke-none cursor-pointer touch-none" />
+                </svg>
             </div>
+        </div>
 
-            <!-- CONSOLA DIGITAL PRINCIPAL: RE-DISEÑADA AL FORMATO LIMPIDEZ (PANTALLAZO 1) -->
-            <div class="w-full shrink-0 flex flex-col items-center bg-transparent mt-4 mb-6 z-30 relative">
+        <div class="w-full max-w-md mx-auto flex flex-col items-center px-6 pb-4 shrink-0 relative z-30">
+            <div class="w-full bg-[#0a0a0a]/90 backdrop-blur-md border border-white/5 rounded-xl p-5 shadow-[0_4px_30px_rgba(0,0,0,0.8)]">
                 
-                <!-- FORMATO ALFANUMÉRICO DE ALTA VISIBILIDAD (2UL2) SIN REBORDES DENSOS -->
-                <div id="z-dial-wrapper" class="font-sans text-4xl md:text-5xl font-black tracking-[0.08em] text-center select-none pb-4 transition-all duration-300 flex items-center justify-center text-white/90">
-                    <span id="dial-part-sets" class="transition-colors duration-300 cursor-pointer">0</span>
-                    <span id="dial-part-action" class="transition-colors duration-300 cursor-pointer px-1">VOID</span>
-                    <span id="dial-part-reps" class="transition-colors duration-300 cursor-pointer">0</span>
+                <div id="z-dial-wrapper" class="font-mono text-sm tracking-[0.15em] font-bold text-center select-none pb-3 transition-all duration-300 flex items-center justify-center">
+                    <span id="dial-part-sets" 
+                        onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
+                        ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
+                        class="text-white transition-colors duration-300 cursor-pointer px-1">0</span>
+                    <span id="dial-part-action" 
+                        onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
+                        ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
+                        class="text-white font-black transition-colors duration-300 cursor-pointer px-1">VOID</span>
+                    <span id="dial-part-reps" 
+                        onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
+                        ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
+                        class="text-white transition-colors duration-300 cursor-pointer px-1">0</span>
                 </div>
 
-                <!-- SUB-TELEMETRÍA LINEAL COMPACTA -->
-                <div class="w-full flex justify-between items-center border-t border-white/10 font-mono text-[9px] px-2 py-3 select-none tracking-widest text-neutral-500">
-                    <span id="sub-reps-tension" class="transition-colors duration-300 cursor-pointer hover:text-white">0.00 N</span>
-                    <span id="sub-actions-quadrant" class="transition-colors duration-300 cursor-pointer hover:text-white text-neutral-400">Φ 54.7°</span>
-                    <span id="sub-sets-solar" class="transition-colors duration-300 cursor-pointer hover:text-white">180° AM</span>
+                <div class="w-full flex justify-between items-center border-t border-white/[0.05] font-mono text-[9px] px-2 py-3 select-none text-white/40">
+                    <span id="sub-sets-solar" 
+                          onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
+                          ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
+                          class="transition-colors duration-300 cursor-pointer hover:text-white/80">--° --</span>
+
+                    <span id="sub-actions-quadrant" 
+                          onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
+                          ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
+                          class="transition-colors duration-300 cursor-pointer hover:text-white/80">Φ --°</span>
+
+                    <span id="sub-reps-tension" 
+                          onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
+                          ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
+                          class="transition-colors duration-300 cursor-pointer hover:text-white/80">-- N</span>
                 </div>
 
-                <div class="flex justify-center space-x-6 font-mono select-none py-2 text-[9px] tracking-[0.2em] border-t border-white/5 w-full pt-3">
-                    <span id="tag-sets" class="interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300">SETS</span>
+                <div class="flex justify-center space-x-6 font-mono select-none pt-3 text-[9px] tracking-[0.2em] border-t border-white/5 w-full">
+                    <span id="tag-sets" class="interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300" onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()">SETS</span>
                     <span class="text-white/10 select-none">//</span>
-                    <span id="tag-actions" class="interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300">ACTIONS</span>
+                    <span id="tag-actions" class="interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300" onmouseenter="inspectKineticWave('ACTION', 'MID')" onmouseleave="clearKineticWave()">ACTIONS</span>
                     <span class="text-white/10 select-none">//</span>
-                    <span id="tag-reps" class="interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300">REPS</span>
+                    <span id="tag-reps" class="interactive-tag cursor-pointer text-white/40 font-bold transition-all duration-300" onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()">REPS</span>
                 </div>
 
-                <div class="w-full text-center border-t border-white/5 pt-3 mt-1 min-h-[16px] flex items-center justify-center">
+                <div class="w-full text-center border-t border-white/5 pt-3 mt-3 min-h-[16px] flex items-center justify-center">
                     <span id="footer-default-text" class="text-white/20 font-mono text-[8px] tracking-[0.3em] uppercase select-none block">
-                        BIOKINETIC PULS DROP CODE
+                        BIOCINETIC SYNTAX CODE
                     </span>
                     <div id="puls-protocol-list" class="hidden justify-center space-x-3 text-[8px] font-mono tracking-[0.15em] text-white/20 uppercase">
                         <span id="proto-p" class="px-0.5">Pace</span> • 
@@ -196,6 +216,7 @@
                         <span id="proto-s" class="px-0.5">Surge</span>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -210,7 +231,6 @@
         </footer>
     </div>
 
-    <!-- LEFT CORE DRAWER (AXIS HUB) -->
     <div id="left-core-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform -translate-x-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] bg-[#070707] select-none">
         <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-b-white/5 shrink-0 select-none">
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
@@ -273,7 +293,6 @@
         </footer>
     </div>
     
-    <!-- MANIFESTO OVERLAY VIEW -->
     <div id="manifesto" class="fixed inset-0 w-screen h-[100dvh] z-[60] transform -translate-y-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] bg-[#070707] select-none">
         <header class="w-full bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5 select-none">
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
@@ -328,7 +347,7 @@
             </div>
         </div>
 
-        <footer class="w-full p-4 sm:p-5 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md select-none">
+        <footer class="w-full p-4 sm:p-5 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0 select-none">
             <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono">
                 <div class="justify-self-start">
                     <button onclick="closeManifesto(); toggleLeftDrawer();" class="group flex items-center justify-center p-1">
@@ -347,14 +366,12 @@
         </footer>
     </div>
 
-    <!-- MESH CONTAINER -->
     <main class="w-full h-[calc(100vh-148px)] sm:h-[calc(100vh-164px)] mt-[68px] mb-[80px] sm:mb-[96px] flex flex-col justify-center items-center overflow-hidden">
         <section id="biokinetic-portfolio" class="w-full h-full bg-transparent flex justify-start sm:justify-center items-center overflow-x-auto overflow-y-hidden select-none scrollbar-none cursor-grab active:cursor-grabbing">
             <div id="mesh-container" class="w-full h-full max-h-full min-w-[760px] sm:min-w-0 sm:max-w-[840px] px-4 sm:px-8 relative z-10 flex justify-center items-center mx-auto transition-all duration-500"></div>
         </section>
     </main>
 
-    <!-- CORE SITE FOOTER -->
     <footer id="dynamic-footer" class="fixed bottom-0 left-0 w-full z-30 bg-[#0a0a0a]/15 backdrop-blur-md border-t border-white/[0.01] transition-opacity duration-500 select-none">
         <div class="p-4 sm:p-6 max-w-7xl mx-auto grid grid-cols-3 items-center w-full font-bold">
             <div class="justify-self-start">
@@ -392,11 +409,12 @@
         ['tag-sets', 'tag-actions', 'tag-reps'].forEach(id => { if($(id)) { $(id).className = 'interactive-tag cursor-pointer text-white/10 font-bold transition-all duration-300'; } });
         ['proto-p', 'proto-u', 'proto-l', 'proto-s'].forEach(id => { if($(id)) $(id).className = "transition-colors duration-300 px-0.5 text-white/10"; });
 
-        const rings = { 'OUTER': $('wave-outer'), 'MID': $('wave-mid'), 'INNER': ['wave-inner'] };
         if(targetRing === 'INNER' && $('wave-inner')) {
             $('wave-inner').style.stroke = "#00d2ff";
-        } else if (rings[targetRing]) {
-            rings[targetRing].style.stroke = "#00d2ff";
+        } else if (targetRing === 'MID' && $('wave-mid')) {
+            $('wave-mid').style.stroke = "#00d2ff";
+        } else if (targetRing === 'OUTER' && $('wave-outer')) {
+            $('wave-outer').style.stroke = "#00d2ff";
         }
 
         if ($('footer-default-text')) $('footer-default-text').classList.add('hidden');
@@ -452,15 +470,13 @@
         if ($('puls-protocol-list')) { $('puls-protocol-list').classList.remove('flex'); $('puls-protocol-list').classList.add('hidden'); }
         if ($('footer-default-text')) $('footer-default-text').classList.remove('hidden');
 
-        if($('sub-sets-solar')) $('sub-sets-solar').className = 'transition-colors duration-300 text-white/20 cursor-pointer hover:text-white';
-        if($('sub-actions-quadrant')) $('sub-actions-quadrant').className = 'transition-colors duration-300 text-white/40 cursor-pointer hover:text-white';
-        if($('sub-reps-tension')) {
-            $('sub-reps-tension').className = 'transition-colors duration-300 text-white/20 cursor-pointer hover:text-white';
-        }
+        if($('sub-sets-solar')) $('sub-sets-solar').className = 'transition-colors duration-300 text-white/40 cursor-pointer hover:text-white/80';
+        if($('sub-actions-quadrant')) $('sub-actions-quadrant').className = 'transition-colors duration-300 text-white/40 cursor-pointer hover:text-white/80';
+        if($('sub-reps-tension')) $('sub-reps-tension').className = 'transition-colors duration-300 text-white/40 cursor-pointer hover:text-white/80';
         
-        if($('dial-part-sets')) $('dial-part-sets').className = "text-white/90 transition-colors duration-300 cursor-pointer";
-        if($('dial-part-action')) $('dial-part-action').className = "text-white/90 transition-colors duration-300 cursor-pointer px-1";
-        if($('dial-part-reps')) $('dial-part-reps').className = "text-white/90 transition-colors duration-300 cursor-pointer";
+        if($('dial-part-sets')) $('dial-part-sets').className = "text-white transition-colors duration-300 cursor-pointer px-1";
+        if($('dial-part-action')) $('dial-part-action').className = "text-white font-black transition-colors duration-300 cursor-pointer px-1";
+        if($('dial-part-reps')) $('dial-part-reps').className = "text-white transition-colors duration-300 cursor-pointer px-1";
 
         updateZ();
     }
@@ -476,9 +492,6 @@
         if (!isCircle && !isTag) clearKineticWave();
     }
 
-    // =========================================================================
-    // LÓGICA DE TRADUCCIÓN ANGULAR SOLAR Y POLARIDAD ESPEJO INTEGRADA
-    // =========================================================================
     function updateZ() {
         let biokineticCoordinate = "";
 
@@ -486,19 +499,16 @@
             biokineticCoordinate = window.selectedNodeFromMesh.replace(/^0+/, '');
         } else {
             const now = new Date();
-            const hours = now.getHours(); // Formato 24H continuo
+            const hours = now.getHours(); 
             const minutes = now.getMinutes();
 
-            // Deriva Angular Solar Absoluta ($0^\circ \rightarrow 360^\circ$)
             const solarDegrees = ((hours * 15) + (minutes * 0.25)) % 360;
             
-            // Mapeo riguroso de Cuadrantes Biomecánicos (Protocolo PULS)
             let currentAction = 'UST'; 
             if (solarDegrees >= 0 && solarDegrees < 90) currentAction = 'UL';       
             else if (solarDegrees >= 90 && solarDegrees < 180) currentAction = 'PL';  
             else if (solarDegrees >= 180 && solarDegrees < 270) currentAction = 'LST'; 
 
-            // Modulación de Densidad Fractal (Acotación armónica de 3 a 12)
             const setsStage = Math.min(12, Math.max(3, Math.floor(Math.abs(Math.sin(solarDegrees * Math.PI / 180)) * 9) + 3));
             const repsStage = Math.min(12, Math.max(3, Math.floor(((minutes * PHI) % 9) + 3)));
 
@@ -517,7 +527,6 @@
         const actionRealValue = match[2];
         const repsRealValue = parseInt(match[3], 10);
 
-        // Inyección limpia unificada sin desbordamientos decorativos (2UL2)
         if (!waveInspectionActive) {
             if ($('dial-part-sets')) $('dial-part-sets').textContent = String(setsRealValue);
             if ($('dial-part-action')) $('dial-part-action').textContent = actionRealValue;
@@ -530,18 +539,16 @@
         const ampm = nowSec.getHours() >= 12 ? 'PM' : 'AM';
 
         if (!waveInspectionActive) {
-            if ($('sub-reps-tension'))     $('sub-reps-tension').textContent = `${calculatedTension} N`;
+            if ($('sub-sets-solar'))       $('sub-sets-solar').textContent = `Φ ${currentSolarAngle.toFixed(1)}° ${ampm}`;
             if ($('sub-actions-quadrant')) $('sub-actions-quadrant').textContent = `Φ ${currentSolarAngle.toFixed(1)}°`;
-            if ($('sub-sets-solar'))        $('sub-sets-solar').textContent = `${nowSec.getHours()}:${String(nowSec.getMinutes()).padStart(2,'0')} ${ampm}`;
+            if ($('sub-reps-tension'))     $('sub-reps-tension').textContent = `${calculatedTension} N`;
         }
 
-        // REDIBUJO MECÁNICO DE ARCOS BAJO DINÁMICA DE POLARIDAD ESPEJO
         const wOuter = $('wave-outer'); 
         const wMid = $('wave-mid');     
         const wInner = $('wave-inner'); 
 
         if (wOuter && wMid && wInner) {
-            // Fase Ascendente vs Descendente determina signo de torsión planetaria
             const polarity = (currentSolarAngle <= 180) ? 1 : -1; 
             const baseRotation = currentSolarAngle * polarity;
 
@@ -549,13 +556,11 @@
             const innerArcLength = totalLengthInner * (setsRealValue / 12);
             wInner.style.strokeDasharray = `${innerArcLength} ${totalLengthInner}`;
             wInner.style.transform = `rotate(${baseRotation * 0.5}deg)`;
-            wInner.style.transformOrigin = '120px 120px';
 
             const totalLengthMid = 2 * Math.PI * 67;
             let midArcLength = totalLengthMid * 0.5; 
             let midVectorRotation = 0;
 
-            // Orientación Axial de Glifos de Acción
             if (actionRealValue === 'UL') midVectorRotation = 0;       
             else if (actionRealValue === 'PL') midVectorRotation = 180;     
             else if (actionRealValue === 'LST') midVectorRotation = -90;      
@@ -563,13 +568,11 @@
 
             wMid.style.strokeDasharray = `${midArcLength} ${totalLengthMid}`;
             wMid.style.transform = `rotate(${midVectorRotation}deg)`;
-            wMid.style.transformOrigin = '120px 120px';
 
             const totalLengthOuter = 2 * Math.PI * 95;
             const outerArcLength = totalLengthOuter * (repsRealValue / 12);
             wOuter.style.strokeDasharray = `${outerArcLength} ${totalLengthOuter}`;
             wOuter.style.transform = `rotate(${-baseRotation}deg)`;
-            wOuter.style.transformOrigin = '120px 120px';
         }
     }
 
@@ -591,21 +594,25 @@
         });
     }
 
-    function toggleDrawer() {
+    function openNodesDrawer() {
         const drawer = $('nodes-drawer');
         const overlay = $('drawer-overlay');
-        if (drawer.classList.contains('translate-x-full')) {
+        if (drawer) {
             closeAllDrawers();
             drawer.classList.remove('translate-x-full');
             overlay.classList.remove('hidden');
             document.body.classList.add('drawer-active', 'overflow-hidden');
             if ($('dynamic-footer')) $('dynamic-footer').classList.add('opacity-0', 'pointer-events-none');
             setTimeout(() => overlay.classList.add('opacity-100'), 10);
+        }
+    }
+
+    function toggleDrawer() {
+        const drawer = $('nodes-drawer');
+        if (drawer.classList.contains('translate-x-full')) {
+            openNodesDrawer();
         } else {
-            drawer.classList.add('translate-x-full');
-            document.body.classList.remove('drawer-active', 'overflow-hidden');
-            if ($('dynamic-footer')) $('dynamic-footer').classList.remove('opacity-0', 'pointer-events-none');
-            setTimeout(() => overlay.classList.add('hidden'), 500);
+            closeAllDrawers();
         }
     }
 
@@ -618,22 +625,34 @@
             overlay.classList.remove('hidden');
             document.body.classList.add('drawer-active', 'overflow-hidden'); 
             if ($('dynamic-footer')) $('dynamic-footer').classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => overlay.classList.add('opacity-100'), 10);
         } else {
-            leftDrawer.classList.add('-translate-x-full');
-            document.body.classList.remove('drawer-active', 'overflow-hidden'); 
-            if ($('dynamic-footer')) $('dynamic-footer').classList.remove('opacity-0', 'pointer-events-none');
+            closeAllDrawers();
         }
     }
 
     function closeAllDrawers() {
         if ($('nodes-drawer')) $('nodes-drawer').classList.add('translate-x-full');
         if ($('left-core-drawer')) $('left-core-drawer').classList.add('-translate-x-full');
-        if ($('drawer-overlay')) $('drawer-overlay').classList.add('hidden');
+        if ($('drawer-overlay')) {
+            $('drawer-overlay').classList.remove('opacity-100');
+            $('drawer-overlay').classList.add('hidden');
+        }
         document.body.classList.remove('drawer-active', 'overflow-hidden');
+        if ($('dynamic-footer')) $('dynamic-footer').classList.remove('opacity-0', 'pointer-events-none');
     }
 
-    function openManifesto() { $('manifesto').classList.remove('-translate-y-full'); }
-    function closeManifesto() { $('manifesto').classList.add('-translate-y-full'); stopRSVPStream(); }
+    function openManifesto() { 
+        closeAllDrawers();
+        $('manifesto').classList.remove('-translate-y-full'); 
+        if ($('dynamic-footer')) $('dynamic-footer').classList.add('opacity-0', 'pointer-events-none');
+    }
+    
+    function closeManifesto() { 
+        $('manifesto').classList.add('-translate-y-full'); 
+        stopRSVPStream(); 
+        if ($('dynamic-footer')) $('dynamic-footer').classList.remove('opacity-0', 'pointer-events-none');
+    }
 
     const manifestoChapters = {
         1: "BIOMANIFESTO // THE COGNITIVE SYSTEM My concept of art is what we bring from imagination into reality...",
