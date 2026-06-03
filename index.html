@@ -95,16 +95,21 @@
 
     <nav class="fixed top-0 w-full z-50 bg-[#0a0a0a]/40 backdrop-blur-md border-b border-white/5">
         <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px]">
+            <!-- Activador de Eje Izquierdo (Axis / Tech-Lab) -->
             <div class="flex items-center cursor-pointer group justify-self-start p-2">
                 <button id="z-logo-trigger" onclick="toggleLeftDrawer()" class="bg-transparent border-0 p-0 focus:outline-none flex items-center justify-center cursor-pointer" aria-label="Open Axis Drawer">
                     <img src="img/logo.png" class="w-5 h-5 img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="zenergy Axis Trigger"> 
                 </button>
             </div>
+            
+            <!-- Nodo de Telemetría e Identificación Central -->
             <div class="justify-self-center text-center">
                 <span id="z-dial-nav" class="text-white/80 font-mono font-bold text-[9px] tracking-[0.25em] uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                    BIO-KINETIC PORTFOLIO
+                    BIO-KINETIC
                 </span>
             </div>
+            
+            <!-- Activador de Eje Derecho (Pulsor Engine / Protocolo) -->
             <div class="justify-self-end">
                 <button id="z-dial-trigger" onclick="toggleDrawer()" class="group flex items-center justify-center p-1 transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Pulsor Drawer">
                     <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Pulsor Trigger">
@@ -293,8 +298,12 @@
                         <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40" alt="Back">
                     </button>
                 </div>    
-                <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
-                    <a href="https://github.com/jalkn" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2017-2026
+                <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono">
+                    <div class="justify-self-start text-white/20"></div>    
+                    <div class="text-white/20 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
+                        <span class="font-bold text-white/50">jaK&copy;</span> 2010-2026 - RESEARCH
+                    </div>
+                    <div class="justify-self-end text-white/20"></div>
                 </div>
                 <div class="justify-self-end"></div>
             </div>
@@ -362,8 +371,12 @@
                         <img src="img/back.png" class="w-4 h-4 object-contain opacity-35" alt="Axis">
                     </button>
                 </div>    
-                <div class="text-white/30 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
-                    <a href="https://github.com/jalkn" target="_blank" class="hover:text-white/70 font-bold text-white/40">jalkn</a> &copy; 2017-2026
+                <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono">
+                    <div class="justify-self-start text-white/20"></div>    
+                    <div class="text-white/20 text-center whitespace-nowrap justify-self-center tracking-[0.3em]">
+                        <span class="font-bold text-white/50">jaK&copy;</span> 2010-2026 - RESEARCH
+                    </div>
+                    <div class="justify-self-end text-white/20"></div>
                 </div>
                 <div class="justify-self-end">
                     <button onclick="closeManifesto(); closeAllDrawers();" class="group flex items-center justify-center p-1">
@@ -380,23 +393,27 @@
         </section>
     </main>
 
-    <footer id="dynamic-footer" class="fixed bottom-0 left-0 w-full z-30 bg-[#0a0a0a]/15 backdrop-blur-md border-t border-white/[0.01] transition-opacity duration-500 select-none">
-        <div class="p-4 sm:p-6 max-w-7xl mx-auto grid grid-cols-3 items-center w-full font-bold">
-            <div class="justify-self-start">
-                <button onclick="openManifesto()" class="group flex items-center justify-center p-1" aria-label="Open Manifesto">
-                    <img src="img/under.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100" alt="Manifesto">
+<footer id="dynamic-footer" class="fixed bottom-0 left-0 w-full z-30 bg-[#0a0a0a]/90 backdrop-blur-md border-t border-white/5 transition-opacity duration-500 select-none">
+        <div class="p-4 sm:p-6 max-w-7xl mx-auto grid grid-cols-3 items-center w-full uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px]">
+            
+            <div class="justify-self-start flex items-center">
+                <button onclick="openManifesto()" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Open Manifesto">
+                    <img src="img/under.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Manifesto">
                 </button>
             </div>
+            
             <div class="justify-self-center text-center">
-                <button id="z-dial-footer-trigger" onclick="scrollToSection('biokinetic-portfolio')" class="text-white/80 font-mono font-bold text-[10px] tracking-[0.2em] border border-white/10 bg-black/40 h-[30px] w-[140px] sm:w-[150px] flex items-center justify-center rounded-sm backdrop-blur-sm transition-all duration-300 hover:text-white uppercase">
+                <button id="z-dial-footer-trigger" onclick="scrollToSection('biokinetic-portfolio')" class="text-white/80 font-mono font-bold text-[9px] tracking-[0.25em] border border-white/10 bg-black/40 h-[32px] w-[140px] sm:w-[150px] flex items-center justify-center rounded-sm backdrop-blur-sm transition-all duration-300 hover:text-white hover:border-white/30 uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                     <span id="z-dial-footer">--</span>
                 </button>
             </div>
-            <div class="justify-self-end">
+            
+            <div class="justify-self-end flex items-center">
                 <button id="z-dial-trigger" onclick="toggleDrawer()" class="group flex items-center justify-center p-1 focus:outline-none cursor-pointer" aria-label="Open Pulsor Drawer">
-                    <img src="img/back.png" class="w-5 h-5 object-contain opacity-60" alt="Pulsor Trigger">
+                    <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Pulsor Trigger">
                 </button>
             </div>
+
         </div>
     </footer>
 
