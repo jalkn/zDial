@@ -621,10 +621,12 @@
         if (window.selectedNodeFromMesh) {
             biokineticCoordinate = window.selectedNodeFromMesh.replace(/^0+/, '');
         } else {
+            // Corrección: Mapeo explícito y seguro para abarcar el ciclo esférico de 360° completo
             let currentAction = 'UST'; 
             if (currentSolarAngle >= 0 && currentSolarAngle < 90) currentAction = 'UL';       
             else if (currentSolarAngle >= 90 && currentSolarAngle < 180) currentAction = 'PL';  
-            else if (currentSolarAngle >= 180 && currentSolarAngle < 270) currentAction = 'LST'; 
+            else if (currentSolarAngle >= 180 && currentSolarAngle < 270) currentAction = 'LST';
+            else if (currentSolarAngle >= 270 && currentSolarAngle < 360) currentAction = 'UST'; 
 
             const setsStage = Math.min(12, Math.max(3, Math.floor(Math.abs(Math.sin(currentSolarAngle * Math.PI / 180)) * 9) + 3));
             const repsStage = Math.min(12, Math.max(3, Math.floor(((minutes * PHI) % 9) + 3)));
