@@ -162,27 +162,27 @@
             </div>
         </div>
 
-<!-- Contenedor del Bloque Alfanumérico: La Gota Flotante Independiente -->
-        <!-- Extraído de la consola. 'tracking-[0.25em]' homogeneiza el espacio interno eliminando saltos visuales -->
-        <div id="z-dial-wrapper" class="w-full max-w-md mx-auto mb-4 font-mono text-base font-bold text-center select-none text-white tracking-[0.25em] flex items-center justify-center relative z-30 drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
-            <span id="dial-part-sets" 
-                onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
-                ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
-                class="transition-colors duration-300 cursor-pointer">0</span>
-            <span id="dial-part-action" 
-                onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
-                ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
-                class="font-black transition-colors duration-300 cursor-pointer">VOID</span>
-            <span id="dial-part-reps" 
-                onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
-                ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
-                class="transition-colors duration-300 cursor-pointer">0</span>
-        </div>
-
-       <div class="w-full max-w-md mx-auto flex flex-col items-center px-6 pb-4 shrink-0 relative z-30">
+        <div class="w-full max-w-md mx-auto flex flex-col items-center px-6 pb-4 shrink-0 relative z-30">
             <div class="w-full bg-[#0a0a0a]/90 backdrop-blur-md border border-white/5 rounded-xl p-5 shadow-[0_4px_30px_rgba(0,0,0,0.8)]">
                 
-                <div class="w-full flex justify-between items-center font-mono text-[9px] px-2 pb-3 select-none text-white/40">
+                <div id="z-dial-wrapper" class="w-full font-mono text-base font-bold text-center select-none text-white pb-3 flex items-center justify-center tracking-[0.2em]">
+                    <span id="dial-part-sets" 
+                        onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
+                        ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
+                        class="transition-colors duration-300 cursor-pointer text-right w-[2ch]">0</span>
+                    
+                    <span id="dial-part-action" 
+                        onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
+                        ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
+                        class="font-black transition-colors duration-300 cursor-pointer text-center w-[5ch] inline-block mx-1">VOID</span>
+                    
+                    <span id="dial-part-reps" 
+                        onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
+                        ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
+                        class="transition-colors duration-300 cursor-pointer text-left w-[2ch]">0</span>
+                </div>
+
+                <div class="w-full flex justify-between items-center border-t border-white/[0.05] font-mono text-[9px] px-2 py-3 select-none text-white/40">
                     <span id="sub-sets-solar" 
                           onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
                           ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
@@ -227,6 +227,7 @@
 
             </div>
         </div>
+
         <footer class="w-full p-4 sm:p-5 border-t border-white/[0.03] bg-[#070707]/90 backdrop-blur-md shrink-0 select-none">
             <div class="grid grid-cols-3 items-center max-w-7xl mx-auto w-full text-[8px] tracking-[0.25em] font-medium uppercase font-mono">
                 <div class="justify-self-start text-white/20"></div>    
