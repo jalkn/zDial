@@ -1,51 +1,17 @@
-# 🍄 zenrgy.world TECH-LAB
+# 🍄 PULSOR // zenergy.world
+**La traducción geométrica del movimiento.**
 
-We orchestrate the transition toward regenerative architecture through the production of living materials and resonance-based biokinetic validation.
+PULSOR es una herramienta de traducción biocinética diseñada por JAKO, que convierte la rotación absoluta de la Tierra en coordenadas de movimiento y resonancia creativa. Tras 18 años de investigación técnica (2008-2026), hemos codificado la relación entre el ángulo solar y la ejecución física para permitir que el ser humano acceda a su libertad creativa mediante el reconocimiento de su cuerpo como mente inconsciente.
 
----
+## 🧠 El Protocolo de Traducción
+El sistema actúa como puente místico-tecnológico, traduciendo el tiempo lineal en una matriz biocinética:
+* **Captura Solar:** Calcula el ángulo de rotación terrestre en tiempo real (15°/hora + 0.25°/min)[cite: 1].
+* **Protocolo PULS:** Divide el día en cuatro cuadrantes biomecánicos (Pace, Under, Lift, Surge) que dictan el estado físico necesario[cite: 1, 2].
+* **Filtro de Pureza:** Aplica la Proporción Áurea (PHI) para sets y reps, eliminando ceros artificiales para mantener la integridad geométrica[cite: 1].
 
-## 🧬 PULSOR Protocol: Absolute Solar Drift
-The system completely eliminates dependence on conventional horizontal time, organizing biometric volume around a frequency column synchronized with astronomical and rotational coordinates:
+## 🖼️ Arte y Materialización
+Cada ciclo de 360° generado por el PULSOR inyecta una "espora" en la *bigPicture*, mutando nuestra esfera artística digital[cite: 1]. 
+* **Gallery/Vault:** Historial de coordenadas que se materializan en fotografías de biolandarts, fotopaneles, esculturas y fotomurales.
+* **Manifesto:** Consulta el núcleo de la investigación en nuestra interfaz táctica integrada.
 
-- **Sets (Fractal Phi Reduction):** Work volume is generated through a fractal reduction of minutes based on the Golden Ratio ($PHI$), preventing linear predictability.
-- **Actions (Solar Quadrants):** Pure hardware letters (`PL`, `ULS`, `UP`) determined exclusively by the Earth's absolute rotation angle relative to the sun (0° to 359.9°).
-- **Reps (Angulation Matrix):** Repetition volume is mapped using the clean scaling of solar elevation to calculate exact kinetic stress parameters (Ranging strictly from 6 to 24).
-
----
-
-## 🧠 System Architecture: The Resonance Organism
-
-### 1. Biokinetic Encryption Framework (_PULS)
-Based on the **Verticality Principle**, human movement is translated into machine telemetry for mycelium tuning. This structural map directly bridges the industrial hardware codes (`P_U_L_S`) with the intimate biological actions in running lowercase text:
-
-| Technical ID | Primary Action | Deconstructive Alternatives (Resonance) | Kinetic Intent |
-| :--- | :--- | :--- | :--- |
-| **P_PACE** | caminar | impulso // surco // vibración | Linear progress / Transit / Exhale |
-| **U_UNDER** | caer | empuje // raíz // equilibrio | Depth / Immersion / Inhale |
-| **L_LIFT** | levantarse | ascenso // núcleo // tensión | Resilience / Elevation / Recovery |
-| **S_SURGE** | saltar | carga // proyección // destello | Explosion / Expansion / Flash |
-
-### 2. The Core Performance Origin (PULSOR)
-The **PULSOR** is the tactical heart of the laboratory. It stems from body-endurance performance roots—where a physical line is raw-carved onto the workspace boundaries every 20 counts of biometric exhaust. Within the web interface, the `PULSOR` functions as an interactive generator where clicking individual kinetic nodes triggers generative acoustic pulses (`.wav`), sending structural waveforms to validate mycelium development.
-
-### 3. Data Feedback Loop
-Zenergia breathes through an untamed cycle between spatial data, kinetic performance, and biological matter:
-
-* **Inflow (Absorption):** Solar angle tracking, kinetic inputs, and local agricultural corn residue (amero).
-* **Processing (Crystallization):** Real-time alphanumeric telemetry compression displayed through synchronized interface monitors (`#big-dial`, `#z-dial`, `#hologram-dial`).
-* **Outflow (Manifestation):** Structurally validated **Z-Bricks**, interactive **zenBeats** (generative audio triggers), and local node hardening.
-
----
-
-### 🛡️ Z-ARPA (Director & Auditor)
-*Robotic Process Automation for Auditing.* Z-ARPA is the backend ledger supervising the biological lineage. If human movement resonance data fails to meet the mathematical validation thresholds of the solar matrix, the organic substrate is flagged as out of tune and recycled back into the compost loops.
-
----
-
-### 🛠️ Technical Symmetry
-* **Backend (`zarpa.py` / `run.ps1`):** Functional logic in clean `zCamelCase` for analytical ledger tracking and system configuration stability.
-* **Frontend (`index.html`):** Visual tech-manifesto using monumental uppercase commands (`Z_UPPER_CASE`) for hard industrial monitoring paired with fluid lowercase listings (`normal-case`) for biological and poetic translation layers.
-
----
-
-**zenergy.world // TECH-LAB // ANT // COL // 2026**
+**zenergy.world // TECH-LAB // JAKO // 2008-2026**

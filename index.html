@@ -96,25 +96,22 @@
     <nav class="fixed top-0 w-full z-50 bg-gradient-to-b from-black/80 via-black/20 to-transparent backdrop-blur-md">
         <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] select-none">
             
-            <!-- Izquierda: Trigger + ID de la Esfera Activa -->
             <div class="justify-self-start flex items-center space-x-3">
                 <button id="z-logo-trigger" onclick="toggleLeftDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Axis Drawer">
                     <img src="img/logo.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="zenergy Axis Trigger"> 
                 </button>
-                <span id="z-sphere-id" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                    SPHER.16
+                <span id="telemetry-sphere-idx" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
+                    SPH.0000
                 </span>
             </div>
             
-            <!-- Centro: Punto de Equilibrio (Total Nodos de la Malla) -->
-            <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                <span id="z-sphere-total-nodes">MATRX//55</span>
+            <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
+                <span id="telemetry-sphere-dens">MAX.144</span>
             </div>
             
-            <!-- Derecha: Nodo Actual en Ejecución + Trigger -->
             <div class="justify-self-end flex items-center space-x-3">
-                <span id="z-sphere-current-node" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                    NODE//08
+                <span id="telemetry-active-node" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                    ACT.089
                 </span>
                 <button id="z-dial-trigger" onclick="toggleDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Pulsor Drawer">
                     <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Pulsor Trigger">
@@ -155,7 +152,7 @@
                     <span id="z-dial-footer">8UST11</span>
                 </button>
                 <button id="z-dial-trigger-duplicate" onclick="toggleDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Pulsor Drawer">
-                    <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Pulsor Trigger">
+                    <img src="img/lift.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Pulsor Trigger">
                 </button>
             </div>
 
@@ -258,7 +255,9 @@
                 </div>
 
                 <div class="w-full grid grid-cols-3 text-center items-center border-t border-white/[0.05] py-3 text-white/40 tracking-[0.05em]">
-                    <span id="telemetry-time" class="text-left text-white/60">Y18.153</span> <span id="telemetry-date" class="text-center">EP.2008</span> <span id="telemetry-geo" class="text-right">6.251° N</span>
+                    <span id="telemetry-solar-alt" class="text-left text-white/60">H.84°25'36"</span>
+                    <span id="telemetry-solstice-node" class="text-center">SS.54 • EQ.54</span> 
+                    <span id="telemetry-geo" class="text-right">6.251° N</span>
                 </div>
 
                 <div class="flex justify-center space-x-6 select-none pt-3 tracking-[0.2em] border-t border-white/5 w-full">
@@ -534,10 +533,10 @@
         if($('sub-actions-quadrant')) $('sub-actions-quadrant').className = 'transition-colors duration-300 text-white/10 cursor-pointer';
         if($('sub-reps-tension')) $('sub-reps-tension').className = 'transition-colors duration-300 text-white/10 cursor-pointer';
 
-        // --- ADICIÓN: Opacidad atenuada para la Fila 2 (Data Espacio-Temporal) ---
-        if($('telemetry-time')) $('telemetry-time').className = "text-left text-white/10 transition-colors duration-300";
-        if($('telemetry-date')) $('telemetry-date').className = "text-center text-white/10 transition-colors duration-300";
-        if($('telemetry-geo'))  $('telemetry-geo').className  = "text-right text-white/10 transition-colors duration-300";
+        // Opacidad atenuada para la Fila 2 (Telemetría Astronómica)
+        if($('telemetry-solar-alt'))    $('telemetry-solar-alt').className = "text-left text-white/10 transition-colors duration-300";
+        if($('telemetry-solstice-node')) $('telemetry-solstice-node').className = "text-center text-white/10 transition-colors duration-300";
+        if($('telemetry-geo'))           $('telemetry-geo').className  = "text-right text-white/10 transition-colors duration-300";
 
         const rawTelemetry = window.currentTelemetryValue || "3UST7";
         const match = rawTelemetry.match(/^(\d+)([A-Z]+)(\d+)$/);
@@ -550,16 +549,16 @@
                 if($('sub-sets-solar')) $('sub-sets-solar').className = 'transition-colors duration-300 text-cyan-400 font-bold cursor-pointer';
                 if($('dial-part-sets')) $('dial-part-sets').className = "text-cyan-400 font-bold cursor-pointer";
                 
-                // --- ADICIÓN: Iluminación de Columna 1 (Hora) ---
-                if($('telemetry-time')) $('telemetry-time').className = "text-left text-cyan-400 font-bold transition-colors duration-300";
+                // Iluminación de Columna 1 (Altura del Sol - Notación Náutica)
+                if($('telemetry-solar-alt')) $('telemetry-solar-alt').className = "text-left text-cyan-400 font-bold transition-colors duration-300";
             } 
             else if (type === 'ACTION' || type === 'ONLY_ACTION') {
                 if($('tag-actions')) $('tag-actions').className = 'interactive-tag cursor-pointer text-cyan-400 font-bold transition-all duration-300';
                 if($('sub-actions-quadrant')) $('sub-actions-quadrant').className = 'transition-colors duration-300 text-cyan-400 font-bold cursor-pointer';
                 if($('dial-part-action')) $('dial-part-action').className = "text-cyan-400 font-bold cursor-pointer px-1";
                 
-                // --- ADICIÓN: Iluminación de Columna 2 (Fecha) ---
-                if($('telemetry-date')) $('telemetry-date').className = "text-center text-cyan-400 font-bold transition-colors duration-300";
+                // Iluminación de Columna 2 (Nodos de Solsticio)
+                if($('telemetry-solstice-node')) $('telemetry-solstice-node').className = "text-center text-cyan-400 font-bold transition-colors duration-300";
                 
                 if (actionStr.includes('P') && $('proto-p')) $('proto-p').className = "text-cyan-400 font-bold px-0.5";
                 if (actionStr.includes('U') && $('proto-u')) $('proto-u').className = "text-cyan-400 font-bold px-0.5";
@@ -571,7 +570,7 @@
                 if($('sub-reps-tension')) $('sub-reps-tension').className = 'transition-colors duration-300 text-cyan-400 font-bold cursor-pointer';
                 if($('dial-part-reps')) $('dial-part-reps').className = "text-cyan-400 font-bold cursor-pointer";
                 
-                // --- ADICIÓN: Iluminación de Columna 3 (Coordenada) ---
+                // Iluminación de Columna 3 (Coordenada Base Tech-Lab)
                 if($('telemetry-geo')) $('telemetry-geo').className = "text-right text-cyan-400 font-bold transition-colors duration-300";
                 
                 const dynamicTension = (parseInt(repsStr, 10) * 1.45).toFixed(2);
@@ -595,32 +594,19 @@
         if($('sub-actions-quadrant')) $('sub-actions-quadrant').className = 'transition-colors duration-300 text-white/40 cursor-pointer hover:text-white/80';
         if($('sub-reps-tension')) $('sub-reps-tension').className = 'transition-colors duration-300 text-white/40 cursor-pointer hover:text-white/80';
         
-        // --- ADICIÓN: Restablecer Fila 2 (Data Espacio-Temporal Neutra) ---
-        if($('telemetry-time')) $('telemetry-time').className = "text-left text-white/40 transition-colors duration-300";
-        if($('telemetry-date')) $('telemetry-date').className = "text-center text-white/40 transition-colors duration-300";
-        if($('telemetry-geo'))  $('telemetry-geo').className  = "text-right text-white/40 transition-colors duration-300";
+        // Restablecer Fila 2 (Data Espacio-Temporal Neutra)
+        if($('telemetry-solar-alt'))    $('telemetry-solar-alt').className = "text-left text-white/40 transition-colors duration-300";
+        if($('telemetry-solstice-node')) $('telemetry-solstice-node').className = "text-center text-white/40 transition-colors duration-300";
+        if($('telemetry-geo'))           $('telemetry-geo').className  = "text-right text-white/40 transition-colors duration-300";
 
-        // Restablecer Gota Alfanumérica Independiente sin paddings artificiales
+        // Restablecer Gota Alfanumérica Independiente
         if($('dial-part-sets')) $('dial-part-sets').className = "text-white transition-colors duration-300 cursor-pointer";
         if($('dial-part-action')) $('dial-part-action').className = "text-white font-black transition-colors duration-300 cursor-pointer";
         if($('dial-part-reps')) $('dial-part-reps').className = "text-white transition-colors duration-300 cursor-pointer";
 
         updateZ();
     }
-
-
-    function handleTouchInspect(event, type, targetRing) {
-        if (event) event.stopPropagation();
-        inspectKineticWave(type, targetRing);
-    }
-
-    function checkResetTouch(event) {
-        const isCircle = event.target.tagName === 'circle';
-        const isTag = event.target.classList.contains('interactive-tag');
-        if (!isCircle && !isTag) clearKineticWave();
-    }
-
-    function updateZ() {
+function updateZ() {
         let biokineticCoordinate = "";
         
         // 1. REGISTRO HORARIO PRIMARIO
@@ -629,13 +615,25 @@
         const minutes = now.getMinutes();
         const seconds = now.getSeconds();
 
-        // Ángulo de deriva de la Tierra en tiempo real
+        // Ángulo de deriva de la Tierra en tiempo real (0° a 359.99°)
         const currentSolarAngle = ((hours * 15) + (minutes * 0.25)) % 360;
 
+        // 2. TELEMETRÍA DE LA ESFERA (MAIN HEADER - IZQUIERDA Y CENTRO)
+        const currentSphereIdx = calculateSphereIndex();
+        const sphereElement = $('telemetry-sphere-idx');
+        
+        if (sphereElement && sphereElement.textContent !== currentSphereIdx) {
+            sphereElement.textContent = currentSphereIdx;
+        }
+
+        if ($('telemetry-sphere-dens')) {
+            $('telemetry-sphere-dens').textContent = "MAX.144"; 
+        }
+
+        // 3. PROCESAMIENTO DE COORDENADA BIOCINÉTICA
         if (window.selectedNodeFromMesh) {
             biokineticCoordinate = window.selectedNodeFromMesh.replace(/^0+/, '');
         } else {
-            // Corrección: Mapeo explícito y seguro para abarcar el ciclo esférico de 360° completo
             let currentAction = 'UST'; 
             if (currentSolarAngle >= 0 && currentSolarAngle < 90) currentAction = 'UL';       
             else if (currentSolarAngle >= 90 && currentSolarAngle < 180) currentAction = 'PL';  
@@ -660,6 +658,25 @@
         const actionRealValue = match[2];
         const repsRealValue = parseInt(match[3], 10);
 
+        // 4. CORRECCIÓN: TELEMETRÍA DEL NODO ACTUAL EN TIEMPO REAL (MAIN HEADER - DERECHA)
+        if ($('telemetry-active-node')) {
+            if (window.selectedNodeFromMesh) {
+                const nodeNum = window.selectedNodeFromMesh.replace('node-', '').padStart(3, '0');
+                $('telemetry-active-node').textContent = `ACT.${nodeNum}`;
+                $('telemetry-active-node').className = "tracking-[0.25em] text-right text-cyan-400 font-bold transition-all duration-300";
+            } else {
+                // Cálculo lineal matemático: mapea el arco de 360° directamente a los 144 dials disponibles
+                // sumando 1 para evitar el nodo 000 (rango 001 - 144)
+                const preciseDialIndex = Math.floor((currentSolarAngle / 360) * 144) + 1;
+                const currentDialMoment = String(preciseDialIndex).padStart(3, '0'); 
+                
+                $('telemetry-active-node').textContent = `ACT.${currentDialMoment}`;
+                if (!waveInspectionActive) {
+                    $('telemetry-active-node').className = "tracking-[0.25em] text-right text-white/40 transition-all duration-300";
+                }
+            }
+        }
+
         // Inyección en la Gota Alfanumérica Independiente flotante
         if (!waveInspectionActive) {
             if ($('dial-part-sets')) $('dial-part-sets').textContent = String(setsRealValue);
@@ -667,7 +684,7 @@
             if ($('dial-part-reps')) $('dial-part-reps').textContent = String(repsRealValue);
         }
 
-        // 2. CONSTRUCCIÓN DE DATA BIOCINÉTICA (FILA 1)
+        // 5. CONSTRUCCIÓN DE DATA BIOCINÉTICA (FILA 1 - NODES DRAWER)
         const calculatedTension = (14.2 + (repsRealValue * 0.8)).toFixed(2);
         const ampm = hours >= 12 ? 'PM' : 'AM';
 
@@ -677,23 +694,14 @@
             if ($('sub-reps-tension'))     $('sub-reps-tension').textContent = `${calculatedTension} N`;
         }
 
-        // 3. CONSTRUCCIÓN DE DATA ESPACIO-TEMPORAL REAL (FILA 2)
-        const textTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-        
-        const day = now.getDate();
-        const month = now.getMonth() + 1;
-        const year = String(now.getFullYear()).slice(-2);
-        const textDate = `${day}.${month}.${year}`;
+        // 6. CONSTRUCCIÓN DE DATA ESPACIO-TEMPORAL FIJA (FILA 2 - NODES DRAWER)
+        const geoNode = "6.251° N"; 
 
-        const geoNode = "6.244° N"; // Santa Elena Node base
+        if ($('telemetry-solar-alt'))    $('telemetry-solar-alt').textContent = "H.84°25'36\"";
+        if ($('telemetry-solstice-node')) $('telemetry-solstice-node').textContent = "SS.54 • EQ.54";
+        if ($('telemetry-geo'))           $('telemetry-geo').textContent = geoNode;
 
-        // Esta fila de telemetría cronológica corre libre y fija
-        if ($('telemetry-time'))       $('telemetry-time').textContent = textTime;
-        if ($('telemetry-date'))       $('telemetry-date').textContent = textDate;
-        if ($('telemetry-geo'))        $('telemetry-geo').textContent = geoNode;
-
-
-        // 4. TRADUCCIÓN VECTORIAL (ANIMACIÓN DE ANILLOS SVG)
+        // 7. TRADUCCIÓN VECTORIAL (ANIMACIÓN DE ANILLOS SVG)
         const wOuter = $('wave-outer'); 
         const wMid = $('wave-mid');     
         const wInner = $('wave-inner'); 
@@ -727,21 +735,33 @@
     }
 
     function harmonizeMeshNodes() {
-        const meshContainer = document.getElementById('mesh-container');
-        if (!meshContainer) return;
-        const nodes = meshContainer.querySelectorAll('[id*="UL"], [id*="PL"], [id*="LST"], [id*="UST"]');
-        
+        const nodes = document.querySelectorAll('#mesh-container svg [id^="node-"]');
         nodes.forEach(node => {
-            const nodeId = node.id;
-            node.style.cursor = 'pointer';
-            node.addEventListener('click', () => {
-                window.selectedNodeFromMesh = nodeId;
+            node.addEventListener('mouseenter', (e) => {
+                const rawId = e.target.id; 
+                const nodeNum = rawId.replace('node-', '').padStart(3, '0');
+                
+                if ($('telemetry-active-node')) {
+                    $('telemetry-active-node').textContent = `ACT.${nodeNum}`;
+                    $('telemetry-active-node').className = "tracking-[0.25em] text-right text-cyan-400 font-bold transition-all duration-300";
+                }
+            });
+            
+            node.addEventListener('mouseleave', () => {
                 updateZ();
-                nodes.forEach(n => n.style.opacity = '0.35');
-                node.style.opacity = '1';
-                if (navigator.vibrate) navigator.vibrate(25);
             });
         });
+    }
+
+    function handleTouchInspect(event, type, targetRing) {
+        if (event) event.stopPropagation();
+        inspectKineticWave(type, targetRing);
+    }
+
+    function checkResetTouch(event) {
+        const isCircle = event.target.tagName === 'circle';
+        const isTag = event.target.classList.contains('interactive-tag');
+        if (!isCircle && !isTag) clearKineticWave();
     }
 
     function openNodesDrawer() {
@@ -825,11 +845,16 @@
         }
     }
 
+    // --- EL MOTOR DE TRACCIÓN (RSVP ENGINE) ---
+    // Este es el corazón del "Despertar" (Fase 1). 
+    // Actualmente, el lector toma 'activeWords' y las proyecta en el DOM.
     function startRSVPStream() {
         if (isReading) return;
         isReading = true;
         rsvpIntervalId = setInterval(() => {
             if (wordIndex < activeWords.length) {
+                // AQUÍ: Es donde debemos inyectar la lógica de "Supresión de Ceros"
+                // y la coordenada biocinética en tiempo real.
                 if ($('rsvp-word-display')) $('rsvp-word-display').textContent = activeWords[wordIndex];
                 wordIndex++;
             } else {
@@ -845,6 +870,22 @@
         if ($('rsvp-word-display') && wordIndex === 0) {
             $('rsvp-word-display').innerHTML = `<img src="img/pace.png" class="w-9 h-9 object-contain opacity-70" alt="Pace Icon">`;
         }
+    }
+
+        /**
+    * Calcula el índice de la esfera (SPH) basado en los días 
+    * transcurridos desde el Solsticio de Diciembre 2012.
+    */
+    function calculateSphereIndex() {
+        const epoch = new Date('2012-12-21T00:00:00Z'); // Punto cero del sistema
+        const now = new Date();
+        
+        // Diferencia en milisegundos convertida a días totales
+        const diffInMs = now - epoch;
+        const daysSinceEpoch = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+        
+        // Formato SPH.0XXXX (asegurando el padding de 4 dígitos solicitado)
+        return `SPH.${String(daysSinceEpoch).padStart(4, '0')}`;
     }
 
     function scrollToSection(id) {
