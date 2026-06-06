@@ -564,9 +564,9 @@
                                 <path id="textPath-bottom" d="M 35,200 A 165,165 0 0,0 365,200" />
                             </defs>
 
-                            <text class="fill-white font-black text-[17px] tracking-[0.4em] uppercase transition-all duration-500">
+                            <text class="fill-white font-black text-[15px] sm:text-[17px] tracking-[0.3em] sm:tracking-[0.4em] uppercase transition-all duration-500">
                                 <textPath id="laser-variant-title" href="#textPath-top" startOffset="50%" text-anchor="middle">
-                                    BIORUSH FOCUS[cite: 2]
+                                    BIORUSH MENTAL FOCUS
                                 </textPath>
                             </text>
 
@@ -798,6 +798,9 @@ function updateZ() {
 
         if (!isReading && $('hologram-dial')) $('hologram-dial').textContent = biokineticCoordinate;
         if ($('z-dial-footer')) $('z-dial-footer').textContent = biokineticCoordinate; 
+
+        // INYECCIÓN EN EL BOTÓN CENTRAL DE LA GALERÍA DEL VAULT (BIG DIAL)
+        if ($('big-dial')) $('big-dial').textContent = biokineticCoordinate;
 
         const match = biokineticCoordinate.match(/^(\d+)([A-Z]+)(\d+)$/);
         if (!match) return;
@@ -1067,6 +1070,37 @@ function updateZ() {
     function scrollToSection(id) {
         const target = $(id);
         if (target) target.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function seleccionarVariante(variante) {
+        const titleMap = {
+            'FOCUS': 'BIORUSH MENTAL FOCUS',
+            'ZEN': 'BIORUSH MENTAL ZEN',
+            'STAMINA': 'BIORUSH BODY STAMINA',
+            'CORE': 'BIORUSH BODY CORE'
+        };
+
+        // 1. Actualizar el texto del SVG
+        if ($('laser-variant-title') && titleMap[variante]) {
+            $('laser-variant-title').textContent = titleMap[variante];
+        }
+
+        // 2. Actualizar estados visuales de los botones selectores
+        const opciones = ['focus', 'zen', 'stamina', 'core'];
+        opciones.forEach(opt => {
+            const el = $(`opt-${opt}`);
+            if (!el) return;
+
+            if (opt === variante.toLowerCase()) {
+                // Estilo Activo (Iluminado con borde definido)
+                el.className = "cursor-pointer transition-all duration-300 px-3.5 py-1.5 bg-[#141414]/80 backdrop-blur-md rounded-sm text-white border border-white/40 shadow-[0_0_12px_rgba(255,255,255,0.1)]";
+            } else {
+                // Estilo Inactivo (Opaco y sutil)
+                el.className = "cursor-pointer transition-all duration-300 px-3.5 py-1.5 bg-black/40 backdrop-blur-md rounded-sm text-white/40 border border-white/5 hover:border-white/30 hover:text-white/80";
+            }
+        });
+
+        if (navigator.vibrate) navigator.vibrate(8);
     }
 
 // Reemplaza el bloque de eventos dentro de DOMContentLoaded por este:
