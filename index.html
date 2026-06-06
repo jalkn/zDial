@@ -605,7 +605,7 @@
         </div>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md relative z-30 px-6">
                 <button onclick="adquirirNodo('BIORUSH')" class="w-full sm:w-auto px-10 py-3 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
-                    COMPRAR BIORUSH
+                    GET BIORUSH
                 </button>
             </div>
     </div>
@@ -643,6 +643,7 @@
 
     window.selectedNodeFromMesh = null;
     window.currentTelemetryValue = "--"; 
+    window.currentVariant = "FOCUS";
     let waveInspectionActive = false;     
     let biokineticInterval = null;
     let isReading = false;
@@ -1073,6 +1074,8 @@ function updateZ() {
     }
 
     function seleccionarVariante(variante) {
+        window.currentVariant = variante;
+
         const titleMap = {
             'FOCUS': 'BIORUSH MENTAL FOCUS',
             'ZEN': 'BIORUSH MENTAL ZEN',
@@ -1101,6 +1104,38 @@ function updateZ() {
         });
 
         if (navigator.vibrate) navigator.vibrate(8);
+    }
+
+    function adquirirNodo(producto) {
+        // 1. Datos del Ecosistema recolectados en tiempo real
+        const varianteActiva = window.currentVariant || "FOCUS";
+        const dialActual = window.currentTelemetryValue || "--";
+        const esferaActual = typeof calculateSphereIndex === "function" ? calculateSphereIndex() : "SPH.0000";
+
+        // Mapeo estético de nombres comerciales para el mensaje
+        const lineMap = {
+            'FOCUS': 'BIORUSH MENTAL FOCUS 🧠',
+            'ZEN': 'BIORUSH MENTAL ZEN 🌌',
+            'STAMINA': 'BIORUSH BODY STAMINA ⚡',
+            'CORE': 'BIORUSH BODY CORE 🧬'
+        };
+
+        const productoSeleccionado = lineMap[varianteActiva] || `${producto} ${varianteActiva}`;
+
+        // 2. Construcción de la plantilla del mensaje de orden
+        const numeroCelular = "573025333130"; // Formato internacional sin el '+'
+        const mensaje = `⚡ *NUEVA ORDEN DE NODO - ZENERGY* ⚡\n\n` +
+                        `• *Producto:* ${productoSeleccionado}\n` +
+                        `• *Coordenada Dial:* \`${dialActual}\`\n` +
+                        `• *Registro Esfera:* \`${esferaActual}\`\n\n` +
+                        `Solicito la inicialización y el despacho de este nodo funcional.`;
+
+        // 3. Codificación segura de URI y redirección
+        const urlWhatsapp = `https://api.whatsapp.com/send?phone=${numeroCelular}&text=${encodeURIComponent(mensaje)}`;
+        
+        // Feedback háptico opcional y apertura de ventana
+        if (navigator.vibrate) navigator.vibrate([10, 30, 10]);
+        window.open(urlWhatsapp, '_blank');
     }
 
 // Reemplaza el bloque de eventos dentro de DOMContentLoaded por este:
