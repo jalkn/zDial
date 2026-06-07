@@ -792,14 +792,15 @@
         updateZ();
     }
 
- function updateZ() {
+    function updateZ() {
         let biokineticCoordinate = "";
         
-        // 1. REGISTRO HORARIO PRIMARIO
+        // 1. REGISTRO HORARIO PRIMARIO Y BALANCE TEMPORAL
         const now = new Date();
         const hours = now.getHours(); 
         const minutes = now.getMinutes();
         const seconds = now.getSeconds();
+        const milliseconds = now.getMilliseconds();
 
         // Ángulo de deriva de la Tierra en tiempo real (0° a 359.99°)
         const currentSolarAngle = ((hours * 15) + (minutes * 0.25)) % 360;
@@ -817,19 +818,60 @@
             $('telemetry-sphere-dens').textContent = "MAX.8640"; 
         }
 
-        // 3. PROCESAMIENTO DE COORDENADA BIOCINÉTICA (PROTOCOLO PULS)
+        // 3. PROCESAMIENTO DE COORDENADA BIOCINÉTICA (SINTAXIS DE 18 ESTADOS SIN "T")
+        let setsStage = 1;  // Onda Interior: PULL (1-12)
+        let repsStage = 1;  // Onda Exterior: PUSH (1-12)
+        let currentAction = 'P'; // Onda Media: Variable del Dial (18 Estados Únicos)
+
         if (window.selectedNodeFromMesh) {
             biokineticCoordinate = window.selectedNodeFromMesh.replace(/^0+/, '');
+            // Extraer componentes si el nodo viene de la malla
+            const matchMesh = biokineticCoordinate.match(/^(\d+)([A-Z]+)(\d+)$/);
+            if (matchMesh) {
+                setsStage = Math.max(1, Math.min(12, parseInt(matchMesh[1], 10)));
+                currentAction = matchMesh[2];
+                repsStage = Math.max(1, Math.min(12, parseInt(matchMesh[3], 10)));
+            }
         } else {
-            let currentAction = 'UST'; 
-            if (currentSolarAngle >= 0 && currentSolarAngle < 90) currentAction = 'UL';       
-            else if (currentSolarAngle >= 90 && currentSolarAngle < 180) currentAction = 'PL';  
-            else if (currentSolarAngle >= 180 && currentSolarAngle < 270) currentAction = 'LST';
-            else if (currentSolarAngle >= 270 && currentSolarAngle < 360) currentAction = 'UST'; 
+            // OSCILACIÓN TEMPORAL DE BAJO CONSUMO EN EL ENRUTADOR BIOMECÁNICO
+            // Alternancia nativa entre Micro-Ritmo (segundos impares) y Macro-Ritmo (segundos pares)
+            if (seconds % 2 !== 0) {
+                // MODO MICRO-RITMO (Ciclos reactivos de 1 segundo)
+                const progress1s = milliseconds / 1000; // 0.0 a 1.0
+                
+                // Los Sets (Pull) y Reps (Push) oscilan rápidamente en espejo armónico
+                setsStage = Math.floor(progress1s * 12) + 1;
+                repsStage = 13 - setsStage; 
 
-            const setsStage = Math.min(12, Math.max(3, Math.floor(Math.abs(Math.sin(currentSolarAngle * Math.PI / 180)) * 9) + 3));
-            const repsStage = Math.min(12, Math.max(3, Math.floor(((minutes * PHI) % 9) + 3)));
+                // Giro continuo de la aguja convertido en cuadrantes discretos monádicos/binarios
+                if (progress1s < 0.25) currentAction = 'L';   // Lift Puro (Atracción)
+                else if (progress1s < 0.5) currentAction = 'PL'; // Pace-Lift
+                else if (progress1s < 0.75) currentAction = 'U';  // Under/Fall Puro (Empuje)
+                else currentAction = 'SU'; // Surge-Under
+            } else {
+                // MODO MACRO-RITMO (Ciclos de acumulación estructural de 10 segundos)
+                const macroBlockPosition = seconds % 10; // Bloques de 0 a 9 segundos
+                
+                // Condicionamiento indexado de base 12 gobernado por el tiempo celular
+                setsStage = Math.max(1, Math.min(12, Math.floor((minutes % 12) + 1)));
+                repsStage = Math.max(1, Math.min(12, Math.floor(macroBlockPosition + 2)));
 
+                // Asignación de variables simplificadas según el grado de tracción/empuje
+                if (macroBlockPosition < 4) {
+                    currentAction = (setsStage === repsStage) ? 'LUP' : 'PU'; // Fase de Atracción Retenida
+                } else if (macroBlockPosition < 6) {
+                    currentAction = 'PLS'; // TRIGGER TERNARIO: Ciclo óptimo del movimiento natural
+                } else if (macroBlockPosition < 9) {
+                    currentAction = (setsStage === repsStage) ? 'UTS' : 'US'; // TRIGGER TERNARIO / Isometría bajo presión
+                } else {
+                    currentAction = 'S'; // Colapso en Surge puro (Liberación cuántica / Trigger)
+                }
+            }
+
+            // Forzar límites de la naturaleza (1 a 12)
+            setsStage = Math.max(1, Math.min(12, setsStage));
+            repsStage = Math.max(1, Math.min(12, repsStage));
+            
             biokineticCoordinate = `${setsStage}${currentAction}${repsStage}`;
         }
 
@@ -838,7 +880,7 @@
         if (!isReading && $('hologram-dial')) $('hologram-dial').textContent = biokineticCoordinate;
         if ($('z-dial-footer')) $('z-dial-footer').textContent = biokineticCoordinate;
 
-        // INYECCIÓN MULTICLASE ESCALABLE (Soporta N-cantidad de ítems en el slider del Vault)
+        // INYECCIÓN MULTICLASE ESCALABLE
         if ($('big-dial')) $('big-dial').textContent = biokineticCoordinate;
         
         const bigDialTargets = document.querySelectorAll('.big-dial-target');
@@ -848,24 +890,14 @@
             }
         });
 
-        const match = biokineticCoordinate.match(/^(\d+)([A-Z]+)(\d+)$/);
-        if (!match) return;
-
-        const setsRealValue = parseInt(match[1], 10);
-        const actionRealValue = match[2];
-        const repsRealValue = parseInt(match[3], 10);
-
         // 4. TELEMETRÍA DEL NODO ACTUAL EN TIEMPO REAL (MAIN HEADER - DERECHA)
         if ($('telemetry-active-node')) {
             if (window.selectedNodeFromMesh) {
                 const nodeNum = window.selectedNodeFromMesh.replace('node-', '').padStart(4, '0');
                 $('telemetry-active-node').textContent = `ACT.${nodeNum}`;
             } else {
-                // Calculamos cuántos bloques de 10 segundos han pasado en todo el día
                 const totalSecondsToday = (hours * 3600) + (minutes * 60) + seconds;
                 const preciseDialIndex = Math.floor(totalSecondsToday / 10) + 1;
-                
-                // Formato de 4 dígitos para soportar la alta densidad (Ej: ACT.4912)
                 const currentDialMoment = String(preciseDialIndex).padStart(4, '0'); 
                 $('telemetry-active-node').textContent = `ACT.${currentDialMoment}`;
                 
@@ -875,26 +907,25 @@
             }
         }
 
-        // CORRECCIÓN INTERFAZ: Inyección en la Gota Alfanumérica Independiente flotante
+        // CORRECCIÓN INTERFAZ: Gota Alfanumérica flotante
         if (!waveInspectionActive) {
-            if ($('dial-part-sets')) $('dial-part-sets').textContent = String(setsRealValue);
-            if ($('dial-part-action')) $('dial-part-action').textContent = actionRealValue;
-            if ($('dial-part-reps')) $('dial-part-reps').textContent = String(repsRealValue);
+            if ($('dial-part-sets')) $('dial-part-sets').textContent = String(setsStage);
+            if ($('dial-part-action')) $('dial-part-action').textContent = currentAction;
+            if ($('dial-part-reps')) $('dial-part-reps').textContent = String(repsStage);
         }
 
-        // 5. TRINIDAD DE INSPECCIÓN CINÉTICA (FILA 1 - NODES DRAWER) + MAIN HEADER (CENTRO)
-        const calculatedTension = (14.2 + (repsRealValue * 0.8)).toFixed(1);
+        // 5. TRINIDAD DE INSPECCIÓN CINÉTICA ELÁSTICA (SIN VARIABLE獨立 "T")
+        // La Tensión Mecánica (Newtons) emerge de manera orgánica de la cantidad de empuje (RepsStage)
+        const calculatedTension = (14.2 + (repsStage * 0.8)).toFixed(1);
         const currentAngleText = `Φ ${String(Math.floor(currentSolarAngle)).padStart(3, '0')}°`;
 
-        // Modulación matemática para simular frecuencia de oscilación (Hertz) vinculada a los Sets (3 a 12)
-        const currentHz = (0.05 + (minutes / 1200)).toFixed(3);
+        // La Frecuencia (Hertz) responde directamente a la tasa de oscilación interna de los Sets (Pull)
+        const currentHz = (0.05 + (setsStage / 240)).toFixed(3);
 
-        // INYECCIÓN PERMANENTE Y PASIVA EN EL MAIN HEADER (CENTRO)
         if ($('telemetry-sphere-actions')) {
             $('telemetry-sphere-actions').textContent = `Φ ${currentSolarAngle.toFixed(1)}°`;
         }
 
-        // El Nodes Drawer mantiene su trinidad limpia en su lugar si no hay inspección activa
         if (!waveInspectionActive) {
             if ($('sub-sets-solar'))       $('sub-sets-solar').textContent = `${currentHz} Hz`;
             if ($('sub-actions-quadrant')) $('sub-actions-quadrant').textContent = currentAngleText;
@@ -903,23 +934,18 @@
 
         // 6. TELEMETRÍA DE ENTORNO UNIFICADA (MAIN FOOTER + NODES DRAWER)
         const geoNode = "6.251° N";
-
-        // Cálculo dinámico para la altitud solar simplificada con formato limpio (H.00°00')
         const solarRad = (currentSolarAngle * Math.PI) / 180;
         const calculatedAltitude = Math.abs(Math.sin(solarRad)) * 84.426; 
         const altDegrees = Math.floor(calculatedAltitude);
         const altMinutes = Math.floor((calculatedAltitude - altDegrees) * 60);
-        
-        // Formato unificado de baja resolución solicitado
         const solarAltitudeText = `H.${String(altDegrees).padStart(2, '0')}°${String(altMinutes).padStart(2, '0')}'`;
 
-        // Inyección dirigida exacta por IDs alineados matemáticamente
         if ($('telemetry-footer-alt'))    $('telemetry-footer-alt').textContent = solarAltitudeText;
         if ($('telemetry-solar-alt'))     $('telemetry-solar-alt').textContent = solarAltitudeText;
         if ($('telemetry-solstice-node')) $('telemetry-solstice-node').textContent = "SS.54 • EQ.54";
         if ($('telemetry-geo'))           $('telemetry-geo').textContent = geoNode;
 
-        // 7. TRADUCCIÓN VECTORIAL (ANIMACIÓN DE ANILLOS SVG)
+        // 7. TRADUCCIÓN VECTORIAL (ANIMACIÓN DE ANILLOS SVG CON POLARIDAD PURA)
         const wOuter = $('wave-outer');
         const wMid = $('wave-mid');    
         const wInner = $('wave-inner');
@@ -928,25 +954,38 @@
             const polarity = (currentSolarAngle <= 180) ? 1 : -1; 
             const baseRotation = currentSolarAngle * polarity;
 
+            // ONDA INTERIOR (PULL): El trazo responde a la escala armónica de Sets/12
             const totalLengthInner = 2 * Math.PI * 39;
-            const innerArcLength = totalLengthInner * (setsRealValue / 12);
+            const innerArcLength = totalLengthInner * (setsStage / 12);
             wInner.style.strokeDasharray = `${innerArcLength} ${totalLengthInner}`;
             wInner.style.transform = `rotate(${baseRotation * 0.5}deg)`;
 
+            // ONDA MEDIA (DIAL VARIABLE): Se adapta dinámicamente a la longitud de los códigos cortos activos
             const totalLengthMid = 2 * Math.PI * 67;
             let midArcLength = totalLengthMid * 0.5; 
-            let midVectorRotation = 0;
+            let midVectorRotation = currentSolarAngle;
 
-            if (actionRealValue === 'UL') midVectorRotation = 0;       
-            else if (actionRealValue === 'PL') midVectorRotation = 180;     
-            else if (actionRealValue === 'LST') midVectorRotation = -90;      
-            else if (actionRealValue === 'UST') { midArcLength = totalLengthMid; midVectorRotation = 0; }
+            // Modulación espacial reactiva instantánea por longitud de variable para evitar redundancia
+            if (currentAction.length === 1) {
+                midArcLength = totalLengthMid * 0.25; // Monádico: mínimo consumo óptico
+                midVectorRotation = baseRotation;
+            } else if (currentAction.length === 2) {
+                midArcLength = totalLengthMid * 0.5;  // Binario: equilibrio elástico
+                midVectorRotation = -baseRotation * 1.5;
+            } else if (currentAction.length === 3) {
+                midArcLength = totalLengthMid * 0.85; // Ternario: masa crítica pre-trigger
+                midVectorRotation = 0; // Congelamiento simétrico de alineación cuántica
+                
+                // Haptic Feedback simulado espontáneo si el navegador lo soporta
+                if (navigator.vibrate && milliseconds < 30) navigator.vibrate(15);
+            }
 
             wMid.style.strokeDasharray = `${midArcLength} ${totalLengthMid}`;
             wMid.style.transform = `rotate(${midVectorRotation}deg)`;
 
+            // ONDA EXTERIOR (PUSH): El trazo responde elásticamente a la deformación por Reps/12
             const totalLengthOuter = 2 * Math.PI * 95;
-            const outerArcLength = totalLengthOuter * (repsRealValue / 12);
+            const outerArcLength = totalLengthOuter * (repsStage / 12);
             wOuter.style.strokeDasharray = `${outerArcLength} ${totalLengthOuter}`;
             wOuter.style.transform = `rotate(${-baseRotation}deg)`;
         }
