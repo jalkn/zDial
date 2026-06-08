@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="img/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>zenergy.world // TECH-LAB</title>
+    <title>JAK&copy;.TECH-LAB</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script>
@@ -106,7 +106,7 @@
             </div>
             
             <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
-                <span id="telemetry-sphere-dens">MAX.8640</span>
+                <span id="telemetry-sphere-dens">Q.8640</span>
             </div>
             
             <div class="justify-self-end flex items-center space-x-3">
@@ -161,31 +161,58 @@
 <!-- CORRECCIÓN: Fondo .glass con desenfoque profundo y grid-rows estricto para simular superposición flotante sobre el vidrio -->
 <div id="nodes-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform translate-x-full transition-transform duration-500 ease-in-out grid grid-rows-[auto_1fr_auto] select-none glass backdrop-blur-xl" ontouchstart="checkResetTouch(event)">
     
-    <header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent shrink-0">
-        <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
-            
-            <div class="justify-self-start flex items-center">
-                <button onclick="toggleDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Menu">
-                    <img src="img/surge.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
-                </button>
-            </div>
-            
-            <div class="justify-self-center text-center">
-                <span class="text-white/80 font-mono font-bold text-[9px] tracking-[0.25em] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] whitespace-nowrap">
-                    PULSOR
-                </span>
-            </div>
-            
-            <div class="justify-self-end flex items-center">
-                <div class="justify-self-end flex items-center">
-                    <button onclick="toggleDrawer(); toggleVaultDrawer();" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Vault Archive">
-                        <img src="img/lift.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Open Vault">
-                    </button>
-                </div>
-            </div>
-
+<header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0">
+    <!-- Rejilla de 3 columnas idéntica al main header para simetría HUD absoluta -->
+    <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] select-none">
+        
+        <!-- Bloque Izquierdo: Control Surge + Telemetría Frecuencia (Anclados al extremo izquierdo) -->
+        <div class="justify-self-start flex items-center space-x-3">
+            <button onclick="toggleDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Menu">
+                <img src="img/surge.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
+            </button>
+            <span id="sub-sets-solar" 
+                  onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
+                  ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
+                  class="transition-colors duration-300 cursor-pointer hover:text-white/80 whitespace-nowrap !text-left tracking-[0.25em] text-white/60">
+                0.00 Hz
+            </span>
         </div>
-    </header>
+        
+        <!-- Bloque Central: Enrutador de Fuerzas Estricto (Centrado Absoluto) -->
+        <div class="justify-self-center text-center font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+            <div id="z-dial-wrapper" class="w-full text-xs sm:text-sm text-center flex items-center justify-center tracking-[0.25em] transition-all duration-300">
+                <span id="dial-part-sets" 
+                    onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
+                    ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
+                    class="transition-colors duration-300 cursor-pointer text-right w-[2ch] hover:text-white">0</span>
+                
+                <span id="dial-part-action" 
+                    onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
+                    ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
+                    class="font-black transition-colors duration-300 cursor-pointer text-center w-[5ch] inline-block mx-2 text-white border-x border-white/[0.05] px-1 bg-white/[0.01]">VOID</span>
+                
+                <span id="dial-part-reps" 
+                    onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
+                    ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
+                    class="transition-colors duration-300 cursor-pointer text-left w-[2ch] hover:text-white">0</span>
+            </div>
+        </div>
+
+        <!-- Bloque Derecho: Telemetría Tensión + Control Lift (Anclados al extremo derecho) -->
+        <div class="justify-self-end flex items-center space-x-3">
+            <span id="sub-reps-tension" 
+                  onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
+                  ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
+                  class="transition-colors duration-300 cursor-pointer hover:text-white/80 whitespace-nowrap !text-right tracking-[0.25em]">
+                00.0 N
+            </span>
+            <button onclick="toggleDrawer(); toggleVaultDrawer();" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Vault Archive">
+                <img src="img/lift.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Open Vault">
+            </button>
+        </div>
+
+    </div>
+</header>
 
     <!-- CONTENIDO INTERMEDIO (Fila Central Scrolleable) -->
     <div class="w-full h-full overflow-y-auto flex flex-col justify-start sm:justify-center items-center gap-4 px-6 pb-6 scrollbar-none min-h-0">
@@ -220,55 +247,9 @@
 
   <div class="w-full max-w-md mx-auto flex flex-col items-center shrink-0 relative z-30 font-mono text-[9px] text-white/40 tracking-widest uppercase select-none">
             <div class="w-full bg-[#0a0a0a]/90 backdrop-blur-md border border-white/5 rounded-sm p-4 sm:p-5 shadow-[0_4px_30px_rgba(0,0,0,0.9)]">
-                
-                <div id="z-dial-wrapper" class="w-full font-mono text-base font-bold text-center select-none text-white/80 pb-3 flex items-center justify-center tracking-[0.2em]">
-                    <span id="dial-part-sets" 
-                        onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
-                        ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
-                        class="transition-colors duration-300 cursor-pointer text-right w-[2ch]">0</span>
-                    
-                    <span id="dial-part-action" 
-                        onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
-                        ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
-                        class="font-black transition-colors duration-300 cursor-pointer text-center w-[5ch] inline-block mx-1 text-white">VOID</span>
-                    
-                    <span id="dial-part-reps" 
-                        onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
-                        ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
-                        class="transition-colors duration-300 cursor-pointer text-left w-[2ch]">0</span>
-                </div>
-
-                <div class="w-full grid grid-cols-3 text-center items-center border-t border-white/[0.05] py-3 text-white/40 text-[10px] font-mono tracking-wider">
-                    
-                    <span id="sub-sets-solar" 
-                          onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()"
-                          ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
-                          class="text-left transition-colors duration-300 cursor-pointer hover:text-white/80">
-                        0.00 Hz
-                    </span>
-
-                    <span id="sub-actions-quadrant" 
-                          onmouseenter="inspectKineticWave('ONLY_ACTION', 'MID')" onmouseleave="clearKineticWave()"
-                          ontouchstart="handleTouchInspect(event, 'ONLY_ACTION', 'MID')"
-                          class="text-center transition-colors duration-300 cursor-pointer hover:text-white/80 text-white/60">
-                        Φ 000°
-                    </span>
-
-                    <span id="sub-reps-tension" 
-                          onmouseenter="inspectKineticWave('REPS', 'OUTER')" onmouseleave="clearKineticWave()"
-                          ontouchstart="handleTouchInspect(event, 'REPS', 'OUTER')"
-                          class="text-right transition-colors duration-300 cursor-pointer hover:text-white/80">
-                        00.0 N
-                    </span>
-                    
-                </div>
 
 
-                <div class="w-full grid grid-cols-3 text-center items-center border-t border-white/[0.05] py-3 text-white/40 tracking-[0.05em]">
-                    <span id="telemetry-solar-alt" class="text-left text-white/60">H.00°00'</span>
-                    <span id="telemetry-solstice-node" class="text-center">SS.54 • EQ.54</span> 
-                    <span id="telemetry-geo" class="text-right">6.251° N</span>
-                </div>
+
 
                 <div class="flex justify-center space-x-6 select-none pt-3 tracking-[0.2em] border-t border-white/5 w-full">
                     <span id="tag-sets" class="interactive-tag cursor-pointer font-bold transition-all duration-300 hover:text-white" onmouseenter="inspectKineticWave('SETS', 'INNER')" onmouseleave="clearKineticWave()">SETS</span>
@@ -815,7 +796,7 @@
 
         // Densidad total calculada: 360 dials/hora * 24 horas = 8640 micro-dials diarios
         if ($('telemetry-sphere-dens')) {
-            $('telemetry-sphere-dens').textContent = "MAX.8640"; 
+            $('telemetry-sphere-dens').textContent = "Q.8640"; 
         }
 
         // 3. PROCESAMIENTO DE COORDENADA BIOCINÉTICA (SINTAXIS DE 18 ESTADOS SIN "T")
