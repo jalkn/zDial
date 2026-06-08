@@ -11,7 +11,7 @@
         tailwind.config = { 
             theme: { 
                 extend: { 
-                    colors: { 'zenergy-black': '#0a0a0a' },
+                    colors: { 'jako-black': '#0a0a0a' },
                     fontFamily: { 
                         'sans': ['Orbitron', 'sans-serif'],
                         'mono': ['Orbitron', 'monospace'],
@@ -86,7 +86,7 @@
         }
     </style>
 </head>
-<body class="antialiased selection:bg-white selection:text-black overflow-x-hidden bg-zenergy-black text-white">
+<body class="antialiased selection:bg-white selection:text-black overflow-x-hidden bg-jako-black text-white">
 
     <div id="page-bg-overlay"></div>
     <div class="fixed inset-0 bg-gradient-to-b from-black via-transparent to-black z-0 pointer-events-none"></div>
@@ -98,7 +98,7 @@
             
             <div class="justify-self-start flex items-center space-x-3">
                 <button id="z-logo-trigger" onclick="toggleLeftDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Axis Drawer">
-                    <img src="img/logo.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="zenergy Axis Trigger"> 
+                    <img src="img/logo.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
                 </button>
                 <span id="telemetry-sphere-idx" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
                     SPH.0000
@@ -260,7 +260,7 @@
                     </button>
                 </div>    
                 <div class="justify-self-center text-center whitespace-nowrap font-mono text-[8px] tracking-[0.3em] text-white/20 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                    <span class="font-bold text-white/50">jak&copy;</span> 2008-2026 - RESEARCH
+                    <span class="font-bold text-white/50">jak&copy;</span> 2008
                 </div>
                 <div class="justify-self-end flex items-center">
                     <button onclick="toggleDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Drawer">
@@ -273,26 +273,38 @@
 
     <!-- LEFT CORE DRAWER -->
     <div id="left-core-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform -translate-x-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] glass backdrop-blur-xl select-none">
-        <header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent shrink-0 select-none">
-            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
-                <div class="justify-self-start flex items-center">
-                    <button onclick="openManifesto()" class="group w-9 sm:w-auto h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer text-white/40 hover:text-white" aria-label="Open Manifesto">
-                        <span class="hidden sm:inline font-sans text-[9px] sm:text-[10px] tracking-widest uppercase transition-colors duration-300 group-hover:text-white">MANIFESTO</span>
-                        <img src="img/under.png" class="inline sm:hidden w-5 h-5 object-contain opacity-40 group-hover:opacity-100 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Manifesto">
+
+<header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
+            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
+                
+                <!-- Lado Izquiercedo: Sincronizado con el disparador y telemetría del main -->
+                <div class="justify-self-start flex items-center space-x-3">
+                    <button id="z-logo-trigger-drawer" onclick="openManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Axis Drawer">
+                        <img src="img/under.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
                     </button>
-                </div>
-                <div class="justify-self-center text-center">
-                    <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-                        AXIS // TECH-LAB
+                    <span id="telemetry-sphere-idx-drawer" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
+                        SPH.0000
                     </span>
                 </div>
-                <div class="justify-self-end flex items-center">
-                    <button onclick="toggleLeftDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Menu">
-                        <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Back">
+                
+                <!-- Centro: Identidad fija preservada con los estilos HUD del main -->
+                <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
+                    <span id="drawer-axis-node">AXIS // TECH-LAB</span>
+                </div>
+                
+                <!-- Lado Derecho: Telemetría de nodo activo y disparador de retorno -->
+                <div class="justify-self-end flex items-center space-x-3">
+                    <span id="telemetry-active-node-drawer" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                        ACT.0000
+                    </span>
+                    <button id="z-dial-trigger-drawer" onclick="toggleDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Pulsor Drawer">
+                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Pulsor Trigger">
                     </button>
                 </div>
+                
             </div>
-        </header>
+        </header>        
+
         <div class="overflow-y-auto px-6 py-4 flex flex-col justify-start sm:justify-center items-center gap-6 min-h-0 scrollbar-none pb-12">
             <section class="py-4 bg-transparent overflow-hidden w-full flex justify-center mt-4 sm:mt-0 shrink-0">
                 <div class="relative w-full max-w-[240px] sm:max-w-[280px] aspect-[2/3] group">
@@ -327,7 +339,7 @@
                     </button>
                 </div>    
                 <div class="justify-self-center text-center whitespace-nowrap font-mono text-[8px] tracking-[0.3em] text-white/20 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                    <span class="font-bold text-white/50">jak&copy;</span> 2008-2026 - RESEARCH
+                    <span class="font-bold text-white/50">jak&copy;</span> 2008
                 </div>
                 <div class="justify-self-end flex items-center">
                     <button onclick="toggleLeftDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Left Drawer">
@@ -340,23 +352,34 @@
 
     <!-- MANIFESTO DRAWER -->
     <div id="manifesto" class="fixed inset-0 w-screen h-[100dvh] z-[60] transform -translate-y-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] glass backdrop-blur-xl select-none">
-        <header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent shrink-0 select-none">
-            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
-                <div class="justify-self-start flex items-center">
-                    <button onclick="closeManifesto(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Home">
-                        <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Home">
+<header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
+            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
+                
+                <!-- Lado Izquierdo: Telemetría unificada y botón Home con comportamiento original -->
+                <div class="justify-self-start flex items-center space-x-3">
+                    <button id="z-logo-trigger-manifesto" onclick="closeManifesto(); closeAllDrawers(); scrollToSection('biokinetic-portfolio');" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Home">
+                        <img src="img/surge.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
                     </button>
-                </div>
-                <div class="justify-self-center text-center">
-                    <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-                        BIOMANIFESTO // CORE
+                    <span id="telemetry-sphere-idx-manifesto" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
+                        SPH.0000
                     </span>
                 </div>
-                <div class="justify-self-end flex items-center">
-                    <button onclick="closeManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close">
-                        <img src="img/pace.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:rotate-90 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close">
+                
+                <!-- Centro: Identidad del Manifesto con los estilos HUD estandarizados -->
+                <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
+                    <span id="drawer-manifesto-node">BIOMANIFESTO // CORE</span>
+                </div>
+                
+                <!-- Lado Derecho: Telemetría de nodo activo y disparador para cerrar Manifesto -->
+                <div class="justify-self-end flex items-center space-x-3">
+                    <span id="telemetry-active-node-manifesto" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                        ACT.0000
+                    </span>
+                    <button id="z-dial-trigger-manifesto" onclick="closeManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Manifesto">
+                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Manifesto">
                     </button>
                 </div>
+                
             </div>
         </header>
 
@@ -415,24 +438,34 @@
 
     <!-- VAULT DRAWER -->
     <div id="vault-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform translate-y-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] glass backdrop-blur-xl select-none text-white font-mono">
-        <header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent shrink-0 select-none">
-            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest text-[10px] min-h-[63px] sm:min-h-[69px] w-full">
-                <div class="justify-self-start flex items-center">
-                    <button onclick="openManifesto()" class="group w-9 sm:w-auto h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer text-white/40 hover:text-white" aria-label="Open Manifesto">
-                        <span class="hidden sm:inline font-sans text-[9px] sm:text-[10px] tracking-widest uppercase transition-colors duration-300 group-hover:text-white">MANIFESTO</span>
-                        <img src="img/under.png" class="inline sm:hidden w-5 h-5 object-contain opacity-40 group-hover:opacity-100 transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Manifesto">
+<header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
+            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
+                
+                <!-- Lado Izquierdo: Sincronizado con el disparador y telemetría del main -->
+                <div class="justify-self-start flex items-center space-x-3">
+                    <button id="z-logo-trigger-vault" onclick="openManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Axis Drawer">
+                        <img src="img/under.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
                     </button>
-                </div>
-                <div class="justify-self-center text-center">
-                    <span class="text-white/40 font-mono text-[9px] tracking-[0.2em] whitespace-nowrap drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-                        VAULT // GALLERY
+                    <span id="telemetry-sphere-idx-vault" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
+                        SPH.0000
                     </span>
                 </div>
-                <div class="justify-self-end flex items-center">
-                    <button onclick="toggleVaultDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Vault">
-                        <img src="img/surge.png" class="w-5 h-5 object-contain opacity-40 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Back">
+                
+                <!-- Centro: Identidad del Vault con los estilos HUD estandarizados -->
+                <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
+                    <span id="drawer-vault-node">VAULT // GALLERY</span>
+                </div>
+                
+                <!-- Lado Derecho: Telemetría de nodo activo y disparador para cerrar Vault -->
+                <div class="justify-self-end flex items-center space-x-3">
+                    <span id="telemetry-active-node-vault" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                        ACT.0000
+                    </span>
+                    <button id="z-dial-trigger-vault" onclick="toggleVaultDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Vault">
+                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Vault">
                     </button>
                 </div>
+                
             </div>
         </header>
 
@@ -462,7 +495,7 @@
                                 </text>
                                 <text class="fill-white/60 font-black text-[8px] sm:text-[9px] tracking-[0.25em] uppercase transition-all duration-500 group-hover:fill-white/90">
                                     <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">
-                                        ZENERGY.WORLD &bull; 3025333130
+                                        JAKO.WORLD &bull; 3025333130
                                     </textPath>
                                 </text>
                             </svg>
@@ -537,7 +570,7 @@
                     </button>
                 </div>    
                 <div class="justify-self-center text-center whitespace-nowrap font-mono text-[8px] tracking-[0.3em] text-white/20 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                    <span class="font-bold text-white/50">jak&copy;</span> 2008-2026 - RESEARCH
+                    <span class="font-bold text-white/50">jak&copy;</span> 2008
                 </div>
                 <div class="justify-self-end flex items-center">
                     <button onclick="toggleVaultDrawer(); setTimeout(() => { openNodesDrawer(); }, 200);" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Link to Nodes Drawer">
@@ -990,7 +1023,7 @@
 
         const productoSeleccionado = lineMap[varianteActiva] || `${producto} ${varianteActiva}`;
         const numeroCelular = "573025333130"; 
-        const mensaje = `⚡ *NUEVA ORDEN DE NODO - ZENERGY* ⚡\n\n` +
+        const mensaje = `⚡ *NUEVA ORDEN DE NODO - JAKO* ⚡\n\n` +
                         `• *Producto:* ${productoSeleccionado}\n` +
                         `• *Coordenada Dial:* \`${dialActual}\`\n` +
                         `• *Registro Esfera:* \`${esferaActual}\`\n\n` +
