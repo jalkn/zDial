@@ -468,35 +468,35 @@
     <!-- VAULT DRAWER -->
     <div id="vault-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform translate-y-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] glass backdrop-blur-xl select-none text-white font-mono">
 <header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
-            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
-                
-                <!-- Lado Izquierdo: Sincronizado con el disparador y telemetría del main -->
-                <div class="justify-self-start flex items-center space-x-3">
-                    <button id="z-logo-trigger-vault" onclick="openManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Axis Drawer">
-                        <img src="img/under.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
-                    </button>
-                    <span id="telemetry-sphere-idx-vault" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
-                        SPH.0000
-                    </span>
-                </div>
-                
-                <!-- Centro: Identidad del Vault con los estilos HUD estandarizados -->
-                <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
-                    <span id="drawer-vault-node">VAULT</span>
-                </div>
-                
-                <!-- Lado Derecho: Telemetría de nodo activo y disparador para cerrar Vault -->
-                <div class="justify-self-end flex items-center space-x-3">
-                    <span id="telemetry-active-node-vault" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                        ACT.0000
-                    </span>
-                    <button id="z-dial-trigger-vault" onclick="toggleVaultDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Vault">
-                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Vault">
-                    </button>
-                </div>
-                
-            </div>
-        </header>
+    <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
+        
+        <!-- Lado Izquierdo: Sincronizado con el disparador y telemetría del main -->
+        <div class="justify-self-start flex items-center space-x-3">
+            <button id="z-logo-trigger-vault" onclick="openManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Axis Drawer">
+                <img src="img/under.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
+            </button>
+            <span id="telemetry-sphere-idx-vault" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
+                SPH.0000
+            </span>
+        </div>
+        
+        <!-- Centro: Identidad del Vault evolucionada a archivo de artefactos -->
+        <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
+            <span id="drawer-vault-node">VAULT.CORE</span>
+        </div>
+        
+        <!-- Lado Derecho: Telemetría de nodo activo y disparador para cerrar Vault -->
+        <div class="justify-self-end flex items-center space-x-3">
+            <span id="telemetry-active-node-vault" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                ACT.0000
+            </span>
+            <button id="z-dial-trigger-vault" onclick="toggleVaultDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Vault">
+                <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Vault">
+            </button>
+        </div>
+        
+    </div>
+</header>
 
         <div class="overflow-x-auto w-full flex flex-row justify-start items-center gap-0 min-h-0 scrollbar-none pb-12 snap-x snap-mandatory">
             <div class="w-full shrink-0 snap-center flex flex-col items-center px-4 text-center group">
@@ -625,7 +625,10 @@
 
 <script>
     const $ = (id) => document.getElementById(id);
-    const PHI = 1.618033;
+// ==========================================
+    // PROTOCOLO DE MOVIMIENTO: PULS (MECÁNICA MAESTRA)
+    // ==========================================
+    const GOLDEN_RATIO = 1.61803398875; // Proporción Áurea para Densidad Dinámica
 
     function updateZ() {
         let biokineticCoordinate = "";
@@ -661,28 +664,38 @@
                 repsStage = Math.max(1, Math.min(12, parseInt(matchMesh[3], 10)));
             }
         } else {
+            // RESTRUCTURACIÓN COHERENTE CON LA MATRIZ DE 12 VARIABLES ÓPTIMAS
             if (seconds % 2 !== 0) {
+                // A. Fase del Impulso Puro (4 Monádicas // Cero Resistencia // Segundos Impares)
                 const progress1s = milliseconds / 1000; 
                 setsStage = Math.floor(progress1s * 12) + 1;
                 repsStage = 13 - setsStage; 
 
-                if (progress1s < 0.25) currentAction = 'L';   
-                else if (progress1s < 0.5) currentAction = 'PL'; 
-                else if (progress1s < 0.75) currentAction = 'U';  
-                else currentAction = 'SU'; 
+                if (progress1s < 0.25) currentAction = 'P';        // Pace
+                else if (progress1s < 0.5) currentAction = 'U';     // Under
+                else if (progress1s < 0.75) currentAction = 'L';    // Lift
+                else currentAction = 'S';                           // Surge
             } else {
-                const macroBlockPosition = seconds % 10; 
+                // Segundos Pares: Distribución Basal por Minutos % 12
                 setsStage = Math.max(1, Math.min(12, Math.floor((minutes % 12) + 1)));
-                repsStage = Math.max(1, Math.min(12, Math.floor(macroBlockPosition + 2)));
-
-                if (macroBlockPosition < 4) {
-                    currentAction = (setsStage === repsStage) ? 'LUP' : 'PU'; 
-                } else if (macroBlockPosition < 6) {
-                    currentAction = 'PLS'; 
-                } else if (macroBlockPosition < 9) {
-                    currentAction = (setsStage === repsStage) ? 'UTS' : 'US'; 
+                
+                if (seconds < 30) {
+                    // B. Fase de Transferencia (4 Binarias // Desplazamiento de Carga)
+                    const subSlot = Math.floor((seconds % 30) / 7.5); // 4 ranuras uniformes en 30s
+                    const binaryMatrix = ["PL", "PU", "LU", "SU"];
+                    currentAction = binaryMatrix[subSlot] || "PL";
+                    repsStage = Math.max(1, Math.min(12, Math.floor((seconds % 10) + 2)));
                 } else {
-                    currentAction = 'S'; 
+                    // C. Fase de Bloqueo Estructural (4 Ternarias // Isometría y Densidad)
+                    const subSlot = Math.floor(((seconds - 30) % 30) / 7.5); // 4 ranuras uniformes
+                    const ternaryMatrix = ["PUL", "PLS", "LUP", "UTS"];
+                    currentAction = ternaryMatrix[subSlot] || "UTS";
+                    repsStage = Math.max(1, Math.min(12, Math.floor(((seconds - 30) % 10) + 3)));
+
+                    // Disparador háptico en punto crítico de bloqueo isométrico (UTS)
+                    if (currentAction === 'UTS' && navigator.vibrate && milliseconds < 40) {
+                        navigator.vibrate(12);
+                    }
                 }
             }
 
@@ -711,13 +724,9 @@
                 const totalSecondsToday = (hours * 3600) + (minutes * 60) + seconds;
                 const preciseDialIndex = Math.floor(totalSecondsToday / 10) + 1;
                 $('telemetry-active-node').textContent = `ACT.${String(preciseDialIndex).padStart(4, '0')}`;
-                if (!waveInspectionActive) {
-                    $('telemetry-active-node').className = "tracking-[0.25em] text-right text-white/40 transition-all duration-300";
-                }
             }
         }
 
-        // Si la inspección no está activa, refrescar los valores numéricos del HUD en tiempo real
         if (!waveInspectionActive) {
             if ($('dial-part-sets')) $('dial-part-sets').textContent = String(setsStage);
             if ($('dial-part-action')) $('dial-part-action').textContent = currentAction;
@@ -730,11 +739,11 @@
             if ($('sub-reps-tension')) $('sub-reps-tension').textContent = `${calculatedTension} N`;
         }
 
-        const currentAngleText = `Φ ${String(Math.floor(currentSolarAngle)).padStart(3, '0')}°`;
         if ($('telemetry-sphere-actions')) {
             $('telemetry-sphere-actions').textContent = `Φ ${currentSolarAngle.toFixed(1)}°`;
         }
 
+        // Cálculos astronómicos estables
         const geoNode = "6.251° N";
         const solarRad = (currentSolarAngle * Math.PI) / 180;
         const calculatedAltitude = Math.abs(Math.sin(solarRad)) * 84.426; 
@@ -773,7 +782,6 @@
             } else if (currentAction.length === 3) {
                 midArcLength = totalLengthMid * 0.85; 
                 midVectorRotation = 0; 
-                if (navigator.vibrate && milliseconds < 30) navigator.vibrate(15);
             }
 
             wMid.style.strokeDasharray = `${midArcLength} ${totalLengthMid}`;
