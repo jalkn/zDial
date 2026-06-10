@@ -100,13 +100,15 @@
                 <button id="z-logo-trigger" onclick="toggleLeftDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Axis Drawer">
                     <img src="img/logo.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
                 </button>
-                <span id="telemetry-sphere-idx" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
-                    SPH.0000
+                <span id="telemetry-sphere-idx" class="tracking-[0.1em] text-white/70">
+                    <span class="text-white/40">◉</span> 0000
                 </span>
             </div>
             
             <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
-                <span id="telemetry-sphere-dens">Q.8640</span>
+                <span id="footer-default-text" class="text-white/50 font-mono text-[9px] tracking-[0.25em] font-bold uppercase select-none block transition-colors duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                        JAKO.TECH-LAB
+                    </span>
             </div>
             
             <div class="justify-self-end flex items-center space-x-3">
@@ -285,7 +287,7 @@
                         <img src="img/under.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
                     </button>
                     <span id="telemetry-sphere-idx-drawer" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
-                        SPH.0000
+                        0000◉
                     </span>
                 </div>
                 
@@ -349,7 +351,7 @@
                 
                 <!-- Componente 3 (Centro): Tu texto original con el peso, tracking y color del Header -->
                 <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
-                    <span class="whitespace-nowrap"><span class="font-bold">jak&copy;</span> 2008</span>
+                    <span class="whitespace-nowrap"><span class="font-bold">JAKO</span> 2008</span>
                 </div>
                 
                 <!-- Componentes 4 & 5 (Derecha): Telemetría interactiva + Tu botón de cierre derecho original -->
@@ -377,7 +379,7 @@
                         <img src="img/surge.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
                     </button>
                     <span id="telemetry-sphere-idx-manifesto" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
-                        SPH.0000
+                        0000◉
                     </span>
                 </div>
                 
@@ -446,7 +448,7 @@
                 
                 <!-- Componente 3 (Centro): Tu texto original con el peso, tracking y color del Header -->
                 <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
-                    <span class="whitespace-nowrap"><span class="font-bold">jak&copy;</span> 2008-2026 - RESEARCH</span>
+                    <span class="whitespace-nowrap"><span class="font-bold">JAKO</span> 2008-2026 - RESEARCH</span>
                 </div>
                 
                 <!-- Componentes 4 & 5 (Derecha): Telemetría interactiva con tu función de cierre + Tu botón Framework original -->
@@ -471,7 +473,7 @@
                         <img src="img/under.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
                     </button>
                     <span id="telemetry-sphere-idx-vault" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
-                        SPH.0000
+                        0000◉
                     </span>
                 </div>
                 
@@ -563,7 +565,7 @@
                 
                 <!-- Componente 3 (Centro): Firma Unificada del Nodo -->
                 <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
-                    <span class="whitespace-nowrap">JAK&copy; 2008</span>
+                    <span class="whitespace-nowrap">JAKO 2008</span>
                 </div>
                 
                 <!-- Componentes 4 & 5 (Derecha): Telemetría Dinámica de Enlace + Gatillo Secuencial -->
@@ -604,8 +606,10 @@
             sphereElement.textContent = currentSphereIdx;
         }
 
-        if ($('telemetry-sphere-dens')) {
-            $('telemetry-sphere-dens').textContent = "Q.8640"; 
+        // NUEVA ACTUALIZACIÓN para el Vault-Drawer
+        const sphereVaultElement = $('telemetry-sphere-idx-vault');
+        if (sphereVaultElement && sphereVaultElement.textContent !== currentSphereIdx) {
+            sphereVaultElement.textContent = currentSphereIdx;
         }
 
         let setsStage = 1;  
@@ -1039,10 +1043,9 @@
 
     function calculateSphereIndex() {
         const epoch = new Date('2012-12-21T00:00:00Z'); 
-        const now = new Date();
-        const diffInMs = now - epoch;
-        const daysSinceEpoch = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
-        return `SPH.${String(daysSinceEpoch).padStart(4, '0')}`;
+        const daysSinceEpoch = Math.floor((new Date() - epoch) / (1000 * 60 * 60 * 24));
+        const symbol = '◉'; 
+        return `${String(daysSinceEpoch).padStart(4, '0')}${symbol}`;
     }
 
     function scrollToSection(id) {
@@ -1054,7 +1057,7 @@
     function adquirirNodo(producto) {
         const varianteActiva = window.currentVariant || "FOCUS";
         const dialActual = window.currentTelemetryValue || "--";
-        const esferaActual = typeof calculateSphereIndex === "function" ? calculateSphereIndex() : "SPH.0000";
+        const esferaActual = typeof calculateSphereIndex === "function" ? calculateSphereIndex() : "0000◉";
 
         const lineMap = {
             'FOCUS': 'BIORUSH MENTAL FOCUS 🧠',
