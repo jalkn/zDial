@@ -215,11 +215,6 @@
                             ontouchstart="handleTouchInspect(event, 'SETS', 'INNER')"
                             class="stroke-white/80 fill-none stroke-[3] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_8px_rgba(0,210,255,0.6)] touch-none" 
                             stroke-linecap="round" transform="rotate(-90 120 120)" />
-
-                    <circle id="wave-center-trigger" cx="120" cy="120" r="28"
-                            onmouseenter="inspectKineticWave('CORE', 'CENTER')" onmouseleave="clearKineticWave()"
-                            ontouchstart="handleTouchInspect(event, 'CORE', 'CENTER')"
-                            class="fill-transparent stroke-none cursor-pointer touch-none" />
                 </svg>
             </div>
         </div>
@@ -468,127 +463,75 @@
     <!-- VAULT DRAWER -->
     <div id="vault-drawer" class="fixed inset-0 w-screen h-[100dvh] z-50 transform translate-y-full transition-transform duration-500 ease-out grid grid-rows-[auto_1fr_auto] glass backdrop-blur-xl select-none text-white font-mono">
 <header class="w-full bg-gradient-to-b from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
-    <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
-        
-        <!-- Lado Izquierdo: Sincronizado con el disparador y telemetría del main -->
-        <div class="justify-self-start flex items-center space-x-3">
-            <button id="z-logo-trigger-vault" onclick="openManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Axis Drawer">
-                <img src="img/under.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
-            </button>
-            <span id="telemetry-sphere-idx-vault" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
-                SPH.0000
-            </span>
-        </div>
-        
-        <!-- Centro: Identidad del Vault evolucionada a archivo de artefactos -->
-        <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
-            <span id="drawer-vault-node">VAULT.CORE</span>
-        </div>
-        
-        <!-- Lado Derecho: Telemetría de nodo activo y disparador para cerrar Vault -->
-        <div class="justify-self-end flex items-center space-x-3">
-            <span id="telemetry-active-node-vault" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                ACT.0000
-            </span>
-            <button id="z-dial-trigger-vault" onclick="toggleVaultDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Vault">
-                <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Vault">
-            </button>
-        </div>
-        
-    </div>
-</header>
+            <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
+                
+                <!-- Lado Izquierdo: Sincronizado con el disparador y telemetría del main -->
+                <div class="justify-self-start flex items-center space-x-3">
+                    <button id="z-logo-trigger-vault" onclick="openManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Axis Drawer">
+                        <img src="img/under.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
+                    </button>
+                    <span id="telemetry-sphere-idx-vault" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
+                        SPH.0000
+                    </span>
+                </div>
+                
+                <!-- Centro: Identidad del Vault con los estilos HUD estandarizados -->
+                <div class="justify-self-center text-center tracking-[0.25em] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/50">
+                    <span id="drawer-vault-node">VAULT</span>
+                </div>
+                
+                <!-- Lado Derecho: Telemetría de nodo activo y disparador para cerrar Vault -->
+                <div class="justify-self-end flex items-center space-x-3">
+                    <span id="telemetry-active-node-vault" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+                        ACT.0000
+                    </span>
+                    <button id="z-dial-trigger-vault" onclick="toggleVaultDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Vault">
+                        <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Vault">
+                    </button>
+                </div>
+                
+            </div>
+        </header>
 
         <div class="overflow-x-auto w-full flex flex-row justify-start items-center gap-0 min-h-0 scrollbar-none pb-12 snap-x snap-mandatory">
             <div class="w-full shrink-0 snap-center flex flex-col items-center px-4 text-center group">
                 <div class="relative w-full max-w-[280px] sm:max-w-[340px] md:max-w-[380px] aspect-[13/15] transition-all duration-700 ease-out select-none cursor-pointer hover:-translate-y-1 hover:scale-[1.01] drop-shadow-[0_20px_30px_rgba(0,0,0,0.7)]">
                     <div class="w-full h-full relative overflow-hidden opacity-90 transition-all duration-500 group-hover:opacity-100">
-                        <img src="img/biorush.png" alt="BioRush Pack" class="absolute inset-0 w-full h-full object-contain scale-[1.90] sm:scale-[1.95] pointer-events-none z-0 transition-transform duration-500 group-hover:scale-[2.0]" />
+                        <img src="img/dial.png" alt="BioRush Pack" class="absolute inset-0 w-full h-full object-contain scale-[1.90] sm:scale-[1.95] pointer-events-none z-0 transition-transform duration-500 group-hover:scale-[2.0]" />
+                        
                         <div class="absolute inset-0 flex items-center justify-center p-[2%] sm:p-[4%] z-10">
                             <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/40 stroke-[1.5] transition-all duration-500 group-hover:stroke-white/60">
-                                <defs>
-                                    <path id="textPath-top" d="M 105,200 A 95,95 0 0,1 295,200" />
-                                    <path id="textPath-bottom" d="M 105,200 A 95,95 0 0,0 295,200" />
-                                </defs>
-                                <text class="fill-white font-black text-[9px] sm:text-[10px] tracking-[0.25em] sm:tracking-[0.3em] uppercase transition-all duration-500">
-                                    <textPath id="laser-variant-title" href="#textPath-top" startOffset="50%" text-anchor="middle">
-                                        BIORUSH MENTAL FOCUS
-                                    </textPath>
-                                </text>
-                                <g class="opacity-30 stroke-[1.2] origin-center transform scale-75">
-                                    <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" />
-                                    <path d="M 110,120 Q 200,150 290,120" />
-                                    <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
+                                <g id="dial-display-content">
+                                    <defs>
+                                        <path id="textPath-top" d="M 105,200 A 95,95 0 0,1 295,200" />
+                                        <path id="textPath-bottom" d="M 105,200 A 95,95 0 0,0 295,200" />
+                                    </defs>
+                                    <g class="opacity-30 stroke-[1.2] origin-center transform scale-75">
+                                        <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" />
+                                        <path d="M 110,120 Q 200,150 290,120" />
+                                        <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
+                                    </g>
+                                    <text class="big-dial-target fill-white font-black text-[30px] tracking-[0.05em] transition-all duration-500 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.6)]" x="200" y="210" font-family="'Orbitron', sans-serif" font-weight="900" text-anchor="middle">
+                                        3UL10
+                                    </text>
                                 </g>
-                                <text class="big-dial-target fill-white font-black text-[30px] tracking-[0.05em] transition-all duration-500 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.6)]" x="200" y="210" font-family="'Orbitron', sans-serif" font-weight="900" text-anchor="middle">
-                                    3UL10
-                                </text>
-                                <text class="fill-white/60 font-black text-[8px] sm:text-[9px] tracking-[0.25em] uppercase transition-all duration-500 group-hover:fill-white/90">
-                                    <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">
-                                        JAKO.WORLD &bull; 3025333130
-                                    </textPath>
-                                </text>
                             </svg>
                         </div>
                     </div>
                 </div>
-                <div class="mt-1 mb-6 flex flex-nowrap items-center justify-center gap-1.5 sm:gap-3.5 text-[9px] sm:text-[10px] tracking-[0.18em] sm:tracking-[0.22em] font-mono select-none z-30 px-1 w-full overflow-x-visible">
-                    <span id="opt-focus" onclick="seleccionarVariante('FOCUS')" class="cursor-pointer transition-all duration-300 px-2.5 py-1.5 bg-[#141414]/80 backdrop-blur-md rounded-sm text-white border border-white/40 shadow-[0_0_12px_rgba(255,255,255,0.1)]">FOCUS</span>
-                    <span id="opt-zen" onclick="seleccionarVariante('ZEN')" class="cursor-pointer transition-all duration-300 px-2.5 py-1.5 bg-black/40 backdrop-blur-md rounded-sm text-white/40 border border-white/5 hover:border-white/30 hover:text-white/80">ZEN</span>
-                    <span id="opt-stamina" onclick="seleccionarVariante('STAMINA')" class="cursor-pointer transition-all duration-300 px-2.5 py-1.5 bg-black/40 backdrop-blur-md rounded-sm text-white/40 border border-white/5 hover:border-white/30 hover:text-white/80">STAMINA</span>
-                    <span id="opt-core" onclick="seleccionarVariante('CORE')" class="cursor-pointer transition-all duration-300 px-2.5 py-1.5 bg-black/40 backdrop-blur-md rounded-sm text-white/40 border border-white/5 hover:border-white/30 hover:text-white/80">CORE</span>
+
+                <div class="mt-1 mb-6 flex flex-nowrap items-center justify-center gap-3 text-[10px] tracking-[0.2em] font-mono select-none z-30 w-full">
+                    <span id="btn-mode-signal" onclick="switchVaultMode('SIGNAL')" class="cursor-pointer px-4 py-1.5 bg-[#141414]/80 text-white border border-white/40 rounded-sm">SIGNAL</span>
+                    <span id="btn-mode-dial" onclick="switchVaultMode('DIAL')" class="cursor-pointer px-4 py-1.5 bg-black/40 text-white/40 border border-white/5 rounded-sm hover:text-white/80">DIAL</span>
                 </div>
+
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md relative z-30 px-6">
                     <button onclick="adquirirNodo('BIORUSH')" class="w-full sm:w-auto px-10 py-3 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
-                        GET PULSOR
+                        GET INFO
                     </button>
                 </div>
             </div>
 
-            <!-- Otros elementos de la galería (Cap y Hoodie) se mantienen idénticos -->
-            <div class="w-full shrink-0 snap-center flex flex-col items-center px-4 text-center group">
-                <div class="relative w-full max-w-[240px] sm:max-w-[290px] md:max-w-[320px] aspect-square transition-all duration-700 ease-out select-none cursor-pointer hover:-translate-y-1 hover:scale-[1.01] drop-shadow-[0_20px_30px_rgba(0,0,0,0.7)]">
-                    <div class="w-full h-full relative overflow-hidden opacity-90 transition-all duration-500 group-hover:opacity-100">
-                        <img src="img/cap.png" alt="Cap Backing" class="absolute inset-0 w-full h-full object-cover scale-115 pointer-events-none z-0 transition-transform duration-500 group-hover:scale-120" />
-                        <div class="absolute inset-0 flex items-center justify-center p-[4%] z-10">
-                            <svg id="laser-vector-target-2" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/40 stroke-[1.5] transition-all duration-500 group-hover:stroke-white/60">
-                                <text class="big-dial-target fill-white font-black text-[50px] tracking-[0.03em] transition-all duration-500 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.6)]" x="200" y="216" font-family="'Orbitron', sans-serif" font-weight="900" text-anchor="middle">
-                                    ------
-                                </text>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md relative z-30 px-6 mt-12 sm:mt-16">
-                    <button onclick="adquirirNodo('CAP')" class="w-full sm:w-auto px-10 py-3 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
-                        GET PULSOR
-                    </button>
-                </div>
-            </div>
-
-            <div class="w-full shrink-0 snap-center flex flex-col items-center px-4 text-center group">
-                <div class="relative w-full max-w-[240px] sm:max-w-[290px] md:max-w-[320px] aspect-square transition-all duration-700 ease-out select-none cursor-pointer hover:-translate-y-1 hover:scale-[1.01] drop-shadow-[0_20px_30px_rgba(0,0,0,0.8)]">
-                    <div class="w-full h-full relative overflow-hidden opacity-90 transition-all duration-500 group-hover:opacity-100">
-                        <img src="img/hoodie.png" alt="Product Backing" class="absolute inset-0 w-full h-full object-cover object-bottom scale-210 pointer-events-none z-0 transition-transform duration-500 group-hover:scale-215" />
-                        <div class="absolute inset-0 flex items-center justify-center p-[4%] z-10">
-                            <svg id="laser-vector-target-3" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/40 stroke-[1.5] transition-all duration-500 group-hover:stroke-white/60">
-                                <g class="opacity-30 stroke-[1.2]" transform="translate(0, -35) scale(0.75)" style="transform-origin: 200px 200px;">
-                                    <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" />
-                                    <path d="M 110,120 Q 200,150 290,120" />
-                                    <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" />
-                                </g>
-                                <text class="big-dial-target fill-white font-black text-[38px] tracking-[0.03em] transition-all duration-500 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.6)]" x="200" y="165" font-family="'Orbitron', sans-serif" font-weight="900" text-anchor="middle">
-                                    ------
-                                </text>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md relative z-30 px-6 mt-12 sm:mt-16">
-                    <button onclick="adquirirNodo('HOODIE')" class="w-full sm:w-auto px-10 py-3 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
-                        GET PULSOR
-                    </button>
-                </div>
-            </div>
         </div>
 
         <footer class="w-full bg-gradient-to-t from-black/80 via-black/20 to-transparent backdrop-blur-md shrink-0 select-none">
@@ -1034,31 +977,6 @@
         if (target) target.scrollIntoView({ behavior: 'smooth' });
     }
 
-    function seleccionarVariante(variante) {
-        window.currentVariant = variante;
-        const titleMap = {
-            'FOCUS': 'BIORUSH MENTAL FOCUS',
-            'ZEN': 'BIORUSH MENTAL ZEN',
-            'STAMINA': 'BIORUSH BODY STAMINA',
-            'CORE': 'BIORUSH BODY CORE'
-        };
-
-        if ($('laser-variant-title') && titleMap[variante]) {
-            $('laser-variant-title').textContent = titleMap[variante];
-        }
-
-        const opciones = ['focus', 'zen', 'stamina', 'core'];
-        opciones.forEach(opt => {
-            const el = $(`opt-${opt}`);
-            if (!el) return;
-            if (opt === variante.toLowerCase()) {
-                el.className = "cursor-pointer transition-all duration-300 px-3.5 py-1.5 bg-[#141414]/80 backdrop-blur-md rounded-sm text-white border border-white/40 shadow-[0_0_12px_rgba(255,255,255,0.1)]";
-            } else {
-                el.className = "cursor-pointer transition-all duration-300 px-3.5 py-1.5 bg-black/40 backdrop-blur-md rounded-sm text-white/40 border border-white/5 hover:border-white/30 hover:text-white/80";
-            }
-        });
-        if (navigator.vibrate) navigator.vibrate(8);
-    }
 
     function adquirirNodo(producto) {
         const varianteActiva = window.currentVariant || "FOCUS";

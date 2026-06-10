@@ -186,7 +186,7 @@ def save_image_to_pdf(image, pdf_output_path, total_dots, target_print_height_cm
 
 
 if __name__ == "__main__":
-    input_file = 'img/4.JPG'
+    input_file = 'img/panel.png'
     output_image_file = 'img/image.png'
     output_pdf_file = 'img/pages.pdf'
     output_svg_file = 'img/bigPicture.svg'
@@ -200,7 +200,7 @@ if __name__ == "__main__":
     img_preparada = img_temp.resize((3600, 2160), Image.Resampling.LANCZOS)
     
     # Guardamos temporalmente para que las funciones del script la lean
-    input_file_preparada = 'img/4_modificada.jpg'
+    input_file_preparada = 'img/panel.jpg'
     img_preparada.save(input_file_preparada)
 
     target_print_height_cm = 200
