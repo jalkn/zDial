@@ -101,7 +101,7 @@
                     <img src="img/logo.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
                 </button>
                 <span id="telemetry-sphere-idx" class="tracking-[0.1em] text-white/70">
-                    <span class="text-white/40">◉</span> 0000
+                    <span class="text-white/40">.⨀</span> 0000
                 </span>
             </div>
             
@@ -111,7 +111,7 @@
             
             <div class="justify-self-end flex items-center space-x-3">
                 <span id="telemetry-active-node" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                    ACT.0000
+                    ◯.0000
                 </span>
                 <button id="z-dial-trigger" onclick="toggleDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Pulsor Drawer">
                     <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Pulsor Trigger">
@@ -285,7 +285,7 @@
                         <img src="img/under.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
                     </button>
                     <span id="telemetry-sphere-idx-drawer" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
-                        0000◉
+                        0000.⨀
                     </span>
                 </div>
                 
@@ -297,7 +297,7 @@
                 <!-- Lado Derecho: Telemetría de nodo activo y disparador de retorno -->
                 <div class="justify-self-end flex items-center space-x-3">
                     <span id="telemetry-active-node-drawer" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                        ACT.0000
+                        ◯.0000
                     </span>
                     <button id="z-dial-trigger-drawer" onclick="toggleDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Open Pulsor Drawer">
                         <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Pulsor Trigger">
@@ -377,7 +377,7 @@
                         <img src="img/surge.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
                     </button>
                     <span id="telemetry-sphere-idx-manifesto" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
-                        0000◉
+                        0000.⨀
                     </span>
                 </div>
                 
@@ -389,7 +389,7 @@
                 <!-- Lado Derecho: Telemetría de nodo activo y disparador para cerrar Manifesto -->
                 <div class="justify-self-end flex items-center space-x-3">
                     <span id="telemetry-active-node-manifesto" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                        ACT.0000
+                        ◯.0000
                     </span>
                     <button id="z-dial-trigger-manifesto" onclick="closeManifesto()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Manifesto">
                         <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Manifesto">
@@ -471,7 +471,7 @@
                         <img src="img/under.png" class="w-5 h-5 object-contain img-glow-transition opacity-60 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" alt="jako Axis Trigger"> 
                     </button>
                     <span id="telemetry-sphere-idx-vault" class="tracking-[0.25em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-white/60">
-                        0000◉
+                        0000.⨀
                     </span>
                 </div>
                 
@@ -483,7 +483,7 @@
                 <!-- Lado Derecho: Telemetría de nodo activo y disparador para cerrar Vault -->
                 <div class="justify-self-end flex items-center space-x-3">
                     <span id="telemetry-active-node-vault" class="tracking-[0.25em] text-right drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
-                        ACT.0000
+                        ◯.0000
                     </span>
                     <button id="z-dial-trigger-vault" onclick="toggleVaultDrawer()" class="group w-9 h-9 flex items-center justify-center transition-all duration-300 focus:outline-none cursor-pointer" aria-label="Close Vault">
                         <img src="img/back.png" class="w-5 h-5 object-contain opacity-60 group-hover:opacity-100 group-hover:scale-[1.05] transition-all duration-300 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" alt="Close Vault">
@@ -503,15 +503,15 @@
     <div id="vault-view-signal" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center z-20 transition-opacity duration-300">
         <svg viewBox="0 0 240 240" id="interactive-pulsor-svg-vault" class="w-full h-full transform scale-[0.55] origin-center drop-shadow-[0_0_8px_rgba(255,255,255,0.08)]">
             <circle id="wave-outer-vault" cx="120" cy="120" r="95" 
-                    class="stroke-white/60 fill-none stroke-[2.2] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_6px_rgba(0,210,255,0.5)] touch-none origin-center" 
+                    class="stroke-white/80 fill-none stroke-[2.2] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_6px_rgba(0,210,255,0.5)] touch-none origin-center" 
                     stroke-linecap="round" transform="rotate(-90 120 120)" />
             
             <circle id="wave-mid-vault" cx="120" cy="120" r="67" 
-                    class="stroke-white/60 fill-none stroke-[2.2] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_6px_rgba(0,210,255,0.5)] touch-none origin-center" 
+                    class="stroke-white/80 fill-none stroke-[2.2] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_6px_rgba(0,210,255,0.5)] touch-none origin-center" 
                     stroke-linecap="round" transform="rotate(-90 120 120)" />
             
             <circle id="wave-inner-vault" cx="120" cy="120" r="39" 
-                    class="stroke-white/60 fill-none stroke-[2.2] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_6px_rgba(0,210,255,0.5)] touch-none origin-center" 
+                    class="stroke-white/80 fill-none stroke-[2.2] transition-all duration-300 ease-in-out cursor-pointer hover:stroke-cyan-400 hover:drop-shadow-[0_0_6px_rgba(0,210,255,0.5)] touch-none origin-center" 
                     stroke-linecap="round" transform="rotate(-90 120 120)" />
         </svg>
     </div>
@@ -682,11 +682,11 @@
         if ($('telemetry-active-node')) {
             if (window.selectedNodeFromMesh) {
                 const nodeNum = window.selectedNodeFromMesh.replace('node-', '').padStart(4, '0');
-                $('telemetry-active-node').textContent = `ACT.${nodeNum}`;
+                $('telemetry-active-node').textContent = `◯.${nodeNum}`;
             } else {
                 const totalSecondsToday = (hours * 3600) + (minutes * 60) + seconds;
                 const preciseDialIndex = Math.floor(totalSecondsToday / 10) + 1;
-                $('telemetry-active-node').textContent = `ACT.${String(preciseDialIndex).padStart(4, '0')}`;
+                $('telemetry-active-node').textContent = `◯.${String(preciseDialIndex).padStart(4, '0')}`;
             }
         }
 
@@ -922,7 +922,7 @@
                 const rawId = e.target.id; 
                 const nodeNum = rawId.replace('node-', '').padStart(3, '0');
                 if ($('telemetry-active-node')) {
-                    $('telemetry-active-node').textContent = `ACT.${nodeNum}`;
+                    $('telemetry-active-node').textContent = `◯.${nodeNum}`;
                     $('telemetry-active-node').className = "tracking-[0.25em] text-right text-cyan-400 font-bold transition-all duration-300";
                 }
             });
@@ -1046,7 +1046,7 @@
     function calculateSphereIndex() {
         const epoch = new Date('2012-12-21T00:00:00Z'); 
         const daysSinceEpoch = Math.floor((new Date() - epoch) / (1000 * 60 * 60 * 24));
-        const symbol = '◉'; 
+        const symbol = '.⨀'; 
         return `${String(daysSinceEpoch).padStart(4, '0')}${symbol}`;
     }
 
