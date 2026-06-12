@@ -37,7 +37,6 @@
             background: radial-gradient(circle at 50% 50%, #2f2e2e 0%, #0f0212 100%);
         }
         
-        /* Transiciones fluidas para revelado de empaque */
         .img-glow-transition {
             transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             will-change: filter, transform, opacity;
@@ -53,7 +52,6 @@
 
     <main id="main-vault" class="w-full h-screen flex flex-col justify-between select-none text-white font-mono z-10 relative transition-all duration-500 ease-out overflow-hidden">
 
-        <!-- HEADER HUD -->
         <header class="w-full bg-gradient-to-b from-black/90 via-black/40 to-transparent backdrop-blur-md shrink-0 z-50">
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
                 <div class="justify-self-start flex items-center font-bold tracking-[0.15em]">
@@ -63,21 +61,18 @@
                     <span id="drawer-vault-node">BIORUSH</span>
                 </div>
                 <div class="justify-self-end flex items-center font-bold tracking-[0.15em]">
-                    ACT.0000
+                    NOD.0000
                 </div>
             </div>
         </header>
 
-        <!-- ESPACIO CENTRAL CONTENEDOR (DIAL / CONTROLES) -->
         <div class="w-full flex-1 overflow-y-auto scrollbar-none flex flex-col items-center justify-center py-2 px-4 text-center z-20 gap-2">
             
-            <!-- CONTENEDOR DE EMPAQUE / DIAL -->
             <div id="biorush-pack-container" class="relative w-full max-w-[260px] xs:max-w-[300px] sm:max-w-[360px] md:max-w-[420px] aspect-[13/15] transition-all duration-700 ease-out select-none drop-shadow-[0_25px_35px_rgba(0,0,0,0.85)] z-10">
                 <div class="w-full h-full relative overflow-hidden bg-transparent">
                     <img id="biorush-pack-img-back" src="img/back.png" alt="BioRush Pack Back" class="img-glow-transition absolute inset-0 w-full h-full object-contain scale-[1.05] sm:scale-[1.15] opacity-0 pointer-events-none z-0" />
                     <img id="biorush-pack-img" src="img/biorush.png" alt="BioRush Pack Front" class="img-glow-transition absolute inset-0 w-full h-full object-contain scale-[1.9] sm:scale-[1.8] pointer-events-none z-10" />
                     
-                    <!-- SVG VECTOR HUD INTERACTIVO -->
                     <div class="absolute inset-0 flex items-center justify-center p-[2%] sm:p-[4%] z-20 pointer-events-none">
                         <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/40 stroke-[1.5] transition-all duration-500 pointer-events-none">
                             <defs>
@@ -90,16 +85,13 @@
                                 </textPath>
                             </text>
                             
-                            <!-- CÓDIGO DROPD_DIAL INTEGRADO EN EL CENTRO CON MARCADOR DE CONTEXTO -->
                             <g class="origin-center transform scale-[0.85]">
                                 <path d="M 110,120 L 290,120 L 110,280 L 290,280 Z" class="opacity-20 stroke-[1.2]" />
                                 <path d="M 110,120 Q 200,150 290,120" class="opacity-20 stroke-[1.2]" />
                                 <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" class="opacity-20 stroke-[1.2]" />
                                 
-                                <!-- Contexto Técnico sobre el Dial Cifrado para evitar confusión -->
                                 <text x="200" y="165" text-anchor="middle" class="fill-white/30 text-[7px] tracking-[0.3em] font-bold uppercase">PULS SYNCHRO</text>
-                                <!-- Dial Alfanumérico Dinámico -->
-                                <text id="hud-pulse-dial" x="200" y="215" text-anchor="middle" class="fill-white font-black text-[28px] tracking-[0.05em] font-sans">1PUL3</text>
+                                <text id="hud-pulse-dial" x="200" y="215" text-anchor="middle" class="fill-white font-black text-[28px] tracking-[0.05em] font-sans">--PUL--</text>
                                 <text x="200" y="245" text-anchor="middle" class="fill-white/30 text-[6px] tracking-[0.4em] font-mono">COORD // LOT</text>
                             </g>
                             
@@ -113,10 +105,8 @@
                 </div>
             </div>
             
-            <!-- SECCIÓN DE DETALLES, VARIANTES Y ACCIÓN -->
             <div class="w-full flex flex-col items-center gap-2.5 -mt-2 sm:-mt-4 px-4 shrink-0">
                 
-                <!-- Botón de Revelado Háptico -->
                 <button id="btn-reveal-bio" class="flex flex-col items-center gap-1 group focus:outline-none active:scale-95 transition-transform duration-200" aria-label="Revelar reverso">
                     <div class="w-7 h-7 rounded-full border border-emerald-500/30 flex items-center justify-center bg-emerald-950/20 group-hover:border-emerald-400 group-hover:bg-emerald-500/10 transition-all duration-300 shadow-[0_0_10px_rgba(16,185,129,0.05)]">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3.5 h-3.5 text-white/70 group-hover:text-emerald-400 transition-colors">
@@ -126,207 +116,103 @@
                     </div>
                 </button>
 
-                <!-- Descripción Dinámica Sincronizada -->
                 <p id="biorush-description" class="font-mono uppercase text-[9px] text-white/40 max-w-xl tracking-widest leading-relaxed min-h-[28px] transition-opacity duration-300">
                     Enfoque y claridad cognitiva.
                 </p>
 
-                <!-- Bloque de Variantes: Optimizado para pantallas pequeñas mediante Flex Wrap seguro y Padding Lateral -->
+                <p class="font-mono uppercase text-[8px] text-emerald-400/60 tracking-[0.2em] -mt-1 mb-1">
+                    Tu compra incluye un protocolo biocinético encriptado.
+                </p>
+
                 <div id="biorush-variants-container" class="flex flex-wrap items-center justify-center gap-2 text-[9px] tracking-widest font-mono select-none w-full max-w-md px-2">
                 </div>
 
-                <!-- Especificaciones Limpias y Homologadas a MG -->
                 <div class="flex items-center justify-center gap-4 font-mono text-[9px] tracking-widest text-white/40 uppercase mt-0.5">
                     <span id="biorush-spec">FLAN DE AVENA // LION’S MANE</span>
                     <span class="text-white/20">|</span>
                     <span id="biorush-price">$8.000</span>
                 </div>
 
-                <!-- CTA Comercial Directo de Alta Conversión -->
                 <div class="w-full max-w-md pt-1 flex flex-col items-center gap-4">
                     <button onclick="adquirirNodo()" class="w-full sm:w-auto px-14 py-3 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[12px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:shadow-[0_0_25px_rgba(255,255,255,0.25)]">
                         ORDENAR VÍA WHATSAPP
                     </button>
                     
-                    <!-- Menú de Catálogo (Subido desde el Footer al bloque de control) -->
                     <div id="biorush-items-menu" class="flex items-center justify-center space-x-5 sm:space-x-6 text-center text-[9px] tracking-widest font-mono text-white/40 uppercase">
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- FOOTER HUD UNIFICADO LABS -->
         <footer class="w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent backdrop-blur-md shrink-0 z-50">
             <div class="p-4 sm:p-6 grid grid-cols-3 items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full">
-                <div class="justify-self-start flex items-center font-bold tracking-[0.15em]">
-                    H.00°00'
+                <div id="hud-hz-periferico" class="justify-self-start flex items-center font-bold tracking-[0.15em]">
+                    0.00 Hz
                 </div>    
                 <div class="justify-self-center text-center tracking-[0.18em] font-bold text-white/50 hover:text-white transition-colors duration-300">
                     <a href="https://jako.world" target="_blank" rel="noopener noreferrer" class="hover:underline">
                         POWERED BY JAKO.TECH-LAB
                     </a>
                 </div>
-                <div class="justify-self-end flex items-center font-bold tracking-[0.15em]">
-                    NOD.0000
+                <div id="hud-tension-periferica" class="justify-self-end flex items-center font-bold tracking-[0.15em]">
+                    00.0 N
                 </div>
             </div>
         </footer>
     </main>
 
 <script>
-    // =========================================================================
-    // 1. CONFIGURACIÓN DE CATÁLOGOS: CORREGIDOS DATOS INICIALES Y UNIDADES MG
+// =========================================================================
+    // 1. CONFIGURACIÓN DE CATÁLOGOS COMERCIALES
     // =========================================================================
     const BIORUSH_CATALOG = {
         'BIORUSH': {
             defaultVariant: 'FOCUS',
             variants: {
-                'FOCUS': { 
-                    desc: 'Enfoque y claridad cognitiva.', 
-                    label: 'BIORUSH METAL FOCUS', 
-                    img: 'img/biorush.png', 
-                    imgBack: 'img/back.png', 
-                    spec: 'FLAN DE AVENA // LION’S MANE', 
-                    price: '$8.000', 
-                    id: 'BR-01-FOC',
-                    dial: '1PUL3'
-                },
-                'ZEN': { 
-                    desc: 'Reducción del ruido mental.', 
-                    label: 'BIORUSH MENTAL ZEN', 
-                    img: 'img/biorush.png', 
-                    imgBack: 'img/biorush_zen_back.png', 
-                    spec: 'FLAN DE AVENA // REISHI', 
-                    price: '$8.000', 
-                    id: 'BR-01-ZEN',
-                    dial: '2PUL8'
-                },
-                'STAMINA': { 
-                    desc: 'Optimización del rendimiento energético celular.', 
-                    label: 'BIORUSH BODY STAMINA', 
-                    img: 'img/biorush.png', 
-                    imgBack: 'img/biorush_stamina_back.png', 
-                    spec: 'FLAN DE AVENA // CORDYCEPS', 
-                    price: '$8.000', 
-                    id: 'BR-01-STA',
-                    dial: '3UST4'
-                },
-                'CORE': { 
-                    desc: 'Sincronización inmunológica integral.', 
-                    label: 'BIORUSH BODY CORE', 
-                    img: 'img/biorush.png', 
-                    imgBack: 'img/biorush_core_back.png', 
-                    spec: 'FLAN DE AVENA // TURKEY TAIL', 
-                    price: '$8.000', 
-                    id: 'BR-01-COR',
-                    dial: '4LST2'
-                }
+                'FOCUS': { desc: 'Enfoque y claridad cognitiva.', label: 'BIORUSH METAL FOCUS', img: 'img/biorush.png', imgBack: 'img/back.png', spec: 'FLAN DE AVENA // LION’S MANE', price: '$8.000', id: 'BR-01-FOC' },
+                'ZEN': { desc: 'Reducción del ruido mental.', label: 'BIORUSH MENTAL ZEN', img: 'img/biorush.png', imgBack: 'img/biorush_zen_back.png', spec: 'FLAN DE AVENA // REISHI', price: '$8.000', id: 'BR-01-ZEN' },
+                'STAMINA': { desc: 'Optimización del rendimiento energético celular.', label: 'BIORUSH BODY STAMINA', img: 'img/biorush.png', imgBack: 'img/biorush_stamina_back.png', spec: 'FLAN DE AVENA // CORDYCEPS', price: '$8.000', id: 'BR-01-STA' },
+                'CORE': { desc: 'Sincronización inmunológica integral.', label: 'BIORUSH BODY CORE', img: 'img/biorush.png', imgBack: 'img/biorush_core_back.png', spec: 'FLAN DE AVENA // TURKEY TAIL', price: '$8.000', id: 'BR-01-COR' }
             }
         },
         'CAPS_45': {
             defaultVariant: 'FOCUS',
             variants: {
-                'FOCUS': { 
-                    desc: 'Enfoque y claridad cognitiva.', 
-                    label: 'CAPS 45 MENTAL FOCUS', 
-                    img: 'img/caps.png', 
-                    imgBack: 'img/item2_raw_back.png', 
-                    spec: '45 CAPS // 500 MG', 
-                    price: '$85.000', 
-                    id: 'BR-02-FOC',
-                    dial: '5PUL1'
-                },
-                'ZEN': { 
-                    desc: 'Reducción del ruido mental.', 
-                    label: 'CAPS 45 MENTAL ZEN', 
-                    img: 'img/caps.png', 
-                    imgBack: 'img/item2_boost_back.png', 
-                    spec: '45 CAPS // 500 MG', 
-                    price: '$89.000', 
-                    id: 'BR-02-ZEN',
-                    dial: '6PUL9'
-                },
-                'STAMINA': { 
-                    desc: 'Optimización del rendimiento energético celular.', 
-                    label: 'CAPS 45 BODY STAMINA', 
-                    img: 'img/caps.png', 
-                    imgBack: 'img/item2_stamina_back.png', 
-                    spec: '45 CAPS // 500 MG', 
-                    price: '$85.000', 
-                    id: 'BR-02-STA',
-                    dial: '7UST3'
-                },
-                'CORE': { 
-                    desc: 'Sincronización inmunológica integral.', 
-                    label: 'CAPS 45 BODY CORE', 
-                    img: 'img/caps.png', 
-                    imgBack: 'img/item2_core_back.png', 
-                    spec: '45 CAPS // 500 MG', 
-                    price: '$80.000', 
-                    id: 'BR-02-COR',
-                    dial: '8LST6'
-                }
+                'FOCUS': { desc: 'Enfoque y claridad cognitiva.', label: 'CAPS 45 MENTAL FOCUS', img: 'img/caps.png', imgBack: 'img/item2_raw_back.png', spec: '45 CAPS // 500 MG', price: '$85.000', id: 'BR-02-FOC' },
+                'ZEN': { desc: 'Reducción del ruido mental.', label: 'CAPS 45 MENTAL ZEN', img: 'img/caps.png', imgBack: 'img/item2_boost_back.png', spec: '45 CAPS // 500 MG', price: '$89.000', id: 'BR-02-ZEN' },
+                'STAMINA': { desc: 'Optimización del rendimiento energético celular.', label: 'CAPS 45 BODY STAMINA', img: 'img/caps.png', imgBack: 'img/item2_stamina_back.png', spec: '45 CAPS // 500 MG', price: '$85.000', id: 'BR-02-STA' },
+                'CORE': { desc: 'Sincronización inmunológica integral.', label: 'CAPS 45 BODY CORE', img: 'img/caps.png', imgBack: 'img/item2_core_back.png', spec: '45 CAPS // 500 MG', price: '$80.000', id: 'BR-02-COR' }
             }
         },
         'CAPS_24': {
             defaultVariant: 'FOCUS',
             variants: {
-                'FOCUS': { 
-                    desc: 'Enfoque y claridad cognitiva.', 
-                    label: 'CAPS 24 LION’S MANE FOCUS', 
-                    img: 'img/item3_calm.png', 
-                    imgBack: 'img/item3_calm_back.png', 
-                    spec: '24 CAPS // 500 MG', 
-                    price: '$48.000', 
-                    id: 'BR-03-FOC',
-                    dial: '9PUL2'
-                },
-                'ZEN': { 
-                    desc: 'Reducción del ruido mental.', 
-                    label: 'CAPS 24 REISHI ZEN', 
-                    img: 'img/item3_sleep.png', 
-                    imgBack: 'img/item3_sleep_back.png', 
-                    spec: '24 CAPS // 500 MG', 
-                    price: '$52.000', 
-                    id: 'BR-03-ZEN',
-                    dial: '1PUL7'
-                },
-                'STAMINA': { 
-                    desc: 'Optimización del rendimiento energético celular.', 
-                    label: 'CAPS 24 CORDYCEPS STAMINA', 
-                    img: 'img/item3_stamina.png', 
-                    imgBack: 'img/item3_stamina_back.png', 
-                    spec: '24 CAPS // 500 MG', 
-                    price: '$48.000', 
-                    id: 'BR-03-STA',
-                    dial: '2UST9'
-                },
-                'CORE': { 
-                    desc: 'Sincronización inmunológica integral.', 
-                    label: 'CAPS 24 TURKEY TAIL CORE', 
-                    img: 'img/item3_core.png', 
-                    imgBack: 'img/item3_core_back.png', 
-                    spec: '24 CAPS // 500 MG', 
-                    price: '$45.000', 
-                    id: 'BR-03-COR',
-                    dial: '3LST5'
-                }
+                'FOCUS': { desc: 'Enfoque y claridad cognitiva.', label: 'CAPS 24 LION’S MANE FOCUS', img: 'img/caps.png', imgBack: 'img/item3_calm_back.png', spec: '24 CAPS // 500 MG', price: '$48.000', id: 'BR-03-FOC' },
+                'ZEN': { desc: 'Reducción del ruido mental.', label: 'CAPS 24 REISHI ZEN', img: 'img/caps.png', imgBack: 'img/item3_sleep_back.png', spec: '24 CAPS // 500 MG', price: '$52.000', id: 'BR-03-ZEN' },
+                'STAMINA': { desc: 'Optimización del rendimiento energético celular.', label: 'CAPS 24 CORDYCEPS STAMINA', img: 'img/caps.png', imgBack: 'img/item3_stamina_back.png', spec: '24 CAPS // 500 MG', price: '$48.000', id: 'BR-03-STA' },
+                'CORE': { desc: 'Sincronización inmunológica integral.', label: 'CAPS 24 TURKEY TAIL CORE', img: 'img/caps.png', imgBack: 'img/item3_core_back.png', spec: '24 CAPS // 500 MG', price: '$45.000', id: 'BR-03-COR' }
             }
         }
     };
 
     let currentBioItem = 'BIORUSH';
     let currentBioVariant = 'FOCUS';
+    
+    // VARIABLES COMPATIBLES CON EL PROTOCOLO MAESTRO DE JAKO.TECH-LAB
+    let biokineticCoordinate = "1P1"; 
     const numeroCelular = "573025333130";
+
+    // Selector nativo abreviado
+    const $ = (id) => document.getElementById(id);
 
     // ==========================================
     // 2. SISTEMA DE REVELADO (POINTERS & HAPTICS)
     // ==========================================
     function vincularBotonRevelado(btnId, frontImgId, backImgId, vectorId) {
-        const btn = document.getElementById(btnId);
-        const frontImg = document.getElementById(frontImgId);
-        const backImg = document.getElementById(backImgId);
-        const vectorSvg = document.getElementById(vectorId);
+        const btn = $(btnId);
+        const frontImg = $(frontImgId);
+        const backImg = $(backImgId);
+        const vectorSvg = $(vectorId);
 
         if (!btn || !frontImg || !backImg) return;
 
@@ -334,30 +220,20 @@
             e.preventDefault();
             frontImg.style.opacity = '';
             backImg.style.opacity = '';
-            
             frontImg.classList.remove('opacity-100');
             frontImg.classList.add('opacity-0', 'scale-[1.02]');
-            
             backImg.classList.remove('opacity-0');
             backImg.classList.add('opacity-100', 'scale-[1.12]');
-            
-            if (vectorSvg) {
-                vectorSvg.classList.add('opacity-0', 'pointer-events-none');
-            }
-            
+            if (vectorSvg) vectorSvg.classList.add('opacity-0', 'pointer-events-none');
             if (navigator.vibrate) navigator.vibrate(12);
         };
 
         const ocultarReverso = () => {
             frontImg.classList.remove('opacity-0', 'scale-[1.02]');
             frontImg.classList.add('opacity-100');
-            
             backImg.classList.remove('opacity-100', 'scale-[1.12]');
             backImg.classList.add('opacity-0');
-            
-            if (vectorSvg) {
-                vectorSvg.classList.remove('opacity-0', 'pointer-events-none');
-            }
+            if (vectorSvg) vectorSvg.classList.remove('opacity-0', 'pointer-events-none');
         };
 
         btn.addEventListener('pointerdown', mostrarReverso);
@@ -367,11 +243,86 @@
         btn.addEventListener('touchend', ocultarReverso);
     }
 
+    // =========================================================================
+    // 3. MATRIZ CINÉTICA MAESTRA (ALGORITMO IDENTICO A JAKO.TECH-LAB)
+    // =========================================================================
+    function updateZBioRush() {
+        const now = new Date();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+        const milliseconds = now.getMilliseconds();
+
+        let setsStage = 1;  
+        let repsStage = 1;  
+        let currentAction = 'P'; 
+
+        // EVALUACIÓN DE LAS 12 VARIABLES ÓPTIMAS (Espejo exacto de tu lab)
+        if (seconds % 2 !== 0) {
+            // A. Fase del Impulso Puro (4 Monádicas // Cero Resistencia // Segundos Impares)
+            const progress1s = milliseconds / 1000; 
+            setsStage = Math.floor(progress1s * 12) + 1;
+            repsStage = 13 - setsStage; 
+
+            if (progress1s < 0.25) currentAction = 'P';        // Pace
+            else if (progress1s < 0.5) currentAction = 'U';     // Under
+            else if (progress1s < 0.75) currentAction = 'L';    // Lift
+            else currentAction = 'S';                           // Surge
+        } else {
+            // Segundos Pares: Distribución Basal por Minutos % 12
+            setsStage = Math.max(1, Math.min(12, Math.floor((minutes % 12) + 1)));
+            
+            if (seconds < 30) {
+                // B. Fase de Transferencia (4 Binarias // Desplazamiento de Carga)
+                const subSlot = Math.floor((seconds % 30) / 7.5); 
+                const binaryMatrix = ["PL", "PU", "LU", "SU"];
+                currentAction = binaryMatrix[subSlot] || "PL";
+                repsStage = Math.max(1, Math.min(12, Math.floor((seconds % 10) + 2)));
+            } else {
+                // C. Fase de Bloqueo Estructural (4 Ternarias // Isometría y Densidad)
+                const subSlot = Math.floor(((seconds - 30) % 30) / 7.5); 
+                const ternaryMatrix = ["PUL", "PLS", "LUP", "UTS"];
+                currentAction = ternaryMatrix[subSlot] || "UTS";
+                repsStage = Math.max(1, Math.min(12, Math.floor(((seconds - 30) % 10) + 3)));
+
+                // Disparador háptico local en punto crítico UTS
+                if (currentAction === 'UTS' && navigator.vibrate && milliseconds < 40) {
+                    navigator.vibrate(12);
+                }
+            }
+        }
+
+        setsStage = Math.max(1, Math.min(12, setsStage));
+        repsStage = Math.max(1, Math.min(12, repsStage));
+        
+        // Compilación de la firma bioclimática / biocinética global
+        biokineticCoordinate = `${setsStage}${currentAction}${repsStage}`;
+
+        // INYECCIÓN DIRECTA EN EL HUD DE BIORUSH
+        const dialHUD = $('hud-pulse-dial');
+        if (dialHUD && dialHUD.textContent !== biokineticCoordinate) {
+            dialHUD.textContent = biokineticCoordinate;
+        }
+
+        // TELEMETRÍA PERIFÉRICA DE FOOTER (Calculados igual al Lab)
+        const calculatedTension = (14.2 + (repsStage * 0.8)).toFixed(1);
+        const currentHz = (0.05 + (setsStage / 240)).toFixed(3);
+
+        const hzLabel = $('hud-hz-periferico');
+        const tensionLabel = $('hud-tension-periferica');
+        if (hzLabel) hzLabel.textContent = `${currentHz} Hz`;
+        if (tensionLabel) tensionLabel.textContent = `${calculatedTension} N`;
+    }
+
+    function iniciarPulsLoop() {
+        // Ejecución de alta velocidad (cada 33ms aprox) para un renderizado suave del dial central
+        setInterval(updateZBioRush, 33); 
+    }
+
     // ==========================================
-    // 3. LÓGICA DE INTERFAZ BIORUSH
+    // 4. CONTROLADORES DE INTERFAZ DE USUARIO
     // ==========================================
     function inicializarBioRush() {
-        const menuContainer = document.getElementById('biorush-items-menu');
+        const menuContainer = $('biorush-items-menu');
         if (menuContainer) {
             menuContainer.innerHTML = Object.keys(BIORUSH_CATALOG).map(item => `
                 <span id="menu-bio-${item}" onclick="cambiarBioItem('${item}')" class="cursor-pointer tracking-[0.15em] transition-all duration-300 h-5 leading-none font-bold">
@@ -401,12 +352,12 @@
         const itemConfig = BIORUSH_CATALOG[currentBioItem];
         const variantConfig = itemConfig.variants[currentBioVariant];
         
-        const drawerNode = document.getElementById('drawer-vault-node');
+        const drawerNode = $('drawer-vault-node');
         if (drawerNode) drawerNode.textContent = currentBioItem;
 
-        const descEl = document.getElementById('biorush-description');
-        const packImg = document.getElementById('biorush-pack-img');
-        const packImgBack = document.getElementById('biorush-pack-img-back');
+        const descEl = $('biorush-description');
+        const packImg = $('biorush-pack-img');
+        const packImgBack = $('biorush-pack-img-back');
         
         if (descEl && packImg && packImgBack) {
             descEl.style.opacity = 0;
@@ -418,15 +369,13 @@
                 packImg.src = variantConfig.img;
                 packImgBack.src = variantConfig.imgBack;
                 
-                const labelTitle = document.getElementById('laser-variant-title');
-                const specEl = document.getElementById('biorush-spec');
-                const priceEl = document.getElementById('biorush-price');
-                const dialEl = document.getElementById('hud-pulse-dial');
+                const labelTitle = $('laser-variant-title');
+                const specEl = $('biorush-spec');
+                const priceEl = $('biorush-price');
                 
                 if (labelTitle) labelTitle.textContent = variantConfig.label;
                 if (specEl) specEl.textContent = variantConfig.spec;
                 if (priceEl) priceEl.textContent = variantConfig.price;
-                if (dialEl) dialEl.textContent = variantConfig.dial; // Actualización en caliente del Dial HUD
                 
                 descEl.style.opacity = 1;
                 packImg.style.opacity = 1;
@@ -434,7 +383,7 @@
         }
 
         Object.keys(BIORUSH_CATALOG).forEach(item => {
-            const el = document.getElementById(`menu-bio-${item}`);
+            const el = $(`menu-bio-${item}`);
             if (el) {
                 el.className = (item === currentBioItem) 
                     ? "cursor-pointer tracking-[0.15em] transition-all duration-300 h-5 leading-none font-bold text-white scale-105 border-b border-emerald-400 pb-0.5" 
@@ -442,7 +391,7 @@
             }
         });
 
-        const variantContainer = document.getElementById('biorush-variants-container');
+        const variantContainer = $('biorush-variants-container');
         if (variantContainer) {
             variantContainer.innerHTML = Object.keys(itemConfig.variants).map(vKey => {
                 const isSelected = (vKey === currentBioVariant);
@@ -456,15 +405,20 @@
         }
     }
 
+    // =========================================================================
+    // 5. CAPTURA DE TELEMETRÍA DE COMPRA (GENERACIÓN DE PAYLOAD AUDITABLE)
+    // =========================================================================
     function adquirirNodo() {
         const variantConfig = BIORUSH_CATALOG[currentBioItem].variants[currentBioVariant];
+        
+        // Mapea de manera estricta y limpia la coordenada calculada en tiempo real en el payload
         const mensaje = `⚡ *NUEVA ORDEN - BIORUSH* ⚡\n\n` +
                         `• *Ítem Base:* ${currentBioItem}\n` +
                         `• *Variante:* ${currentBioVariant}\n` +
                         `• *Especificación:* ${variantConfig.spec}\n` +
                         `• *Ref Label:* ${variantConfig.label}\n` +
                         `• *Precio:* ${variantConfig.price}\n` +
-                        `• *PULS Dial:* \`${variantConfig.dial}\`\n` +
+                        `• *PULS Dial:* \`${biokineticCoordinate}\`\n` +
                         `• *ID Seguridad:* \`${variantConfig.id}\`\n\n` +
                         `Solicito la inicialización y el despacho inmediato de esta orden.`;
 
@@ -473,9 +427,10 @@
         window.open(urlWhatsapp, '_blank');
     }
 
-    // Inicialización nativa al cargar DOM
+    // Inicialización nativa del DOM
     document.addEventListener('DOMContentLoaded', () => {
         inicializarBioRush();
+        iniciarPulsLoop();
     });
 </script>
 </body>
