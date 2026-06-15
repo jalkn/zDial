@@ -478,13 +478,11 @@
     function adquirirNodo() {
         const variantConfig = BIORUSH_CATALOG[currentBioItem].variants[currentBioVariant];
         const currentCoord = getCachedEl('z-dial')?.textContent || "N/A";
-        
         const currentSphere = getCachedEl('telemetry-sphere-idx')?.textContent || "N/A";
         const currentNode = getCachedEl('telemetry-active-node')?.textContent || "N/A";
         
-        // Traducción del Dial ajustada a "Acciones"
+        // Traducción del Dial
         const dialInterpretation = currentCoord.replace(/(\d+)([A-Z]+)(\d+)/, "$1 SETS, $3 REPS - ACCIONES $2");
-
         const configuracion = `${currentBioItem} ${currentBioVariant}`;
         
         const mensaje = `⚡ *NUEVA ORDEN - BIORUSH* ⚡\n\n` +
@@ -492,9 +490,9 @@
                         `• *Especificación:* ${variantConfig.spec}\n` +
                         `• *ID Seguridad:* \`${variantConfig.id}\`\n` +
                         `• *Precio:* ${variantConfig.price}\n\n` +
-                        `--- *PROTOCOLO DE ENCRIPTACIÓN BIOCINÉTICA* ---\n` +
-                        `• *Dial Biocinético:* \`${currentCoord}\`\n` +
-                        `   └ *Lectura:* ${dialInterpretation}\n` +
+                        `--- *PROTOCOLO* ---\n` +
+                        `• *Código de Encriptación:* \`${currentCoord}\`\n` +
+                        `• *Biocinética:* ${dialInterpretation}\n` +
                         `• *Esfera:* \`${currentSphere}\`\n` +
                         `• *Nodo:* \`${currentNode}\`\n\n` +
                         `Solicito la activación y el despacho de esta configuración.`;
