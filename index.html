@@ -148,20 +148,21 @@
 
 
                 <p id="telemetry-feedback-panel" class="telemetry-text-style text-[9px] sm:text-[10px] text-sky-400/80 tracking-[0.05em] mb-0.5 leading-snug transition-colors duration-300">
-                    Incluye protocolo biocinético
+                    Activación con protocolo biocinético
                 </p>
+                <div class="p-4 sm:p-6 flex justify-between items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full gap-4">
+                    <div id="sub-sets-solar" class="flex items-center font-bold tracking-[0.15em] border-b border-dashed border-white/20 hover:text-sky-400 hover:border-sky-400 cursor-help transition-all duration-300">0.00 Hz</div>
+                    <div id="telemetry-sphere-idx" class="flex items-center font-bold tracking-[0.15em] border-b border-dashed border-white/20 hover:text-sky-400 hover:border-sky-400 cursor-help transition-all duration-300">0000.⨀</div>
+                    <div id="telemetry-active-node" class="flex items-center font-bold tracking-[0.15em] border-b border-dashed border-white/20 hover:text-sky-400 hover:border-sky-400 cursor-help transition-all duration-300">◯.0000</div>
+                    <div id="sub-reps-tension" class="flex items-center font-bold tracking-[0.15em] border-b border-dashed border-white/20 hover:text-sky-400 hover:border-sky-400 cursor-help transition-all duration-300">00.0 N</div>
+                </div>
 
 
             </div>
         </div>
 
         <footer class="w-full bg-gradient-to-t from-black/90 via-black/40 to-transparent backdrop-blur-md shrink-0 absolute bottom-0 z-50">
-            <div class="p-4 sm:p-6 flex justify-between items-center max-w-7xl mx-auto uppercase tracking-widest font-mono text-[9px] text-white/40 min-h-[63px] sm:min-h-[69px] w-full gap-4">
-                <div id="sub-sets-solar" class="flex items-center font-bold tracking-[0.15em] border-b border-dashed border-white/20 hover:text-sky-400 hover:border-sky-400 cursor-help transition-all duration-300">0.00 Hz</div>
-                <div id="telemetry-sphere-idx" class="flex items-center font-bold tracking-[0.15em] border-b border-dashed border-white/20 hover:text-sky-400 hover:border-sky-400 cursor-help transition-all duration-300">0000.⨀</div>
-                <div id="telemetry-active-node" class="flex items-center font-bold tracking-[0.15em] border-b border-dashed border-white/20 hover:text-sky-400 hover:border-sky-400 cursor-help transition-all duration-300">◯.0000</div>
-                <div id="sub-reps-tension" class="flex items-center font-bold tracking-[0.15em] border-b border-dashed border-white/20 hover:text-sky-400 hover:border-sky-400 cursor-help transition-all duration-300">00.0 N</div>
-            </div>
+
         </footer>
     </main>
 
@@ -436,7 +437,7 @@
     function habilitarReveladoTelemetria() {
         const feedbackPanel = getCachedEl('telemetry-feedback-panel');
         // Aseguramos que el mensaje original también esté en formato lowercase base
-        const mensajeOriginal = "Incluye protocolo biocinético";
+        const mensajeOriginal = "Activación con protocolo biocinético";
 
         Object.keys(TELEMETRY_MEANINGS).forEach(id => {
             const el = getCachedEl(id);
@@ -467,17 +468,17 @@
         // Traducción del Dial
         const dialInterpretation = currentCoord.replace(/(\d+)([A-Z]+)(\d+)/, "$1 SETS, $3 REPS - ACCIONES $2");
         
-        const mensaje = `⚡ *NUEVA ORDEN - BIORUSH* ⚡\n\n` +
+        const mensaje = `⚡ *ORDEN - BIORUSH* ⚡\n\n` +
                         `• *Vector:* ${currentBioItem} ${currentBioVariant}\n` +
                         `• *Carga:* ${variantConfig.spec}\n` +
                         `• *ID:* \`${variantConfig.id}\`\n` +
                         `• *Precio:* ${variantConfig.price}\n\n` +
                         `--- *PROTOCOLO* ---\n` +
-                        `• *Dial:* \`${currentCoord}\`\n` +
-                        `• *Biocinética:* ${dialInterpretation}\n` +
+                        `• *Codigo Dial:* \`${currentCoord}\`\n` +
+                        `• *Biocinética Corporal:* ${dialInterpretation}\n` +
                         `• *Esfera:* \`${currentSphere}\`\n` +
                         `• *Nodo:* \`${currentNode}\`\n\n` +
-                        `Solicito la activación y el despacho de esta configuración.`;
+                        `Activar configuración actual.`;
 
         triggerHaptic([15, 40, 15]);
         window.open(`https://api.whatsapp.com/send?phone=${numeroCelular}&text=${encodeURIComponent(mensaje)}`, '_blank');
