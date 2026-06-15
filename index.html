@@ -483,11 +483,10 @@
         
         // Traducción del Dial
         const dialInterpretation = currentCoord.replace(/(\d+)([A-Z]+)(\d+)/, "$1 SETS, $3 REPS - ACCIONES $2");
-        const configuracion = `${currentBioItem} ${currentBioVariant}`;
         
         const mensaje = `⚡ *NUEVA ORDEN - BIORUSH* ⚡\n\n` +
-                        `• *Configuración:* ${configuracion}\n` +
-                        `• *Especificación:* ${variantConfig.spec}\n` +
+                        `• *Unidad:* ${currentBioItem} ${currentBioVariant}\n` +
+                        `• *Matriz:* ${variantConfig.spec}\n` +
                         `• *ID Seguridad:* \`${variantConfig.id}\`\n` +
                         `• *Precio:* ${variantConfig.price}\n\n` +
                         `--- *PROTOCOLO* ---\n` +
