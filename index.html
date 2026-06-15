@@ -72,13 +72,15 @@
                     <img id="biorush-pack-img-back" src="img/45capsBack.png" alt="BioRush Pack Back" class="img-glow-transition absolute inset-0 w-full h-full object-contain opacity-0 pointer-events-none z-0" />
                     <img id="biorush-pack-img" src="img/45caps.png" alt="BioRush Pack Front" class="img-glow-transition absolute inset-0 w-full h-full object-contain pointer-events-auto z-10" />
                     
-                    <div class="absolute inset-0 flex items-center justify-center p-0 z-20 pointer-events-none">
-                        <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-white/40 stroke-[1.5] transition-all duration-500 pointer-events-none origin-center transform scale-[1.12] sm:scale-[1.08]">
+                    <div class="absolute inset-0 flex items-center justify-center p-2 z-20 pointer-events-none">
+                        <svg id="laser-vector-target" viewBox="0 0 400 400" 
+                            class="w-full h-full fill-none stroke-white/40 stroke-[1.5] transition-all duration-500 origin-center transform scale-[1.3] sm:scale-[1.2]">
                             <defs>
-                                <path id="textPath-top" d="M 105,200 A 95,95 0 0,1 295,200" />
-                                <path id="textPath-bottom" d="M 105,200 A 95,95 0 0,0 295,200" />
+                                <path id="textPath-top" d="M 65,200 A 135,135 0 0,1 335,200" />
+                                <path id="textPath-bottom" d="M 65,200 A 135,135 0 0,0 335,200" />
                             </defs>
-                            <text class="fill-white font-black text-[9px] sm:text-[10px] tracking-[0.25em] sm:tracking-[0.3em] uppercase transition-all duration-500">
+                            
+                            <text class="fill-white font-black text-[10px] sm:text-[11px] tracking-[0.25em] sm:tracking-[0.3em] uppercase transition-all duration-500">
                                 <textPath id="laser-variant-title" href="#textPath-top" startOffset="50%" text-anchor="middle">
                                     BIORUSH MENTAL FOCUS
                                 </textPath>
@@ -90,11 +92,11 @@
                                 <path d="M 110,280 Q 200,250 290,280" stroke-dasharray="2 2" class="opacity-20 stroke-[1.2]" />
                                 
                                 <text x="200" y="165" text-anchor="middle" class="fill-white/30 text-[7px] tracking-[0.3em] font-bold uppercase"></text>
-                                <text id="z-dial" x="200" y="210" text-anchor="middle" class="fill-white font-black text-[18px] tracking-[0.05em] font-sans">8UST11</text>
+                                <text id="z-dial" x="200" y="210" text-anchor="middle" class="fill-white font-black text-[38px] tracking-[0.05em] font-sans">8UST11</text>
                                 <text x="200" y="245" text-anchor="middle" class="fill-white/30 text-[6px] tracking-[0.4em] font-mono"></text>
                             </g>
                             
-                            <text class="fill-white/60 font-black text-[8px] sm:text-[9px] tracking-[0.25em] uppercase transition-all duration-500">
+                            <text class="fill-white/60 font-black text-[11px] sm:text-[11px] tracking-[0.25em] uppercase transition-all duration-500">
                                 <textPath href="#textPath-bottom" startOffset="50%" text-anchor="middle">
                                     BIORUSH.CO &bull; 3025333130
                                 </textPath>
@@ -115,31 +117,35 @@
                     </div>
                 </button>
 
-                <p id="biorush-description" class="font-mono uppercase text-[8.5px] text-white/40 max-w-xl tracking-widest leading-relaxed min-h-[24px] transition-opacity duration-300">
-                    Enfoque y claridad cognitiva.
-                </p>
+                <div class="w-full max-w-md pt-0.5 flex flex-col items-center gap-2.5">
 
-                <p id="telemetry-feedback-panel" class="font-mono uppercase text-[7.5px] text-emerald-400/50 tracking-[0.2em] mb-0.5">
-                    Tu compra incluye un protocolo biocinético encriptado.
-                </p>
+                    <div id="biorush-items-menu" class="flex items-center justify-center space-x-4 sm:space-x-5 text-center text-[8.5px] tracking-widest font-mono text-white/40 uppercase">
+                    </div>
 
-                <div id="biorush-variants-container" class="flex flex-wrap items-center justify-center gap-1.5 text-[8.5px] tracking-widest font-mono select-none w-full max-w-md px-2">
+                    <div id="biorush-variants-container" class="flex flex-wrap items-center justify-center gap-1.5 text-[8.5px] tracking-widest font-mono select-none w-full max-w-md px-2">
+                    </div>
+
+                    <button onclick="adquirirNodo()" class="w-full sm:w-auto px-12 py-2.5 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[11px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+                        ACTIVAR
+                    </button>                    
+
                 </div>
 
                 <div class="flex items-center justify-center gap-3 font-mono text-[8.5px] tracking-widest text-white/40 uppercase mt-0.5">
-                    <span id="biorush-spec">FLAN DE AVENA // LION’S MANE</span>
+                    <span id="biorush-spec">LION’S MANE</span>
                     <span class="text-white/20">|</span>
-                    <span id="biorush-price">$8.000</span>
+                    <span id="biorush-price">$68.000</span>
                 </div>
 
-                <div class="w-full max-w-md pt-0.5 flex flex-col items-center gap-2.5">
-                    <button onclick="adquirirNodo()" class="w-full sm:w-auto px-12 py-2.5 bg-[#141414]/80 backdrop-blur-md text-white font-black text-[11px] tracking-[0.22em] uppercase rounded-md border border-white/20 hover:border-white/70 hover:bg-[#141414] transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
-                        ORDENAR VÍA WHATSAPP
-                    </button>
-                    
-                    <div id="biorush-items-menu" class="flex items-center justify-center space-x-4 sm:space-x-5 text-center text-[8.5px] tracking-widest font-mono text-white/40 uppercase">
-                    </div>
-                </div>
+                <p id="biorush-description" class="font-sans text-[9px] sm:text-[10px] text-white/70 max-w-xl tracking-[0.05em] leading-relaxed min-h-[30px] transition-opacity duration-300">
+                    Enfoque y claridad cognitiva.
+                </p>
+
+                <p id="telemetry-feedback-panel" class="font-sans text-[9px] sm:text-[10px] text-sky-400/80 tracking-[0.05em] mb-0.5 leading-snug">
+                    Tu compra incluye un protocolo biocinético encriptado.
+                </p>
+
+
             </div>
         </div>
 
@@ -328,7 +334,7 @@
             const el = getCachedEl(`menu-bio-${item}`);
             if (el) {
                 el.className = (item === currentBioItem) 
-                    ? "cursor-pointer tracking-[0.15em] transition-all duration-300 h-5 leading-none font-bold text-white scale-105 border-b border-emerald-400 pb-0.5" 
+                    ? "cursor-pointer tracking-[0.15em] transition-all duration-300 h-5 leading-none font-bold text-white scale-105 border-b border-sky-400 pb-0.5" 
                     : "cursor-pointer tracking-[0.15em] transition-all duration-300 h-5 leading-none text-white/40 hover:text-white/80";
             }
         });
@@ -428,23 +434,22 @@
 
             el.classList.add('cursor-pointer', 'hover:text-white', 'transition-colors');
             
+            // Dentro de la función habilitarReveladoTelemetria
             el.addEventListener('click', () => {
                 const significado = TELEMETRY_MEANINGS[id];
                 
-                // 1. Destacar el nodo presionado
-                el.style.color = '#34d399'; // Verde esmeralda
+                // Cambiamos el color de resaltado a azul tecnológico
+                el.style.color = '#38bdf8'; 
                 triggerHaptic(20);
 
-                // 2. Actualizar el panel inferior con el significado
                 feedbackPanel.textContent = significado;
-                feedbackPanel.classList.add('text-white'); // Que resalte al activarse
+                feedbackPanel.classList.add('text-white');
                 
-                // 3. Restaurar después de 3 segundos
                 setTimeout(() => {
-                    el.style.color = ''; // Reset color nodo
-                    feedbackPanel.textContent = mensajeOriginal; // Reset texto panel
+                    el.style.color = '';
+                    feedbackPanel.textContent = mensajeOriginal;
                     feedbackPanel.classList.remove('text-white');
-                }, 3000);
+                }, 8000);
             });
         });
     }
