@@ -148,7 +148,7 @@
 
 
                 <p id="telemetry-feedback-panel" class="telemetry-text-style text-[9px] sm:text-[10px] text-sky-400/80 tracking-[0.05em] mb-0.5 leading-snug transition-colors duration-300">
-                    Tu compra incluye un protocolo de encriptacion biocinética.
+                    Incluye protocolo biocinético
                 </p>
 
 
@@ -436,7 +436,7 @@
     function habilitarReveladoTelemetria() {
         const feedbackPanel = getCachedEl('telemetry-feedback-panel');
         // Aseguramos que el mensaje original también esté en formato lowercase base
-        const mensajeOriginal = "Tu compra incluye un protocolo biocinético encriptado.";
+        const mensajeOriginal = "Incluye protocolo biocinético";
 
         Object.keys(TELEMETRY_MEANINGS).forEach(id => {
             const el = getCachedEl(id);
