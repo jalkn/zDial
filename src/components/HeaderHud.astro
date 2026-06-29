@@ -1,0 +1,62 @@
+---
+---
+<div class="w-full max-w-7xl mx-auto px-4 pt-4 relative select-none">
+  <div class="relative bg-[#050508]/40 backdrop-blur-md border border-cyan-500/20 rounded-xl p-4 flex flex-col md:flex-row justify-between items-center gap-4 shadow-[0_0_30px_rgba(6,182,212,0.03)] overflow-hidden">
+    
+    <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent"></div>
+
+    <div class="flex items-center gap-4">
+      <div class="relative flex items-center justify-center w-10 h-10 border border-cyan-500/30 rounded-lg bg-cyan-950/20">
+        <div class="absolute w-2 h-2 bg-cyan-400 rounded-full animate-ping opacity-75"></div>
+        <div class="w-1.5 h-1.5 bg-cyan-400 rounded-full"></div>
+      </div>
+      <div>
+        <div class="text-[10px] uppercase tracking-[0.25em] text-cyan-400/50 font-mono">System Time Matrix</div>
+        <div id="hud-clock-display" class="text-lg font-bold font-mono tracking-widest text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]">
+          00:00:00 <span class="text-xs text-cyan-400/70">Z</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center md:text-right flex flex-col items-center md:items-end">
+      <div class="text-[10px] uppercase tracking-[0.3em] text-cyan-400/40 font-mono mb-0.5">Ecosistema Activo</div>
+      <div class="flex items-center gap-2">
+        <span class="font-black tracking-[0.2em] text-sm text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400">
+          JAKO VAULT
+        </span>
+        <span class="text-[9px] font-mono border border-emerald-500/30 bg-emerald-950/30 text-emerald-400 px-1.5 py-0.5 rounded uppercase tracking-widest">
+          ONLINE
+        </span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Lógica del Reloj en Tiempo Real
+  const initHudClock = () => {
+    const clockEl = document.getElementById('hud-clock-display');
+    if (!clockEl) return;
+
+    const updateClock = () => {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      
+      clockEl.innerHTML = `${hours}:${minutes}:${seconds} <span class="text-xs text-cyan-400/60 font-medium">Z</span>`;
+    };
+
+    // Sincronización inmediata y bucle continuo de 1s
+    updateClock();
+    const intervalId = setInterval(updateClock, 1000);
+
+    // Limpieza de memoria si Astro desmonta el componente
+    document.addEventListener('astro:before-swap', () => clearInterval(intervalId), { once: true });
+  };
+
+  // Carga inicial y soporte para transiciones fluidas de página
+  initHudClock();
+  document.addEventListener('astro:page-load', initHudClock);
+</script>

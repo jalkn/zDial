@@ -1,17 +1,30 @@
 ---
 import VaultLayout from '../layouts/VaultLayout.astro';
 import QuantumBg from '../components/QuantumBg.astro';
+import HeaderHud from '../components/HeaderHud.astro';
+import FooterHud from '../components/FooterHud.astro';
+import TacticalDial from '../components/TacticalDial.astro';
 ---
 
 <VaultLayout title="JAKO VAULT">
   <QuantumBg />
   
-  <main class="relative w-full h-screen overflow-hidden">
-    <!-- El resto del HUD vendrá aquí -->
-    <div class="flex items-center justify-center h-full">
-      <span class="font-mono text-[10px] tracking-[0.3em] text-white/40 uppercase">
-        [ MATRIZ CUÁNTICA: PREPARADA ]
-      </span>
-    </div>
+  <main class="relative w-full h-screen overflow-hidden flex flex-col justify-between">
+    
+    <!-- Zona Superior: Telemetría -->
+    <header class="w-full z-10">
+      <HeaderHud />
+    </header>
+
+    <!-- Zona Central: Dial Táctico Activo -->
+    <section class="flex-1 w-full flex items-center justify-center z-10">
+      <TacticalDial />
+    </section>
+
+    <!-- Zona Inferior: Stream / Logs -->
+    <footer class="w-full z-10">
+      <FooterHud />
+    </footer>
+
   </main>
 </VaultLayout>

@@ -1,0 +1,91 @@
+---
+---
+<div class="w-full max-w-7xl mx-auto px-4 pb-4 relative select-none">
+  <!-- Contenedor del Footer HUD -->
+  <div class="relative bg-[#050508]/40 backdrop-blur-md border border-cyan-500/20 rounded-xl p-3 flex flex-col md:flex-row justify-between items-center gap-3 text-[10px] font-mono tracking-wider text-cyan-400/60 shadow-[0_0_20px_rgba(6,182,212,0.02)] overflow-hidden">
+    
+    <!-- Línea decorativa láser inferior -->
+    <div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent"></div>
+
+    <!-- Sección Izquierda: Terminal Stream Activo -->
+    <div class="flex items-center gap-2 w-full md:w-auto overflow-hidden">
+      <span class="text-emerald-400 font-bold animate-pulse">[STREAM]:</span>
+      <div class="relative w-48 h-4 overflow-hidden mask-fade-edges">
+        <div id="hud-stream-ticker" class="absolute whitespace-nowrap transition-transform duration-500 ease-out">
+          INITIALIZING CORE SERVICES...
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección Derecha: Mapeo de Coordenadas y Parámetros Constantes -->
+    <div class="flex items-center gap-4 text-right text-[9px] text-cyan-400/40">
+      <div>
+        NODE: <span class="text-white font-bold">Z-STRUM.v1</span>
+      </div>
+      <div class="hidden sm:block">
+        LATENCY: <span id="hud-latency-val" class="text-emerald-400 font-bold">-- ms</span>
+      </div>
+      <div>
+        SECURE: <span class="text-white font-bold">SSL_ECC_256</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Simulación de logs del sistema dinámicos
+  const logs = [
+    "Z-STRUM CORE CONNECTED...",
+    "ASYNC MATRIX OPERATIONAL...",
+    "FETCHING LIVE PROTOCOLS...",
+    "PULS BIOMETRICS BUFFER READY...",
+    "SECURE ENVELOPE: ACTIVE"
+  ];
+
+  const initFooterHud = () => {
+    const ticker = document.getElementById('hud-stream-ticker');
+    const latencyVal = document.getElementById('hud-latency-val');
+    if (!ticker) return;
+
+    let logIndex = 0;
+    
+    // Rotación de logs asíncronos
+    const rotateLog = () => {
+      ticker.style.opacity = '0';
+      setTimeout(() => {
+        ticker.innerText = logs[logIndex];
+        ticker.style.opacity = '1';
+        logIndex = (logIndex + 1) % logs.length;
+      }, 500);
+    };
+
+    const logInterval = setInterval(rotateLog, 4500);
+
+    // Simulación sutil de latencia de red
+    const updateLatency = () => {
+      if (latencyVal) {
+        const ping = Math.floor(Math.random() * (42 - 12 + 1)) + 12;
+        latencyVal.innerText = `${ping} ms`;
+      }
+    };
+    
+    updateLatency();
+    const latencyInterval = setInterval(updateLatency, 6000);
+
+    // Limpieza de hilos de ejecución al cambiar de vista en Astro
+    document.addEventListener('astro:before-swap', () => {
+      clearInterval(logInterval);
+      clearInterval(latencyInterval);
+    }, { once: true });
+  };
+
+  initFooterHud();
+  document.addEventListener('astro:page-load', initFooterHud);
+</script>
+
+<style>
+  #hud-stream-ticker {
+    transition: opacity 0.4s ease-in-out;
+  }
+</style>
