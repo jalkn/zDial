@@ -5,37 +5,5 @@ __pycache__/
 venv/
 .env
 
-# Django
-db.sqlite3
-media/
-static_root/
-
-# IDEs
-.vscode/
-.idea/
-data/
-old.html
-img/01/
-img/02/
-img/03/
-img/04/
-img/05/
-img/06/
-
-index2.html
-index3.html
-index4.html
-index5.html
-index6.html
-index7.html
-index8.html
-index9.html
-index10.html
-
-manifesto.html
-manifesto2.html
-
-journal/
-
 prev/
 img/

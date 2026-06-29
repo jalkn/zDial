@@ -11,17 +11,14 @@ import TacticalDial from '../components/TacticalDial.astro';
   
   <main class="relative w-full h-screen overflow-hidden flex flex-col justify-between">
     
-    <!-- Zona Superior: Telemetría -->
     <header class="w-full z-10">
       <HeaderHud />
     </header>
 
-    <!-- Zona Central: Dial Táctico Activo -->
     <section class="flex-1 w-full flex items-center justify-center z-10">
       <TacticalDial />
     </section>
 
-    <!-- Zona Inferior: Stream / Logs -->
     <footer class="w-full z-10">
       <FooterHud />
     </footer>

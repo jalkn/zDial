@@ -18,49 +18,45 @@ const { title = "JAKO VAULT" } = Astro.props;
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet" />
     
     <style is:global>
-      /* Configuración del Sistema de Diseño e Identidad */
       :root {
         --jako-black: #050508;
         --jako-darkblue: #030712;
       }
 
-      /* Inicialización del Entorno HUD */
       html, body {
         margin: 0;
         padding: 0;
         width: 100%;
         height: 100%;
         background-color: var(--jako-darkblue);
-        color: #e5e7eb; /* text-gray-200 */
+        color: #e5e7eb;
         font-family: 'Orbitron', sans-serif; 
         scroll-behavior: smooth; 
         letter-spacing: 0.05em;
         overflow: hidden;
       }
 
-      /* Clases de escape para tipografía secundaria (Plus Jakarta Sans) */
       .font-body {
         font-family: 'Plus Jakarta Sans', sans-serif;
       }
       
-      /* Tratamiento aséptico para las Barras de Desplazamiento */
       ::-webkit-scrollbar {
         width: 4px;
         height: 4px;
       }
       ::-webkit-scrollbar-track {
-        background: rgba(5, 5, 8, 0.5);
+        background: rgba(3, 7, 18, 0.8);
       }
       ::-webkit-scrollbar-thumb {
-        background: rgba(0, 255, 204, 0.2);
+        background: rgba(6, 182, 212, 0.3);
         border-radius: 2px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: rgba(0, 255, 204, 0.5);
+        background: rgba(6, 182, 212, 0.5);
       }
     </style>
   </head>
-  <body class="w-full h-full antialiased selection:bg-cyan-500/30">
+  <body>
     <slot />
   </body>
 </html>
