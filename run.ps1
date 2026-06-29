@@ -31,14 +31,14 @@ $PackageJsonCode = @'
 }
 '@
 
-# Configuración extendida de TypeScript para eliminar errores de resolución de rutas y tipos de Astro
+# Configuración extendida de TypeScript oficial para Astro - Elimina errores visuales en VS Code
 $TsConfigCode = @'
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
@@ -46,11 +46,7 @@ $TsConfigCode = @'
     "allowJs": true,
     "checkJs": false,
     "jsx": "preserve",
-    "baseUrl": ".",
-    "paths": {
-      "@components/*": ["src/components/*"],
-      "@layouts/*": ["src/layouts/*"]
-    }
+    "baseUrl": "."
   },
   "include": ["src/**/*", ".astro/**/*"]
 }
@@ -505,17 +501,21 @@ foreach ($File in $FilesToProcess.Keys) {
 # =========================================================================
 Write-Host "`n[4/4] Verificando dependencias e iniciando servidor..." -ForegroundColor Yellow
 
-# Resolución de rutas unificada e infalible mediante Join-Path nativo
+# Resolución de rutas unificada e infalible mediante Join-Path nativo del OS
 $AstroCliPath = Join-Path (Join-Path "node_modules" "astro") "package.json"
 
 if (-not (Test-Path $AstroCliPath)) {
     Write-Host "⚠️ No se detectaron los módulos locales estables. Forzando instalación aséptica..." -ForegroundColor Magenta
     npm install
 } else {
-    Write-Host "✔ Módulos verificados. Saltando instalación para acelerar el despliegue." -ForegroundColor Green
+    Write-Host "✔ Módulos locales detectados correctamente." -ForegroundColor Green
 }
 
-Write-Host "Invocando directamente al CLI local de Astro..." -ForegroundColor Gray
+# Fuerza la generación de mapas de tipado dinámicos (.astro/types.d.ts) para limpiar el editor
+Write-Host "🔄 Sincronizando e inyectando metadatos de tipos de Astro..." -ForegroundColor Cyan
+npx astro sync
+
+Write-Host "`nInvocando directamente al CLI local de Astro..." -ForegroundColor Gray
 Write-Host "--------------------------------------------------------" -ForegroundColor Gray
 
 try {

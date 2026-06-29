@@ -3,7 +3,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
@@ -11,11 +11,7 @@
     "allowJs": true,
     "checkJs": false,
     "jsx": "preserve",
-    "baseUrl": ".",
-    "paths": {
-      "@components/*": ["src/components/*"],
-      "@layouts/*": ["src/layouts/*"]
-    }
+    "baseUrl": "."
   },
   "include": ["src/**/*", ".astro/**/*"]
 }
