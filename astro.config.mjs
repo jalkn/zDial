@@ -6,13 +6,5 @@ export default defineConfig({
   outDir: "./dist",
   server: {
     port: 3000
-  },
-  vite: {
-    renderBuiltUrl(filename, { type }) {
-      if (type === 'asset') {
-        return filename;
-      }
-      return undefined;
-    }
   }
 });
