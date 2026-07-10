@@ -36,7 +36,6 @@ const { title } = Astro.props;
     </script>
 
 <style is:global>
-    /* VARIABLES ACROMÁTICAS DE ENTORNO MATRICIAL */
     :root[data-theme="dark"] {
         --jako-bg: rgba(0, 0, 0, 0.92);
         --jako-text: #ffffff;
@@ -75,7 +74,6 @@ const { title } = Astro.props;
         transform: translateZ(0);
     }
 
-    /* SISTEMA DE EMISIÓN LED SEGÚN TEMA */
     :root[data-theme="dark"] .active-led {
         text-shadow: 0 0 10px var(--jako-led), 0 0 4px var(--jako-led) !important;
     }

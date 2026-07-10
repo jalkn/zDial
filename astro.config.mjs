@@ -5,7 +5,14 @@ export default defineConfig({
   publicDir: "./public",
   outDir: "./dist",
   server: {
-    port: 3000,
-    host: true
+    port: 3000
+  },
+  vite: {
+    renderBuiltUrl(filename, { type }) {
+      if (type === 'asset') {
+        return filename;
+      }
+      return undefined;
+    }
   }
 });

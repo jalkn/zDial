@@ -1,10 +1,86 @@
----
-import Layout from '../layouts/Layout.astro';
----
-<Layout title="JAKO VAULT">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <link class="icon" type="image/png" href="img/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JAKO VAULT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { 
+            theme: { 
+                extend: { 
+                    screens: { 'xs': '400px' },
+                    colors: { 
+                        'jako-bg': 'var(--jako-bg)',
+                        'jako-text': 'var(--jako-text)',
+                        'jako-border': 'var(--jako-border)',
+                        'jako-glass': 'var(--jako-glass)',
+                        'jako-led': 'var(--jako-led)',
+                    },
+                    fontFamily: { 
+                        'sans': ['Orbitron', 'sans-serif'],
+                        'mono': ['Orbitron', 'monospace'],
+                        'body': ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root[data-theme="dark"] {
+            --jako-bg: rgba(0, 0, 0, 0.92);
+            --jako-text: #ffffff;
+            --jako-border: rgba(255, 255, 255, 0.02);
+            --jako-glass: rgba(0, 0, 0, 0.5);
+            --jako-led: rgba(255, 255, 255, 0.65);
+            --gradient-start: rgba(255, 255, 255, 0.03);
+            --gradient-mid: rgba(5, 5, 8, 0.85);
+            --gradient-end: #000000;
+        }
+        :root[data-theme="white"] {
+            --jako-bg: #f8f9fa;
+            --jako-text: #000000;
+            --jako-border: rgba(0, 0, 0, 0.08);
+            --jako-glass: rgba(255, 255, 255, 0.4);
+            --jako-led: rgba(0, 0, 0, 0.75);
+            --gradient-start: rgba(0, 0, 0, 0.02);
+            --gradient-mid: rgba(248, 249, 250, 0.85);
+            --gradient-end: #ffffff;
+        }
+
+        body { 
+            scroll-behavior: smooth; 
+            letter-spacing: 0.05em;  
+            overscroll-behavior: none;
+            background-color: var(--jako-bg);
+            color: var(--jako-text);
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        #page-bg-overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, var(--gradient-start) 15%, var(--gradient-mid) 80%, var(--gradient-end) 100%);
+            z-index: -1;
+            transform: translateZ(0);
+        }
+
+        :root[data-theme="dark"] .active-led {
+            text-shadow: 0 0 10px var(--jako-led), 0 0 4px var(--jako-led) !important;
+        }
+        :root[data-theme="white"] .active-led {
+            text-shadow: 0 0 6px var(--jako-led) !important;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-jako-text selection:text-jako-bg overflow-x-hidden min-h-screen">
+
+    <div id="page-bg-overlay"></div>
+
     <main id="main-vault" class="w-full flex-1 flex flex-col justify-center items-center min-h-screen relative overflow-hidden"> 
         <div class="w-full flex flex-col items-center justify-center p-4 sm:p-6 select-none relative z-10">
-            
             <div class="relative w-full max-w-[340px] sm:max-w-[400px] md:max-w-[450px] aspect-square flex flex-col items-center justify-center gap-6">
                 
                 <div id="artepanel-pack-container" class="relative w-[65vw] h-[65vw] sm:w-[50vw] sm:h-[50vw] md:w-[38vh] md:h-[38vh] max-w-[270px] max-h-[270px] min-w-[180px] min-h-[180px] aspect-square shrink-0 drop-shadow-[0_25px_55px_rgba(0,0,0,0.85)]">
@@ -26,28 +102,15 @@ import Layout from '../layouts/Layout.astro';
     </main>
 
     <script>
-        // =========================================================================
-        // MOTOR DE ENRUTAMIENTO VECTORIAL (LENGUAJE BIOCINÉTICO)
-        // =========================================================================
-        const VECTOR_TO_CLOCK_INDEX: Record<string, number> = {
+        const VECTOR_TO_CLOCK_INDEX = {
             'P': 1,  'U': 2,  'L': 3,  'S': 4,
             'PL': 5, 'PU': 6, 'LU': 7, 'SU': 8,
             'PUL': 9,'LPS': 10,'SPU': 11,'ULS': 12
         };
 
-        interface DialWave {
-            sets: number;
-            vector: number;
-            reps: number;
-            rawCoord: string;
-        }
+        let biokineticWaveHistory = [];
+        const $ = id => document.getElementById(id);
 
-        let biokineticWaveHistory: DialWave[] = [];
-        const $ = (id: string) => document.getElementById(id);
-
-        // =========================================================================
-        // RENDERIZADOR CUÁNTICO DE ONDAS (SANDWATCH VISUAL)
-        // =========================================================================
         function renderBiokineticWaves() {
             const container = $('wave-quantum-container');
             if (!container || biokineticWaveHistory.length === 0) return;
@@ -91,9 +154,6 @@ import Layout from '../layouts/Layout.astro';
             container.innerHTML = htmlContent;
         }
 
-        // =========================================================================
-        // ACTUALIZACIÓN DE COORDENADAS MATRICIALES (Z-DIAL)
-        // =========================================================================
         function updateZ() {
             const now = new Date();
             const minutes = now.getMinutes();
@@ -141,15 +201,10 @@ import Layout from '../layouts/Layout.astro';
             if (elDial) elDial.textContent = biokineticCoordinate;
         }
 
-        // Ejecución limpia garantizando la total disponibilidad del DOM en el navegador
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                updateZ();
-                setInterval(updateZ, 1000);
-            });
-        } else {
+        document.addEventListener('DOMContentLoaded', () => {
             updateZ();
             setInterval(updateZ, 1000);
-        }
+        });
     </script>
-</Layout>
+</body>
+</html>
