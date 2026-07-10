@@ -6,13 +6,74 @@ const { title } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>{title}</title>
-	</head>
-	<body class="bg-slate-950 text-white font-mono antialiased selection:bg-white selection:text-black">
-		<slot />
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <link class="icon" type="image/png" href="img/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{title}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script is:inline>
+        tailwind.config = { 
+            theme: { 
+                extend: { 
+                    screens: { 'xs': '400px' },
+                    colors: { 
+                        'jako-black': '#050508',
+                        'jako-darkblue': '#030712'
+                    },
+                    fontFamily: { 
+                        'sans': ['Orbitron', 'sans-serif'],
+                        'mono': ['Orbitron', 'monospace'],
+                        'body': ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style is:global>
+        body { 
+            font-family: 'Orbitron', sans-serif !important; 
+            scroll-behavior: smooth; 
+            letter-spacing: 0.05em; 
+            background-color: #030712 !important; 
+            color: #f8fafc !important;
+        } 
+
+        #page-bg-overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 30%, rgba(37, 99, 235, 0.24) 0%, rgba(15, 23, 42, 0.8) 55%, #030712 100%) !important;
+            z-index: -1;
+        }
+
+        .tele-label { color: rgba(248, 250, 252, 0.4) !important; } 
+        .tele-value { color: #ffffff !important; text-shadow: 0 0 14px rgba(255, 255, 255, 0.65), 0 0 4px rgba(255, 255, 255, 0.3) !important; } 
+        
+        .border-custom { border-color: rgba(255, 255, 255, 0.15) !important; }
+        .border-custom:hover { border-color: rgba(255, 255, 255, 0.6) !important; }
+
+        .glass { 
+            background: rgba(5, 5, 8, 0.45) !important; 
+            border: 1px solid rgba(255, 255, 255, 0.06) !important; 
+            border-top: 1px solid rgba(255, 255, 255, 0.25) !important; 
+            backdrop-filter: blur(35px) !important; 
+            -webkit-backdrop-filter: blur(35px) !important;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+        }
+
+        .img-glow-transition {
+            transition: filter 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            will-change: filter, transform;
+        }
+
+        .custom-hud-scroll::-webkit-scrollbar { display: none; }
+        .custom-hud-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="antialiased selection:bg-white selection:text-black overflow-x-hidden text-white">
+    <div id="page-bg-overlay"></div>
+    <div class="fixed inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30 z-0 pointer-events-none"></div>
+    <slot />
+</body>
 </html>
