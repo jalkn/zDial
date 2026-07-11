@@ -9,3 +9,7 @@ prev/
 img/
 templates/
 .astro
+
+index.html
+tailwind.config.mjs
+
