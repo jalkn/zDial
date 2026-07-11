@@ -185,11 +185,11 @@ cat << 'INDEX10_EOF' > public/index.html
     </script>
     <style>
         :root[data-theme="dark"] {
-            --jako-bg: rgba(0, 0, 0, 0.92);
+            --jako-bg: rgba(0, 0, 0, 0.95);
             --jako-text: #ffffff;
             --jako-border: rgba(255, 255, 255, 0.02);
             --jako-glass: rgba(0, 0, 0, 0.5);
-            --jako-led: rgba(255, 255, 255, 0.65);
+            --jako-led: rgba(255, 255, 255, 0.75);
             --gradient-start: rgba(255, 255, 255, 0.03);
             --gradient-mid: rgba(5, 5, 8, 0.85);
             --gradient-end: #000000;
@@ -199,7 +199,7 @@ cat << 'INDEX10_EOF' > public/index.html
             --jako-text: #000000;
             --jako-border: rgba(0, 0, 0, 0.08);
             --jako-glass: rgba(255, 255, 255, 0.4);
-            --jako-led: rgba(0, 0, 0, 0.75);
+            --jako-led: rgba(0, 0, 0, 0.85);
             --gradient-start: rgba(0, 0, 0, 0.02);
             --gradient-mid: rgba(248, 249, 250, 0.85);
             --gradient-end: #ffffff;
@@ -238,18 +238,28 @@ cat << 'INDEX10_EOF' > public/index.html
         <div class="w-full flex flex-col items-center justify-center p-4 sm:p-6 select-none relative z-10">
             <div class="relative w-full max-w-[340px] sm:max-w-[400px] md:max-w-[450px] aspect-square flex flex-col items-center justify-center gap-6">
                 
-                <div id="artepanel-pack-container" class="relative w-[65vw] h-[65vw] sm:w-[50vw] sm:h-[50vw] md:w-[38vh] md:h-[38vh] max-w-[270px] max-h-[270px] min-w-[180px] min-h-[180px] aspect-square shrink-0 drop-shadow-[0_25px_55px_rgba(0,0,0,0.85)]">
+                <div id="artepanel-pack-container" class="relative w-[65vw] h-[65vw] sm:w-[50vw] sm:h-[50vw] md:w-[38vh] md:h-[38vh] max-w-[270px] max-h-[270px] min-w-[180px] min-h-[180px] aspect-square shrink-0 drop-shadow-[0_25px_55px_rgba(0,0,0,0.85)] cursor-pointer">
                     <div id="artepanel-mask-wrapper" class="w-full h-full relative overflow-hidden rounded-full transition-all duration-500" style="background-image: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-mid) 50%, var(--gradient-end) 100%);">
-                        <div class="absolute inset-0 flex items-center justify-center p-0 z-20 pointer-events-none">
-                            <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-current text-jako-text pointer-events-none">
+                        
+                        <div class="absolute inset-0 flex items-center justify-center p-0 z-20">
+                            <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-current text-jako-text transition-all duration-500 origin-center">
+                                
                                 <g id="wave-quantum-container" class="origin-center -rotate-90 rounded-full"></g>
+
+                                <g id="sandwatch-group" class="origin-center opacity-0 transition-all duration-500 style-gpu" style="will-change: opacity;">
+                                    <path d="M 90,90 L 310,90 L 90,310 L 310,310 Z" class="stroke-current opacity-20" />
+                                    <path d="M 90,90 Q 200,125 310,90" class="stroke-current opacity-20" />
+                                    <path d="M 90,310 Q 200,275 310,310" stroke-dasharray="3 3" class="stroke-current opacity-20" />
+                                    <text id="z-dial-hud" x="200" y="218" text-anchor="middle" class="fill-current font-black text-[45px] tracking-[0.35em] font-sans">1P1</text>
+                                </g>
                             </svg>
                         </div>
+
                     </div>
                 </div>
 
-                <div id="sandwatch-group" class="text-center transition-opacity duration-300">
-                    <span id="z-dial" class="font-mono text-lg sm:text-xl font-bold tracking-widest active-led cursor-pointer">1P1</span>
+                <div class="text-center transition-opacity duration-300">
+                    <span id="z-dial" class="font-mono text-lg sm:text-xl font-bold tracking-widest active-led">1P1</span>
                 </div>
 
             </div>
@@ -264,6 +274,7 @@ cat << 'INDEX10_EOF' > public/index.html
         };
 
         let biokineticWaveHistory = [];
+        let isDialTextRevealed = false;
         const $ = id => document.getElementById(id);
 
         function renderBiokineticWaves() {
@@ -273,7 +284,7 @@ cat << 'INDEX10_EOF' > public/index.html
             let htmlContent = '';
             biokineticWaveHistory.forEach((dial, tIndex) => {
                 const currentScale = tIndex * 1; 
-                const baseOpacity = 1.0 - (tIndex * 0.08);
+                const baseOpacity = isDialTextRevealed ? 0.05 : (1.0 - (tIndex * 0.08));
                 if (baseOpacity <= 0) return;
 
                 const viewFactor = 18; 
@@ -353,12 +364,26 @@ cat << 'INDEX10_EOF' > public/index.html
             renderBiokineticWaves();
 
             const elDial = $('z-dial');
+            const elDialHud = $('z-dial-hud');
             if (elDial) elDial.textContent = biokineticCoordinate;
+            if (elDialHud) elDialHud.textContent = biokineticCoordinate;
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             updateZ();
             setInterval(updateZ, 1000);
+
+            // Vinculación Touch/Click Unificada del Contenedor del Reloj
+            const container = $('artepanel-pack-container');
+            container.addEventListener('click', () => {
+                isDialTextRevealed = !isDialTextRevealed;
+                const sandwatchGroup = $('sandwatch-group');
+                if (sandwatchGroup) {
+                    sandwatchGroup.style.opacity = isDialTextRevealed ? "1" : "0";
+                }
+                renderBiokineticWaves();
+                if (navigator.vibrate) navigator.vibrate(10);
+            });
         });
     </script>
 </body>
