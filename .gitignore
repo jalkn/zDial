@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+prev/
+img/
+templates/
+.astro/
+public/
+docs/
+dist/
+src/
+node_modules/
+
+index.html
+tailwind.config.mjs
+package.json
+tsconfig.json
+z_dial_core.py
+astro.config.mjs
+
