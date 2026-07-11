@@ -250,16 +250,12 @@ cat << 'INDEX10_EOF' > public/index.html
                                     <path d="M 90,90 L 310,90 L 90,310 L 310,310 Z" class="stroke-current opacity-20" />
                                     <path d="M 90,90 Q 200,125 310,90" class="stroke-current opacity-20" />
                                     <path d="M 90,310 Q 200,275 310,310" stroke-dasharray="3 3" class="stroke-current opacity-20" />
-                                    <text id="z-dial-hud" x="200" y="218" text-anchor="middle" class="fill-current font-black text-[45px] tracking-[0.35em] font-sans">1P1</text>
+                                    <text id="z-dial" x="200" y="218" text-anchor="middle" class="fill-current font-black text-[45px] tracking-[0.35em] font-sans">1P1</text>
                                 </g>
                             </svg>
                         </div>
 
                     </div>
-                </div>
-
-                <div class="text-center transition-opacity duration-300">
-                    <span id="z-dial" class="font-mono text-lg sm:text-xl font-bold tracking-widest active-led">1P1</span>
                 </div>
 
             </div>
@@ -375,15 +371,17 @@ cat << 'INDEX10_EOF' > public/index.html
 
             // Vinculación Touch/Click Unificada del Contenedor del Reloj
             const container = $('artepanel-pack-container');
-            container.addEventListener('click', () => {
-                isDialTextRevealed = !isDialTextRevealed;
-                const sandwatchGroup = $('sandwatch-group');
-                if (sandwatchGroup) {
-                    sandwatchGroup.style.opacity = isDialTextRevealed ? "1" : "0";
-                }
-                renderBiokineticWaves();
-                if (navigator.vibrate) navigator.vibrate(10);
-            });
+            if (container) {
+                container.addEventListener('click', () => {
+                    isDialTextRevealed = !isDialTextRevealed;
+                    const sandwatchGroup = $('sandwatch-group');
+                    if (sandwatchGroup) {
+                        sandwatchGroup.style.opacity = isDialTextRevealed ? "1" : "0";
+                    }
+                    renderBiokineticWaves();
+                    if (navigator.vibrate) navigator.vibrate(10); // Haptic feedback UX
+                });
+            }
         });
     </script>
 </body>
