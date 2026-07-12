@@ -2,50 +2,35 @@
 
 ---
 
-## 🧬 PULSOR Protocol: Absolute Solar Drift
-The system completely eliminates dependence on conventional horizontal time, organizing biometric volume around a frequency column synchronized with astronomical and rotational coordinates:
-
-- **Sets (Fractal Phi Reduction):** Work volume is generated through a fractal reduction of minutes based on the Golden Ratio ($PHI$), preventing linear predictability.
-- **Actions (Solar Quadrants):** Pure hardware letters (`PL`, `ULS`, `UP`) determined exclusively by the Earth's absolute rotation angle relative to the sun (0° to 359.9°).
-- **Reps (Angulation Matrix):** Repetition volume is mapped using the clean scaling of solar elevation to calculate exact kinetic stress parameters (Ranging strictly from 6 to 24).
+## 🚀 Core Engine Architecture
+- **Sub-Second Engine (Odd Path):** High-frequency, millisecond-level evaluation loops structured entirely around base-12 intervals.
+- **Macro-Cycle Engine (Even Path):** Macro-time structural blocks and sequential transitional sub-slots.
+- **Relational Persistence Layer:** Implements a direct 1:N schema using an agnostic SQLite local instance (`jako_vault.db`) to ensure decoupled decoupling between the session header and high-frequency data streams.
 
 ---
-
-## 🧠 System Architecture: The Resonance Organism
 
 ### 1. Biokinetic Encryption Framework (_PULS)
-Based on the **Verticality Principle**, human movement is translated into machine telemetry for mycelium tuning. This structural map directly bridges the industrial hardware codes (`P_U_L_S`) with the intimate biological actions in running lowercase text:
 
-| Technical ID | Primary Action | Deconstructive Alternatives (Resonance) | Kinetic Intent |
-| :--- | :--- | :--- | :--- |
-| **P_PACE** | caminar | impulso // surco // vibración | Linear progress / Transit / Exhale |
-| **U_UNDER** | caer | empuje // raíz // equilibrio | Depth / Immersion / Inhale |
-| **L_LIFT** | levantarse | ascenso // núcleo // tensión | Resilience / Elevation / Recovery |
-| **S_SURGE** | saltar | carga // proyección // destello | Explosion / Expansion / Flash |
+### The Seed in Vertical Time: Geometry of the Living Coordinate
+The Universe does not shift along a flat, linear trajectory from past to future; it propagates via spherical pulsations of contraction and expansion. The JAKO VAULT Biokinetic Dial is a mathematical and aesthetic oracle that captures this quantum truth second by second. Each alphanumeric dial generated (e.g., `8PU10`, `4U9`) is not an arbitrary string of digital data—it is a **Creative Seed** frozen on the vertical axis of time, precisely at the threshold where the physical body recognizes itself as the subconscious mind.
 
-### 2. The Core Performance Origin (PULSOR)
-The **PULSOR** is the tactical heart of the laboratory. It stems from body-endurance performance roots—where a physical line is raw-carved onto the workspace boundaries every 20 counts of biometric exhaust. Within the web interface, the `PULSOR` functions as an interactive generator where clicking individual kinetic nodes triggers generative acoustic pulses (`.wav`), sending structural waveforms to validate mycelium development.
+The engine operates on a wave-physics model inspired by Atlantic biomechanical efficiency, sacred geometry, and the neuroplasticity of functional movement. Each coordinate results from three concentric, recurring waves that emerge from the center of the teardrop, expand outward, and collapse—leaving the origin in a state of absolute void to allow the genesis of the next cycle.
 
-### 3. Data Feedback Loop
-Zenergia breathes through an untamed cycle between spatial data, kinetic performance, and biological matter:
+Emulating an analog timepiece, the system partitions space-time into a sacred continuum of 12 distinct variants:
 
-* **Inflow (Absorption):** Solar angle tracking, kinetic inputs, and local agricultural corn residue (amero).
-* **Processing (Crystallization):** Real-time alphanumeric telemetry compression displayed through synchronized interface monitors (`#big-dial`, `#z-dial`, `#hologram-dial`).
-* **Outflow (Manifestation):** Structurally validated **Z-Bricks**, interactive **zenBeats** (generative audio triggers), and local node hardening.
+#### 1. The Internal Wave: Frequency (`Sets`)
+The coaxial wave originating at the absolute nucleus of the engine. It signifies the primordial rhythm and the oscillation of living frequency synchronized with the Earth, Moon, and Sun. Biomechanically, this wave activates foundational **Stamina** and **Endurance**. It governs energy capture and acts as the subconscious pacemaker of functional movement. Fluctuating deterministically from 1 to 12, it dictates the temporal maturation of the current cosmic batch.
 
----
+#### 2. The Intermediate Wave: Action (`Vectors`)
+The transmission body; the wave that bridges internal impulse with physical matter. It represents the vectors of the subconscious mind mapped onto the four universal kinetic archetypes: **P.U.L.S.** (**P**ace, **U**nder, **L**ift, **S**urge). These actions mirror the natural mechanics of thought—repelling (*Push*), attracting (*Pull*), or striking a creative spark (*Trigger*). It manifests in 12 evolutionary variants, transitioning organically from pure forces (single letters) and dual-balancing forces (two letters), to complex vortices of illumination (three-letter combinations such as `ULS`).
 
-### 🛡️ Z-ARPA (Director & Auditor)
-*Robotic Process Automation for Auditing.* Z-ARPA is the backend ledger supervising the biological lineage. If human movement resonance data fails to meet the mathematical validation thresholds of the solar matrix, the organic substrate is flagged as out of tune and recycled back into the compost loops.
+#### 3. The External Wave: Tension (`Reps`)
+The perimeter wave; the boundary layer where raw energy collides with physical reality and condenses into matter. It represents molecular cohesion, structural resistance, and the gravitational magnetism exerted by celestial bodies on biology. This wave disciplines **Pure Strength** and **Equilibrium**, monitoring the residual tension accumulated within living tissue. It fluctuates symmetrically from 1 to 12 in a constant isometric tug-of-war with the internal frequency wave.
+
+### The Quantum Collapse of the Teardrop
+Upon interacting with the interface, the observer halts the continuous fluctuation of these three entangled waves. In that precise instance of absolute attention, the wave function collapses, materializing the teardrop into a unique, unrepeatable mathematical signature.
 
 ---
-
-### 🛠️ Technical Symmetry
-* **Backend (`zarpa.py` / `run.ps1`):** Functional logic in clean `zCamelCase` for analytical ledger tracking and system configuration stability.
-* **Frontend (`index.html`):** Visual tech-manifesto using monumental uppercase commands (`Z_UPPER_CASE`) for hard industrial monitoring paired with fluid lowercase listings (`normal-case`) for biological and poetic translation layers.
-
----
-
 
 
 ## 🛠️ Stack Configuration
