@@ -469,6 +469,75 @@ cat << 'INDEX10_EOF' > public/index.html
 </html>
 INDEX10_EOF
 
+# ==============================================================================
+# INJECTION: BIOCINETIC MANIFESTO & P.U.L.S. DICTIONARY DATA BLOCKS
+# ==============================================================================
+
+# Ensure directory structure exists
+mkdir -p docs/manifesto docs/meanings
+
+# Block 1: Manifesto Chapter Document (Markdown for UI/Drawer Integration)
+cat << 'EOF' > docs/manifesto/S01.md
+# JAKO VAULT // BIOMANIFESTO & THE COGNITIVE SYSTEM
+
+### 👁️ CHAPTER 1 // THE COGNITIVE SYSTEM
+The body is our unconscious mind and the source of our creativity. We do constant functional movements on a daily basis. You learned all of the movements as a child. It was programmed into your unconscious mind. You don’t have to think about walking because your body has already learned. When you get up, close a door, lift something from the ground, go to bed or to take a seat. All these universal motions become a program in our unconscious mind. If you focus on your body, you are aware every second and the further away your mind is. You are more aware of how creative you are. The brain's plasticity only progresses if you keep training your mind. You can do my method or you can do whatever; an art or a sport. Take the place of the programmer and watch what is happening. The mind will be your servant and your body, the art master. When it becomes a routine, you will be ready to bring new ideas into reality.
+
+### 🫀 CHAPTER 2 // THE ALGORITHMIC DIAL & THE QUANTUM HEART
+The algorithm does not invent data; it is a translator. It captures the Earth's rotation relative to the Sun in a 24-hour matrix and condenses it into a living 'bio-kinetic coordinate.' Time is emulated as a quantum heart expanding and contracting through parity:
+
+* **ODD SECONDS (Sub-Second Engine):** Computes microcellular velocity at a millisecond level. It triggers an inverse geometric balance formula ($13 - Sets$), generating high-frequency neural acceleration.
+* **EVEN SECONDS (Macro-Cycle Engine):** Consolidates structural physical force into macro blocks of 7.5 seconds based on the analog clock (Base-12).
+
+> 📐 **SYNTAX & COLLAPSE RULE:** While the hardware architecture streams data as `[Sets][Vector][Reps]`, human translation within the HUD operates under the physics of material collapse—reading backwards from the external perimeter (`Reps`) into the internal frequency core (`Sets`). Thus, the signature **8PU10** materializes as: **10 PACE WITH PUSH AT FREQUENCY X8.** Every collapsed dial leaves the nucleus empty (**Zero Point**) for the next pulse.
+
+### 🌊 CHAPTER 3 // BIOMECHANICAL INTEGRATION & THE THREE CONCENTRIC WAVES
+The ecosystem self-manages by plotting three recurring, concentric waves that radically alter the trajectory of the geometry line according to neural transmission:
+
+* **THE INTERNAL WAVE (Sets):** Coaxial frequency. Micro-temporal and macro-stellar vertical time. Governs energy capture, acting as the unconscious pacemaker that disciplines Stamina and Endurance. Fluctuates from 1 to 12.
+* **THE INTERMEDIATE WAVE (Actions):** The transmission vector of the nervous system. Disciplines Coordination, Precision, and Velocity. It segments time into 3 phases: 
+    * *Phase A (Odd Seconds // Monadic - P, U, L, S):* Zero algorithmic resistance for maximum visual lightness.
+    * *Phase B (Even Seconds < 30s // Binary - PL, PU, LU, SU):* Fragmenting the stroke to simulate kinetic active oscillation.
+    * *Phase C (Even Seconds >= 30s // Ternary - PUL, LPS, SPU, ULS):* Dense, fixed blocks every 7.5 seconds focusing on critical isometry.
+* **THE EXTERNAL WAVE (Reps):** Dense tensional cohesion. The perimeter boundary where raw energy collides with physical reality under gravitational magnetism. Disciplines Pure Strength and Equilibrium, measuring the residual tension of the tissue.
+EOF
+
+# Block 2: Vector Meanings Dictionary (Aseptic Plain Text Matrix for Terminal/Engine Parse)
+cat << 'EOF' > docs/meanings/PULS.txt
+================================================================================
+P.U.L.S. PROTOCOL // ALPHANUMERIC DIAL TRANSLATION DICTIONARY
+================================================================================
+
+[SYNTAX MATRIX]
+Format: [Reps] [Vector Text] [Sets Multiplier]
+
+[12 EVOLUTIONARY VARIANTS]
+
+CODE | PHASE     | SPANISH TEXT                       | ENGLISH TEXT
+-----+-----------+------------------------------------+-------------------------------------
+P    | PHASE A   | [Reps] PASOS X[Sets]               | [Reps] PACE X[Sets]
+U    | PHASE A   | [Reps] PRESIONES X[Sets]           | [Reps] PUSH X[Sets]
+L    | PHASE A   | [Reps] CARGAS X[Sets]              | [Reps] PULL X[Sets]
+S    | PHASE A   | [Reps] SALTOS X[Sets]              | [Reps] SURGE X[Sets]
+PL   | PHASE B   | [Reps] PASOS CON CARGA X[Sets]     | [Reps] PACE WITH PULL X[Sets]
+PU   | PHASE B   | [Reps] PASOS CON PRESIÓN X[Sets]   | [Reps] PACE WITH PUSH X[Sets]
+LU   | PHASE B   | [Reps] CARGAS CON PRESIÓN X[Sets]  | [Reps] PULL WITH PUSH X[Sets]
+SU   | PHASE B   | [Reps] SALTOS CON PRESIÓN X[Sets]  | [Reps] SURGE WITH PUSH X[Sets]
+PUL  | PHASE C   | [Reps] PASOS CON PRESIÓN/CARGA     | [Reps] PACE WITH PUSH AND PULL
+LPS  | PHASE C   | [Reps] CARGAS CON PASO/SALTO       | [Reps] PULL WITH PACE AND SURGE
+SPU  | PHASE C   | [Reps] SALTOS CON PASO/PRESIÓN     | [Reps] SURGE WITH PACE AND PUSH
+ULS  | PHASE C   | [Reps] PRESIONES CON CARGA/SALTO   | [Reps] PUSH WITH PULL AND SURGE
+
+--------------------------------------------------------------------------------
+CORE METRICS DEFINITIONS
+--------------------------------------------------------------------------------
+- PACE (P): Continuous displacement cadence. Pace vector driving aerobic baseline.
+- PUSH (U): Direct kinetic neuro-transmission vector. Repelling force.
+- PULL (L): Structural attraction biomechanical load. Tensile isometric connection.
+- SURGE (S): Explosive energy expansion. High-velocity trigger mechanism.
+================================================================================
+EOF
+
 # =========================================================================
 # 5. Clean Frontend Architecture (MUTED FOR STATIC ISOLATION)
 # =========================================================================

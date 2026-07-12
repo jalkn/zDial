@@ -73,7 +73,7 @@
         :root[data-theme="white"] .active-led {
             text-shadow: 0 0 6px var(--jako-led) !important;
         }
-
+        
         #artepanel-mask-wrapper {
         -webkit-mask-image: -webkit-radial-gradient(white, black); /* Hack nativo de Safari para congelar bordes redondeados */
         transform: translateZ(0);
@@ -92,12 +92,12 @@
                 <div id="artepanel-pack-container" class="relative w-[65vw] h-[65vw] sm:w-[50vw] sm:h-[50vw] md:w-[38vh] md:h-[38vh] max-w-[270px] max-h-[270px] min-w-[180px] min-h-[180px] aspect-square shrink-0 drop-shadow-[0_25px_55px_rgba(0,0,0,0.85)] cursor-pointer">
                     <div id="artepanel-mask-wrapper" class="w-full h-full relative overflow-hidden rounded-full transition-all duration-500" style="background-image: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-mid) 50%, var(--gradient-end) 100%);">
                         
-                        <div class="absolute inset-0 flex items-center justify-center p-0 z-20 leading-none">
-                            <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full block fill-none stroke-current text-jako-text transition-all duration-500">
+                        <div class="absolute inset-0 flex items-center justify-center p-0 z-20">
+                            <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-current text-jako-text transition-all duration-500 origin-center">
                                 
-                                <g id="wave-quantum-container" style="transform: rotate(-90deg); -webkit-transform: rotate(-90deg); transform-origin: 200px 200px; -webkit-transform-origin: 200px 200px;"></g>
+                                <g id="wave-quantum-container" style="transform-origin: 200px 200px; -webkit-transform-origin: 200px 200px;" class="-rotate-90"></g>
 
-                                <g id="sandwatch-group" style="transform-origin: 200px 200px; -webkit-transform-origin: 200px 200px; will-change: opacity;" class="opacity-0 transition-all duration-500 style-gpu">
+                                <g id="sandwatch-group" class="origin-center opacity-0 transition-all duration-500 style-gpu" style="will-change: opacity;">
                                     <path d="M 90,90 L 310,90 L 90,310 L 310,310 Z" class="stroke-current opacity-20" />
                                     <path d="M 90,90 Q 200,125 310,90" class="stroke-current opacity-20" />
                                     <path d="M 90,310 Q 200,275 310,310" stroke-dasharray="3 3" class="stroke-current opacity-20" />
@@ -148,14 +148,13 @@
                     const arcLength = (layer.value / 12) * circumference;
                     const dashArray = `${arcLength} ${circumference}`;
 
-                    // Se inyecta la transformación por CSS directo mitigando el bug de Safari
                     htmlContent += `
                         <circle 
                             id="wave-${layer.id}-t${tIndex}" 
                             cx="200" 
                             cy="200" 
                             r="${layer.r}" 
-                            style="transform: rotate(${angle}deg); -webkit-transform: rotate(${angle}deg); transform-origin: 200px 200px; -webkit-transform-origin: 200px 200px;"
+                            transform="rotate(${angle} 200 200)"
                             class="stroke-current"
                             stroke-width="${tIndex === 0 ? 1.5 : 1.0}"
                             stroke-opacity="${layer.opacity}"

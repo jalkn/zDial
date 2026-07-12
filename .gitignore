@@ -10,7 +10,6 @@ img/
 templates/
 .astro/
 public/
-docs/
 dist/
 src/
 node_modules/
