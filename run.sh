@@ -66,27 +66,60 @@ MJS_EOF
 
 # =========================================================================
 # 3. Pure Mathematical Backend Engine Injection (`z_dial_core.py`)
-#    Integrado con la Arquitectura Global del Pipeline de Telemetría
+#    INTEGRATED WITH VOLATILE SQLITE PERSISTENCE LAYER (1:N SCHEMA)
 # =========================================================================
-echo -e "\n${MAGENTA}[3/5] Solidifying core computational engine script...${NC}"
+echo -e "\n${MAGENTA}[3/5] Solidifying core computational engine script with relational DB...${NC}"
 
 cat << 'PYTHON_EOF' > z_dial_core.py
 import time
 import json
 import sys
+import sqlite3
+import uuid
 from datetime import datetime
 
 class ZDialEngine:
     """
-    Z-Dial Engine v8.0 - Centralized Production Logic.
-    Manages deterministic quantum time-collapsing aligned with architecture.md telemetry.
+    Z-Dial Engine v8.2 - Minimalist Production Core.
+    Manages deterministic quantum time-collapsing and direct SQLite orchestration.
     """
-    def __init__(self):
+    def __init__(self, db_path="jako_vault.db"):
+        self.db_path = db_path
         self.VECTOR_CLOCK_MATRIX = {
             'P': 1,  'U': 2,  'L': 3,  'S': 4,
             'PL': 5, 'PU': 6, 'LU': 7, 'SU': 8,
             'PUL': 9,'LPS': 10,'SPU': 11,'ULS': 12
         }
+        self._init_database()
+
+    def _init_database(self):
+        """Initializes volatile database tables directly matching schema definitions."""
+        with sqlite3.connect(self.db_path) as conn:
+            cursor = conn.cursor()
+            # Table 1: Meta Ingestion Header
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS sesiones_biocineticas (
+                    session_id TEXT PRIMARY KEY,
+                    user_id TEXT,
+                    sphere_idx TEXT,
+                    start_timestamp INTEGER,
+                    end_timestamp INTEGER,
+                    accumulated_dials INTEGER,
+                    pulsor_variant_id TEXT
+                );
+            """)
+            # Table 2: Unrolled Time Series Data
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS telemetria_raw (
+                    reading_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    session_id TEXT,
+                    frequency_hz REAL,
+                    cellular_tension REAL,
+                    exact_timestamp INTEGER,
+                    FOREIGN KEY(session_id) REFERENCES sesiones_biocineticas(session_id)
+                );
+            """)
+            conn.commit()
 
     def collapse_time_slice(self) -> dict:
         """Executes structural calculation slicing based on epoch state."""
@@ -99,18 +132,16 @@ class ZDialEngine:
         reps_stage = 1
         current_action = 'P'
 
-        # Odd Path: High-Frequency sub-second engine transitions (Sub-Second Engine)
+        # Odd Path: Sub-Second Engine
         if seconds % 2 != 0:
             progress_1s = milliseconds / 1000.0
             sets_stage = int(progress_1s * 12) + 1
             reps_stage = 13 - sets_stage
-            
             if progress_1s < 0.25: current_action = 'P'
             elif progress_1s < 0.50: current_action = 'U'
             elif progress_1s < 0.75: current_action = 'L'
             else: current_action = 'S'
-                
-        # Even Path: Low-Frequency macro time blocks (Macro-Cycle Engine)
+        # Even Path: Macro-Cycle Engine
         else:
             sets_stage = int((minutes % 12) + 1)
             if seconds < 30:
@@ -127,28 +158,62 @@ class ZDialEngine:
 
         coordinate = f"{sets_stage}{current_action}{reps_stage}"
         dials_gained = sets_stage * reps_stage
-
-        # Pipeline Generation Outputs (SVG HalfTone Data Signature Hooks)
-        unique_signature = f"Z-{int(time.time())}-{coordinate}"
-
+        
         return {
-            "pipeline_status": "TELEMETRY_BATCH_PROCESSED",
-            "signature": unique_signature,
-            "esfera_idx": coordinate,
-            "vector_puls_predominante": current_action,
-            "dials_acumulados": dials_gained,
-            "telemetry_sim": {
-                "frecuencia_hz": round(0.05 + (sets_stage / 240.0), 4),
-                "tension_celular": round(14.2 + (reps_stage * 0.8), 2),
-                "timestamp_exacto": int(time.time() * 1000)
-            }
+            "coordinate": coordinate,
+            "action": current_action,
+            "dials": dials_gained,
+            "hz": round(0.05 + (sets_stage / 240.0), 4),
+            "tension": round(14.2 + (reps_stage * 0.8), 2),
+            "timestamp": int(time.time() * 1000)
         }
+
+    def commit_telemetry_pipeline(self) -> str:
+        """Simulates ingestion payload mapping data straight into relational tables."""
+        slice_data = self.collapse_time_slice()
+        session_uuid = str(uuid.uuid4())
+        user_uuid = str(uuid.uuid4())
+        
+        with sqlite3.connect(self.db_path) as conn:
+            cursor = conn.cursor()
+            
+            # 1. Commit Meta Ingestion Header
+            cursor.execute("""
+                INSERT INTO sesiones_biocineticas 
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            """, (session_uuid, user_uuid, slice_data["coordinate"], slice_data["timestamp"], 
+                  slice_data["timestamp"] + 10000, slice_data["dials"], slice_data["action"]))
+            
+            # 2. Commit Unrolled Time Series Data
+            cursor.execute("""
+                INSERT INTO telemetria_raw (session_id, frequency_hz, cellular_tension, exact_timestamp)
+                VALUES (?, ?, ?, ?)
+            """, (session_uuid, slice_data["hz"], slice_data["tension"], slice_data["timestamp"]))
+            
+            conn.commit()
+            
+        return session_uuid
 
 if __name__ == "__main__":
     engine = ZDialEngine()
     if len(sys.argv) > 1 and sys.argv[1] == "--telemetry-stream":
-        # Simulación de pipeline continuo desde memoria cache local (10s Batch via BLE)
-        print(json.dumps(engine.collapse_time_slice(), indent=2))
+        created_id = engine.commit_telemetry_pipeline()
+        
+        # Pull generated confirmation to verify relational compliance
+        with sqlite3.connect(engine.db_path) as compliance_conn:
+            compliance_conn.row_factory = sqlite3.Row
+            cur = compliance_conn.cursor()
+            session_row = cur.execute("SELECT * FROM sesiones_biocineticas WHERE session_id=?", (created_id,)).fetchone()
+            raw_rows = cur.execute("SELECT * FROM telemetria_raw WHERE session_id=?", (created_id,)).fetchall()
+            
+            output_verification = {
+                "pipeline_status": "RELATIONAL_COMMIT_SUCCESS",
+                "database_target": engine.db_path,
+                "meta_header": dict(session_row),
+                "unrolled_series_count": len(raw_rows),
+                "series_sample": [dict(r) for r in raw_rows]
+            }
+            print(json.dumps(output_verification, indent=2))
     else:
         print("--- [MATHEMATICAL CORE ENGINE OUTPUT] ---")
         print(engine.collapse_time_slice())
@@ -239,6 +304,12 @@ cat << 'INDEX10_EOF' > public/index.html
         :root[data-theme="white"] .active-led {
             text-shadow: 0 0 6px var(--jako-led) !important;
         }
+        
+        #artepanel-mask-wrapper {
+        -webkit-mask-image: -webkit-radial-gradient(white, black); /* Hack nativo de Safari para congelar bordes redondeados */
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-jako-text selection:text-jako-bg overflow-x-hidden min-h-screen">
@@ -255,7 +326,7 @@ cat << 'INDEX10_EOF' > public/index.html
                         <div class="absolute inset-0 flex items-center justify-center p-0 z-20">
                             <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-current text-jako-text transition-all duration-500 origin-center">
                                 
-                                <g id="wave-quantum-container" class="origin-center -rotate-90 rounded-full"></g>
+                                <g id="wave-quantum-container" style="transform-origin: 200px 200px; -webkit-transform-origin: 200px 200px;" class="-rotate-90"></g>
 
                                 <g id="sandwatch-group" class="origin-center opacity-0 transition-all duration-500 style-gpu" style="will-change: opacity;">
                                     <path d="M 90,90 L 310,90 L 90,310 L 310,310 Z" class="stroke-current opacity-20" />

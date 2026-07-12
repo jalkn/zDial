@@ -73,6 +73,12 @@
         :root[data-theme="white"] .active-led {
             text-shadow: 0 0 6px var(--jako-led) !important;
         }
+        
+        #artepanel-mask-wrapper {
+        -webkit-mask-image: -webkit-radial-gradient(white, black); /* Hack nativo de Safari para congelar bordes redondeados */
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-jako-text selection:text-jako-bg overflow-x-hidden min-h-screen">
@@ -89,7 +95,7 @@
                         <div class="absolute inset-0 flex items-center justify-center p-0 z-20">
                             <svg id="laser-vector-target" viewBox="0 0 400 400" class="w-full h-full fill-none stroke-current text-jako-text transition-all duration-500 origin-center">
                                 
-                                <g id="wave-quantum-container" class="origin-center -rotate-90 rounded-full"></g>
+                                <g id="wave-quantum-container" style="transform-origin: 200px 200px; -webkit-transform-origin: 200px 200px;" class="-rotate-90"></g>
 
                                 <g id="sandwatch-group" class="origin-center opacity-0 transition-all duration-500 style-gpu" style="will-change: opacity;">
                                     <path d="M 90,90 L 310,90 L 90,310 L 310,310 Z" class="stroke-current opacity-20" />
