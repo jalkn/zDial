@@ -15,7 +15,6 @@ dist/
 src/
 node_modules/
 
-index.html
 tailwind.config.mjs
 package.json
 tsconfig.json
