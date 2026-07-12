@@ -122,6 +122,7 @@
 
         let biokineticWaveHistory = [];
         let isDialTextRevealed = false;
+        let lastProcessedSecond = -1; 
         const $ = id => document.getElementById(id);
 
         function renderBiokineticWaves() {
@@ -131,7 +132,7 @@
             let htmlContent = '';
             biokineticWaveHistory.forEach((dial, tIndex) => {
                 const currentScale = tIndex * 1; 
-                const baseOpacity = isDialTextRevealed ? 0.05 : (1.0 - (tIndex * 0.08));
+                const baseOpacity = isDialTextRevealed ? 0.03 : (1.0 - (tIndex * 0.08));
                 if (baseOpacity <= 0) return;
 
                 const viewFactor = 18; 
@@ -155,7 +156,7 @@
                             cy="200" 
                             r="${layer.r}" 
                             transform="rotate(${angle} 200 200)"
-                            class="stroke-current"
+                            class="stroke-current transition-all duration-300"
                             stroke-width="${tIndex === 0 ? 1.5 : 1.0}"
                             stroke-opacity="${layer.opacity}"
                             stroke-dasharray="${dashArray}"
@@ -171,13 +172,14 @@
             const now = new Date();
             const minutes = now.getMinutes();
             const seconds = now.getSeconds();
+            const milliseconds = now.getMilliseconds();
 
             let setsStage = 1;  
             let repsStage = 1;  
             let currentAction = 'P'; 
 
             if (seconds % 2 !== 0) {
-                const progress1s = now.getMilliseconds() / 1000; 
+                const progress1s = milliseconds / 1000; 
                 setsStage = Math.floor(progress1s * 12) + 1;
                 repsStage = 13 - setsStage; 
                 if (progress1s < 0.25) currentAction = 'P';
@@ -202,23 +204,31 @@
             const biokineticCoordinate = `${setsStage}${currentAction}${repsStage}`;
             const vectorIndex = VECTOR_TO_CLOCK_INDEX[currentAction] || 1;
 
-            const lastSavedDial = biokineticWaveHistory[0];
-            if (!lastSavedDial || lastSavedDial.rawCoord !== biokineticCoordinate) {
-                biokineticWaveHistory.unshift({ sets: setsStage, vector: vectorIndex, reps: repsStage, rawCoord: biokineticCoordinate });
-                if (biokineticWaveHistory.length > 12) biokineticWaveHistory.pop();
-            }
-
-            renderBiokineticWaves();
-
             const elDial = $('z-dial');
             const elDialHud = $('z-dial-hud');
             if (elDial) elDial.textContent = biokineticCoordinate;
             if (elDialHud) elDialHud.textContent = biokineticCoordinate;
+
+            if (seconds !== lastProcessedSecond) {
+                biokineticWaveHistory.unshift({ 
+                    sets: setsStage, 
+                    vector: vectorIndex, 
+                    reps: repsStage, 
+                    rawCoord: biokineticCoordinate 
+                });
+                
+                if (biokineticWaveHistory.length > 12) {
+                    biokineticWaveHistory.pop();
+                }
+                
+                lastProcessedSecond = seconds;
+                renderBiokineticWaves();
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             updateZ();
-            setInterval(updateZ, 1000);
+            setInterval(updateZ, 16); 
 
             const container = $('artepanel-pack-container');
             if (container) {

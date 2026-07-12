@@ -1,45 +1,73 @@
-# Z-Dial Engine v8.0 • Biokinetic Language Hub
+# ZDIAL // ENGINE ANCHOR
+
+> "The body is our unconscious mind and the source of our creativity. The algorithm is a translator."
+
+**JAKO** is a hybrid bio-computational ecosystem operating under a **"Cosmic-Generative Local"** approach. The system translates the Earth's rotation relative to the Sun and human bio-kinetics into standardized base-12 vector coordinates governed by the **P.U.L.S.** protocol (Pace, Under, Lift, Surge). 
+
+This repository functions as an aseptic, hyper-efficient deterministic temporal engine. While running locally with zero battery friction, its relational database architecture stands entirely prepared for future IoT sensor integration, real-time telemetry streaming, and Deep Learning/AI training.
 
 ---
 
-## 🚀 Core Engine Architecture
-- **Sub-Second Engine (Odd Path):** High-frequency, millisecond-level evaluation loops structured entirely around base-12 intervals.
-- **Macro-Cycle Engine (Even Path):** Macro-time structural blocks and sequential transitional sub-slots.
-- **Relational Persistence Layer:** Implements a direct 1:N schema using an agnostic SQLite local instance (`jako_vault.db`) to ensure decoupled decoupling between the session header and high-frequency data streams.
+## 📂 Repository Structure
+
+1. **`run.sh`**: The linear system orchestrator. Executes a clean 8-step deployment sequence from caching purges to static web building and relational verification.
+2. **`.gitignore`**: Strict isolation rules preventing local environments (`node_modules/`, `.astro/`, `dist/`) and active databases (`jako_vault.db`) from leaking into source control.
+3. **`README.md`**: This unified architectural manifesto.
 
 ---
 
-### 1. Biokinetic Encryption Framework (_PULS)
+## 🌊 The Algorithm: The Sphere of Droplets
 
-### The Seed in Vertical Time: Geometry of the Living Coordinate
-The Universe does not shift along a flat, linear trajectory from past to future; it propagates via spherical pulsations of contraction and expansion. The JAKO VAULT Biokinetic Dial is a mathematical and aesthetic oracle that captures this quantum truth second by second. Each alphanumeric dial generated (e.g., `8PU10`, `4U9`) is not an arbitrary string of digital data—it is a **Creative Seed** frozen on the vertical axis of time, precisely at the threshold where the physical body recognizes itself as the subconscious mind.
+The graphical engine renders a living geometry: a **quantum sphere composed of vector droplets**. Its trajectory, velocity, and perimeter boundaries are governed by the harmonic collapse of **Three Concentric Waves** mapped to local system time:
 
-The engine operates on a wave-physics model inspired by Atlantic biomechanical efficiency, sacred geometry, and the neuroplasticity of functional movement. Each coordinate results from three concentric, recurring waves that emerge from the center of the teardrop, expand outward, and collapse—leaving the origin in a state of absolute void to allow the genesis of the next cycle.
+[ EXTERNAL WAVE: Repos ]   --> Perimetral Tension (Pure Strength / Gravity)
+    └─> [ INTERMEDIATE WAVE: Actions ]  --> Transmission Vector (12 Dynamic Variables)
+          └─> [ INTERNAL WAVE: Sets ]   --> Coaxial Frequency (Energy Capture Clock)
 
-Emulating an analog timepiece, the system partitions space-time into a sacred continuum of 12 distinct variants:
+1. **The Internal Wave (`Sets` // Frequency):**
+   Measures coaxial frequency fluctuating from 1 to 12. It functions as the unconscious pacemaker of the engine, anchoring core physical stamina.
+2. **The Intermediate Wave (`Actions` // Coordination):**
+   The transmission vector of the nervous system. It segments time into a cyclic 3-phase matrix, altering algorithmic density based on clock parity:
+   * **Phase A (Odd Seconds // Monadic - P, U, L, S):** Zero algorithmic resistance for maximum visual lightness.
+   * **Phase B (Even Seconds < 30s // Binary - PL, PU, LU, SU):** Dynamic stroke fragmentation mimicking active kinetic oscillation.
+   * **Phase C (Even Seconds ≥ 30s // Ternary - PUL, LPS, SPU, ULS):** High-density fixed isometric blocks transitioning every 7.5 seconds.
+3. **The External Wave (`Reps` // Tension):**
+   Dense perimetral cohesion. The boundary where raw energy collides with physical reality under gravitational magnetism, structuring residual tissue tension.
 
-#### 1. The Internal Wave: Frequency (`Sets`)
-The coaxial wave originating at the absolute nucleus of the engine. It signifies the primordial rhythm and the oscillation of living frequency synchronized with the Earth, Moon, and Sun. Biomechanically, this wave activates foundational **Stamina** and **Endurance**. It governs energy capture and acts as the subconscious pacemaker of functional movement. Fluctuating deterministically from 1 to 12, it dictates the temporal maturation of the current cosmic batch.
+### The Quantum Heart: Parity & Inverse Balance
+The algorithm mimics a cardiopulmonary cycle, expanding and contracting the droplet matrix every second:
+* **Sub-Second Engine (Odd Seconds):** Computes microcellular velocity at a millisecond level. It triggers an *inverse geometric balance formula* ($13 - Sets$), pulling structural energy from the outer boundary (`Reps`) straight into the core internal frequency (`Sets`).
+* **Macro-Cycle Engine (Even Seconds):** Evaluates larger temporal blocks, dividing a 6-hour cycle into 21,600 sifting time slices (*Dials*).
 
-#### 2. The Intermediate Wave: Action (`Vectors`)
-The transmission body; the wave that bridges internal impulse with physical matter. It represents the vectors of the subconscious mind mapped onto the four universal kinetic archetypes: **P.U.L.S.** (**P**ace, **U**nder, **L**ift, **S**urge). These actions mirror the natural mechanics of thought—repelling (*Push*), attracting (*Pull*), or striking a creative spark (*Trigger*). It manifests in 12 evolutionary variants, transitioning organically from pure forces (single letters) and dual-balancing forces (two letters), to complex vortices of illumination (three-letter combinations such as `ULS`).
-
-#### 3. The External Wave: Tension (`Reps`)
-The perimeter wave; the boundary layer where raw energy collides with physical reality and condenses into matter. It represents molecular cohesion, structural resistance, and the gravitational magnetism exerted by celestial bodies on biology. This wave disciplines **Pure Strength** and **Equilibrium**, monitoring the residual tension accumulated within living tissue. It fluctuates symmetrically from 1 to 12 in a constant isometric tug-of-war with the internal frequency wave.
-
-### The Quantum Collapse of the Teardrop
-Upon interacting with the interface, the observer halts the continuous fluctuation of these three entangled waves. In that precise instance of absolute attention, the wave function collapses, materializing the teardrop into a unique, unrepeatable mathematical signature.
+**The Architectural Output:** A clean alphanumeric signature (e.g., **8PU10**) that translates instantly into raw geometric vector instructions: *10 units of Pace with Push at an internal coaxial frequency of 8*. Every collapsed dial purges the core, returning the system to the **Zero Point** for the next pulse.
 
 ---
 
+## 📊 P.U.L.S. Alphanumeric Syntax Matrix
 
-## 🛠️ Stack Configuration
-* **Edge Interface UI:** Astro Framework + TailwindCSS (Asynchronous, Zero-hydration layout overhead).
-* **Core Backend Processing:** FastAPI (Python 3.11+) executing predictive filtering and math time-slicing.
-* **Cloud Architecture:** Google Cloud Platform (Cloud Storage Static Hosting + Cloud Run Serverless Containers).
+Coordinates are parsed through a strict 12-variant evolutionary matrix following the standardized format: `[Reps] [Vector Text] [Sets Multiplier]`.
 
-## 🚀 Execution & Automation Pipe
-To bootstrap the local development environment, flush cache modules, and initialize compile verification targets, execute:
+| Code | Sequence Phase | Semantic Meaning (EN) | Core Metric Discipline |
+| :---: | :--- | :--- | :--- |
+| **P** | PHASE A (Monadic) | Pace | Stamina / Endurance |
+| **U** | PHASE A (Monadic) | Push | Tension / Pressure |
+| **L** | PHASE A (Monadic) | Pull | Molecular Network / Load |
+| **S** | PHASE A (Monadic) | Surge | Velocity / Explosion |
+| **PL** | PHASE B (Binary) | Pace with Pull | Coordinated Carriage |
+| **PU** | PHASE B (Binary) | Pace with Push | Compressed Stride |
+| **LU** | PHASE B (Binary) | Pull with Push | Isometric Tensile Force |
+| **SU** | PHASE B (Binary) | Surge with Push | Accelerated Thrust |
+| **PUL**| PHASE C (Ternary) | Pace with Push & Pull | Complete Biomechanical Loop |
+| **LPS**| PHASE C (Ternary) | Pull with Pace & Surge | Kinetic Kinetic Transfer |
+| **SPU**| PHASE C (Ternary) | Surge with Pace & Push | High-Velocity Impact Grid |
+| **ULS**| PHASE C (Ternary) | Push with Pull & Surge | Maximum Volatile Tension |
+
+---
+
+## ⚡ Quick Start
+
+To sanitize local environments, initialize the deterministic time pipeline, and boot the local generative HUD on port `3000`, run:
+
 ```bash
 chmod +x run.sh
 ./run.sh

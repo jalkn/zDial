@@ -18,7 +18,7 @@ echo -e "${CYAN}=========================================================${NC}"
 # =========================================================================
 # 1. Aseptic Cache Purge
 # =========================================================================
-echo -e "\n${MAGENTA}[1/5] Purging caching systems and build targets...${NC}"
+echo -e "\n${MAGENTA}[1/8] Purging caching systems and build targets...${NC}"
 CACHE_PATHS=(".astro" "dist" "node_modules/.vite")
 for path in "${CACHE_PATHS[@]}"; do
     if [ -d "$path" ]; then
@@ -31,7 +31,7 @@ echo -e "${GREEN}✔ Sanitization complete.${NC}"
 # =========================================================================
 # 2. Base Configuration Files (ISOLATED BUILD MANIFEST)
 # =========================================================================
-echo -e "\n${YELLOW}[2/5] Staging project manifests with isolated build safety...${NC}"
+echo -e "\n${YELLOW}[2/8] Staging project manifests with isolated build safety...${NC}"
 
 cat << 'JSON_EOF' > package.json
 {
@@ -68,7 +68,7 @@ MJS_EOF
 # 3. Pure Mathematical Backend Engine Injection (`z_dial_core.py`)
 #    INTEGRATED WITH VOLATILE SQLITE PERSISTENCE LAYER (1:N SCHEMA)
 # =========================================================================
-echo -e "\n${MAGENTA}[3/5] Solidifying core computational engine script with relational DB...${NC}"
+echo -e "\n${MAGENTA}[3/8] Solidifying core computational engine script with relational DB...${NC}"
 
 cat << 'PYTHON_EOF' > z_dial_core.py
 import time
@@ -222,13 +222,13 @@ PYTHON_EOF
 echo -e "${GREEN}✔ Computational core logic verified locally.${NC}"
 
 # =========================================================================
-# 4. Static Assets Provisioning (NATIVE INDEX10 ANCHOR)
+# 4. Static Assets Provisioning (NATIVE INDEX ANCHOR)
 # =========================================================================
-echo -e "\n${MAGENTA}[4/5] Provisioning pristine index10.html asset as core target...${NC}"
+echo -e "\n${MAGENTA}[4/8] Provisioning pristine index.html asset as core target...${NC}"
 
 mkdir -p public/img
 
-cat << 'INDEX10_EOF' > public/index.html
+cat << 'INDEX_EOF' > public/index.html
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -353,6 +353,7 @@ cat << 'INDEX10_EOF' > public/index.html
 
         let biokineticWaveHistory = [];
         let isDialTextRevealed = false;
+        let lastProcessedSecond = -1; 
         const $ = id => document.getElementById(id);
 
         function renderBiokineticWaves() {
@@ -362,7 +363,7 @@ cat << 'INDEX10_EOF' > public/index.html
             let htmlContent = '';
             biokineticWaveHistory.forEach((dial, tIndex) => {
                 const currentScale = tIndex * 1; 
-                const baseOpacity = isDialTextRevealed ? 0.05 : (1.0 - (tIndex * 0.08));
+                const baseOpacity = isDialTextRevealed ? 0.03 : (1.0 - (tIndex * 0.08));
                 if (baseOpacity <= 0) return;
 
                 const viewFactor = 18; 
@@ -386,7 +387,7 @@ cat << 'INDEX10_EOF' > public/index.html
                             cy="200" 
                             r="${layer.r}" 
                             transform="rotate(${angle} 200 200)"
-                            class="stroke-current"
+                            class="stroke-current transition-all duration-300"
                             stroke-width="${tIndex === 0 ? 1.5 : 1.0}"
                             stroke-opacity="${layer.opacity}"
                             stroke-dasharray="${dashArray}"
@@ -402,13 +403,14 @@ cat << 'INDEX10_EOF' > public/index.html
             const now = new Date();
             const minutes = now.getMinutes();
             const seconds = now.getSeconds();
+            const milliseconds = now.getMilliseconds();
 
             let setsStage = 1;  
             let repsStage = 1;  
             let currentAction = 'P'; 
 
             if (seconds % 2 !== 0) {
-                const progress1s = now.getMilliseconds() / 1000; 
+                const progress1s = milliseconds / 1000; 
                 setsStage = Math.floor(progress1s * 12) + 1;
                 repsStage = 13 - setsStage; 
                 if (progress1s < 0.25) currentAction = 'P';
@@ -433,23 +435,31 @@ cat << 'INDEX10_EOF' > public/index.html
             const biokineticCoordinate = `${setsStage}${currentAction}${repsStage}`;
             const vectorIndex = VECTOR_TO_CLOCK_INDEX[currentAction] || 1;
 
-            const lastSavedDial = biokineticWaveHistory[0];
-            if (!lastSavedDial || lastSavedDial.rawCoord !== biokineticCoordinate) {
-                biokineticWaveHistory.unshift({ sets: setsStage, vector: vectorIndex, reps: repsStage, rawCoord: biokineticCoordinate });
-                if (biokineticWaveHistory.length > 12) biokineticWaveHistory.pop();
-            }
-
-            renderBiokineticWaves();
-
             const elDial = $('z-dial');
             const elDialHud = $('z-dial-hud');
             if (elDial) elDial.textContent = biokineticCoordinate;
             if (elDialHud) elDialHud.textContent = biokineticCoordinate;
+
+            if (seconds !== lastProcessedSecond) {
+                biokineticWaveHistory.unshift({ 
+                    sets: setsStage, 
+                    vector: vectorIndex, 
+                    reps: repsStage, 
+                    rawCoord: biokineticCoordinate 
+                });
+                
+                if (biokineticWaveHistory.length > 12) {
+                    biokineticWaveHistory.pop();
+                }
+                
+                lastProcessedSecond = seconds;
+                renderBiokineticWaves();
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             updateZ();
-            setInterval(updateZ, 1000);
+            setInterval(updateZ, 16); 
 
             const container = $('artepanel-pack-container');
             if (container) {
@@ -467,16 +477,14 @@ cat << 'INDEX10_EOF' > public/index.html
     </script>
 </body>
 </html>
-INDEX10_EOF
+INDEX_EOF
 
 # ==============================================================================
-# INJECTION: BIOCINETIC MANIFESTO & P.U.L.S. DICTIONARY DATA BLOCKS
+# 5. Injection of Structural Text Data Blocks
 # ==============================================================================
-
-# Ensure directory structure exists
+echo -e "\n${YELLOW}[5/8] Injecting biokinetic manifesto markdown chapter asset...${NC}"
 mkdir -p docs/manifesto docs/meanings
 
-# Block 1: Manifesto Chapter Document (Markdown for UI/Drawer Integration)
 cat << 'EOF' > docs/manifesto/S01.md
 # JAKO VAULT // BIOMANIFESTO & THE COGNITIVE SYSTEM
 
@@ -502,7 +510,7 @@ The ecosystem self-manages by plotting three recurring, concentric waves that ra
 * **THE EXTERNAL WAVE (Reps):** Dense tensional cohesion. The perimeter boundary where raw energy collides with physical reality under gravitational magnetism. Disciplines Pure Strength and Equilibrium, measuring the residual tension of the tissue.
 EOF
 
-# Block 2: Vector Meanings Dictionary (Aseptic Plain Text Matrix for Terminal/Engine Parse)
+echo -e "\n${YELLOW}[6/8] Injecting P.U.L.S. alphanumeric translation dictionary matrix...${NC}"
 cat << 'EOF' > docs/meanings/PULS.txt
 ================================================================================
 P.U.L.S. PROTOCOL // ALPHANUMERIC DIAL TRANSLATION DICTIONARY
@@ -539,16 +547,16 @@ CORE METRICS DEFINITIONS
 EOF
 
 # =========================================================================
-# 5. Clean Frontend Architecture (MUTED FOR STATIC ISOLATION)
+# 6. Clean Frontend Architecture (MUTED FOR STATIC ISOLATION)
 # =========================================================================
-echo -e "\n${CYAN}[4/5] Bypassing Astro pages to allow pure public anchor execution...${NC}"
+echo -e "\n${CYAN}[7/8] Bypassing Astro pages to allow pure public anchor execution...${NC}"
 rm -rf src/pages
 mkdir -p src/layouts
 
 # =========================================================================
-# 6. Environment Validation, Build & Root Extraction
+# 7. Environment Validation, Build & Root Extraction
 # =========================================================================
-echo -e "\n${YELLOW}[5/5] Checking environment packages and running checks...${NC}"
+echo -e "\n${YELLOW}[8/8] Validating environments, executing build & compiling target...${NC}"
 
 if [ ! -d "node_modules/astro" ]; then
     echo -e "${MAGENTA}⚠️ node_modules missing. Initializing npm installation...${NC}"
