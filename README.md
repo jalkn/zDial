@@ -6,11 +6,11 @@
 
 This repository functions as an aseptic, hyper-efficient deterministic temporal engine. While running locally with zero battery friction, its relational database architecture stands entirely prepared for future IoT sensor integration, real-time telemetry streaming, and Deep Learning/AI training.
 
----
+---i
 
 ## 📂 Repository Structure
 
-1. **`run.sh`**: The linear system orchestrator. Executes a clean 8-step deployment sequence from caching purges to static web building and relational verification.
+1. **`set.sh`**: The linear system orchestrator. Executes a clean 8-step deployment sequence from caching purges to static web building and relational verification.
 2. **`.gitignore`**: Strict isolation rules preventing local environments (`node_modules/`, `.astro/`, `dist/`) and active databases (`jako_vault.db`) from leaking into source control.
 3. **`README.md`**: This unified architectural manifesto.
 
@@ -69,5 +69,5 @@ Coordinates are parsed through a strict 12-variant evolutionary matrix following
 To sanitize local environments, initialize the deterministic time pipeline, and boot the local generative HUD on port `3000`, run:
 
 ```bash
-chmod +x run.sh
-./run.sh
+chmod +x set.sh
+./set.sh
