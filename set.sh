@@ -18,10 +18,10 @@ echo -e "${CYAN}=========================================================${NC}"
 # =========================================================================
 # 1. Aseptic Cache Purge
 # =========================================================================
-echo -e "\n${MAGENTA}[1/8] Purging caching systems and build targets...${NC}"
-CACHE_PATHS=(".astro" "dist" "node_modules/.vite")
+echo -e "\n${MAGENTA}[1/5] Purging caching systems and build targets...${NC}"
+CACHE_PATHS=(".astro" "dist" "node_modules/.vite" "jako_vault.db")
 for path in "${CACHE_PATHS[@]}"; do
-    if [ -d "$path" ]; then
+    if [ -e "$path" ]; then
         echo -e "${GRAY}🧹 Dropping: $path${NC}"
         rm -rf "$path"
     fi
@@ -31,7 +31,7 @@ echo -e "${GREEN}✔ Sanitization complete.${NC}"
 # =========================================================================
 # 2. Base Configuration Files (ISOLATED BUILD MANIFEST)
 # =========================================================================
-echo -e "\n${YELLOW}[2/8] Staging project manifests with isolated build safety...${NC}"
+echo -e "\n${YELLOW}[2/5] Staging project manifests with isolated build safety...${NC}"
 
 cat << 'JSON_EOF' > package.json
 {
@@ -68,7 +68,7 @@ MJS_EOF
 # 3. Pure Mathematical Backend Engine Injection (`z_dial_core.py`)
 #    INTEGRATED WITH VOLATILE SQLITE PERSISTENCE LAYER (1:N SCHEMA)
 # =========================================================================
-echo -e "\n${MAGENTA}[3/8] Solidifying core computational engine script with relational DB...${NC}"
+echo -e "\n${MAGENTA}[3/5] Solidifying core computational engine script with relational DB...${NC}"
 
 cat << 'PYTHON_EOF' > z_dial_core.py
 import time
@@ -80,8 +80,9 @@ from datetime import datetime
 
 class ZDialEngine:
     """
-    Z-Dial Engine v8.2 - Minimalist Production Core.
-    Manages deterministic quantum time-collapsing and direct SQLite orchestration.
+    Z-Dial Engine v8.2 - Fluid Biokinetic Transducer Core.
+    Calculates the Resonance Gradient (Delta = Tension / Frequency), enforces 
+    material collapse rules, and orchestrates direct SQLite telemetry logging.
     """
     def __init__(self, db_path="jako_vault.db"):
         self.db_path = db_path
@@ -89,6 +90,20 @@ class ZDialEngine:
             'P': 1,  'U': 2,  'L': 3,  'S': 4,
             'PL': 5, 'PU': 6, 'LU': 7, 'SU': 8,
             'PUL': 9,'LPS': 10,'SPU': 11,'ULS': 12
+        }
+        self.VECTOR_DICTIONARY_EN = {
+            'P':   'PACE',
+            'U':   'PUSH',
+            'L':   'PULL',
+            'S':   'SURGE',
+            'PL':  'PACE WITH PULL',
+            'PU':  'PACE WITH PUSH',
+            'LU':  'PULL WITH PUSH',
+            'SU':  'SURGE WITH PUSH',
+            'PUL': 'PACE WITH PUSH AND PULL',
+            'LPS': 'PULL WITH PACE AND SURGE',
+            'SPU': 'SURGE WITH PACE AND PUSH',
+            'ULS': 'PUSH WITH PULL AND SURGE'
         }
         self._init_database()
 
@@ -108,13 +123,15 @@ class ZDialEngine:
                     pulsor_variant_id TEXT
                 );
             """)
-            # Table 2: Unrolled Time Series Data
+            # Table 2: Unrolled Time Series Data with Cybernetic Delta Gradient
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS telemetria_raw (
                     reading_id INTEGER PRIMARY KEY AUTOINCREMENT,
                     session_id TEXT,
                     frequency_hz REAL,
                     cellular_tension REAL,
+                    delta_gradient REAL,
+                    hud_translation TEXT,
                     exact_timestamp INTEGER,
                     FOREIGN KEY(session_id) REFERENCES sesiones_biocineticas(session_id)
                 );
@@ -122,47 +139,75 @@ class ZDialEngine:
             conn.commit()
 
     def collapse_time_slice(self) -> dict:
-        """Executes structural calculation slicing based on epoch state."""
+        """
+        Executes real-time biokinetic transduction slicing based on epoch state.
+        Computes Tissue Tension (Reps) vs. Neural Frequency (Sets) to derive Delta (Δ).
+        """
         now = datetime.now()
         minutes = now.minute
         seconds = now.second
         milliseconds = int((time.time() % 1) * 1000)
 
-        sets_stage = 1
-        reps_stage = 1
+        raw_tension = 1
+        raw_frequency = 1
         current_action = 'P'
 
-        # Odd Path: Sub-Second Engine
+        # Odd Path: Sub-Second Engine (High Frequency Neural Pulses / Monadic Phase A)
         if seconds % 2 != 0:
             progress_1s = milliseconds / 1000.0
-            sets_stage = int(progress_1s * 12) + 1
-            reps_stage = 13 - sets_stage
+            raw_frequency = int(progress_1s * 12) + 1
+            raw_tension = 13 - raw_frequency
+            
             if progress_1s < 0.25: current_action = 'P'
             elif progress_1s < 0.50: current_action = 'U'
             elif progress_1s < 0.75: current_action = 'L'
             else: current_action = 'S'
-        # Even Path: Macro-Cycle Engine
+            
+        # Even Path: Macro-Cycle Engine (Structured Blocks / Binary & Triadic Phases)
         else:
-            sets_stage = int((minutes % 12) + 1)
+            raw_frequency = int((minutes % 12) + 1)
             if seconds < 30:
+                # Phase B: Binary Transitions
                 sub_slot = int((seconds % 30) / 7.5)
                 current_action = ["PL", "PU", "LU", "SU"][sub_slot] if sub_slot < 4 else "PL"
-                reps_stage = int((seconds % 10) + 2)
+                raw_tension = int((seconds % 10) + 2)
             else:
+                # Phase C: Triadic Absorptions
                 sub_slot = int(((seconds - 30) % 30) / 7.5)
                 current_action = ["PUL", "LPS", "SPU", "ULS"][sub_slot] if sub_slot < 4 else "ULS"
-                reps_stage = int(((seconds - 30) % 10) + 3)
+                raw_tension = int(((seconds - 30) % 10) + 3)
 
-        sets_stage = max(1, min(12, sets_stage))
-        reps_stage = max(1, min(12, reps_stage))
+        # Base-12 bounding enforcement
+        sets_stage = max(1, min(12, raw_frequency))  # Neural Frequency Core
+        reps_stage = max(1, min(12, raw_tension))    # Tissue Tension Perimeter
 
         coordinate = f"{sets_stage}{current_action}{reps_stage}"
         dials_gained = sets_stage * reps_stage
-        
+
+        # Cybernetic Resonance Gradient Delta (Δ = Tension / Frequency)
+        delta_gradient = round(reps_stage / sets_stage, 2)
+
+        # Material Collapse Rule: Reading HUD syntax from Perimeter (Reps) to Core (Sets)
+        vector_desc = self.VECTOR_DICTIONARY_EN.get(current_action, current_action)
+        hud_translation = f"{reps_stage} {vector_desc} AT FREQUENCY X{sets_stage}"
+
+        # Biomechanical Diagnostic Prescription
+        if delta_gradient > 1.0:
+            diagnostic = f"Tension Dominance (Δ={delta_gradient}). Prescribing push decompression."
+        elif delta_gradient < 1.0:
+            diagnostic = f"Frequency Dominance (Δ={delta_gradient}). Prescribing pull anchoring."
+        else:
+            diagnostic = f"Fascial Homeostasis (Δ={delta_gradient}). Fine-tuning active."
+
         return {
             "coordinate": coordinate,
             "action": current_action,
+            "sets": sets_stage,
+            "reps": reps_stage,
             "dials": dials_gained,
+            "delta": delta_gradient,
+            "hud_translation": hud_translation,
+            "diagnostic": diagnostic,
             "hz": round(0.05 + (sets_stage / 240.0), 4),
             "tension": round(14.2 + (reps_stage * 0.8), 2),
             "timestamp": int(time.time() * 1000)
@@ -186,9 +231,10 @@ class ZDialEngine:
             
             # 2. Commit Unrolled Time Series Data
             cursor.execute("""
-                INSERT INTO telemetria_raw (session_id, frequency_hz, cellular_tension, exact_timestamp)
-                VALUES (?, ?, ?, ?)
-            """, (session_uuid, slice_data["hz"], slice_data["tension"], slice_data["timestamp"]))
+                INSERT INTO telemetria_raw (session_id, frequency_hz, cellular_tension, delta_gradient, hud_translation, exact_timestamp)
+                VALUES (?, ?, ?, ?, ?, ?)
+            """, (session_uuid, slice_data["hz"], slice_data["tension"], slice_data["delta"], 
+                  slice_data["hud_translation"], slice_data["timestamp"]))
             
             conn.commit()
             
@@ -215,8 +261,8 @@ if __name__ == "__main__":
             }
             print(json.dumps(output_verification, indent=2))
     else:
-        print("--- [MATHEMATICAL CORE ENGINE OUTPUT] ---")
-        print(engine.collapse_time_slice())
+        print("--- [FLUID BIOCKINETIC TRANSDUCER OUTPUT] ---")
+        print(json.dumps(engine.collapse_time_slice(), indent=2))
 PYTHON_EOF
 
 echo -e "${GREEN}✔ Computational core logic verified locally.${NC}"
@@ -224,7 +270,7 @@ echo -e "${GREEN}✔ Computational core logic verified locally.${NC}"
 # =========================================================================
 # 4. Static Assets Provisioning (NATIVE INDEX ANCHOR)
 # =========================================================================
-echo -e "\n${MAGENTA}[4/8] Provisioning pristine index.html asset as core target...${NC}"
+echo -e "\n${MAGENTA}[4/5] Provisioning pristine index.html asset as core target...${NC}"
 
 mkdir -p public/img
 
@@ -306,9 +352,9 @@ cat << 'INDEX_EOF' > public/index.html
         }
         
         #artepanel-mask-wrapper {
-        -webkit-mask-image: -webkit-radial-gradient(white, black); /* Hack nativo de Safari para congelar bordes redondeados */
-        transform: translateZ(0);
-        -webkit-transform: translateZ(0);
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
         }
     </style>
 </head>
@@ -328,7 +374,8 @@ cat << 'INDEX_EOF' > public/index.html
                                 
                                 <g id="wave-quantum-container" style="transform-origin: 200px 200px; -webkit-transform-origin: 200px 200px;" class="-rotate-90"></g>
 
-                                <g id="sandwatch-group" class="origin-center opacity-0 transition-all duration-500 style-gpu" style="will-change: opacity;">
+                                <!-- Estado inicial visible: opacity-100 -->
+                                <g id="sandwatch-group" class="origin-center opacity-100 transition-all duration-500 style-gpu" style="will-change: opacity;">
                                     <path d="M 90,90 L 310,90 L 90,310 L 310,310 Z" class="stroke-current opacity-20" />
                                     <path d="M 90,90 Q 200,125 310,90" class="stroke-current opacity-20" />
                                     <path d="M 90,310 Q 200,275 310,310" stroke-dasharray="3 3" class="stroke-current opacity-20" />
@@ -345,17 +392,39 @@ cat << 'INDEX_EOF' > public/index.html
     </main>
 
     <script>
+        // =========================================================================
+        // Z-DIAL ENGINE v8.2 — FLUID BIOCKINETIC TRANSDUCER
+        // =========================================================================
+
         const VECTOR_TO_CLOCK_INDEX = {
             'P': 1,  'U': 2,  'L': 3,  'S': 4,
             'PL': 5, 'PU': 6, 'LU': 7, 'SU': 8,
             'PUL': 9,'LPS': 10,'SPU': 11,'ULS': 12
         };
 
+        const VECTOR_DICTIONARY_EN = {
+            'P':   'PACE',
+            'U':   'PUSH',
+            'L':   'PULL',
+            'S':   'SURGE',
+            'PL':  'PACE WITH PULL',
+            'PU':  'PACE WITH PUSH',
+            'LU':  'PULL WITH PUSH',
+            'SU':  'SURGE WITH PUSH',
+            'PUL': 'PACE WITH PUSH AND PULL',
+            'LPS': 'PULL WITH PACE AND SURGE',
+            'SPU': 'SURGE WITH PACE AND PUSH',
+            'ULS': 'PUSH WITH PULL AND SURGE'
+        };
+
         let biokineticWaveHistory = [];
-        let isDialTextRevealed = false;
-        let lastProcessedSecond = -1; 
+        // Estado invertido: inicia en false para mostrar primero el Sandwatch
+        let showWaves = false; 
         const $ = id => document.getElementById(id);
 
+        // -------------------------------------------------------------------------
+        // 1. CONCENTRIC WAVES RENDERER (Zero Point Core Geometry)
+        // -------------------------------------------------------------------------
         function renderBiokineticWaves() {
             const container = $('wave-quantum-container');
             if (!container || biokineticWaveHistory.length === 0) return;
@@ -363,7 +432,8 @@ cat << 'INDEX_EOF' > public/index.html
             let htmlContent = '';
             biokineticWaveHistory.forEach((dial, tIndex) => {
                 const currentScale = tIndex * 1; 
-                const baseOpacity = isDialTextRevealed ? 0.03 : (1.0 - (tIndex * 0.08));
+                // Inversión: Si showWaves es false la opacidad base es 0, si es true muestra las ondas
+                const baseOpacity = showWaves ? (1.0 - (tIndex * 0.08)) : 0;
                 if (baseOpacity <= 0) return;
 
                 const viewFactor = 18; 
@@ -387,7 +457,7 @@ cat << 'INDEX_EOF' > public/index.html
                             cy="200" 
                             r="${layer.r}" 
                             transform="rotate(${angle} 200 200)"
-                            class="stroke-current transition-all duration-300"
+                            class="stroke-current"
                             stroke-width="${tIndex === 0 ? 1.5 : 1.0}"
                             stroke-opacity="${layer.opacity}"
                             stroke-dasharray="${dashArray}"
@@ -399,75 +469,99 @@ cat << 'INDEX_EOF' > public/index.html
             container.innerHTML = htmlContent;
         }
 
+        // -------------------------------------------------------------------------
+        // 2. RESONANCE GRADIENT (Δ) ENGINE & BIOCIRCADIAN CYCLE
+        // -------------------------------------------------------------------------
         function updateZ() {
             const now = new Date();
             const minutes = now.getMinutes();
             const seconds = now.getSeconds();
-            const milliseconds = now.getMilliseconds();
+            const ms = now.getMilliseconds();
 
-            let setsStage = 1;  
-            let repsStage = 1;  
-            let currentAction = 'P'; 
+            let rawTension = 0;   
+            let rawFrequency = 0; 
+            let currentAction = 'P';
 
             if (seconds % 2 !== 0) {
-                const progress1s = milliseconds / 1000; 
-                setsStage = Math.floor(progress1s * 12) + 1;
-                repsStage = 13 - setsStage; 
-                if (progress1s < 0.25) currentAction = 'P';
-                else if (progress1s < 0.5) currentAction = 'U';
-                else if (progress1s < 0.75) currentAction = 'L';
-                else currentAction = 'S';
+                const progress1s = ms / 1000;
+                rawFrequency = Math.floor(progress1s * 12) + 1;
+                rawTension = 13 - rawFrequency;
+
+                if (progress1s < 0.25) currentAction = 'P';      
+                else if (progress1s < 0.50) currentAction = 'U'; 
+                else if (progress1s < 0.75) currentAction = 'L'; 
+                else currentAction = 'S';                        
             } else {
-                setsStage = Math.floor((minutes % 12) + 1);
+                rawFrequency = Math.floor((minutes % 12) + 1);
+
                 if (seconds < 30) {
                     const subSlot = Math.floor((seconds % 30) / 7.5);
                     currentAction = ["PL", "PU", "LU", "SU"][subSlot] || "PL";
-                    repsStage = Math.floor((seconds % 10) + 2);
+                    rawTension = Math.floor((seconds % 10) + 2);
                 } else {
                     const subSlot = Math.floor(((seconds - 30) % 30) / 7.5);
                     currentAction = ["PUL", "LPS", "SPU", "ULS"][subSlot] || "ULS";
-                    repsStage = Math.floor(((seconds - 30) % 10) + 3);
+                    rawTension = Math.floor(((seconds - 30) % 10) + 3);
                 }
             }
+
+            const setsStage = Math.max(1, Math.min(12, rawFrequency)); 
+            const repsStage = Math.max(1, Math.min(12, rawTension));   
             
-            setsStage = Math.max(1, Math.min(12, setsStage));
-            repsStage = Math.max(1, Math.min(12, repsStage));
             const biokineticCoordinate = `${setsStage}${currentAction}${repsStage}`;
             const vectorIndex = VECTOR_TO_CLOCK_INDEX[currentAction] || 1;
+            const deltaGradient = (repsStage / setsStage).toFixed(2);
 
-            const elDial = $('z-dial');
-            const elDialHud = $('z-dial-hud');
-            if (elDial) elDial.textContent = biokineticCoordinate;
-            if (elDialHud) elDialHud.textContent = biokineticCoordinate;
-
-            if (seconds !== lastProcessedSecond) {
+            const lastSavedDial = biokineticWaveHistory[0];
+            if (!lastSavedDial || lastSavedDial.rawCoord !== biokineticCoordinate) {
                 biokineticWaveHistory.unshift({ 
                     sets: setsStage, 
                     vector: vectorIndex, 
                     reps: repsStage, 
+                    delta: deltaGradient,
                     rawCoord: biokineticCoordinate 
                 });
-                
-                if (biokineticWaveHistory.length > 12) {
-                    biokineticWaveHistory.pop();
-                }
-                
-                lastProcessedSecond = seconds;
-                renderBiokineticWaves();
+                if (biokineticWaveHistory.length > 12) biokineticWaveHistory.pop();
             }
+
+            renderBiokineticWaves();
+
+            const vectorText = VECTOR_DICTIONARY_EN[currentAction] || currentAction;
+            const translatedHudText = `${repsStage} ${vectorText} AT FREQUENCY X${setsStage}`;
+
+            let diagnosticMsg = "";
+            if (deltaGradient > 1.0) {
+                diagnosticMsg = `Tension Dominance (Δ=${deltaGradient}). Prescribing active push decompression.`;
+            } else if (deltaGradient < 1.0) {
+                diagnosticMsg = `Frequency Dominance (Δ=${deltaGradient}). Prescribing tensile pull anchoring.`;
+            } else {
+                diagnosticMsg = `Fascial Homeostasis (Δ=${deltaGradient}). High integrity fine tuning active.`;
+            }
+
+            const elDial = $('z-dial');
+            const elDialHud = $('z-dial-hud');
+            const elDiagnostic = $('z-dial-diagnostic');
+
+            if (elDial) elDial.textContent = biokineticCoordinate;
+            if (elDialHud) elDialHud.textContent = translatedHudText;
+            if (elDiagnostic) elDiagnostic.textContent = diagnosticMsg;
         }
 
+        // -------------------------------------------------------------------------
+        // 3. INITIALIZATION & EVENT LISTENERS
+        // -------------------------------------------------------------------------
         document.addEventListener('DOMContentLoaded', () => {
             updateZ();
-            setInterval(updateZ, 16); 
+            setInterval(updateZ, 1000);
 
             const container = $('artepanel-pack-container');
             if (container) {
                 container.addEventListener('click', () => {
-                    isDialTextRevealed = !isDialTextRevealed;
+                    showWaves = !showWaves;
                     const sandwatchGroup = $('sandwatch-group');
                     if (sandwatchGroup) {
-                        sandwatchGroup.style.opacity = isDialTextRevealed ? "1" : "0";
+                        // Si showWaves es true ocultamos el sandwatch, si es false lo mostramos
+                        sandwatchGroup.style.opacity = showWaves ? "0" : "1";
                     }
                     renderBiokineticWaves();
                     if (navigator.vibrate) navigator.vibrate(10);
@@ -480,37 +574,95 @@ cat << 'INDEX_EOF' > public/index.html
 INDEX_EOF
 
 # ==============================================================================
-# 5. Injection of Structural Text Data Blocks
+# INJECTION: BIOCINETIC MANIFESTO & P.U.L.S. DICTIONARY DATA BLOCKS
 # ==============================================================================
-echo -e "\n${YELLOW}[5/8] Injecting biokinetic manifesto markdown chapter asset...${NC}"
+
+# Ensure directory structure exists
 mkdir -p docs/manifesto docs/meanings
 
 cat << 'EOF' > docs/manifesto/S01.md
 # JAKO VAULT // BIOMANIFESTO & THE COGNITIVE SYSTEM
 
-### 👁️ CHAPTER 1 // THE COGNITIVE SYSTEM
-The body is our unconscious mind and the source of our creativity. We do constant functional movements on a daily basis. You learned all of the movements as a child. It was programmed into your unconscious mind. You don’t have to think about walking because your body has already learned. When you get up, close a door, lift something from the ground, go to bed or to take a seat. All these universal motions become a program in our unconscious mind. If you focus on your body, you are aware every second and the further away your mind is. You are more aware of how creative you are. The brain's plasticity only progresses if you keep training your mind. You can do my method or you can do whatever; an art or a sport. Take the place of the programmer and watch what is happening. The mind will be your servant and your body, the art master. When it becomes a routine, you will be ready to bring new ideas into reality.
+### 👁️ CHAPTER 1 // THE POETICS OF BODY & MIND
 
-### 🫀 CHAPTER 2 // THE ALGORITHMIC DIAL & THE QUANTUM HEART
-The algorithm does not invent data; it is a translator. It captures the Earth's rotation relative to the Sun in a 24-hour matrix and condenses it into a living 'bio-kinetic coordinate.' Time is emulated as a quantum heart expanding and contracting through parity:
+My concept of Art
+is what we bring from imagination into reality 
+and my method is drawing the patterns of a possible wellness body.
+.
+.
+.
+I believe the body is the unconscious mind
+and when I meditate,
+I am aware of the moment,
+my mind observes how
+the body is creative by itself 
+.
+.
+.
+I believe the body is the unconscious mind
+also there is the space of our creativity, but governments, banks and media even more, the new internet 3.0 is killing our pure link with nature. I researched the 
+The unconscious is a gap in my mind,
+I create a mechanism to keep this gap open. 
+in the same way my thoughts move around my body,
+igniting consciousness with these three actions; push,
+pull and traction
+.
+.
+.
+A thought comes because
+I PULL it into the canvas of my mind / DRAW
+.
+.
+.
+A thought vanishes because 
+I PUSH it away / PRESS
+.
+.
+.
+By pushing and pulling I start opening the space between my body and mind until I leave my mind in the right place,
+observing how the body is create by itself
 
-* **ODD SECONDS (Sub-Second Engine):** Computes microcellular velocity at a millisecond level. It triggers an inverse geometric balance formula ($13 - Sets$), generating high-frequency neural acceleration.
-* **EVEN SECONDS (Macro-Cycle Engine):** Consolidates structural physical force into macro blocks of 7.5 seconds based on the analog clock (Base-12).
+This traction (pulling and pushing) keeps my thoughts in constant ignition
+.
+.
+.
+This project is focused on strengthening the link of the human body with nature, coding the functional movements of the body, and rendering through a code of capturing the moment; creating a language of the body that can be read by a symbolic pattern.
+
+---
+
+### 🧠 THE UNCONSCIOUS PROGRAMMER
+
+The body is our unconscious mind and the source of our creativity. We do constant functional movements on a daily basis. You learned all of these movements as a child. It was programmed into your unconscious mind. You don’t have to think about walking because your body has already learned. When you get up, close a door, lift something from the ground, go to bed or to take a seat—all these universal motions become a program in our unconscious mind. 
+
+If you focus on your body, you are aware every second, and the further away your mind is, the more aware you become of how creative you are. The brain's plasticity only progresses if you keep training your mind. You can do my method or you can do whatever—an art or a sport. Take the place of the programmer and watch what is happening. The mind will be your servant and your body, the art master. When it becomes a routine, you will be ready to bring new ideas into reality.
+
+---
+
+### 🫀 CHAPTER 2 // THE BIO-TRANSDUCTOR ENGINE & THE QUANTUM HEART
+The algorithm is a real-time bio-kinetic transductor. It bridges physical state and temporal flow by evaluating the relationship between Residual Tissue Tension ($\text{Tension}$) and Neuromuscular Transmission Frequency ($\text{Frequency}$). Time and kinetic response are calculated through the Resonance Gradient ($\Delta$):
+
+$$\Delta = \frac{\text{Tension}}{\text{Frequency}}$$
+
+* **DOMINANCE OF TENSION ($\Delta > 1.0$):** High tissue load and stiffness. The system prescribes repelling force / pushing vectors ($U$) to decompress active strain.
+* **DOMINANCE OF FREQUENCY ($\Delta < 1.0$):** High neural velocity with low structural anchor. The system prescribes attraction force / pulling vectors ($L$) to establish tensile stability.
+* **HOMEOSTASIS ($\Delta \approx 1.0$):** Perfect resonance and fine tuning between tissue strain and neural speed.
 
 > 📐 **SYNTAX & COLLAPSE RULE:** While the hardware architecture streams data as `[Sets][Vector][Reps]`, human translation within the HUD operates under the physics of material collapse—reading backwards from the external perimeter (`Reps`) into the internal frequency core (`Sets`). Thus, the signature **8PU10** materializes as: **10 PACE WITH PUSH AT FREQUENCY X8.** Every collapsed dial leaves the nucleus empty (**Zero Point**) for the next pulse.
 
-### 🌊 CHAPTER 3 // BIOMECHANICAL INTEGRATION & THE THREE CONCENTRIC WAVES
-The ecosystem self-manages by plotting three recurring, concentric waves that radically alter the trajectory of the geometry line according to neural transmission:
+---
 
-* **THE INTERNAL WAVE (Sets):** Coaxial frequency. Micro-temporal and macro-stellar vertical time. Governs energy capture, acting as the unconscious pacemaker that disciplines Stamina and Endurance. Fluctuates from 1 to 12.
-* **THE INTERMEDIATE WAVE (Actions):** The transmission vector of the nervous system. Disciplines Coordination, Precision, and Velocity. It segments time into 3 phases: 
-    * *Phase A (Odd Seconds // Monadic - P, U, L, S):* Zero algorithmic resistance for maximum visual lightness.
-    * *Phase B (Even Seconds < 30s // Binary - PL, PU, LU, SU):* Fragmenting the stroke to simulate kinetic active oscillation.
-    * *Phase C (Even Seconds >= 30s // Ternary - PUL, LPS, SPU, ULS):* Dense, fixed blocks every 7.5 seconds focusing on critical isometry.
-* **THE EXTERNAL WAVE (Reps):** Dense tensional cohesion. The perimeter boundary where raw energy collides with physical reality under gravitational magnetism. Disciplines Pure Strength and Equilibrium, measuring the residual tension of the tissue.
+### 🌊 CHAPTER 3 // BIOMECHANICAL INTEGRATION & THE THREE CONCENTRIC WAVES
+The ecosystem self-manages by plotting three recurring concentric waves that dynamically adjust the geometry based on real-time neural and tissue readings:
+
+* **THE INTERNAL WAVE (Sets // Zero Point Nucleus):** Represents the Resonance Gradient ($\Delta$). It acts as the core pacemaker, dictating stamina, structural readiness, and energy retention ($1 \text{ to } 12$).
+* **THE INTERMEDIATE WAVE (Vector / P.U.L.S.):** The transmission channel of the nervous system. Disciplines coordination, precision, and directional force. It selects the exact movement prescription according to $\Delta$:
+    * *Phase A (Monadic - P, U, L, S):* Triggered during extreme polarization ($\Delta \gg 1.0$ or $\Delta \ll 1.0$). Pure push, pull, or cyclic/explosive triggers.
+    * *Phase B (Binary - PL, PU, LU, SU):* Triggered in force transition zones where load and neural frequency collide.
+    * *Phase C (Ternary - PUL, LPS, SPU, ULS):* Triggered during triadic fascial absorption and isometric homeostasis ($\Delta \approx 1.0$).
+* **THE EXTERNAL WAVE (Reps):** Dense tensional cohesion. The perimeter boundary where raw energy collides with physical reality under gravitational magnetism, measuring residual tissue strain.
 EOF
 
-echo -e "\n${YELLOW}[6/8] Injecting P.U.L.S. alphanumeric translation dictionary matrix...${NC}"
+# Block 2: Vector Meanings Dictionary (Aseptic Plain Text Matrix for Terminal/Engine Parse)
 cat << 'EOF' > docs/meanings/PULS.txt
 ================================================================================
 P.U.L.S. PROTOCOL // ALPHANUMERIC DIAL TRANSLATION DICTIONARY
@@ -519,7 +671,7 @@ P.U.L.S. PROTOCOL // ALPHANUMERIC DIAL TRANSLATION DICTIONARY
 [SYNTAX MATRIX]
 Format: [Reps] [Vector Text] [Sets Multiplier]
 
-[12 EVOLUTIONARY VARIANTS]
+[12 EVOLUTIONARY VARIANTS & Δ GRADIENT MAPPING]
 
 CODE | PHASE     | SPANISH TEXT                       | ENGLISH TEXT
 -----+-----------+------------------------------------+-------------------------------------
@@ -537,26 +689,47 @@ SPU  | PHASE C   | [Reps] SALTOS CON PASO/PRESIÓN     | [Reps] SURGE WITH PACE 
 ULS  | PHASE C   | [Reps] PRESIONES CON CARGA/SALTO   | [Reps] PUSH WITH PULL AND SURGE
 
 --------------------------------------------------------------------------------
-CORE METRICS DEFINITIONS
+CORE METRICS & BIOMECHANICAL DYNAMICS
 --------------------------------------------------------------------------------
-- PACE (P): Continuous displacement cadence. Pace vector driving aerobic baseline.
-- PUSH (U): Direct kinetic neuro-transmission vector. Repelling force.
-- PULL (L): Structural attraction biomechanical load. Tensile isometric connection.
-- SURGE (S): Explosive energy expansion. High-velocity trigger mechanism.
+- PACE (P): Cyclic Trigger. Alternating continuous displacement cadence.
+- PUSH (U): Repelling Force. Direct eccentric/isometric decompression vector.
+- PULL (L): Structural Attraction Load. Concentric tensile anchoring vector.
+- SURGE (S): Explosive Trigger. High-velocity elastic recoil mechanism.
+
+--------------------------------------------------------------------------------
+TRANSDUCTOR Δ RATIO DYNAMIC PRESCRIBERS (Δ = Tension / Frequency)
+--------------------------------------------------------------------------------
+[PHASE A // MONADIC (EXTREME POLARIZATION)]
+- U   : Δ >> 1.0 -> High tissue tension. Prescribes active pushing decompression.
+- L   : Δ << 1.0 -> High neural speed / low load. Prescribes concentric pull anchoring.
+- P   : Δ -> 1.0 (Low Intensity) -> Prescribes continuous joint cadencing.
+- S   : Δ -> 1.0 (High Intensity) -> Prescribes elastic recoil release.
+
+[PHASE B // BINARY (TRANSITION ZONES)]
+- PU  : Dynamic push under ascending velocity.
+- PL  : Dynamic pull under ascending tension.
+- LU  : Critical load point. Antagonistic stabilization.
+- SU  : Massive tension spike. Pneumatic elastic discharge.
+
+[PHASE C // TERNARY (HOMEOSTASIS Δ = 1.0)]
+- PUL : Total Sagittal/Frontal integration.
+- LPS : Transition from static pull to elastic recoil.
+- SPU : Continuous core force projection.
+- ULS : Extreme triadic isometric absorption.
 ================================================================================
 EOF
 
 # =========================================================================
-# 6. Clean Frontend Architecture (MUTED FOR STATIC ISOLATION)
+# 5. Clean Frontend Architecture (MUTED FOR STATIC ISOLATION)
 # =========================================================================
-echo -e "\n${CYAN}[7/8] Bypassing Astro pages to allow pure public anchor execution...${NC}"
+echo -e "\n${CYAN}[5/5] Bypassing Astro pages to allow pure public anchor execution...${NC}"
 rm -rf src/pages
 mkdir -p src/layouts
 
 # =========================================================================
-# 7. Environment Validation, Build & Root Extraction
+# 6. Environment Validation, Build & Root Extraction
 # =========================================================================
-echo -e "\n${YELLOW}[8/8] Validating environments, executing build & compiling target...${NC}"
+echo -e "\n${YELLOW}[5/5] Checking environment packages and running checks...${NC}"
 
 if [ ! -d "node_modules/astro" ]; then
     echo -e "${MAGENTA}⚠️ node_modules missing. Initializing npm installation...${NC}"
