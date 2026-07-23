@@ -75,9 +75,9 @@
         }
         
         #artepanel-mask-wrapper {
-            -webkit-mask-image: -webkit-radial-gradient(white, black);
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
+        -webkit-mask-image: -webkit-radial-gradient(white, black); /* Hack nativo de Safari para congelar bordes redondeados */
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
         }
     </style>
 </head>
@@ -97,7 +97,6 @@
                                 
                                 <g id="wave-quantum-container" style="transform-origin: 200px 200px; -webkit-transform-origin: 200px 200px;" class="-rotate-90"></g>
 
-                                <!-- Estado inicial visible: opacity-100 -->
                                 <g id="sandwatch-group" class="origin-center opacity-100 transition-all duration-500 style-gpu" style="will-change: opacity;">
                                     <path d="M 90,90 L 310,90 L 90,310 L 310,310 Z" class="stroke-current opacity-20" />
                                     <path d="M 90,90 Q 200,125 310,90" class="stroke-current opacity-20" />
@@ -109,7 +108,6 @@
 
                     </div>
                 </div>
-
             </div>
         </div>
     </main>
@@ -141,11 +139,10 @@
         };
 
         let biokineticWaveHistory = [];
-        // Estado invertido: inicia en false para mostrar primero el Sandwatch
-        let showWaves = false; 
+        let isDialTextRevealed = true;
         const $ = id => document.getElementById(id);
 
-        // -------------------------------------------------------------------------
+// -------------------------------------------------------------------------
         // 1. CONCENTRIC WAVES RENDERER (Zero Point Core Geometry)
         // -------------------------------------------------------------------------
         function renderBiokineticWaves() {
@@ -155,14 +152,20 @@
             let htmlContent = '';
             biokineticWaveHistory.forEach((dial, tIndex) => {
                 const currentScale = tIndex * 1; 
-                // Inversión: Si showWaves es false la opacidad base es 0, si es true muestra las ondas
-                const baseOpacity = showWaves ? (1.0 - (tIndex * 0.08)) : 0;
+                
+                // Pure binary state: 
+                // When sandwatch is active (isDialTextRevealed = true), waves are 0.
+                // When toggled (isDialTextRevealed = false), render full wave intensity without text bleed.
+                const baseOpacity = isDialTextRevealed ? 0 : (1.0 - (tIndex * 0.07));
                 if (baseOpacity <= 0) return;
 
                 const viewFactor = 18; 
                 const layers = [
+                    // Internal Wave (Sets / Zero Point Core = Delta Gradient Δ)
                     { id: 'internal',     r: (currentScale * 1.0) * viewFactor, opacity: baseOpacity * 0.70, value: dial.sets },
+                    // Intermediate Wave (P.U.L.S. Vector / Neural Channel)
                     { id: 'intermediate', r: (currentScale * 1.4) * viewFactor, opacity: baseOpacity * 0.55, value: dial.vector },
+                    // External Wave (Reps / Tensional Perimeter)
                     { id: 'external',     r: (currentScale * 1.8) * viewFactor, opacity: baseOpacity * 0.40, value: dial.reps }
                 ];
 
@@ -201,40 +204,52 @@
             const seconds = now.getSeconds();
             const ms = now.getMilliseconds();
 
-            let rawTension = 0;   
-            let rawFrequency = 0; 
+            let rawTension = 0;   // Structural Load / Tissue Strain (Perimeter / Reps)
+            let rawFrequency = 0; // Neuromuscular Velocity (Core / Sets)
             let currentAction = 'P';
 
+            // --- SUB-SECOND ENGINE (Odd Seconds: High Frequency Pulses / Bipolar Parity) ---
             if (seconds % 2 !== 0) {
                 const progress1s = ms / 1000;
+                // Neural Frequency calculation and Inverse Tissue Strain (13 - Sets)
                 rawFrequency = Math.floor(progress1s * 12) + 1;
                 rawTension = 13 - rawFrequency;
 
-                if (progress1s < 0.25) currentAction = 'P';      
-                else if (progress1s < 0.50) currentAction = 'U'; 
-                else if (progress1s < 0.75) currentAction = 'L'; 
-                else currentAction = 'S';                        
-            } else {
+                // Phase A: Monadic Variants via Thresholds
+                if (progress1s < 0.25) currentAction = 'P';      // Continuous cadence
+                else if (progress1s < 0.50) currentAction = 'U'; // Pushing decompression
+                else if (progress1s < 0.75) currentAction = 'L'; // Pulling anchoring
+                else currentAction = 'S';                        // Elastic surge recoil
+            } 
+            // --- MACRO-CYCLE ENGINE (Even Seconds: Structured Blocks) ---
+            else {
                 rawFrequency = Math.floor((minutes % 12) + 1);
 
                 if (seconds < 30) {
+                    // Phase B: Binary Transition Zones
                     const subSlot = Math.floor((seconds % 30) / 7.5);
                     currentAction = ["PL", "PU", "LU", "SU"][subSlot] || "PL";
                     rawTension = Math.floor((seconds % 10) + 2);
                 } else {
+                    // Phase C: Triadic Fascial Absorption
                     const subSlot = Math.floor(((seconds - 30) % 30) / 7.5);
                     currentAction = ["PUL", "LPS", "SPU", "ULS"][subSlot] || "ULS";
                     rawTension = Math.floor(((seconds - 30) % 10) + 3);
                 }
             }
 
-            const setsStage = Math.max(1, Math.min(12, rawFrequency)); 
-            const repsStage = Math.max(1, Math.min(12, rawTension));   
+            // Base-12 bounding enforcement
+            const setsStage = Math.max(1, Math.min(12, rawFrequency)); // Frequency Core
+            const repsStage = Math.max(1, Math.min(12, rawTension));   // Tension Perimeter
             
+            // Hardware Coordinate Signature [Sets][Vector][Reps]
             const biokineticCoordinate = `${setsStage}${currentAction}${repsStage}`;
             const vectorIndex = VECTOR_TO_CLOCK_INDEX[currentAction] || 1;
+
+            // Cybernetic Resonance Gradient Delta (Δ = Tension / Frequency)
             const deltaGradient = (repsStage / setsStage).toFixed(2);
 
+            // Push reading to wave-quantum buffer
             const lastSavedDial = biokineticWaveHistory[0];
             if (!lastSavedDial || lastSavedDial.rawCoord !== biokineticCoordinate) {
                 biokineticWaveHistory.unshift({ 
@@ -249,9 +264,15 @@
 
             renderBiokineticWaves();
 
+            // ---------------------------------------------------------------------
+            // 3. HUD TRANSLATION & MATERIAL COLLAPSE RULE (Perimeter -> Core)
+            // ---------------------------------------------------------------------
             const vectorText = VECTOR_DICTIONARY_EN[currentAction] || currentAction;
+            
+            // HUD Syntax: [Reps] [Vector] AT FREQUENCY X[Sets]
             const translatedHudText = `${repsStage} ${vectorText} AT FREQUENCY X${setsStage}`;
 
+            // Biomechanical Diagnostic Engine
             let diagnosticMsg = "";
             if (deltaGradient > 1.0) {
                 diagnosticMsg = `Tension Dominance (Δ=${deltaGradient}). Prescribing active push decompression.`;
@@ -261,6 +282,7 @@
                 diagnosticMsg = `Fascial Homeostasis (Δ=${deltaGradient}). High integrity fine tuning active.`;
             }
 
+            // Interface injection
             const elDial = $('z-dial');
             const elDialHud = $('z-dial-hud');
             const elDiagnostic = $('z-dial-diagnostic');
@@ -270,8 +292,8 @@
             if (elDiagnostic) elDiagnostic.textContent = diagnosticMsg;
         }
 
-        // -------------------------------------------------------------------------
-        // 3. INITIALIZATION & EVENT LISTENERS
+// -------------------------------------------------------------------------
+        // 4. INITIALIZATION & EVENT LISTENERS
         // -------------------------------------------------------------------------
         document.addEventListener('DOMContentLoaded', () => {
             updateZ();
@@ -280,13 +302,19 @@
             const container = $('artepanel-pack-container');
             if (container) {
                 container.addEventListener('click', () => {
-                    showWaves = !showWaves;
+                    // Toggle visualization state
+                    isDialTextRevealed = !isDialTextRevealed;
+                    
                     const sandwatchGroup = $('sandwatch-group');
                     if (sandwatchGroup) {
-                        // Si showWaves es true ocultamos el sandwatch, si es false lo mostramos
-                        sandwatchGroup.style.opacity = showWaves ? "0" : "1";
+                        // Completely hide sandwatch and alphanumeric text on tap (0 instead of 0.15)
+                        sandwatchGroup.style.opacity = isDialTextRevealed ? "1" : "0";
                     }
+                    
+                    // Re-render wave patterns
                     renderBiokineticWaves();
+                    
+                    // Trigger haptic feedback if supported
                     if (navigator.vibrate) navigator.vibrate(10);
                 });
             }
