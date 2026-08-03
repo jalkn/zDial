@@ -416,7 +416,7 @@
         }
 
         // -------------------------------------------------------------------------
-        // 4. INITIALIZATION & TRANSITION INTERACTION
+        // 4. INITIALIZATION & TRANSITION INTERACTION (SINGLE VS DOUBLE TAP)
         // -------------------------------------------------------------------------
         document.addEventListener('DOMContentLoaded', () => {
             updateZ();
@@ -424,17 +424,46 @@
 
             const container = $('artepanel-pack-container');
             if (container) {
-                container.addEventListener('click', () => {
+                let tapTimer = null;
+                let lastTapTime = 0;
+                const DOUBLE_TAP_DELAY = 300; // Ventana de tiempo máxima para detectar doble toque (ms)
+
+                // Función para alternar el tema del documento entre dark y white
+                const toggleTheme = () => {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'white' : 'dark';
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                };
+
+                // Función para alternar la visibilidad de los vectores
+                const toggleDialText = () => {
                     isDialTextRevealed = !isDialTextRevealed;
-                    
                     const sandwatchGroup = $('sandwatch-group');
                     if (sandwatchGroup) {
                         sandwatchGroup.style.opacity = isDialTextRevealed ? "1" : "0";
                     }
-                    
                     renderBiokineticWaves();
-                    
-                    if (navigator.vibrate) navigator.vibrate(10);
+                };
+
+                container.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const currentTime = new Date().getTime();
+                    const tapLength = currentTime - lastTapTime;
+
+                    if (tapLength < DOUBLE_TAP_DELAY && tapLength > 0) {
+                        // --- ACCIÓN: DOUBLE TOUCH / DOUBLE TAP ---
+                        clearTimeout(tapTimer); // Cancelar la ejecución del toque simple
+                        toggleTheme();
+                        if (navigator.vibrate) navigator.vibrate([10, 30, 10]); // Feedback háptico distintivo
+                    } else {
+                        // --- ACCIÓN: SINGLE TOUCH / SINGLE TAP ---
+                        tapTimer = setTimeout(() => {
+                            toggleDialText();
+                            if (navigator.vibrate) navigator.vibrate(10);
+                        }, DOUBLE_TAP_DELAY);
+                    }
+
+                    lastTapTime = currentTime;
                 });
             }
         });
