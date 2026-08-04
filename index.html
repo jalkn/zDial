@@ -128,8 +128,10 @@
             height: 100%;
             position: relative;
             overflow: hidden;
-            border-radius: 9999px;
-            transition: all 0.5s ease;
+            border-radius: 0px;
+            /* Snappy 300ms transition with ultra-responsive cubic-bezier */
+            transition: border-radius 0.3s cubic-bezier(0.2, 0, 0, 1), 
+                        background-image 0.3s ease;
             background-image: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-mid) 50%, var(--gradient-end) 100%);
             -webkit-mask-image: -webkit-radial-gradient(white, black);
             transform: translateZ(0);
@@ -157,19 +159,46 @@
         }
 
         /* ==========================================
-           5. SVG INTERNAL ELEMENTS
+           5. SVG INTERNAL ELEMENTS & MORPH ANIMATIONS
            ========================================== */
         .rotate-minus-90 {
             transform: rotate(-90deg);
             transform-origin: 200px 200px;
             -webkit-transform-origin: 200px 200px;
+            transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), 
+                        opacity 0.3s ease;
         }
 
+        /* Sandwatch group smooth zoom and fade out when hidden */
         .sandwatch-layer {
             transform-origin: center;
             opacity: 1;
-            transition: all 0.5s ease;
-            will-change: opacity;
+            transform: scale(1);
+            transition: opacity 0.3s ease, 
+                        transform 0.3s cubic-bezier(0.2, 0, 0, 1);
+            will-change: opacity, transform;
+        }
+
+        /* Hidden state for Sandwatch (Zoom Out + Fade) */
+        .sandwatch-layer.is-hidden {
+            opacity: 0;
+            transform: scale(0.85);
+            pointer-events: none;
+        }
+
+        /* Wave container smooth zoom and fade in when active */
+        #wave-quantum-container {
+            transform-origin: center;
+            transition: opacity 0.3s ease, 
+                        transform 0.3s cubic-bezier(0.2, 0, 0, 1);
+            will-change: opacity, transform;
+        }
+
+        /* Hidden state for Concentric Waves (Zoom In + Fade) */
+        #wave-quantum-container.is-hidden {
+            opacity: 0;
+            transform: rotate(-90deg) scale(0.9);
+            pointer-events: none;
         }
 
         .stroke-20 {
@@ -250,21 +279,29 @@
         let isDialTextRevealed = true;
         const $ = id => document.getElementById(id);
 
-        // -------------------------------------------------------------------------
+// -------------------------------------------------------------------------
         // 1. CONCENTRIC WAVES RENDERER (Zero Point Core Geometry)
         // -------------------------------------------------------------------------
         function renderBiokineticWaves() {
             const container = $('wave-quantum-container');
             if (!container || biokineticWaveHistory.length === 0) return;
 
+            // Toggle state visibility class for smooth scale + fade transition
+            if (isDialTextRevealed) {
+                container.classList.add('is-hidden');
+            } else {
+                container.classList.remove('is-hidden');
+            }
+
             let htmlContent = '';
             biokineticWaveHistory.forEach((dial, tIndex) => {
                 const currentScale = tIndex * 1; 
                 
-                const baseOpacity = isDialTextRevealed ? 0 : (1.0 - (tIndex * 0.07));
+                // Static base opacity calculated for active wave layers
+                const baseOpacity = 1.0 - (tIndex * 0.07);
                 if (baseOpacity <= 0) return;
 
-                const viewFactor = 18; 
+                const viewFactor = 7; 
                 const layers = [
                     { id: 'internal',     r: (currentScale * 1.0) * viewFactor, opacity: baseOpacity * 0.70, value: dial.sets },
                     { id: 'intermediate', r: (currentScale * 1.4) * viewFactor, opacity: baseOpacity * 0.55, value: dial.vector },
@@ -292,7 +329,7 @@
                             stroke-linecap="round"
                             fill="none"
                         />`;
-            });
+                });
             });
             container.innerHTML = htmlContent;
         }
@@ -395,13 +432,26 @@
                     document.documentElement.setAttribute('data-theme', newTheme);
                 };
 
-                // Función para alternar la visibilidad de los vectores
+                // Toggle view perspective, geometry mask, and kinetic zoom effects
                 const toggleDialText = () => {
                     isDialTextRevealed = !isDialTextRevealed;
+                    
                     const sandwatchGroup = $('sandwatch-group');
+                    const maskWrapper = $('artepanel-mask-wrapper');
+
                     if (sandwatchGroup) {
-                        sandwatchGroup.style.opacity = isDialTextRevealed ? "1" : "0";
+                        if (isDialTextRevealed) {
+                            sandwatchGroup.classList.remove('is-hidden');
+                        } else {
+                            sandwatchGroup.classList.add('is-hidden');
+                        }
                     }
+
+                    if (maskWrapper) {
+                        // Square for Sandwatch view (0px), Circle for Waves view (50%)
+                        maskWrapper.style.borderRadius = isDialTextRevealed ? "0px" : "50%";
+                    }
+
                     renderBiokineticWaves();
                 };
 
