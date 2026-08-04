@@ -213,6 +213,7 @@
             letter-spacing: 0.35em;
             font-family: 'Orbitron', sans-serif;
         }
+        
     </style>
 </head>
 <body>
@@ -226,21 +227,31 @@
                 <div id="artepanel-pack-container">
                     <div id="artepanel-mask-wrapper">
                         
-                        <div class="svg-container">
-                            <svg id="laser-vector-target" viewBox="0 0 400 400">
-                                
-                                <!-- Grupo B: Vista Satelital Concéntrica (Micro & Macro Onda) -->
-                                <g id="wave-quantum-container" class="rotate-minus-90"></g>
+<div class="svg-container">
+    <svg id="laser-vector-target" viewBox="0 0 400 400">
+        
+        <!-- Group B: Concentric Satellite View (Micro & Macro Wave) -->
+        <g id="wave-quantum-container" class="rotate-minus-90"></g>
 
-                                <!-- Grupo A: Vista Lateral Sandwatch + Marcador Nivel -->
-                                <g id="sandwatch-group" class="sandwatch-layer">
-                                    <path d="M 90,90 L 310,90 L 90,310 L 310,310 Z" class="stroke-20" />
-                                    <path d="M 90,90 Q 200,125 310,90" class="stroke-20" />
-                                    <path d="M 90,310 Q 200,275 310,310" stroke-dasharray="3 3" class="stroke-20" />
-                                    <text id="z-dial" x="200" y="218" text-anchor="middle" class="z-dial-text">1P1</text>
-                                </g>
-                            </svg>
-                        </div>
+        <!-- View 0: Clean 2D Sandwatch View (Default Active First View) -->
+        <g id="sandwatch-clean-group" class="sandwatch-layer">
+            <path d="M 90,90 L 310,90 L 90,310 L 310,310 Z" class="stroke-20" />
+            <path d="M 90,90 Q 200,125 310,90" class="stroke-20" />
+            <path d="M 90,310 Q 200,275 310,310" stroke-dasharray="3 3" class="stroke-20" />
+        </g>
+
+        <!-- View 1: Concentric Wave View (Handled dynamically in JS) -->
+
+        <!-- View 2: Lateral Sandwatch View + Level Marker (Now 3rd View) -->
+        <g id="sandwatch-group" class="sandwatch-layer is-hidden">
+            <path d="M 90,90 L 310,90 L 90,310 L 310,310 Z" class="stroke-20" />
+            <path d="M 90,90 Q 200,125 310,90" class="stroke-20" />
+            <path d="M 90,310 Q 200,275 310,310" stroke-dasharray="3 3" class="stroke-20" />
+            <text id="z-dial" x="200" y="218" text-anchor="middle" class="z-dial-text">1P1</text>
+        </g>
+
+    </svg>
+</div>
 
                     </div>
                 </div>
@@ -249,234 +260,255 @@
         </div>
     </main>
 
-    <script>
-        // =========================================================================
-        // Z-DIAL ENGINE v8.2 — FLUID BIOCKINETIC TRANSDUCER
-        // =========================================================================
+ <script>
+    // =========================================================================
+    // Z-DIAL ENGINE v8.2 — FLUID BIOCKINETIC TRANSDUCER
+    // =========================================================================
 
-        const VECTOR_TO_CLOCK_INDEX = {
-            'P': 1,  'U': 2,  'L': 3,  'S': 4,
-            'PL': 5, 'PU': 6, 'LU': 7, 'SU': 8,
-            'PUL': 9,'LPS': 10,'SPU': 11,'ULS': 12
-        };
+    const VECTOR_TO_CLOCK_INDEX = {
+        'P': 1,  'U': 2,  'L': 3,  'S': 4,
+        'PL': 5, 'PU': 6, 'LU': 7, 'SU': 8,
+        'PUL': 9,'LPS': 10,'SPU': 11,'ULS': 12
+    };
 
-        const VECTOR_DICTIONARY_EN = {
-            'P':   'PACE',
-            'U':   'PUSH',
-            'L':   'PULL',
-            'S':   'SURGE',
-            'PL':  'PACE WITH PULL',
-            'PU':  'PACE WITH PUSH',
-            'LU':  'PULL WITH PUSH',
-            'SU':  'SURGE WITH PUSH',
-            'PUL': 'PACE WITH PUSH AND PULL',
-            'LPS': 'PULL WITH PACE AND SURGE',
-            'SPU': 'SURGE WITH PACE AND PUSH',
-            'ULS': 'PUSH WITH PULL AND SURGE'
-        };
+    const VECTOR_DICTIONARY_EN = {
+        'P':   'PACE',
+        'U':   'PUSH',
+        'L':   'PULL',
+        'S':   'SURGE',
+        'PL':  'PACE WITH PULL',
+        'PU':  'PACE WITH PUSH',
+        'LU':  'PULL WITH PUSH',
+        'SU':  'SURGE WITH PUSH',
+        'PUL': 'PACE WITH PUSH AND PULL',
+        'LPS': 'PULL WITH PACE AND SURGE',
+        'SPU': 'SURGE WITH PACE AND PUSH',
+        'ULS': 'PUSH WITH PULL AND SURGE'
+    };
 
-        let biokineticWaveHistory = [];
-        let isDialTextRevealed = true;
-        const $ = id => document.getElementById(id);
+    let biokineticWaveHistory = [];
 
-// -------------------------------------------------------------------------
-        // 1. CONCENTRIC WAVES RENDERER (Zero Point Core Geometry)
-        // -------------------------------------------------------------------------
-        function renderBiokineticWaves() {
-            const container = $('wave-quantum-container');
-            if (!container || biokineticWaveHistory.length === 0) return;
+    // -------------------------------------------------------------------------
+    // 1. CONCENTRIC WAVES RENDERER (Zero Point Core Geometry)
+    // -------------------------------------------------------------------------
+    function renderBiokineticWaves() {
+        const container = $('wave-quantum-container');
+        if (!container || biokineticWaveHistory.length === 0) return;
 
-            // Toggle state visibility class for smooth scale + fade transition
-            if (isDialTextRevealed) {
-                container.classList.add('is-hidden');
-            } else {
-                container.classList.remove('is-hidden');
-            }
-
-            let htmlContent = '';
-            biokineticWaveHistory.forEach((dial, tIndex) => {
-                const currentScale = tIndex * 1; 
-                
-                // Static base opacity calculated for active wave layers
-                const baseOpacity = 1.0 - (tIndex * 0.07);
-                if (baseOpacity <= 0) return;
-
-                const viewFactor = 7; 
-                const layers = [
-                    { id: 'internal',     r: (currentScale * 1.0) * viewFactor, opacity: baseOpacity * 0.70, value: dial.sets },
-                    { id: 'intermediate', r: (currentScale * 1.4) * viewFactor, opacity: baseOpacity * 0.55, value: dial.vector },
-                    { id: 'external',     r: (currentScale * 1.8) * viewFactor, opacity: baseOpacity * 0.40, value: dial.reps }
-                ];
-
-                layers.forEach(layer => {
-                    if (layer.r <= 0) return;
-                    const circumference = 2 * Math.PI * layer.r;
-                    const angle = (layer.value - 1) * 30; 
-                    const arcLength = (layer.value / 12) * circumference;
-                    const dashArray = `${arcLength} ${circumference}`;
-
-                    htmlContent += `
-                        <circle 
-                            id="wave-${layer.id}-t${tIndex}" 
-                            cx="200" 
-                            cy="200" 
-                            r="${layer.r}" 
-                            transform="rotate(${angle} 200 200)"
-                            stroke="currentColor"
-                            stroke-width="${tIndex === 0 ? 1.5 : 1.0}"
-                            stroke-opacity="${layer.opacity}"
-                            stroke-dasharray="${dashArray}"
-                            stroke-linecap="round"
-                            fill="none"
-                        />`;
-                });
-            });
-            container.innerHTML = htmlContent;
+        // Toggle wave visibility: visible only during viewMode 1
+        if (viewMode === 1) {
+            container.classList.remove('is-hidden');
+        } else {
+            container.classList.add('is-hidden');
         }
 
-        // -------------------------------------------------------------------------
-        // 2. RESONANCE GRADIENT (Δ) ENGINE & BIOCIRCADIAN CYCLE
-        // -------------------------------------------------------------------------
-        function updateZ() {
-            const now = new Date();
-            const minutes = now.getMinutes();
-            const seconds = now.getSeconds();
-            const ms = now.getMilliseconds();
-
-            let rawTension = 0;   
-            let rawFrequency = 0; 
-            let currentAction = 'P';
-
-            if (seconds % 2 !== 0) {
-                const progress1s = ms / 1000;
-                rawFrequency = Math.floor(progress1s * 12) + 1;
-                rawTension = 13 - rawFrequency;
-
-                if (progress1s < 0.25) currentAction = 'P';      
-                else if (progress1s < 0.50) currentAction = 'U'; 
-                else if (progress1s < 0.75) currentAction = 'L'; 
-                else currentAction = 'S';                        
-            } else {
-                rawFrequency = Math.floor((minutes % 12) + 1);
-
-                if (seconds < 30) {
-                    const subSlot = Math.floor((seconds % 30) / 7.5);
-                    currentAction = ["PL", "PU", "LU", "SU"][subSlot] || "PL";
-                    rawTension = Math.floor((seconds % 10) + 2);
-                } else {
-                    const subSlot = Math.floor(((seconds - 30) % 30) / 7.5);
-                    currentAction = ["PUL", "LPS", "SPU", "ULS"][subSlot] || "ULS";
-                    rawTension = Math.floor(((seconds - 30) % 10) + 3);
-                }
-            }
-
-            const setsStage = Math.max(1, Math.min(12, rawFrequency)); 
-            const repsStage = Math.max(1, Math.min(12, rawTension));   
+        let htmlContent = '';
+        biokineticWaveHistory.forEach((dial, tIndex) => {
+            const currentScale = tIndex * 1; 
             
-            const biokineticCoordinate = `${setsStage}${currentAction}${repsStage}`;
-            const vectorIndex = VECTOR_TO_CLOCK_INDEX[currentAction] || 1;
-            const deltaGradient = (repsStage / setsStage).toFixed(2);
+            // Static base opacity calculated for active wave layers
+            const baseOpacity = 1.0 - (tIndex * 0.07);
+            if (baseOpacity <= 0) return;
 
-            const lastSavedDial = biokineticWaveHistory[0];
-            if (!lastSavedDial || lastSavedDial.rawCoord !== biokineticCoordinate) {
-                biokineticWaveHistory.unshift({ 
-                    sets: setsStage, 
-                    vector: vectorIndex, 
-                    reps: repsStage, 
-                    delta: deltaGradient,
-                    rawCoord: biokineticCoordinate 
-                });
-                if (biokineticWaveHistory.length > 12) biokineticWaveHistory.pop();
-            }
+            const viewFactor = 7; 
+            const layers = [
+                { id: 'internal',     r: (currentScale * 1.0) * viewFactor, opacity: baseOpacity * 0.70, value: dial.sets },
+                { id: 'intermediate', r: (currentScale * 1.4) * viewFactor, opacity: baseOpacity * 0.55, value: dial.vector },
+                { id: 'external',     r: (currentScale * 1.8) * viewFactor, opacity: baseOpacity * 0.40, value: dial.reps }
+            ];
 
-            renderBiokineticWaves();
+            layers.forEach(layer => {
+                if (layer.r <= 0) return;
+                const circumference = 2 * Math.PI * layer.r;
+                const angle = (layer.value - 1) * 30; 
+                const arcLength = (layer.value / 12) * circumference;
+                const dashArray = `${arcLength} ${circumference}`;
 
-            const vectorText = VECTOR_DICTIONARY_EN[currentAction] || currentAction;
-            const translatedHudText = `${repsStage} ${vectorText} AT FREQUENCY X${setsStage}`;
+                htmlContent += `
+                    <circle 
+                        id="wave-${layer.id}-t${tIndex}" 
+                        cx="200" 
+                        cy="200" 
+                        r="${layer.r}" 
+                        transform="rotate(${angle} 200 200)"
+                        stroke="currentColor"
+                        stroke-width="${tIndex === 0 ? 1.5 : 1.0}"
+                        stroke-opacity="${layer.opacity}"
+                        stroke-dasharray="${dashArray}"
+                        stroke-linecap="round"
+                        fill="none"
+                    />`;
+            });
+        });
+        container.innerHTML = htmlContent;
+    }
 
-            let diagnosticMsg = "";
-            if (deltaGradient > 1.0) {
-                diagnosticMsg = `Tension Dominance (Δ=${deltaGradient}). Prescribing active push decompression.`;
-            } else if (deltaGradient < 1.0) {
-                diagnosticMsg = `Frequency Dominance (Δ=${deltaGradient}). Prescribing tensile pull anchoring.`;
+    // -------------------------------------------------------------------------
+    // 2. RESONANCE GRADIENT (Δ) ENGINE & BIOCIRCADIAN CYCLE
+    // -------------------------------------------------------------------------
+    function updateZ() {
+        const now = new Date();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+        const ms = now.getMilliseconds();
+
+        let rawTension = 0;   
+        let rawFrequency = 0; 
+        let currentAction = 'P';
+
+        if (seconds % 2 !== 0) {
+            const progress1s = ms / 1000;
+            rawFrequency = Math.floor(progress1s * 12) + 1;
+            rawTension = 13 - rawFrequency;
+
+            if (progress1s < 0.25) currentAction = 'P';      
+            else if (progress1s < 0.50) currentAction = 'U'; 
+            else if (progress1s < 0.75) currentAction = 'L'; 
+            else currentAction = 'S';                        
+        } else {
+            rawFrequency = Math.floor((minutes % 12) + 1);
+
+            if (seconds < 30) {
+                const subSlot = Math.floor((seconds % 30) / 7.5);
+                currentAction = ["PL", "PU", "LU", "SU"][subSlot] || "PL";
+                rawTension = Math.floor((seconds % 10) + 2);
             } else {
-                diagnosticMsg = `Fascial Homeostasis (Δ=${deltaGradient}). High integrity fine tuning active.`;
+                const subSlot = Math.floor(((seconds - 30) % 30) / 7.5);
+                currentAction = ["PUL", "LPS", "SPU", "ULS"][subSlot] || "ULS";
+                rawTension = Math.floor(((seconds - 30) % 10) + 3);
             }
-
-            const elDial = $('z-dial');
-            const elDialHud = $('z-dial-hud');
-            const elDiagnostic = $('z-dial-diagnostic');
-
-            if (elDial) elDial.textContent = biokineticCoordinate;
-            if (elDialHud) elDialHud.textContent = translatedHudText;
-            if (elDiagnostic) elDiagnostic.textContent = diagnosticMsg;
         }
 
-        // -------------------------------------------------------------------------
-        // 4. INITIALIZATION & TRANSITION INTERACTION (SINGLE VS DOUBLE TAP)
-        // -------------------------------------------------------------------------
-        document.addEventListener('DOMContentLoaded', () => {
-            updateZ();
-            setInterval(updateZ, 1000);
+        const setsStage = Math.max(1, Math.min(12, rawFrequency)); 
+        const repsStage = Math.max(1, Math.min(12, rawTension));   
+        
+        const biokineticCoordinate = `${setsStage}${currentAction}${repsStage}`;
+        const vectorIndex = VECTOR_TO_CLOCK_INDEX[currentAction] || 1;
+        const deltaGradient = (repsStage / setsStage).toFixed(2);
 
-            const container = $('artepanel-pack-container');
-            if (container) {
-                let tapTimer = null;
-                let lastTapTime = 0;
-                const DOUBLE_TAP_DELAY = 300; // Ventana de tiempo máxima para detectar doble toque (ms)
+        const lastSavedDial = biokineticWaveHistory[0];
+        if (!lastSavedDial || lastSavedDial.rawCoord !== biokineticCoordinate) {
+            biokineticWaveHistory.unshift({ 
+                sets: setsStage, 
+                vector: vectorIndex, 
+                reps: repsStage, 
+                delta: deltaGradient,
+                rawCoord: biokineticCoordinate 
+            });
+            if (biokineticWaveHistory.length > 12) biokineticWaveHistory.pop();
+        }
 
-                // Función para alternar el tema del documento entre dark y white
-                const toggleTheme = () => {
-                    const currentTheme = document.documentElement.getAttribute('data-theme');
-                    const newTheme = currentTheme === 'dark' ? 'white' : 'dark';
-                    document.documentElement.setAttribute('data-theme', newTheme);
-                };
+        renderBiokineticWaves();
 
-                // Toggle view perspective, geometry mask, and kinetic zoom effects
-                const toggleDialText = () => {
-                    isDialTextRevealed = !isDialTextRevealed;
-                    
-                    const sandwatchGroup = $('sandwatch-group');
-                    const maskWrapper = $('artepanel-mask-wrapper');
+        const vectorText = VECTOR_DICTIONARY_EN[currentAction] || currentAction;
+        const translatedHudText = `${repsStage} ${vectorText} AT FREQUENCY X${setsStage}`;
 
-                    if (sandwatchGroup) {
-                        if (isDialTextRevealed) {
-                            sandwatchGroup.classList.remove('is-hidden');
-                        } else {
-                            sandwatchGroup.classList.add('is-hidden');
-                        }
-                    }
+        let diagnosticMsg = "";
+        if (deltaGradient > 1.0) {
+            diagnosticMsg = `Tension Dominance (Δ=${deltaGradient}). Prescribing active push decompression.`;
+        } else if (deltaGradient < 1.0) {
+            diagnosticMsg = `Frequency Dominance (Δ=${deltaGradient}). Prescribing tensile pull anchoring.`;
+        } else {
+            diagnosticMsg = `Fascial Homeostasis (Δ=${deltaGradient}). High integrity fine tuning active.`;
+        }
 
-                    if (maskWrapper) {
-                        // Square for Sandwatch view (0px), Circle for Waves view (50%)
-                        maskWrapper.style.borderRadius = isDialTextRevealed ? "0px" : "50%";
-                    }
+        const elDial = $('z-dial');
+        const elDialHud = $('z-dial-hud');
+        const elDiagnostic = $('z-dial-diagnostic');
 
-                    renderBiokineticWaves();
-                };
+        if (elDial) elDial.textContent = biokineticCoordinate;
+        if (elDialHud) elDialHud.textContent = translatedHudText;
+        if (elDiagnostic) elDiagnostic.textContent = diagnosticMsg;
+    }
 
-                container.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const currentTime = new Date().getTime();
-                    const tapLength = currentTime - lastTapTime;
+    // -------------------------------------------------------------------------
+    // 4. INITIALIZATION & TRANSITION INTERACTION (SINGLE VS DOUBLE TAP)
+    // -------------------------------------------------------------------------
+// Update variable definition to make Clean Sandwatch mode 0
+    let viewMode = 0; // 0: Clean Floating Sandwatch, 1: Concentric Drops/Waves, 2: Sandwatch with HUD Dial
+    const $ = id => document.getElementById(id);
 
-                    if (tapLength < DOUBLE_TAP_DELAY && tapLength > 0) {
-                        // --- ACCIÓN: DOUBLE TOUCH / DOUBLE TAP ---
-                        clearTimeout(tapTimer); // Cancelar la ejecución del toque simple
-                        toggleTheme();
-                        if (navigator.vibrate) navigator.vibrate([10, 30, 10]); // Feedback háptico distintivo
-                    } else {
-                        // --- ACCIÓN: SINGLE TOUCH / SINGLE TAP ---
-                        tapTimer = setTimeout(() => {
-                            toggleDialText();
-                            if (navigator.vibrate) navigator.vibrate(10);
-                        }, DOUBLE_TAP_DELAY);
-                    }
+    // Dynamic style apply helper for initial load and mode toggling
+    function applyContainerStyle(mode) {
+        const maskWrapper = $('artepanel-mask-wrapper');
+        if (!maskWrapper) return;
 
-                    lastTapTime = currentTime;
-                });
-            }
-        });
-    </script>
+        if (mode === 0) {
+            // View 0: Clean floating sandwatch (No box frame background)
+            maskWrapper.style.backgroundImage = 'none';
+            maskWrapper.style.borderRadius = "0px";
+        } else {
+            // Views 1 & 2: Restore dark gradient frame background
+            maskWrapper.style.backgroundImage = 'linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-mid) 50%, var(--gradient-end) 100%)';
+            maskWrapper.style.borderRadius = (mode === 1) ? "50%" : "0px";
+        }
+    }
+
+    // Inside DOMContentLoaded initialization:
+    document.addEventListener('DOMContentLoaded', () => {
+        applyContainerStyle(viewMode); // Set initial transparent container style on boot
+        updateZ();
+        setInterval(updateZ, 1000);
+
+        const container = $('artepanel-pack-container');
+        if (container) {
+            let tapTimer = null;
+            let lastTapTime = 0;
+            const DOUBLE_TAP_DELAY = 300;
+
+            const toggleTheme = () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'white' : 'dark';
+                document.documentElement.setAttribute('data-theme', newTheme);
+            };
+
+            // Updated view switcher logic with new order sequence
+            const cycleViewMode = () => {
+                // Sequence loop: 0 (Clean) -> 1 (Waves) -> 2 (HUD Dial) -> 0
+                viewMode = (viewMode + 1) % 3;
+
+                const sandwatchCleanGroup = $('sandwatch-clean-group');
+                const sandwatchGroup = $('sandwatch-group');
+
+                // View 0: Clean Sandwatch (No box background, vectors only)
+                if (sandwatchCleanGroup) {
+                    if (viewMode === 0) sandwatchCleanGroup.classList.remove('is-hidden');
+                    else sandwatchCleanGroup.classList.add('is-hidden');
+                }
+
+                // View 1: Concentric Waves (Handled inside renderBiokineticWaves)
+                renderBiokineticWaves();
+
+                // View 2: Sandwatch with HUD Text Dial
+                if (sandwatchGroup) {
+                    if (viewMode === 2) sandwatchGroup.classList.remove('is-hidden');
+                    else sandwatchGroup.classList.add('is-hidden');
+                }
+
+                // Apply wrapper geometry/background styling per mode
+                applyContainerStyle(viewMode);
+            };
+
+            container.addEventListener('click', (e) => {
+                e.preventDefault();
+                const currentTime = new Date().getTime();
+                const tapLength = currentTime - lastTapTime;
+
+                if (tapLength < DOUBLE_TAP_DELAY && tapLength > 0) {
+                    clearTimeout(tapTimer);
+                    toggleTheme();
+                    if (navigator.vibrate) navigator.vibrate([10, 30, 10]);
+                } else {
+                    tapTimer = setTimeout(() => {
+                        cycleViewMode();
+                        if (navigator.vibrate) navigator.vibrate(10);
+                    }, DOUBLE_TAP_DELAY);
+                }
+
+                lastTapTime = currentTime;
+            });
+        }
+    });
+</script>
 </body>
 </html>
