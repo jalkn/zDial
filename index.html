@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <link class="icon" type="image/png" href="img/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>JAKO VAULT</title>
+    <title>JAKO VAULT — SANDWATCH 2D</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
     
-<style>
+    <style>
         /* ==========================================
            1. CUSTOM PROPERTIES & THEMES
            ========================================== */
@@ -111,12 +111,14 @@
         }
 
         /* ==========================================
-           4. PANEL PACK & VECTOR TARGET (PROPORTION 1:3)
+           4. PANEL PACK & VECTOR TARGET
            ========================================== */
         #artepanel-pack-container {
             position: relative;
-            width: 45vmin;
-            height: 45vmin;
+            width: 82vmin;  /* Aumentado de 50vmin a 82vmin */
+            height: 82vmin;
+            max-width: 90vw;
+            max-height: 90vh;
             aspect-ratio: 1 / 1;
             flex-shrink: 0;
             filter: drop-shadow(0 25px 55px rgba(0, 0, 0, 0.85));
@@ -129,7 +131,6 @@
             position: relative;
             overflow: hidden;
             border-radius: 0px;
-            /* Snappy 300ms transition with ultra-responsive cubic-bezier */
             transition: border-radius 0.3s cubic-bezier(0.2, 0, 0, 1), 
                         background-image 0.3s ease;
             background-image: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-mid) 50%, var(--gradient-end) 100%);
@@ -164,37 +165,29 @@
         .rotate-minus-90 {
             transform: rotate(-90deg);
             transform-origin: 200px 200px;
-            -webkit-transform-origin: 200px 200px;
-            transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), 
-                        opacity 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), opacity 0.3s ease;
         }
 
-        /* Sandwatch group smooth zoom and fade out when hidden */
         .sandwatch-layer {
             transform-origin: center;
             opacity: 1;
             transform: scale(1);
-            transition: opacity 0.3s ease, 
-                        transform 0.3s cubic-bezier(0.2, 0, 0, 1);
+            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.2, 0, 0, 1);
             will-change: opacity, transform;
         }
 
-        /* Hidden state for Sandwatch (Zoom Out + Fade) */
         .sandwatch-layer.is-hidden {
             opacity: 0;
             transform: scale(0.85);
             pointer-events: none;
         }
 
-        /* Wave container smooth zoom and fade in when active */
         #wave-quantum-container {
             transform-origin: center;
-            transition: opacity 0.3s ease, 
-                        transform 0.3s cubic-bezier(0.2, 0, 0, 1);
+            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.2, 0, 0, 1);
             will-change: opacity, transform;
         }
 
-        /* Hidden state for Concentric Waves (Zoom In + Fade) */
         #wave-quantum-container.is-hidden {
             opacity: 0;
             transform: rotate(-90deg) scale(0.9);
@@ -203,17 +196,26 @@
 
         .stroke-20 {
             stroke: currentColor;
-            opacity: 0.2;
+            opacity: 0.25;
+            stroke-width: 1;
         }
 
         .z-dial-text {
             fill: currentColor;
             font-weight: 900;
-            font-size: 30px;
+            font-size: 20px;
             letter-spacing: 0.35em;
             font-family: 'Orbitron', sans-serif;
         }
-        
+
+        .pole-label {
+            fill: currentColor;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            opacity: 0.5;
+            font-family: 'Orbitron', sans-serif;
+        }
     </style>
 </head>
 <body>
@@ -227,31 +229,34 @@
                 <div id="artepanel-pack-container">
                     <div id="artepanel-mask-wrapper">
                         
-<div class="svg-container">
-    <svg id="laser-vector-target" viewBox="0 0 400 400">
-        
-        <!-- Group B: Concentric Satellite View (Micro & Macro Wave) -->
-        <g id="wave-quantum-container" class="rotate-minus-90"></g>
+                        <div class="svg-container">
+                            <svg id="laser-vector-target" viewBox="0 0 400 400">
+                                
+                                <!-- View 1: Concentric Waves View (Satellite Core) -->
+                                <g id="wave-quantum-container" class="rotate-minus-90"></g>
 
-        <!-- View 0: Clean 2D Sandwatch View (Default Active First View) -->
-        <g id="sandwatch-clean-group" class="sandwatch-layer">
-            <path d="M 90,90 L 310,90 L 90,310 L 310,310 Z" class="stroke-20" />
-            <path d="M 90,90 Q 200,125 310,90" class="stroke-20" />
-            <path d="M 90,310 Q 200,275 310,310" stroke-dasharray="3 3" class="stroke-20" />
-        </g>
+                                <!-- View 0: Dynamic 2D Sandwatch View (6-Hour Expansion Engine) -->
+                                <g id="sandwatch-clean-group" class="sandwatch-layer">
+                                    <!-- Dynamic Wave Mesh Layers -->
+                                    <g id="sandwatch-dynamic-mesh"></g>
 
-        <!-- View 1: Concentric Wave View (Handled dynamically in JS) -->
+                                    <!-- Zero Point Center Focal Node -->
+                                    <circle cx="200" cy="200" r="2.5" fill="currentColor" opacity="0.8" />
+                                </g>
 
-        <!-- View 2: Lateral Sandwatch View + Level Marker (Now 3rd View) -->
-        <g id="sandwatch-group" class="sandwatch-layer is-hidden">
-            <path d="M 90,90 L 310,90 L 90,310 L 310,310 Z" class="stroke-20" />
-            <path d="M 90,90 Q 200,125 310,90" class="stroke-20" />
-            <path d="M 90,310 Q 200,275 310,310" stroke-dasharray="3 3" class="stroke-20" />
-            <text id="z-dial" x="200" y="218" text-anchor="middle" class="z-dial-text">1P1</text>
-        </g>
+                                <!-- View 2: Sandwatch View + Diagnostic Telemetry Overlay -->
+                                <g id="sandwatch-group" class="sandwatch-layer is-hidden">
+                                    <path d="M 90,90 L 310,90 L 90,310 L 310,310 Z" class="stroke-20" />
+                                    <path d="M 90,90 Q 200,125 310,90" class="stroke-20" />
+                                    <path d="M 90,310 Q 200,275 310,310" stroke-dasharray="3 3" class="stroke-20" />
+                                    
+                                    <text x="200" y="70" text-anchor="middle" class="pole-label"></text>
+                                    <text id="z-dial" x="200" y="206" text-anchor="middle" class="z-dial-text">1P1</text>
+                                    <text x="200" y="340" text-anchor="middle" class="pole-label"></text>
+                                </g>
 
-    </svg>
-</div>
+                            </svg>
+                        </div>
 
                     </div>
                 </div>
@@ -262,7 +267,7 @@
 
  <script>
     // =========================================================================
-    // Z-DIAL ENGINE v8.2 — FLUID BIOCKINETIC TRANSDUCER
+    // Z-DIAL ENGINE v9.0 — SANDWATCH 2D QUANTUM BIOREGENERATIVE TRANSDUCER
     // =========================================================================
 
     const VECTOR_TO_CLOCK_INDEX = {
@@ -271,42 +276,81 @@
         'PUL': 9,'LPS': 10,'SPU': 11,'ULS': 12
     };
 
-    const VECTOR_DICTIONARY_EN = {
-        'P':   'PACE',
-        'U':   'PUSH',
-        'L':   'PULL',
-        'S':   'SURGE',
-        'PL':  'PACE WITH PULL',
-        'PU':  'PACE WITH PUSH',
-        'LU':  'PULL WITH PUSH',
-        'SU':  'SURGE WITH PUSH',
-        'PUL': 'PACE WITH PUSH AND PULL',
-        'LPS': 'PULL WITH PACE AND SURGE',
-        'SPU': 'SURGE WITH PACE AND PUSH',
-        'ULS': 'PUSH WITH PULL AND SURGE'
-    };
-
+    const TOTAL_CYCLE_SECONDS = 6 * 3600; // Ciclo completo de 6 horas
     let biokineticWaveHistory = [];
+    let currentTensionSets = 1;
+    let currentFrequencyReps = 1;
+
+    const $ = id => document.getElementById(id);
 
     // -------------------------------------------------------------------------
-    // 1. CONCENTRIC WAVES RENDERER (Zero Point Core Geometry)
+    // 1. SANDWATCH 2D DYNAMIC ENGINE (Expansión desde el Punto Zero)
+    // -------------------------------------------------------------------------
+    function renderSandwatch2D(containerId) {
+        const meshContainer = $(containerId);
+        if (!meshContainer) return;
+
+        const now = new Date();
+        const secondsIn6h = (now.getHours() % 6) * 3600 + now.getMinutes() * 60 + now.getSeconds();
+        const progress = secondsIn6h / TOTAL_CYCLE_SECONDS; // 0.0 a 1.0 en 6h
+
+        const centerX = 200;
+        const centerY = 200;
+        const maxHeight = 110 * Math.max(progress, 1.08); // Crece gradualmente hacia los polos
+        const maxRadius = 110 * Math.max(progress, 1.08);
+
+        // Angulaciones rotacionales independientes por polo
+        const angleTop = (secondsIn6h * currentFrequencyReps * 3) % 360;
+        const angleBottom = (secondsIn6h * currentTensionSets * 3) % 360;
+
+        let htmlSvg = '';
+        const numRays = 12; // Malla de base 12
+        const numHorizontalLevels = 8;
+
+        // Polo Superior (Frecuencia / Reps -> Hz / 369)
+        for (let i = 0; i < numRays; i++) {
+            const rad = ((i * (360 / numRays) + angleTop) * Math.PI) / 180;
+            const x2 = centerX + Math.cos(rad) * maxRadius;
+            const y2 = centerY - maxHeight;
+            htmlSvg += `<line x1="${centerX}" y1="${centerY}" x2="${x2}" y2="${y2}" stroke="currentColor" stroke-opacity="0.3" stroke-width="0.8" />`;
+        }
+
+        // Polo Inferior (Tensión / Sets -> TN)
+        for (let i = 0; i < numRays; i++) {
+            const rad = ((i * (360 / numRays) + angleBottom) * Math.PI) / 180;
+            const x2 = centerX + Math.cos(rad) * maxRadius;
+            const y2 = centerY + maxHeight;
+            htmlSvg += `<line x1="${centerX}" y1="${centerY}" x2="${x2}" y2="${y2}" stroke="currentColor" stroke-opacity="0.35" stroke-width="0.8" />`;
+        }
+
+        // Niveles Horizontales de Onda desde el Centro
+        for (let lvl = 1; lvl <= numHorizontalLevels; lvl++) {
+            const factor = lvl / numHorizontalLevels;
+            const levelYTop = centerY - (maxHeight * factor);
+            const levelYBot = centerY + (maxHeight * factor);
+            const levelR = maxRadius * factor;
+
+            // Anillos de corte horizontal (Ondas acumulativas)
+            htmlSvg += `<ellipse cx="${centerX}" cy="${levelYTop}" rx="${levelR}" ry="${levelR * 0.2}" stroke="currentColor" stroke-opacity="0.25" stroke-dasharray="2 2" fill="none" />`;
+            htmlSvg += `<ellipse cx="${centerX}" cy="${levelYBot}" rx="${levelR}" ry="${levelR * 0.2}" stroke="currentColor" stroke-opacity="0.3" fill="none" />`;
+        }
+
+        meshContainer.innerHTML = htmlSvg;
+    }
+
+    // -------------------------------------------------------------------------
+    // 2. CONCENTRIC WAVES RENDERER (Vista Satelital)
     // -------------------------------------------------------------------------
     function renderBiokineticWaves() {
         const container = $('wave-quantum-container');
         if (!container || biokineticWaveHistory.length === 0) return;
 
-        // Toggle wave visibility: visible only during viewMode 1
-        if (viewMode === 1) {
-            container.classList.remove('is-hidden');
-        } else {
-            container.classList.add('is-hidden');
-        }
+        if (viewMode === 1) container.classList.remove('is-hidden');
+        else container.classList.add('is-hidden');
 
         let htmlContent = '';
         biokineticWaveHistory.forEach((dial, tIndex) => {
             const currentScale = tIndex * 1; 
-            
-            // Static base opacity calculated for active wave layers
             const baseOpacity = 1.0 - (tIndex * 0.07);
             if (baseOpacity <= 0) return;
 
@@ -344,7 +388,7 @@
     }
 
     // -------------------------------------------------------------------------
-    // 2. RESONANCE GRADIENT (Δ) ENGINE & BIOCIRCADIAN CYCLE
+    // 3. ENGINE CORE UPDATE (Inversión: Sets=Tensión, Reps=Frecuencia)
     // -------------------------------------------------------------------------
     function updateZ() {
         const now = new Date();
@@ -352,101 +396,81 @@
         const seconds = now.getSeconds();
         const ms = now.getMilliseconds();
 
-        let rawTension = 0;   
-        let rawFrequency = 0; 
+        let rawTensionSets = 0;   
+        let rawFrequencyReps = 0; 
         let currentAction = 'P';
 
         if (seconds % 2 !== 0) {
             const progress1s = ms / 1000;
-            rawFrequency = Math.floor(progress1s * 12) + 1;
-            rawTension = 13 - rawFrequency;
+            rawFrequencyReps = Math.floor(progress1s * 12) + 1;
+            rawTensionSets = 13 - rawFrequencyReps;
 
             if (progress1s < 0.25) currentAction = 'P';      
             else if (progress1s < 0.50) currentAction = 'U'; 
             else if (progress1s < 0.75) currentAction = 'L'; 
             else currentAction = 'S';                        
         } else {
-            rawFrequency = Math.floor((minutes % 12) + 1);
+            rawFrequencyReps = Math.floor((minutes % 12) + 1);
 
             if (seconds < 30) {
                 const subSlot = Math.floor((seconds % 30) / 7.5);
                 currentAction = ["PL", "PU", "LU", "SU"][subSlot] || "PL";
-                rawTension = Math.floor((seconds % 10) + 2);
+                rawTensionSets = Math.floor((seconds % 10) + 2);
             } else {
                 const subSlot = Math.floor(((seconds - 30) % 30) / 7.5);
                 currentAction = ["PUL", "LPS", "SPU", "ULS"][subSlot] || "ULS";
-                rawTension = Math.floor(((seconds - 30) % 10) + 3);
+                rawTensionSets = Math.floor(((seconds - 30) % 10) + 3);
             }
         }
 
-        const setsStage = Math.max(1, Math.min(12, rawFrequency)); 
-        const repsStage = Math.max(1, Math.min(12, rawTension));   
+        currentTensionSets = Math.max(1, Math.min(12, rawTensionSets)); 
+        currentFrequencyReps = Math.max(1, Math.min(12, rawFrequencyReps));   
         
-        const biokineticCoordinate = `${setsStage}${currentAction}${repsStage}`;
+        const biokineticCoordinate = `${currentTensionSets}${currentAction}${currentFrequencyReps}`;
         const vectorIndex = VECTOR_TO_CLOCK_INDEX[currentAction] || 1;
-        const deltaGradient = (repsStage / setsStage).toFixed(2);
+        const deltaGradient = (currentTensionSets / currentFrequencyReps).toFixed(2);
 
         const lastSavedDial = biokineticWaveHistory[0];
         if (!lastSavedDial || lastSavedDial.rawCoord !== biokineticCoordinate) {
             biokineticWaveHistory.unshift({ 
-                sets: setsStage, 
+                sets: currentTensionSets, 
                 vector: vectorIndex, 
-                reps: repsStage, 
+                reps: currentFrequencyReps, 
                 delta: deltaGradient,
                 rawCoord: biokineticCoordinate 
             });
             if (biokineticWaveHistory.length > 12) biokineticWaveHistory.pop();
         }
 
+        // Renderizar vistas según modo activo
         renderBiokineticWaves();
-
-        const vectorText = VECTOR_DICTIONARY_EN[currentAction] || currentAction;
-        const translatedHudText = `${repsStage} ${vectorText} AT FREQUENCY X${setsStage}`;
-
-        let diagnosticMsg = "";
-        if (deltaGradient > 1.0) {
-            diagnosticMsg = `Tension Dominance (Δ=${deltaGradient}). Prescribing active push decompression.`;
-        } else if (deltaGradient < 1.0) {
-            diagnosticMsg = `Frequency Dominance (Δ=${deltaGradient}). Prescribing tensile pull anchoring.`;
-        } else {
-            diagnosticMsg = `Fascial Homeostasis (Δ=${deltaGradient}). High integrity fine tuning active.`;
-        }
+        if (viewMode === 0) renderSandwatch2D('sandwatch-dynamic-mesh');
+        if (viewMode === 2) renderSandwatch2D('sandwatch-hud-mesh');
 
         const elDial = $('z-dial');
-        const elDialHud = $('z-dial-hud');
-        const elDiagnostic = $('z-dial-diagnostic');
-
         if (elDial) elDial.textContent = biokineticCoordinate;
-        if (elDialHud) elDialHud.textContent = translatedHudText;
-        if (elDiagnostic) elDiagnostic.textContent = diagnosticMsg;
     }
 
     // -------------------------------------------------------------------------
-    // 4. INITIALIZATION & TRANSITION INTERACTION (SINGLE VS DOUBLE TAP)
+    // 4. INITIALIZATION & VIEW MODES
     // -------------------------------------------------------------------------
-// Update variable definition to make Clean Sandwatch mode 0
-    let viewMode = 0; // 0: Clean Floating Sandwatch, 1: Concentric Drops/Waves, 2: Sandwatch with HUD Dial
-    const $ = id => document.getElementById(id);
-
-    // Dynamic style apply helper for initial load and mode toggling
+    let viewMode = 0; // 0: Clean Sandwatch 2D, 1: Concentric Waves, 2: Sandwatch HUD
+    
     function applyContainerStyle(mode) {
         const maskWrapper = $('artepanel-mask-wrapper');
         if (!maskWrapper) return;
 
         if (mode === 0) {
-            // View 0: Clean floating sandwatch (No box frame background)
             maskWrapper.style.backgroundImage = 'none';
             maskWrapper.style.borderRadius = "0px";
         } else {
-            // Views 1 & 2: Restore dark gradient frame background
             maskWrapper.style.backgroundImage = 'linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-mid) 50%, var(--gradient-end) 100%)';
             maskWrapper.style.borderRadius = (mode === 1) ? "50%" : "0px";
         }
     }
 
-    // Inside DOMContentLoaded initialization:
     document.addEventListener('DOMContentLoaded', () => {
-        applyContainerStyle(viewMode); // Set initial transparent container style on boot
+        applyContainerStyle(viewMode);
         updateZ();
         setInterval(updateZ, 1000);
 
@@ -462,31 +486,26 @@
                 document.documentElement.setAttribute('data-theme', newTheme);
             };
 
-            // Updated view switcher logic with new order sequence
             const cycleViewMode = () => {
-                // Sequence loop: 0 (Clean) -> 1 (Waves) -> 2 (HUD Dial) -> 0
                 viewMode = (viewMode + 1) % 3;
 
                 const sandwatchCleanGroup = $('sandwatch-clean-group');
                 const sandwatchGroup = $('sandwatch-group');
 
-                // View 0: Clean Sandwatch (No box background, vectors only)
                 if (sandwatchCleanGroup) {
                     if (viewMode === 0) sandwatchCleanGroup.classList.remove('is-hidden');
                     else sandwatchCleanGroup.classList.add('is-hidden');
                 }
 
-                // View 1: Concentric Waves (Handled inside renderBiokineticWaves)
                 renderBiokineticWaves();
 
-                // View 2: Sandwatch with HUD Text Dial
                 if (sandwatchGroup) {
                     if (viewMode === 2) sandwatchGroup.classList.remove('is-hidden');
                     else sandwatchGroup.classList.add('is-hidden');
                 }
 
-                // Apply wrapper geometry/background styling per mode
                 applyContainerStyle(viewMode);
+                updateZ();
             };
 
             container.addEventListener('click', (e) => {
